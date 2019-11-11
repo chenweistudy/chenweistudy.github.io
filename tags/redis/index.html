@@ -6,16 +6,24 @@
   <meta name="keywords" content="">
   <meta name="description" content="Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="Redis基础篇1.redis的基本命令(1)连接操作命令quit：关闭连接（connection）  auth：简单密码认证  help cmd： 查看cmd帮助，例如：help quit(2)持久化save：将数据同步保存到磁盘  bgsave：将数据异步保存到磁盘  lastsave：返回上次成功将数据保存到磁盘的Unix时戳  shundown：将数据同步保存到磁盘，然后关闭服务(3)远程">
-<meta name="keywords" content="redis">
+<meta name="description" content="�á���͵꡿����ֲ�ʽ�ܹ�1����ʼ�� ��͵�    С���ӿ���һ�ҿ�͵�п���ˣ���Ӫը��������������͵�տ�ʼӪҵ��С����һ����������ը�������л��Լ��ɡ� 2�������Ŀ�͵�    ������һ�������ˣ��͹ݹ���ͣҵ���죬ʲô��ɲ��ˣ������������Ҫ�����Ŵ�ָ�������˲�">
+<meta name="keywords" content="�ֲ�ʽ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Redis基本命令和java基本操作">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;11&#x2F;redis&#x2F;index.html">
+<meta property="og:title" content="�á���͵꡿����ֲ�ʽ�ܹ�">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;11&#x2F;indexs&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Redis基础篇1.redis的基本命令(1)连接操作命令quit：关闭连接（connection）  auth：简单密码认证  help cmd： 查看cmd帮助，例如：help quit(2)持久化save：将数据同步保存到磁盘  bgsave：将数据异步保存到磁盘  lastsave：返回上次成功将数据保存到磁盘的Unix时戳  shundown：将数据同步保存到磁盘，然后关闭服务(3)远程">
+<meta property="og:description" content="�á���͵꡿����ֲ�ʽ�ܹ�1����ʼ�� ��͵�    С���ӿ���һ�ҿ�͵�п���ˣ���Ӫը��������������͵�տ�ʼӪҵ��С����һ����������ը�������л��Լ��ɡ� 2�������Ŀ�͵�    ������һ�������ˣ��͹ݹ���ͣҵ���죬ʲô��ɲ��ˣ������������Ҫ�����Ŵ�ָ�������˲�">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-11T03:03:03.571Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;11&#x2F;indexs&#x2F;1.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;11&#x2F;indexs&#x2F;2.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;11&#x2F;indexs&#x2F;3.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;11&#x2F;indexs&#x2F;4.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;11&#x2F;indexs&#x2F;5.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;11&#x2F;indexs&#x2F;6.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;11&#x2F;indexs&#x2F;7.jpg">
+<meta property="og:updated_time" content="2019-11-11T06:39:32.112Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;11&#x2F;indexs&#x2F;1.jpg">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -78,7 +86,15 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(1)</small></div></li>
+    <li><div class="all active">全部文章<small>(2)</small></div></li>
+    
+        
+            
+            <li><div data-rel="�ܹ�">�ܹ�<small>(1)</small></div>
+                
+            </li>
+            
+        
     
         
             
@@ -98,7 +114,7 @@
     </div>
     <div></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="1">
+<input type="hidden" id="yelog_site_posts_number" value="2">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -131,6 +147,10 @@
     <div class="tags-list">
     
     <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">�ֲ�ʽ</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" target="_blank" rel="noopener" class="color1">redis</a>
     </li>
     
@@ -139,6 +159,14 @@
 
     
     <nav id="title-list-nav">
+        
+        <a  class="�ܹ� "
+           href="/2019/11/11/indexs/"
+           data-tag="�ֲ�ʽ"
+           data-author="" >
+            <span class="post-title" title="�á���͵꡿����ֲ�ʽ�ܹ�">�á���͵꡿����ֲ�ʽ�ܹ�</span>
+            <span class="post-date" title="2019-11-11 13:01:24">2019/11/11</span>
+        </a>
         
         <a  class="redis "
            href="/2019/11/11/redis/"
@@ -240,7 +268,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#redis',],
+            'data': ['#�ֲ�ʽ','#redis',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
