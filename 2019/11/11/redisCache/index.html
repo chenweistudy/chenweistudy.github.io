@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Redis基本命令和java基本操作 | Hexo</title>
+  <title>redis缓存 | Hexo</title>
   <meta name="keywords" content=" redis ">
-  <meta name="description" content="Redis基本命令和java基本操作 | Hexo">
+  <meta name="description" content="redis缓存 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="一．缓存雪崩 缓存集中在一段时间内失效，发生大量的缓存穿透，所有的查询都落在数据库上，造成了缓存雪崩。并且如果大量的key过期时间设置的过于集中，到过期的时间点，redis可能会出现短暂的卡顿现象  解决方法1、使用互斥锁（这里使用redis的setnx实现分布式锁）：  只有获取锁，才能去访问数据库，加载数据，保证同一时刻只有一个请求访问数据库，避免数据库崩溃。可能造成请求延时比较久的问题。">
 <meta name="keywords" content="redis">
@@ -196,9 +196,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-redis" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-redisCache" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Redis基本命令和java基本操作</h1>
+        <h1 class="article-title">redis缓存</h1>
     
     <div class="article-meta">
         
@@ -220,7 +220,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-11-11 11:03:03'>2019-11-11 10:01</time>
+        创建时间:<time class="date" title='更新时间: 2019-11-11 17:54:18'>2019-11-11 17:01</time>
         
     </div>
     <div class="article-meta">
@@ -242,7 +242,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis基础篇"><span class="toc-text">Redis基础篇</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-text"></span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-redis的基本命令"><span class="toc-text">1.redis的基本命令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#-1"><span class="toc-text"></span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-连接操作命令"><span class="toc-text">(1)连接操作命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-持久化"><span class="toc-text">(2)持久化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-远程服务控制"><span class="toc-text">(3)远程服务控制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-对value操作的命令"><span class="toc-text">(4)对value操作的命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-String"><span class="toc-text">(5)String</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-List"><span class="toc-text">(6)List</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-Set"><span class="toc-text">(7)Set</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-Hash"><span class="toc-text">(8)Hash</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-java对redis的基本操作"><span class="toc-text">2.java对redis的基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-pom-xml"><span class="toc-text">2.1 pom.xml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2redisClient"><span class="toc-text">2.2redisClient</span></a></li></ol></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一．缓存雪崩"><span class="toc-text">一．缓存雪崩</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#解决方法"><span class="toc-text">解决方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二．缓存穿透"><span class="toc-text">二．缓存穿透</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -258,260 +258,30 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Redis基础篇"><a href="#Redis基础篇" class="headerlink" title="Redis基础篇"></a>Redis基础篇</h1><h1 id><a href="#" class="headerlink" title></a></h1><h2 id="1-redis的基本命令"><a href="#1-redis的基本命令" class="headerlink" title="1.redis的基本命令"></a>1.redis的基本命令</h2><h1 id="-1"><a href="#-1" class="headerlink" title></a></h1><h4 id="1-连接操作命令"><a href="#1-连接操作命令" class="headerlink" title="(1)连接操作命令"></a>(1)连接操作命令</h4><pre><code>quit：关闭连接（connection）
+        <h2 id="一．缓存雪崩"><a href="#一．缓存雪崩" class="headerlink" title="一．缓存雪崩"></a>一．缓存雪崩</h2><blockquote>
+<p>缓存集中在一段时间内失效，发生大量的缓存穿透，所有的查询都落在数据库上，造成了缓存雪崩。并且如果大量的key过期时间设置的过于集中，到过期的时间点，redis可能会出现短暂的卡顿现象</p>
+</blockquote>
+<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>1、使用互斥锁（这里使用redis的setnx实现分布式锁）：</p>
+<blockquote>
+<p>只有获取锁，才能去访问数据库，加载数据，保证同一时刻只有一个请求访问数据库，避免数据库崩溃。可能造成请求延时比较久的问题。</p>
+</blockquote>
+<p>2、让缓存过期时间不那么集中：</p>
+<blockquote>
+<p>比如我们可以在原有的失效时间基础上增加一个随机值，比如1-5分钟随机，这样每一个缓存的过期时间的重复率就会降低，就很难引发集体失效的事件</p>
+</blockquote>
+<p>3、做二级缓存</p>
+<blockquote>
+<p>A1为原始缓存，A2为拷贝缓存，A1失效时，可以访问A2。A1缓存失效时间设置为短期，A2设置为长期。这个在业务追求数据一致性要求不高的情况下，可以使用。</p>
+</blockquote>
+<p>4、缓存永远不过期</p>
+<p>(1) 从缓存上看，确实没有设置过期时间，这就保证不会出现热点key过期问题，也就是“物理”不过期。</p>
+<p>(2) 从功能上看，把过期时间存在key对应的value里，如果发现要过期了，通过一个后台的异步线程进行缓存的构建，也就是“逻辑”不过期.</p>
+<pre><code>上述不足之处就是构建缓存时候，其余线程(非构建缓存的线程)可能访问的是老数据，但是对于一般的互联网功能来说这个还是可以忍受。</code></pre><h2 id="二．缓存穿透"><a href="#二．缓存穿透" class="headerlink" title="二．缓存穿透"></a>二．缓存穿透</h2><blockquote>
+<p>缓存穿透是指查询一个一定不存在的数据，由于缓存是不命中时需要从数据库查询，查不到数据则不写入缓存，这将导致这个不存在的数据每次请求都要到数据库去查询，造成缓存穿透</p>
+</blockquote>
+<p>####解决方法</p>
+<p>使用Bloom filter（布隆过滤器）。当用户查询某个row时，可以先通过内存中的布隆过滤器过滤掉大量不存在的row请求，然后再到数据库进行查询。</p>
 
-auth：简单密码认证
-
-help cmd： 查看cmd帮助，例如：help quit</code></pre><h4 id="2-持久化"><a href="#2-持久化" class="headerlink" title="(2)持久化"></a>(2)持久化</h4><pre><code>save：将数据同步保存到磁盘
-
-bgsave：将数据异步保存到磁盘
-
-lastsave：返回上次成功将数据保存到磁盘的Unix时戳
-
-shundown：将数据同步保存到磁盘，然后关闭服务</code></pre><h4 id="3-远程服务控制"><a href="#3-远程服务控制" class="headerlink" title="(3)远程服务控制"></a>(3)远程服务控制</h4><pre><code>info：提供服务器的信息和统计
-
-monitor：实时转储收到的请求
-
-slaveof：改变复制策略设置
-
-config：在运行时配置Redis服务器</code></pre><h4 id="4-对value操作的命令"><a href="#4-对value操作的命令" class="headerlink" title="(4)对value操作的命令"></a>(4)对value操作的命令</h4><pre><code>exists(key)：确认一个key是否存在
-
-del(key)：删除一个key
-
-type(key)：返回值的类型
-
-keys(pattern)：返回满足给定pattern的所有key
-
-randomkey：随机返回key空间的一个
-
-keyrename(oldname, newname)：重命名key
-
-dbsize：返回当前数据库中key的数目
-
-expire：设定一个key的活动时间（s）
-
-ttl：获得一个key的活动时间
-
-select(index)：按索引查询
-
-move(key, dbindex)：移动当前数据库中的key到dbindex数据库
-
-flushdb：删除当前选择数据库中的所有key
-
-flushall：删除所有数据库中的所有key</code></pre><h4 id="5-String"><a href="#5-String" class="headerlink" title="(5)String"></a>(5)String</h4><pre><code>set(key, value)：给数据库中名称为key的string赋予值value
-
-get(key)：返回数据库中名称为key的string的value
-
-getset(key, value)：给名称为key的string赋予上一次的value
-
-mget(key1, key2,…, key N)：返回库中多个string的value
-
-setnx(key, value)：添加string，名称为key，值为value
-
-setex(key, time, value)：向库中添加string，设定过期时间time
-
-mset(key N, value N)：批量设置多个string的值
-
-msetnx(key N, value N)：如果所有名称为key i的string都不存在
-
-incr(key)：名称为key的string增1操作
-
-incrby(key, integer)：名称为key的string增加integer
-
-decr(key)：名称为key的string减1操作
-
-decrby(key, integer)：名称为key的string减少integer
-
-append(key, value)：名称为key的string的值附加value
-
-substr(key, start, end)：返回名称为key的string的value的子串</code></pre><h4 id="6-List"><a href="#6-List" class="headerlink" title="(6)List"></a>(6)List</h4><pre><code>rpush(key, value)：在名称为key的list尾添加一个值为value的元素
-
-lpush(key, value)：在名称为key的list头添加一个值为value的 元素
-
-llen(key)：返回名称为key的list的长度
-
-lrange(key, start, end)：返回名称为key的list中start至end之间的元素
-
-ltrim(key, start, end)：截取名称为key的list
-
-lindex(key, index)：返回名称为key的list中index位置的元素
-
-lset(key, index, value)：给名称为key的list中index位置的元素赋值
-
-lrem(key, count, value)：删除count个key的list中值为value的元素
-
-lpop(key)：返回并删除名称为key的list中的首元素
-
-rpop(key)：返回并删除名称为key的list中的尾元素
-
-blpop(key1, key2,… key N, timeout)：lpop命令的block版本。
-
-brpop(key1, key2,… key N, timeout)：rpop的block版本。
-
-rpoplpush(srckey, dstkey)：返回并删除名称为srckey的list的尾元素，并将该元素添加到名称为dstkey的list的头部</code></pre><h4 id="7-Set"><a href="#7-Set" class="headerlink" title="(7)Set"></a>(7)Set</h4><pre><code>sadd(key, member)：向名称为key的set中添加元素member
-
-srem(key, member) ：删除名称为key的set中的元素member
-
-spop(key) ：随机返回并删除名称为key的set中一个元素
-
-smove(srckey, dstkey, member) ：移到集合元素
-
-scard(key) ：返回名称为key的set的基数
-
-sismember(key, member) ：member是否是名称为key的set的元素
-
-sinter(key1, key2,…key N) ：求交集
-
-sinterstore(dstkey, (keys)) ：求交集并将交集保存到dstkey的集合
-
-sunion(key1, (keys)) ：求并集
-
-sunionstore(dstkey, (keys)) ：求并集并将并集保存到dstkey的集合
-
-sdiff(key1, (keys)) ：求差集
-
-sdiffstore(dstkey, (keys)) ：求差集并将差集保存到dstkey的集合
-
-smembers(key) ：返回名称为key的set的所有元素
-
-srandmember(key) ：随机返回名称为key的set的一个元素</code></pre><h4 id="8-Hash"><a href="#8-Hash" class="headerlink" title="(8)Hash"></a>(8)Hash</h4><pre><code>hset(key, field, value)：向名称为key的hash中添加元素field
-
-hget(key, field)：返回名称为key的hash中field对应的value
-
-hmget(key, (fields))：返回名称为key的hash中field i对应的value
-
-hmset(key, (fields))：向名称为key的hash中添加元素field 
-
-hincrby(key, field, integer)：将名称为key的hash中field的value增加integer
-
-hexists(key, field)：名称为key的hash中是否存在键为field的域
-
-hdel(key, field)：删除名称为key的hash中键为field的域
-
-hlen(key)：返回名称为key的hash中元素个数
-
-hkeys(key)：返回名称为key的hash中所有键
-
-hvals(key)：返回名称为key的hash中所有键对应的value
-
-hgetall(key)：返回名称为key的hash中所有的键（field）及其对应的value</code></pre><h2 id="2-java对redis的基本操作"><a href="#2-java对redis的基本操作" class="headerlink" title="2.java对redis的基本操作"></a>2.java对redis的基本操作</h2><h4 id="2-1-pom-xml"><a href="#2-1-pom-xml" class="headerlink" title="2.1 pom.xml"></a>2.1 pom.xml</h4><pre><code>&lt;dependency&gt;
-    &lt;groupId&gt;redis.clients&lt;/groupId&gt;
-    &lt;artifactId&gt;jedis&lt;/artifactId&gt;
-    &lt;version&gt;2.1.0&lt;/version&gt;
-&lt;/dependency&gt;
-  &lt;!-- https://mvnrepository.com/artifact/commons-pool/commons-pool --&gt;
-&lt;dependency&gt;
-    &lt;groupId&gt;commons-pool&lt;/groupId&gt;
-    &lt;artifactId&gt;commons-pool&lt;/artifactId&gt;
-    &lt;version&gt;1.5.6&lt;/version&gt;
-&lt;/dependency&gt;</code></pre><h4 id="2-2redisClient"><a href="#2-2redisClient" class="headerlink" title="2.2redisClient"></a>2.2redisClient</h4><pre><code>public class RedisClient {
-
-/**
- * 所谓的切片,就是客户端可以同时连到多个服务器,如果其中一个服务器挂掉,客户端可以切换到另一服务器,
- * 例如nginx做http转发,转发的目标机器有两台.其中一台为主机,另一台为备用机,如果主机挂掉,nginx可以自动转往备用机;
- */
-private Jedis jedis;//非切片额客户度连接
-private JedisPool jedisPool;//非切片连接池
-private ShardedJedis shardedJedis;//切片额客户端连接
-private ShardedJedisPool shardedJedisPool;//切片额客户端连接池
-
-public RedisClient(){
-    InitJedisPool();
-    InitShardedJedisPool();
-    jedis = jedisPool.getResource();
-    shardedJedis = shardedJedisPool.getResource();
-}
-/**
- * 初始化非切片额连接池
- * maxIdle，最大空闲数，数据库连接的最大空闲时间。超过空闲时间，数据库连接将被标记为不可用，然后被释放。设为0表示无限制。
- * MaxActive，连接池的最大数据库连接数。设为0表示无限制。
- * maxWait ，最大建立连接等待时间。如果超过此时间将接到异常。设为-1表示无限制。
- */
-public void InitJedisPool(){
-    JedisPoolConfig config = new JedisPoolConfig();
-    config.setMaxActive(20);
-    config.setMaxIdle(2);
-    config.setMaxWait(10001);
-    config.setTestOnBorrow(false);
-    jedisPool = new JedisPool(config, &quot;127.0.0.1&quot;, 6379);
-}
-
-/**
- * 初始化切片池
- */
-public void InitShardedJedisPool(){
-    JedisPoolConfig config = new JedisPoolConfig();
-    config.setMaxActive(20);
-    config.setMaxIdle(2);
-    config.setMaxWait(10001);
-    config.setTestOnBorrow(false);
-
-    List&lt;JedisShardInfo&gt; list = new ArrayList&lt;JedisShardInfo&gt;();
-    list.add(new JedisShardInfo(&quot;127.0.0.1&quot;, 6379, &quot;master&quot;));
-
-    shardedJedisPool = new ShardedJedisPool(config, list);
-
-}
-
-public void show(){
-    KeyOperate();
-
-    jedisPool.returnResource(jedis);
-    shardedJedisPool.returnResource(shardedJedis);
-
-}
-/**
- * 对value操作的命令
- */
-private void KeyOperate(){
-    System.out.println(&quot;------------key----------------&quot;);
-    System.out.println(&quot;清空所有数据：&quot;+jedis.flushDB());
-    //判断k99是否存在：
-    Boolean exists = jedis.exists(&quot;k99&quot;);
-    System.out.println(&quot;k99是否存在：&quot;+exists);
-    jedis.set(&quot;k001&quot;, &quot;value001&quot;);
-    String string = jedis.get(&quot;k001&quot;);
-    System.out.println(&quot;k001 value = &quot;+string);
-    System.out.println(jedis.type(&quot;k001&quot;));
-
-    shardedJedis.set(&quot;k002&quot;, &quot;value002&quot;);
-    System.out.println(shardedJedis.get(&quot;k002&quot;));
-
-    //系统中所有的键，使用“*”
-    Set&lt;String&gt; keys = jedis.keys(&quot;*&quot;);
-    Iterator&lt;String&gt; iterator = keys.iterator();
-    while(iterator.hasNext()){
-        String next = iterator.next();
-        String value = jedis.get(next);
-        System.out.println(next+&quot;:&quot;+value);    
-    }
-
-    //删除一个key
-    jedis.del(&quot;k001&quot;);
-    String k001 = jedis.get(&quot;k001&quot;);
-    System.out.println(k001);
-
-    //设置key002的过期时间
-    Long expire = jedis.expire(&quot;k002&quot;, 10);
-
-    try {
-        Thread.sleep(2000);
-    } catch (InterruptedException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
-    }
-    System.out.println(&quot;k002剩余存活时间：&quot;+jedis.ttl(&quot;k002&quot;));
-
-    //移除k002生存时间
-    jedis.persist(&quot;k002&quot;);
-    //永久生存或者不存在的都返回-1
-    System.out.println(&quot;k002剩余存活时间：&quot;+jedis.ttl(&quot;k002&quot;));
-
-}
-public static void main(String[] args) {
-    new RedisClient().show();
-    }
-}</code></pre>
       
        
     </div>
@@ -520,9 +290,9 @@ public static void main(String[] args) {
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>Redis基本命令和java基本操作</p>
-    <p><span class="copy-title">发布时间:</span>2019-11-11, 10:01:24</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-11, 11:03:03</p>
+    <p><span class="copy-title">文章标题:</span>redis缓存</p>
+    <p><span class="copy-title">发布时间:</span>2019-11-11, 17:01:24</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-11, 17:54:18</p>
 </div>
 
 
