@@ -510,21 +510,11 @@ public static void main(String[] args) {
 </article>
 
 
-<p>
-    <a href="javascript:void(0)" target="_blank" rel="noopener" class="dashang" onclick="dashangToggle()">赏</a>
-</p>
-
 
 <div class="article_copyright">
     <p><span class="copy-title">文章标题:</span>Redis基本命令和java基本操作</p>
-    
-    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" target="_blank" rel="noopener" title="John Doe">John Doe</a></p>
     <p><span class="copy-title">发布时间:</span>2019-11-11, 10:01:24</p>
     <p><span class="copy-title">最后更新:</span>2019-11-11, 11:03:03</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/11/11/redis/" title="Redis基本命令和java基本操作">http://yoursite.com/2019/11/11/redis/</a>
-    <p>
-        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
-    </p>
 </div>
 
 
@@ -558,24 +548,6 @@ public static void main(String[] args) {
 </div>
 <div class="acParent"></div>
 
-<div class="hide_box" onclick="dashangToggle()"></div>
-<div class="shang_box">
-    <a class="shang_close" href="javascript:void(0)" target="_blank" rel="noopener" onclick="dashangToggle()">×</a>
-    <div class="shang_tit">
-        <p>喜欢就点赞,疼爱就打赏</p>
-    </div>
-    <div class="shang_payimg">
-        <div class="pay_img">
-            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
-            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
-        </div>
-    </div>
-    <div class="shang_payselect">
-        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
-    </div>
-</div>
-
-
 </body>
 <script src="/js/jquery.pjax.js?v=1.0.1" ></script>
 
@@ -597,14 +569,6 @@ public static void main(String[] args) {
         
 
         /*渲染打赏样式*/
-        
-        $("input[name=pay]").on("click", function () {
-            if($("input[name=pay]:checked").val()=="weixin"){
-                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
-            } else {
-                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
-            }
-        })
         
 
         /*高亮代码块行号*/
@@ -636,11 +600,6 @@ public static void main(String[] args) {
     }
 
     /*打赏页面隐藏与展示*/
-    
-    function dashangToggle() {
-        $(".shang_box").fadeToggle();
-        $(".hide_box").fadeToggle();
-    }
     
 
 </script>
