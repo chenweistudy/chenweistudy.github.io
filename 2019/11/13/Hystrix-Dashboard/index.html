@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>redis持久化 | Hexo</title>
-  <meta name="keywords" content=" redis ">
-  <meta name="description" content="redis持久化 | Hexo">
+  <title>熔断监控Hystrix-Dashboard | Hexo</title>
+  <meta name="keywords" content=" 熔断监控Hystrix-Dashboard ">
+  <meta name="description" content="熔断监控Hystrix-Dashboard | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="1.雪崩效应&amp;emsp;&amp;emsp;在微服务架构中通常会有多个服务层调用，基础服务的故障可能会导致级联故障，进而造成整个系统不可用的情况，这种现象被称为服务雪崩效应。服务雪崩效应是一种因“服务提供者”的不可用导致“服务消费者”的不可用,并将不可用逐渐放大的过程。如下图所示：A作为服务提供者，B为A的服务消费者，C和D是B的服务消费者。A不可用引起了B的不可用，并将不可用像滚雪球一样放大到C和D时，">
 <meta name="keywords" content="Hystrix和Feign Hystrix">
@@ -295,9 +295,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-redisPersister" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Hystrix-Dashboard" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">redis持久化</h1>
+        <h1 class="article-title">熔断监控Hystrix-Dashboard</h1>
     
     <div class="article-meta">
         
@@ -305,21 +305,21 @@
         
         <span class="book">
             
-                <a href="javascript:" target="_blank" data-rel="redis noopener">redis</a>
+                <a href="javascript:" target="_blank" data-rel="springcloud noopener">springcloud</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" target="_blank" rel="noopener" class="color1">redis</a>
+            <a href="javascript:" target="_blank" rel="noopener" class="color2">熔断监控Hystrix-Dashboard</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-11-11 17:40:08'>2019-11-11 16:01</time>
+        创建时间:<time class="date" title='更新时间: 2019-11-13 15:58:13'>2019-11-13 15:58</time>
         
     </div>
     <div class="article-meta">
@@ -341,7 +341,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#redis持久化的方式"><span class="toc-text">redis持久化的方式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#RDB（Redis-DataBase）"><span class="toc-text">RDB（Redis DataBase）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AOF（Append-Only-File）"><span class="toc-text">AOF（Append Only File）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RDB和AOF联系"><span class="toc-text">RDB和AOF联系</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Hystrix-Dashboard监控单个服务"><span class="toc-text">1.Hystrix-Dashboard监控单个服务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-pom-xml"><span class="toc-text">1.1 pom.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-application-yml"><span class="toc-text">1.2 application.yml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-main启动方法"><span class="toc-text">1.3 main启动方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-remote远程调用"><span class="toc-text">1.4 remote远程调用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-1-HelloRemote"><span class="toc-text">1.4.1 HelloRemote</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-2-HelloRemoteHystrix"><span class="toc-text">1.4.2 HelloRemoteHystrix</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-Controller"><span class="toc-text">1.5 Controller</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-调试说明"><span class="toc-text">1.6 调试说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Turbine监控多个服务（后续需要再研究）"><span class="toc-text">2.Turbine监控多个服务（后续需要再研究）</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -357,20 +357,148 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="redis持久化的方式"><a href="#redis持久化的方式" class="headerlink" title="redis持久化的方式"></a>redis持久化的方式</h1><h2 id="RDB（Redis-DataBase）"><a href="#RDB（Redis-DataBase）" class="headerlink" title="RDB（Redis DataBase）"></a>RDB（Redis DataBase）</h2><p>1.RDB（Redis DataBase）,是在不同的时间点，将redis存储的数据生成快照并存储到磁盘等介质上；</p>
-<p>2.redis在进行数据持久化时，先将数据写入到临时文件，待持久化过程都结束，用临时文件替换上次持久化好的文件。</p>
-<p>3.redis会单独创建（fork）一个子进程持久化，主进程不会进行任何IO操作，确保redis极高的性能。</p>
-<p>4.即使每5分钟都持久化一次，当redis故障时，仍然会有近5分钟的数据丢失。</p>
-<h2 id="AOF（Append-Only-File）"><a href="#AOF（Append-Only-File）" class="headerlink" title="AOF（Append Only File）"></a>AOF（Append Only File）</h2><p>1.AOF（Append Only File），是将redis执行过的所有写指令记录下来，在下次redis重新启动时，执行一遍这些写指令，数据就可以恢复。</p>
-<p>2.默认的AOF持久化策略是每秒钟fsync一次（fsync是指把缓存中的写指令记录到磁盘中），即使redis故障，会丢失最近1秒钟的数据。</p>
-<p>3.AOF文件的大小超过所设定的阈值时，redis启动AOF文件的内容压缩，保留恢复数据的最小指令集。</p>
-<p>4在进行AOF重写时，采用先写临时文件，全部完成后再替换，断电、磁盘满等问题不会影响AOF文件的可用性，</p>
-<h2 id="RDB和AOF联系"><a href="#RDB和AOF联系" class="headerlink" title="RDB和AOF联系"></a>RDB和AOF联系</h2><p>1.进行大规模数据的恢复，且数据恢复的完整性不是非常敏感，使用RDB方式。</p>
-<p>2.数据的完整性非常敏感，使用AOF方式。</p>
-<p>3.redis重启时，若RDB和AOF同时使用，优先采用AOF方式恢复数据，AOF方式的数据恢复完整度更高。</p>
-<p>4.如果没有数据持久化的需求，关闭RDB和AOF方式，redis将变成一个纯内存数据库。</p>
-<p>5.同样数据规模的情况下，AOF文件比RDB文件体积大。AOF恢复速度慢于RDB方式。</p>
+        <h2 id="1-Hystrix-Dashboard监控单个服务"><a href="#1-Hystrix-Dashboard监控单个服务" class="headerlink" title="1.Hystrix-Dashboard监控单个服务"></a>1.Hystrix-Dashboard监控单个服务</h2><h3 id="1-1-pom-xml"><a href="#1-1-pom-xml" class="headerlink" title="1.1 pom.xml"></a>1.1 pom.xml</h3><pre><code>&lt;parent&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+    &lt;version&gt;1.5.3.RELEASE&lt;/version&gt;
+&lt;/parent&gt; 
+  &lt;properties&gt;
+      &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+    &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;
+    &lt;java.version&gt;1.8&lt;/java.version&gt;
+&lt;/properties&gt;
 
+&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+        &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+    &lt;!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-eureka --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-cloud-starter-eureka&lt;/artifactId&gt;
+        &lt;version&gt;1.3.1.RELEASE&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-cloud-starter-feign&lt;/artifactId&gt;
+        &lt;version&gt;1.3.1.RELEASE&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+        &lt;!-- 移除嵌入式tomcat插件 --&gt;
+        &lt;exclusions&gt;
+            &lt;exclusion&gt;
+                &lt;groupId&gt; org.hibernate&lt;/groupId&gt;
+                &lt;artifactId&gt;hibernate-validator&lt;/artifactId&gt;
+            &lt;/exclusion&gt;
+        &lt;/exclusions&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-cloud-starter-hystrix&lt;/artifactId&gt;
+        &lt;version&gt;1.3.1.RELEASE&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-cloud-starter-hystrix-dashboard&lt;/artifactId&gt;
+        &lt;version&gt;1.3.1.RELEASE&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-actuator&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+&lt;build&gt;
+    &lt;plugins&gt;
+        &lt;plugin&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+        &lt;/plugin&gt;
+    &lt;/plugins&gt;
+&lt;/build&gt;
+&lt;!--注意：这里必须要添加，否则各种依赖有问题--&gt;
+&lt;repositories&gt;
+    &lt;repository&gt;
+        &lt;id&gt;spring-milestones&lt;/id&gt;
+        &lt;name&gt;Spring Milestones&lt;/name&gt;
+        &lt;url&gt;https://repo.spring.io/libs-milestone&lt;/url&gt;
+        &lt;snapshots&gt;
+            &lt;enabled&gt;false&lt;/enabled&gt;
+        &lt;/snapshots&gt;
+    &lt;/repository&gt;
+&lt;/repositories&gt;</code></pre><h3 id="1-2-application-yml"><a href="#1-2-application-yml" class="headerlink" title="1.2 application.yml"></a>1.2 application.yml</h3><pre><code>server:
+  port: 8004
+
+spring:
+  application:
+    name: Cloud-Hystrix-Dashboard
+
+eureka:
+  client:
+    service-url: 
+      defaultZone: http://127.0.0.1:5555/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+
+feign:
+  hystrix:
+    enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream</code></pre><h3 id="1-3-main启动方法"><a href="#1-3-main启动方法" class="headerlink" title="1.3 main启动方法"></a>1.3 main启动方法</h3><pre><code>@SpringBootApplication
+@EnableDiscoveryClient
+@EnableFeignClients
+@EnableHystrixDashboard
+@EnableCircuitBreaker
+public class HystrixDashboardRun {
+    public static void main(String[] args) {
+        SpringApplication.run(HystrixDashboardRun.class, args);
+    }
+}</code></pre><h3 id="1-4-remote远程调用"><a href="#1-4-remote远程调用" class="headerlink" title="1.4 remote远程调用"></a>1.4 remote远程调用</h3><h4 id="1-4-1-HelloRemote"><a href="#1-4-1-HelloRemote" class="headerlink" title="1.4.1 HelloRemote"></a>1.4.1 HelloRemote</h4><pre><code>@FeignClient(fallback=HelloRemoteHystrix.class,name=&quot;producer&quot;)
+public interface HelloRemote {
+    @RequestMapping(&quot;/hello&quot;)
+    public String testHello(@RequestParam(value=&quot;param&quot;) String param);
+}</code></pre><h4 id="1-4-2-HelloRemoteHystrix"><a href="#1-4-2-HelloRemoteHystrix" class="headerlink" title="1.4.2 HelloRemoteHystrix"></a>1.4.2 HelloRemoteHystrix</h4><pre><code>@Component
+public class HelloRemoteHystrix implements HelloRemote{
+
+    public String testHello(String param) {
+        // TODO Auto-generated method stub
+        return &quot;hello &quot;+param+&quot;, this message send failed&quot;;
+    }
+}</code></pre><h3 id="1-5-Controller"><a href="#1-5-Controller" class="headerlink" title="1.5 Controller"></a>1.5 Controller</h3><pre><code>@RestController
+public class TestHello {
+
+    @Autowired
+    HelloRemote helloRemote;
+
+    @RequestMapping(&quot;/testController/{param}&quot;)
+    public String getHello(@PathVariable(&quot;param&quot;) String param){
+
+        return helloRemote.testHello(param);
+    }
+}</code></pre><h3 id="1-6-调试说明"><a href="#1-6-调试说明" class="headerlink" title="1.6 调试说明"></a>1.6 调试说明</h3><blockquote>
+<p>启动工程后访问 <a href="http://127.0.0.1:8004/hystrix" target="_blank" rel="noopener">http://127.0.0.1:8004/hystrix</a></p>
+</blockquote>
+<p><img src="/2019/11/13/Hystrix-Dashboard/1.png" alt></p>
+<p>访问输入：<a href="http://127.0.0.1:8004/hystrix.stream" target="_blank" rel="noopener">http://127.0.0.1:8004/hystrix.stream</a></p>
+<p>同时浏览器访问：<a href="http://127.0.0.1:8004/hystrix.stream" target="_blank" rel="noopener">http://127.0.0.1:8004/hystrix.stream</a> 也可以看到数据。</p>
+<p>监控可以查看到下面数据：</p>
+<p><img src="/2019/11/13/Hystrix-Dashboard/2.png" alt></p>
+<h2 id="2-Turbine监控多个服务（后续需要再研究）"><a href="#2-Turbine监控多个服务（后续需要再研究）" class="headerlink" title="2.Turbine监控多个服务（后续需要再研究）"></a>2.Turbine监控多个服务（后续需要再研究）</h2>
       
        
     </div>
@@ -379,9 +507,9 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>redis持久化</p>
-    <p><span class="copy-title">发布时间:</span>2019-11-11, 16:01:24</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-11, 17:40:08</p>
+    <p><span class="copy-title">文章标题:</span>熔断监控Hystrix-Dashboard</p>
+    <p><span class="copy-title">发布时间:</span>2019-11-13, 15:58:13</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-13, 15:58:13</p>
 </div>
 
 

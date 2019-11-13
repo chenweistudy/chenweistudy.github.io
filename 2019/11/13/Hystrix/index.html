@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>redis持久化 | Hexo</title>
-  <meta name="keywords" content=" redis ">
-  <meta name="description" content="redis持久化 | Hexo">
+  <title>熔断器（Hystrix） | Hexo</title>
+  <meta name="keywords" content=" Hystrix和Feign Hystrix ">
+  <meta name="description" content="熔断器（Hystrix） | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="1.雪崩效应&amp;emsp;&amp;emsp;在微服务架构中通常会有多个服务层调用，基础服务的故障可能会导致级联故障，进而造成整个系统不可用的情况，这种现象被称为服务雪崩效应。服务雪崩效应是一种因“服务提供者”的不可用导致“服务消费者”的不可用,并将不可用逐渐放大的过程。如下图所示：A作为服务提供者，B为A的服务消费者，C和D是B的服务消费者。A不可用引起了B的不可用，并将不可用像滚雪球一样放大到C和D时，">
 <meta name="keywords" content="Hystrix和Feign Hystrix">
@@ -295,9 +295,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-redisPersister" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Hystrix" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">redis持久化</h1>
+        <h1 class="article-title">熔断器（Hystrix）</h1>
     
     <div class="article-meta">
         
@@ -305,21 +305,21 @@
         
         <span class="book">
             
-                <a href="javascript:" target="_blank" data-rel="redis noopener">redis</a>
+                <a href="javascript:" target="_blank" data-rel="springcloud noopener">springcloud</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" target="_blank" rel="noopener" class="color1">redis</a>
+            <a href="javascript:" target="_blank" rel="noopener" class="color2">Hystrix和Feign Hystrix</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-11-11 17:40:08'>2019-11-11 16:01</time>
+        创建时间:<time class="date" title='更新时间: 2019-11-13 15:58:17'>2019-11-13 15:58</time>
         
     </div>
     <div class="article-meta">
@@ -341,7 +341,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#redis持久化的方式"><span class="toc-text">redis持久化的方式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#RDB（Redis-DataBase）"><span class="toc-text">RDB（Redis DataBase）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AOF（Append-Only-File）"><span class="toc-text">AOF（Append Only File）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RDB和AOF联系"><span class="toc-text">RDB和AOF联系</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-雪崩效应"><span class="toc-text">1.雪崩效应</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-熔断器"><span class="toc-text">2.熔断器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Hystrix特性"><span class="toc-text">3.Hystrix特性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-断路器机制"><span class="toc-text">3.1 断路器机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-Fallback"><span class="toc-text">3.2 Fallback</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-资源隔离"><span class="toc-text">3.3 资源隔离</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Feign-Hystrix应用"><span class="toc-text">4.Feign Hystrix应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-application-yml"><span class="toc-text">4.1 application.yml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-HelloRemote"><span class="toc-text">4.2 HelloRemote</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-HelloRemoteHystrix"><span class="toc-text">4.3 HelloRemoteHystrix</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-调用说明"><span class="toc-text">4.4 调用说明</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -357,19 +357,59 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="redis持久化的方式"><a href="#redis持久化的方式" class="headerlink" title="redis持久化的方式"></a>redis持久化的方式</h1><h2 id="RDB（Redis-DataBase）"><a href="#RDB（Redis-DataBase）" class="headerlink" title="RDB（Redis DataBase）"></a>RDB（Redis DataBase）</h2><p>1.RDB（Redis DataBase）,是在不同的时间点，将redis存储的数据生成快照并存储到磁盘等介质上；</p>
-<p>2.redis在进行数据持久化时，先将数据写入到临时文件，待持久化过程都结束，用临时文件替换上次持久化好的文件。</p>
-<p>3.redis会单独创建（fork）一个子进程持久化，主进程不会进行任何IO操作，确保redis极高的性能。</p>
-<p>4.即使每5分钟都持久化一次，当redis故障时，仍然会有近5分钟的数据丢失。</p>
-<h2 id="AOF（Append-Only-File）"><a href="#AOF（Append-Only-File）" class="headerlink" title="AOF（Append Only File）"></a>AOF（Append Only File）</h2><p>1.AOF（Append Only File），是将redis执行过的所有写指令记录下来，在下次redis重新启动时，执行一遍这些写指令，数据就可以恢复。</p>
-<p>2.默认的AOF持久化策略是每秒钟fsync一次（fsync是指把缓存中的写指令记录到磁盘中），即使redis故障，会丢失最近1秒钟的数据。</p>
-<p>3.AOF文件的大小超过所设定的阈值时，redis启动AOF文件的内容压缩，保留恢复数据的最小指令集。</p>
-<p>4在进行AOF重写时，采用先写临时文件，全部完成后再替换，断电、磁盘满等问题不会影响AOF文件的可用性，</p>
-<h2 id="RDB和AOF联系"><a href="#RDB和AOF联系" class="headerlink" title="RDB和AOF联系"></a>RDB和AOF联系</h2><p>1.进行大规模数据的恢复，且数据恢复的完整性不是非常敏感，使用RDB方式。</p>
-<p>2.数据的完整性非常敏感，使用AOF方式。</p>
-<p>3.redis重启时，若RDB和AOF同时使用，优先采用AOF方式恢复数据，AOF方式的数据恢复完整度更高。</p>
-<p>4.如果没有数据持久化的需求，关闭RDB和AOF方式，redis将变成一个纯内存数据库。</p>
-<p>5.同样数据规模的情况下，AOF文件比RDB文件体积大。AOF恢复速度慢于RDB方式。</p>
+        <h2 id="1-雪崩效应"><a href="#1-雪崩效应" class="headerlink" title="1.雪崩效应"></a>1.雪崩效应</h2><p>&emsp;&emsp;在微服务架构中通常会有多个服务层调用，基础服务的故障可能会导致级联故障，进而造成整个系统不可用的情况，这种现象被称为服务雪崩效应。服务雪崩效应是一种因“服务提供者”的不可用导致“服务消费者”的不可用,并将不可用逐渐放大的过程。<br>如下图所示：A作为服务提供者，B为A的服务消费者，C和D是B的服务消费者。A不可用引起了B的不可用，并将不可用像滚雪球一样放大到C和D时，雪崩效应就形成了。</p>
+<p><img src="/2019/11/13/Hystrix/1.png" alt></p>
+<h2 id="2-熔断器"><a href="#2-熔断器" class="headerlink" title="2.熔断器"></a>2.熔断器</h2><p>&emsp;&emsp;熔断器的原理很简单，如同电力过载保护器。它可以实现快速失败，如果它在一段时间内侦测到许多类似的错误，会强迫其以后的多个调用快速失败，不再访问远程服务器，从而防止应用程序不断地尝试执行可能会失败的操作，使得应用程序继续执行而不用等待修正错误，或者浪费CPU时间去等到长时间的超时产生。熔断器也可以使应用程序能够诊断错误是否已经修正，如果已经修正，应用程序会再次尝试调用操作。</p>
+<p>&emsp;&emsp;熔断器模式就像是那些容易导致错误的操作的一种代理。这种代理能够记录最近调用发生错误的次数，然后决定使用允许操作继续，或者立即返回错误。<br>熔断器就是保护服务高可用的最后一道防线。<br>熔断器开关相互转换的逻辑如下图：</p>
+<p><img src="/2019/11/13/Hystrix/2.png" alt></p>
+<h2 id="3-Hystrix特性"><a href="#3-Hystrix特性" class="headerlink" title="3.Hystrix特性"></a>3.Hystrix特性</h2><h3 id="3-1-断路器机制"><a href="#3-1-断路器机制" class="headerlink" title="3.1 断路器机制"></a>3.1 断路器机制</h3><p>&emsp;&emsp;断路器很好理解, 当Hystrix Command请求后端服务失败数量超过一定比例(默认50%), 断路器会切换到开路状态(Open). 这时所有请求会直接失败而不会发送到后端服务. 断路器保持在开路状态一段时间后(默认5秒), 自动切换到半开路状态(HALF-OPEN). 这时会判断下一次请求的返回情况, 如果请求成功, 断路器切回闭路状态(CLOSED), 否则重新切换到开路状态(OPEN). Hystrix的断路器就像我们家庭电路中的保险丝, 一旦后端服务不可用, 断路器会直接切断请求链, 避免发送大量无效请求影响系统吞吐量, 并且断路器有自我检测并恢复的能力.</p>
+<h3 id="3-2-Fallback"><a href="#3-2-Fallback" class="headerlink" title="3.2 Fallback"></a>3.2 Fallback</h3><p>&emsp;&emsp;Fallback相当于是降级操作. 对于查询操作, 我们可以实现一个fallback方法, 当请求后端服务出现异常的时候, 可以使用fallback方法返回的值. fallback方法的返回值一般是设置的默认值或者来自缓存.</p>
+<h3 id="3-3-资源隔离"><a href="#3-3-资源隔离" class="headerlink" title="3.3 资源隔离"></a>3.3 资源隔离</h3><p>&emsp;&emsp;在Hystrix中, 主要通过线程池来实现资源隔离. 通常在使用的时候我们会根据调用的远程服务划分出多个线程池. 例如调用产品服务的Command放入A线程池, 调用账户服务的Command放入B线程池. 这样做的主要优点是运行环境被隔离开了. 这样就算调用服务的代码存在bug或者由于其他原因导致自己所在线程池被耗尽时, 不会对系统的其他服务造成影响. 但是带来的代价就是维护多个线程池会对系统带来额外的性能开销. 如果是对性能有严格要求而且确信自己调用服务的客户端代码不会出问题的话, 可以使用Hystrix的信号模式(Semaphores)来隔离资源</p>
+<h2 id="4-Feign-Hystrix应用"><a href="#4-Feign-Hystrix应用" class="headerlink" title="4.Feign Hystrix应用"></a>4.Feign Hystrix应用</h2><p>&emsp;&emsp;因为熔断只是作用在服务调用这一端，因此我们根据上一篇的示例代码只需要改动spring-cloud-consumer项目相关代码就可以。因为，Feign中已经依赖了Hystrix所以在maven配置上不用做任何改动。</p>
+<blockquote>
+<p>整个项目继承 （eureka服务提供和调用），修改如下：</p>
+</blockquote>
+<h3 id="4-1-application-yml"><a href="#4-1-application-yml" class="headerlink" title="4.1 application.yml"></a>4.1 application.yml</h3><pre><code>server:
+  port: 8002
+
+spring:
+  application:
+    name: Consumer
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://127.0.0.1:5555/eureka/    
+
+feign:
+  hystrix:
+    enabled: true</code></pre><h3 id="4-2-HelloRemote"><a href="#4-2-HelloRemote" class="headerlink" title="4.2 HelloRemote"></a>4.2 HelloRemote</h3><pre><code>@Component
+@FeignClient(name=&quot;producer&quot;,fallback=HelloRemoteHystrix.class) //name:远程服务名，spring.application.name配置的名称
+public interface HelloRemote {
+    @RequestMapping(value=&quot;/hello&quot;)
+    public String testHello(@RequestParam(value=&quot;param&quot;) String param);
+    //注意：    此方法和远程服务的contoller中的方法名和参数需保持一致。
+}</code></pre><h3 id="4-3-HelloRemoteHystrix"><a href="#4-3-HelloRemoteHystrix" class="headerlink" title="4.3 HelloRemoteHystrix"></a>4.3 HelloRemoteHystrix</h3><pre><code>@Component
+public class HelloRemoteHystrix implements HelloRemote{
+    @Override
+    public String testHello(String param) {
+        // TODO Auto-generated method stub
+        return &quot;hello &quot;+param+&quot;, this message send failed&quot;;
+    }    
+}</code></pre><h3 id="4-4-调用说明"><a href="#4-4-调用说明" class="headerlink" title="4.4 调用说明"></a>4.4 调用说明</h3><blockquote>
+<p>1.依次启动Cloud-EurekaServer、Cloud-Producer、Cloud-Consumer三个项目</p>
+</blockquote>
+<blockquote>
+<p>2.先输入：<a href="http://127.0.0.1:5555/检查Cloud-EurekaServe注册服务是否正常" target="_blank" rel="noopener">http://127.0.0.1:5555/检查Cloud-EurekaServe注册服务是否正常</a><br>再输入：<a href="http://192.168.18.106:8001/hello?param=’test’" target="_blank" rel="noopener">http://192.168.18.106:8001/hello?param=’test’</a> 检查Cloud-Producer服务是否正常<br>返回：hello ‘test’ ,this is Producer message<br>说明Cloud-Producr正常启动，提供的服务也正常。</p>
+</blockquote>
+<blockquote>
+<p>3.浏览器中输入：<a href="http://192.168.18.106:8002/hello/param" target="_blank" rel="noopener">http://192.168.18.106:8002/hello/param</a><br>返回：hello param ,this is Producer2 message<br>说明客户端已经成功的通过feign调用了远程服务hello，并且将结果返回到了浏览器。<br>加入熔断相关信息后，不影响正常的访问。手动停止Cloud-Producer项目再次测试：</p>
+</blockquote>
+<blockquote>
+<p>4.浏览器中输入：<a href="http://192.168.18.106:8002/hello/param" target="_blank" rel="noopener">http://192.168.18.106:8002/hello/param</a><br>返回：hello param , this messge send failed<br>根据返回结果说明熔断成功。</p>
+</blockquote>
 
       
        
@@ -379,9 +419,9 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>redis持久化</p>
-    <p><span class="copy-title">发布时间:</span>2019-11-11, 16:01:24</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-11, 17:40:08</p>
+    <p><span class="copy-title">文章标题:</span>熔断器（Hystrix）</p>
+    <p><span class="copy-title">发布时间:</span>2019-11-13, 15:58:16</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-13, 15:58:17</p>
 </div>
 
 

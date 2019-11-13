@@ -6,16 +6,19 @@
   <meta name="keywords" content=" rabbitMQ ">
   <meta name="description" content="消息队列 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="一.项目描述(非负载均衡) 案例中有三个角色：服务注册中心、服务提供者、服务消费者，其中服务注册中心就是我们上一篇的eureka单机版启动既可，流程是首先启动注册中心，服务提供者生产服务并注册到服务中心中，消费者从服务中心中获取服务并执行  1.Eureka服务注册中心(1)pom.xml&amp;lt;parent&amp;gt;        &amp;lt;groupId&amp;gt;org.springframewor">
-<meta name="keywords" content="eureka 服务提供和调用">
+<meta name="description" content="1.雪崩效应&amp;emsp;&amp;emsp;在微服务架构中通常会有多个服务层调用，基础服务的故障可能会导致级联故障，进而造成整个系统不可用的情况，这种现象被称为服务雪崩效应。服务雪崩效应是一种因“服务提供者”的不可用导致“服务消费者”的不可用,并将不可用逐渐放大的过程。如下图所示：A作为服务提供者，B为A的服务消费者，C和D是B的服务消费者。A不可用引起了B的不可用，并将不可用像滚雪球一样放大到C和D时，">
+<meta name="keywords" content="Hystrix和Feign Hystrix">
 <meta property="og:type" content="article">
-<meta property="og:title" content="eureka服务提供和调用">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;13&#x2F;eureka-Producer-Consumer&#x2F;index.html">
+<meta property="og:title" content="熔断器（Hystrix）">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;13&#x2F;Hystrix&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="一.项目描述(非负载均衡) 案例中有三个角色：服务注册中心、服务提供者、服务消费者，其中服务注册中心就是我们上一篇的eureka单机版启动既可，流程是首先启动注册中心，服务提供者生产服务并注册到服务中心中，消费者从服务中心中获取服务并执行  1.Eureka服务注册中心(1)pom.xml&amp;lt;parent&amp;gt;        &amp;lt;groupId&amp;gt;org.springframewor">
+<meta property="og:description" content="1.雪崩效应&amp;emsp;&amp;emsp;在微服务架构中通常会有多个服务层调用，基础服务的故障可能会导致级联故障，进而造成整个系统不可用的情况，这种现象被称为服务雪崩效应。服务雪崩效应是一种因“服务提供者”的不可用导致“服务消费者”的不可用,并将不可用逐渐放大的过程。如下图所示：A作为服务提供者，B为A的服务消费者，C和D是B的服务消费者。A不可用引起了B的不可用，并将不可用像滚雪球一样放大到C和D时，">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-13T07:10:49.622Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;13&#x2F;Hystrix&#x2F;1.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;13&#x2F;Hystrix&#x2F;2.png">
+<meta property="og:updated_time" content="2019-11-13T07:58:17.240Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;13&#x2F;Hystrix&#x2F;1.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -78,7 +81,15 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(8)</small></div></li>
+    <li><div class="all active">全部文章<small>(10)</small></div></li>
+    
+        
+            
+            <li><div data-rel="springcloud">springcloud<small>(4)</small></div>
+                
+            </li>
+            
+        
     
         
             
@@ -106,14 +117,6 @@
     
         
             
-            <li><div data-rel="springcloud">springcloud<small>(2)</small></div>
-                
-            </li>
-            
-        
-    
-        
-            
             <li><div data-rel="消息队列">消息队列<small>(1)</small></div>
                 
             </li>
@@ -130,7 +133,7 @@
     </div>
     <div></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="8">
+<input type="hidden" id="yelog_site_posts_number" value="10">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -163,6 +166,14 @@
     <div class="tags-list">
     
     <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">熔断监控Hystrix-Dashboard</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Hystrix和Feign Hystrix</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" target="_blank" rel="noopener" class="color2">docker</a>
     </li>
     
@@ -191,6 +202,22 @@
 
     
     <nav id="title-list-nav">
+        
+        <a  class="springcloud "
+           href="/2019/11/13/Hystrix-Dashboard/"
+           data-tag="熔断监控Hystrix-Dashboard"
+           data-author="" >
+            <span class="post-title" title="熔断监控Hystrix-Dashboard">熔断监控Hystrix-Dashboard</span>
+            <span class="post-date" title="2019-11-13 15:58:13">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/Hystrix/"
+           data-tag="Hystrix和Feign Hystrix"
+           data-author="" >
+            <span class="post-title" title="熔断器（Hystrix）">熔断器（Hystrix）</span>
+            <span class="post-date" title="2019-11-13 15:58:16">2019/11/13</span>
+        </a>
         
         <a  class="项目部署 "
            href="/2019/11/13/docker/"
@@ -477,7 +504,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#docker','#分布式','#redis','#eureka 服务提供和调用','#eureka原理介绍','#rabbitMQ',],
+            'data': ['#熔断监控Hystrix-Dashboard','#Hystrix和Feign Hystrix','#docker','#分布式','#redis','#eureka 服务提供和调用','#eureka原理介绍','#rabbitMQ',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
