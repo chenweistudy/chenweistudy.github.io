@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>熔断监控Hystrix-Dashboard | Hexo</title>
-  <meta name="keywords" content=" 熔断监控Hystrix-Dashboard ">
-  <meta name="description" content="熔断监控Hystrix-Dashboard | Hexo">
+  <title>配置中心git | Hexo</title>
+  <meta name="keywords" content=" 配置中心git ">
+  <meta name="description" content="配置中心git | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="1.简介&amp;emsp;&amp;emsp;随着线上项目变的日益庞大，每个项目都散落着各种配置文件，如果采用分布式的开发模式，需要的配置文件随着服务增加而不断增多。某一个基础服务信息变更，都会引起一系列的更新和重启，运维苦不堪言也容易出错。配置中心便是解决此类问题的灵丹妙药。 &amp;emsp;&amp;emsp;市面上开源的配置中心有很多，BAT每家都出过，360的QConf、淘宝的diamond、百度的disconf都">
 <meta name="keywords" content="配置中心git">
@@ -306,9 +306,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-Hystrix-Dashboard" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-gitConfig" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">熔断监控Hystrix-Dashboard</h1>
+        <h1 class="article-title">配置中心git</h1>
     
     <div class="article-meta">
         
@@ -323,14 +323,14 @@
         
         <span class="tag">
             
-            <a href="javascript:" target="_blank" rel="noopener" class="color2">熔断监控Hystrix-Dashboard</a>
+            <a href="javascript:" target="_blank" rel="noopener" class="color3">配置中心git</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-11-13 15:58:13'>2019-11-13 15:58</time>
+        创建时间:<time class="date" title='更新时间: 2019-11-13 16:58:00'>2019-11-13 16:58</time>
         
     </div>
     <div class="article-meta">
@@ -352,7 +352,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Hystrix-Dashboard监控单个服务"><span class="toc-text">1.Hystrix-Dashboard监控单个服务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-pom-xml"><span class="toc-text">1.1 pom.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-application-yml"><span class="toc-text">1.2 application.yml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-main启动方法"><span class="toc-text">1.3 main启动方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-remote远程调用"><span class="toc-text">1.4 remote远程调用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-1-HelloRemote"><span class="toc-text">1.4.1 HelloRemote</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-2-HelloRemoteHystrix"><span class="toc-text">1.4.2 HelloRemoteHystrix</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-Controller"><span class="toc-text">1.5 Controller</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-调试说明"><span class="toc-text">1.6 调试说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Turbine监控多个服务（后续需要再研究）"><span class="toc-text">2.Turbine监控多个服务（后续需要再研究）</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-简介"><span class="toc-text">1.简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Spring-Cloud-Config"><span class="toc-text">2.Spring Cloud Config</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-配置中心的核心功能："><span class="toc-text">2.1    配置中心的核心功能：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-Spring-Cloud-Config可以完美的支持配置中心所有的需求。"><span class="toc-text">2.2 Spring Cloud Config可以完美的支持配置中心所有的需求。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-1-server端"><span class="toc-text">2.2.1 server端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-1-pom-xml"><span class="toc-text">2.2.1.1 pom.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-2-application-yml"><span class="toc-text">2.2.1.2 application.yml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-3-main方法启动"><span class="toc-text">2.2.1.3 main方法启动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-4-测试："><span class="toc-text">2.2.1.4  测试：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-5-git仓库的配置文件会转换成web接口-规则如下"><span class="toc-text">2.2.1.5  git仓库的配置文件会转换成web接口,规则如下</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-2-client端"><span class="toc-text">2.2.2 client端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-1-pom-xml"><span class="toc-text">2.2.2.1 pom.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-2-application-yml"><span class="toc-text">2.2.2.2 application.yml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-4-文件加载顺序特别说明"><span class="toc-text">2.2.2.4 文件加载顺序特别说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-5-main-启动类"><span class="toc-text">2.2.2.5 main 启动类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-6-controller"><span class="toc-text">2.2.2.6 controller</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-7-访问测试"><span class="toc-text">2.2.2.7 访问测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-8-出现的问题"><span class="toc-text">2.2.2.8 出现的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-9-解决问题方法"><span class="toc-text">2.2.2.9 解决问题方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-3-1-pom-xml"><span class="toc-text">2.2.3.1 pom.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-3-2-controller"><span class="toc-text">2.2.3.2 controller</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-3-3-访问测试"><span class="toc-text">2.2.3.3 访问测试</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -368,7 +368,25 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-Hystrix-Dashboard监控单个服务"><a href="#1-Hystrix-Dashboard监控单个服务" class="headerlink" title="1.Hystrix-Dashboard监控单个服务"></a>1.Hystrix-Dashboard监控单个服务</h2><h3 id="1-1-pom-xml"><a href="#1-1-pom-xml" class="headerlink" title="1.1 pom.xml"></a>1.1 pom.xml</h3><pre><code>&lt;parent&gt;
+        <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>&emsp;&emsp;随着线上项目变的日益庞大，每个项目都散落着各种配置文件，如果采用分布式的开发模式，需要的配置文件随着服务增加而不断增多。某一个基础服务信息变更，都会引起一系列的更新和重启，运维苦不堪言也容易出错。配置中心便是解决此类问题的灵丹妙药。</p>
+<p>&emsp;&emsp;市面上开源的配置中心有很多，BAT每家都出过，360的QConf、淘宝的diamond、百度的disconf都是解决这类问题。国外也有很多开源的配置中心Apache Commons Configuration、owner、cfg4j等等。这些开源的软件以及解决方案都很优秀，但是我最钟爱的却是Spring Cloud Config，因为它功能全面强大，可以无缝的和spring体系相结合，够方便够简单颜值高我喜欢。</p>
+<h2 id="2-Spring-Cloud-Config"><a href="#2-Spring-Cloud-Config" class="headerlink" title="2.Spring Cloud Config"></a>2.Spring Cloud Config</h2><h3 id="2-1-配置中心的核心功能："><a href="#2-1-配置中心的核心功能：" class="headerlink" title="2.1    配置中心的核心功能："></a>2.1    配置中心的核心功能：</h3><blockquote>
+<p>1.提供服务端和客户端支持； </p>
+<p>2.集中管理各环境的配置文件；</p>
+<p>3.配置文件修改之后，可以快速的生效；</p>
+<p>4.可以进行版本管理；支持大的并发查询；支持各种语言</p>
+</blockquote>
+<h2 id="2-2-Spring-Cloud-Config可以完美的支持配置中心所有的需求。"><a href="#2-2-Spring-Cloud-Config可以完美的支持配置中心所有的需求。" class="headerlink" title="2.2 Spring Cloud Config可以完美的支持配置中心所有的需求。"></a>2.2 Spring Cloud Config可以完美的支持配置中心所有的需求。</h2><p>&emsp;&emsp;Spring Cloud Config项目是一个解决分布式系统的配置管理方案。</p>
+<p>&emsp;&emsp;它包含了Client和Server两个部分，server提供配置文件的存储、以接口的形式将配置文件的内容提供出去，client通过接口获取数据、并依据此数据初始化自己的应用。</p>
+<p>&emsp;&emsp;Spring cloud使用git或svn存放配置文件，默认情况下使用git，我们先以git为例做一套示例。</p>
+<blockquote>
+<p>首先在github上面创建了一个文件夹config-repo用来存放配置文件，为了模拟生产环境，我们创建配置文件： neo-config-dev.properties</p>
+</blockquote>
+<p><img src="/2019/11/13/gitConfig/1.png" alt></p>
+<blockquote>
+<p>此文件内容：neo.hello: dev .通过git命名，上传文件到码云git管理上，如上图所示。</p>
+</blockquote>
+<h2 id="2-2-1-server端"><a href="#2-2-1-server端" class="headerlink" title="2.2.1 server端"></a>2.2.1 server端</h2><h3 id="2-2-1-1-pom-xml"><a href="#2-2-1-1-pom-xml" class="headerlink" title="2.2.1.1 pom.xml"></a>2.2.1.1 pom.xml</h3><pre><code>&lt;parent&gt;
     &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
     &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
     &lt;version&gt;1.5.3.RELEASE&lt;/version&gt;
@@ -389,45 +407,101 @@
         &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
         &lt;scope&gt;test&lt;/scope&gt;
     &lt;/dependency&gt;
-    &lt;!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-eureka --&gt;
+
+    &lt;!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-config-server --&gt;
     &lt;dependency&gt;
         &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-cloud-starter-eureka&lt;/artifactId&gt;
-        &lt;version&gt;1.3.1.RELEASE&lt;/version&gt;
+        &lt;artifactId&gt;spring-cloud-config-server&lt;/artifactId&gt;
+        &lt;version&gt;1.3.4.RELEASE&lt;/version&gt;
     &lt;/dependency&gt;
-    &lt;dependency&gt;
+
+&lt;/dependencies&gt;
+&lt;build&gt;
+    &lt;plugins&gt;
+        &lt;plugin&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+        &lt;/plugin&gt;
+    &lt;/plugins&gt;
+&lt;/build&gt;
+&lt;!--注意：这里必须要添加，否则各种依赖有问题--&gt;
+&lt;repositories&gt;
+    &lt;repository&gt;
+        &lt;id&gt;spring-milestones&lt;/id&gt;
+        &lt;name&gt;Spring Milestones&lt;/name&gt;
+        &lt;url&gt;https://repo.spring.io/libs-milestone&lt;/url&gt;
+        &lt;snapshots&gt;
+            &lt;enabled&gt;false&lt;/enabled&gt;
+        &lt;/snapshots&gt;
+    &lt;/repository&gt;
+&lt;/repositories&gt;</code></pre><h3 id="2-2-1-2-application-yml"><a href="#2-2-1-2-application-yml" class="headerlink" title="2.2.1.2 application.yml"></a>2.2.1.2 application.yml</h3><pre><code>server:
+  port: 8005
+
+spring:
+  application:
+    name: server-config
+  cloud:
+    config:
+      server:
+        git: 
+          uri: https://gitee.com/mayunchenwei/test.git  #git仓库地址
+          username: 17809213302@163.com    
+          password: chenwei0307</code></pre><h3 id="2-2-1-3-main方法启动"><a href="#2-2-1-3-main方法启动" class="headerlink" title="2.2.1.3 main方法启动"></a>2.2.1.3 main方法启动</h3><pre><code>@SpringBootApplication
+@EnableConfigServer
+public class ServerConfigRun {
+    public static void main(String[] args) {
+        SpringApplication.run(ServerConfigRun.class, args);
+    }
+}</code></pre><h3 id="2-2-1-4-测试："><a href="#2-2-1-4-测试：" class="headerlink" title="2.2.1.4  测试："></a>2.2.1.4  测试：</h3><blockquote>
+<p>浏览器访问 <a href="http://127.0.0.1:8005/neo-config/dev" target="_blank" rel="noopener">http://127.0.0.1:8005/neo-config/dev</a></p>
+</blockquote>
+<p>直接查看 文件内容：<a href="http://localhost:8005/neo-config-dev.properties" target="_blank" rel="noopener">http://localhost:8005/neo-config-dev.properties</a></p>
+<h3 id="2-2-1-5-git仓库的配置文件会转换成web接口-规则如下"><a href="#2-2-1-5-git仓库的配置文件会转换成web接口-规则如下" class="headerlink" title="2.2.1.5  git仓库的配置文件会转换成web接口,规则如下"></a>2.2.1.5  git仓库的配置文件会转换成web接口,规则如下</h3><blockquote>
+<p>仓库中的配置文件会被转换成web接口，访问可以参照以下的规则：</p>
+</blockquote>
+<blockquote>
+<p>/{application}/{profile}[/{label}]</p>
+</blockquote>
+<blockquote>
+<p>/{application}-{profile}.yml</p>
+</blockquote>
+<blockquote>
+<p>/{label}/{application}-{profile}.yml</p>
+</blockquote>
+<blockquote>
+<p>/{application}-{profile}.properties</p>
+</blockquote>
+<blockquote>
+<p>/{label}/{application}-{profile}.properties</p>
+</blockquote>
+<pre><code>以neo-config-dev.properties为例，它的application是neo-config，profile是dev</code></pre><h2 id="2-2-2-client端"><a href="#2-2-2-client端" class="headerlink" title="2.2.2 client端"></a>2.2.2 client端</h2><blockquote>
+<p>主要展示如何在业务项目中去获取server端的配置信息</p>
+</blockquote>
+<h3 id="2-2-2-1-pom-xml"><a href="#2-2-2-1-pom-xml" class="headerlink" title="2.2.2.1 pom.xml"></a>2.2.2.1 pom.xml</h3><pre><code>&lt;parent&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+    &lt;version&gt;1.5.3.RELEASE&lt;/version&gt;
+&lt;/parent&gt; 
+  &lt;properties&gt;
+      &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+    &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;
+    &lt;java.version&gt;1.8&lt;/java.version&gt;
+&lt;/properties&gt;
+
+&lt;dependencies&gt;
+       &lt;dependency&gt;
         &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-cloud-starter-feign&lt;/artifactId&gt;
-        &lt;version&gt;1.3.1.RELEASE&lt;/version&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;
+        &lt;artifactId&gt;spring-cloud-starter-config&lt;/artifactId&gt;
+        &lt;version&gt;1.3.4.RELEASE&lt;/version&gt;
     &lt;/dependency&gt;
     &lt;dependency&gt;
         &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
         &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
-        &lt;!-- 移除嵌入式tomcat插件 --&gt;
-        &lt;exclusions&gt;
-            &lt;exclusion&gt;
-                &lt;groupId&gt; org.hibernate&lt;/groupId&gt;
-                &lt;artifactId&gt;hibernate-validator&lt;/artifactId&gt;
-            &lt;/exclusion&gt;
-        &lt;/exclusions&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-cloud-starter-hystrix&lt;/artifactId&gt;
-        &lt;version&gt;1.3.1.RELEASE&lt;/version&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-cloud-starter-hystrix-dashboard&lt;/artifactId&gt;
-        &lt;version&gt;1.3.1.RELEASE&lt;/version&gt;
     &lt;/dependency&gt;
     &lt;dependency&gt;
         &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-boot-starter-actuator&lt;/artifactId&gt;
+        &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+        &lt;scope&gt;test&lt;/scope&gt;
     &lt;/dependency&gt;
 &lt;/dependencies&gt;
 &lt;build&gt;
@@ -448,68 +522,118 @@
             &lt;enabled&gt;false&lt;/enabled&gt;
         &lt;/snapshots&gt;
     &lt;/repository&gt;
-&lt;/repositories&gt;</code></pre><h3 id="1-2-application-yml"><a href="#1-2-application-yml" class="headerlink" title="1.2 application.yml"></a>1.2 application.yml</h3><pre><code>server:
-  port: 8004
-
-spring:
+&lt;/repositories&gt;</code></pre><h3 id="2-2-2-2-application-yml"><a href="#2-2-2-2-application-yml" class="headerlink" title="2.2.2.2 application.yml"></a>2.2.2.2 application.yml</h3><pre><code>spring:
   application:
-    name: Cloud-Hystrix-Dashboard
+    name: client-config
 
-eureka:
-  client:
-    service-url: 
-      defaultZone: http://127.0.0.1:5555/eureka/
-    register-with-eureka: true
-    fetch-registry: true
-
-feign:
-  hystrix:
-    enabled: true
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: hystrix.stream</code></pre><h3 id="1-3-main启动方法"><a href="#1-3-main启动方法" class="headerlink" title="1.3 main启动方法"></a>1.3 main启动方法</h3><pre><code>@SpringBootApplication
-@EnableDiscoveryClient
-@EnableFeignClients
-@EnableHystrixDashboard
-@EnableCircuitBreaker
-public class HystrixDashboardRun {
-    public static void main(String[] args) {
-        SpringApplication.run(HystrixDashboardRun.class, args);
-    }
-}</code></pre><h3 id="1-4-remote远程调用"><a href="#1-4-remote远程调用" class="headerlink" title="1.4 remote远程调用"></a>1.4 remote远程调用</h3><h4 id="1-4-1-HelloRemote"><a href="#1-4-1-HelloRemote" class="headerlink" title="1.4.1 HelloRemote"></a>1.4.1 HelloRemote</h4><pre><code>@FeignClient(fallback=HelloRemoteHystrix.class,name=&quot;producer&quot;)
-public interface HelloRemote {
-    @RequestMapping(&quot;/hello&quot;)
-    public String testHello(@RequestParam(value=&quot;param&quot;) String param);
-}</code></pre><h4 id="1-4-2-HelloRemoteHystrix"><a href="#1-4-2-HelloRemoteHystrix" class="headerlink" title="1.4.2 HelloRemoteHystrix"></a>1.4.2 HelloRemoteHystrix</h4><pre><code>@Component
-public class HelloRemoteHystrix implements HelloRemote{
-
-    public String testHello(String param) {
-        // TODO Auto-generated method stub
-        return &quot;hello &quot;+param+&quot;, this message send failed&quot;;
-    }
-}</code></pre><h3 id="1-5-Controller"><a href="#1-5-Controller" class="headerlink" title="1.5 Controller"></a>1.5 Controller</h3><pre><code>@RestController
-public class TestHello {
-
-    @Autowired
-    HelloRemote helloRemote;
-
-    @RequestMapping(&quot;/testController/{param}&quot;)
-    public String getHello(@PathVariable(&quot;param&quot;) String param){
-
-        return helloRemote.testHello(param);
-    }
-}</code></pre><h3 id="1-6-调试说明"><a href="#1-6-调试说明" class="headerlink" title="1.6 调试说明"></a>1.6 调试说明</h3><blockquote>
-<p>启动工程后访问 <a href="http://127.0.0.1:8004/hystrix" target="_blank" rel="noopener">http://127.0.0.1:8004/hystrix</a></p>
+server:
+  port: 8006
+2.2.2.3 bootstrap.yml
+spring:
+  cloud:
+    config:
+      name: neo-config
+      profile: dev
+      uri: http://localhost:8005</code></pre><h3 id="2-2-2-4-文件加载顺序特别说明"><a href="#2-2-2-4-文件加载顺序特别说明" class="headerlink" title="2.2.2.4 文件加载顺序特别说明"></a>2.2.2.4 文件加载顺序特别说明</h3><blockquote>
+<p>spring.application.name：对应{application}部分</p>
+<p>spring.cloud.config.profile：对应{profile}部分</p>
+<p>spring.cloud.config.label：对应git的分支。如果配置中心使用的是本地存储，则该参数无用</p>
+<p>spring.cloud.config.uri：配置中心的具体地址</p>
+<p>spring.cloud.config.discovery.service-id：指定配置中心的service-id，便于扩展为高可用配置集群。</p>
+<p>特别注意：上面这些与spring-cloud相关的属性必须配置在bootstrap.properties中，config部分内容才能被正确加载。因为config的相关配置会先于application.properties，而bootstrap.properties的加载也是先于application.properties</p>
 </blockquote>
-<p><img src="/2019/11/13/Hystrix-Dashboard/1.png" alt></p>
-<p>访问输入：<a href="http://127.0.0.1:8004/hystrix.stream" target="_blank" rel="noopener">http://127.0.0.1:8004/hystrix.stream</a></p>
-<p>同时浏览器访问：<a href="http://127.0.0.1:8004/hystrix.stream" target="_blank" rel="noopener">http://127.0.0.1:8004/hystrix.stream</a> 也可以看到数据。</p>
-<p>监控可以查看到下面数据：</p>
-<p><img src="/2019/11/13/Hystrix-Dashboard/2.png" alt></p>
-<h2 id="2-Turbine监控多个服务（后续需要再研究）"><a href="#2-Turbine监控多个服务（后续需要再研究）" class="headerlink" title="2.Turbine监控多个服务（后续需要再研究）"></a>2.Turbine监控多个服务（后续需要再研究）</h2>
+<h3 id="2-2-2-5-main-启动类"><a href="#2-2-2-5-main-启动类" class="headerlink" title="2.2.2.5 main 启动类"></a>2.2.2.5 main 启动类</h3><pre><code>@SpringBootApplication
+public class ClientConfigRun {
+    public static void main(String[] args) {
+        SpringApplication.run(ClientConfigRun.class, args);
+    }
+}</code></pre><h3 id="2-2-2-6-controller"><a href="#2-2-2-6-controller" class="headerlink" title="2.2.2.6 controller"></a>2.2.2.6 controller</h3><pre><code>@RestController
+public class HelloController {
+    @Value(value=&quot;${neo.hello}&quot;)
+    private String hello;
+    @RequestMapping(&quot;/helloTest&quot;)
+    public String getHello(){
+        return this.hello;
+    }
+}</code></pre><h3 id="2-2-2-7-访问测试"><a href="#2-2-2-7-访问测试" class="headerlink" title="2.2.2.7 访问测试"></a>2.2.2.7 访问测试</h3><blockquote>
+<p>启动客户端访问  <a href="http://127.0.0.1:8006/helloTest" target="_blank" rel="noopener">http://127.0.0.1:8006/helloTest</a><br>页面显示dev ，</p>
+</blockquote>
+<blockquote>
+<p>(实际上取到的是git上的neo-config-dev.properties文件的内容)。</p>
+</blockquote>
+<h3 id="2-2-2-8-出现的问题"><a href="#2-2-2-8-出现的问题" class="headerlink" title="2.2.2.8 出现的问题"></a>2.2.2.8 出现的问题</h3><blockquote>
+<p>手动修改neo-config-dev.properties中配置信息为：neo.hello= dev is updata<br>提交到github,再次在浏览器访问<a href="http://127.0.0.1:8006/helloTest，返回：neo.hello" target="_blank" rel="noopener">http://127.0.0.1:8006/helloTest，返回：neo.hello</a>:  dev ，说明获取的信息还是旧的参数，这是为什么呢？因为springboot项目只有在启动的时候才会获取配置文件的值，修改github信息后，client端并没有在次去获取，所以导致这个问题</p>
+</blockquote>
+<h3 id="2-2-2-9-解决问题方法"><a href="#2-2-2-9-解决问题方法" class="headerlink" title="2.2.2.9 解决问题方法"></a>2.2.2.9 解决问题方法</h3><p><strong>借用refresh 技术，来解决不刷新的问题。</strong></p>
+<p>##2.2.3 refresh 优化</p>
+<p>&emsp;&emsp;Spring Cloud Config分服务端和客户端，服务端负责将git（svn）中存储的配置文件发布成REST接口，客户端可以从服务端REST接口获取配置。但客户端并不能主动感知到配置的变化，从而主动去获取新的配置。客户端如何去主动获取新的配置信息呢，springcloud已经给我们提供了解决方案，每个客户端通过POST方法触发各自的/refresh</p>
+<p><strong>注意</strong>：客户端修改如下，未修改程序参考2.2.2 client端</p>
+<h3 id="2-2-3-1-pom-xml"><a href="#2-2-3-1-pom-xml" class="headerlink" title="2.2.3.1 pom.xml"></a>2.2.3.1 pom.xml</h3><pre><code>&lt;parent&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+    &lt;version&gt;1.5.3.RELEASE&lt;/version&gt;
+&lt;/parent&gt; 
+  &lt;properties&gt;
+      &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+    &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;
+    &lt;java.version&gt;1.8&lt;/java.version&gt;
+&lt;/properties&gt;
+
+&lt;dependencies&gt;
+       &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-cloud-starter-config&lt;/artifactId&gt;
+        &lt;version&gt;1.3.4.RELEASE&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+        &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+    &lt;!-- 监控程序在运行时的状态，包括refresh功能 --&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-actuator&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+&lt;build&gt;
+    &lt;plugins&gt;
+        &lt;plugin&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+        &lt;/plugin&gt;
+    &lt;/plugins&gt;
+&lt;/build&gt;
+&lt;!--注意：这里必须要添加，否则各种依赖有问题--&gt;
+&lt;repositories&gt;
+    &lt;repository&gt;
+        &lt;id&gt;spring-milestones&lt;/id&gt;
+        &lt;name&gt;Spring Milestones&lt;/name&gt;
+        &lt;url&gt;https://repo.spring.io/libs-milestone&lt;/url&gt;
+        &lt;snapshots&gt;
+            &lt;enabled&gt;false&lt;/enabled&gt;
+        &lt;/snapshots&gt;
+    &lt;/repository&gt;
+&lt;/repositories&gt;</code></pre><h3 id="2-2-3-2-controller"><a href="#2-2-3-2-controller" class="headerlink" title="2.2.3.2 controller"></a>2.2.3.2 controller</h3><pre><code>@RestController
+@RefreshScope //使用该注解的类，会在接收springcloud配置中心配置刷新时，自动将新的配置更新到该类的对应的字段
+public class HelloController {
+    @Value(value=&quot;${neo.hello}&quot;)
+    private String hello;
+
+
+    @RequestMapping(&quot;/helloTest&quot;)
+    public String getHello(){
+        return this.hello;
+    }
+}</code></pre><h3 id="2-2-3-3-访问测试"><a href="#2-2-3-3-访问测试" class="headerlink" title="2.2.3.3 访问测试"></a>2.2.3.3 访问测试</h3><blockquote>
+<p>浏览器访问<a href="http://127.0.0.1:8006/helloTest，" target="_blank" rel="noopener">http://127.0.0.1:8006/helloTest，</a></p>
+<p>返回：neo.hello: dev is updata ，由此可解决  2.2.2.8出现的问题。</p>
+</blockquote>
+
       
        
     </div>
@@ -518,9 +642,9 @@ public class TestHello {
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>熔断监控Hystrix-Dashboard</p>
-    <p><span class="copy-title">发布时间:</span>2019-11-13, 15:58:13</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-13, 15:58:13</p>
+    <p><span class="copy-title">文章标题:</span>配置中心git</p>
+    <p><span class="copy-title">发布时间:</span>2019-11-13, 16:58:00</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-13, 16:58:00</p>
 </div>
 
 
