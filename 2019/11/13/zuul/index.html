@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>eureka原理介绍 | Hexo</title>
-  <meta name="keywords" content=" eureka原理介绍 ">
-  <meta name="description" content="eureka原理介绍 | Hexo">
+  <title>Spring cloud zuul (初级) | Hexo</title>
+  <meta name="keywords" content=" Spring cloud zuul (服务网关初级) ">
+  <meta name="description" content="Spring cloud zuul (初级) | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="1.简介&amp;emsp;&amp;emsp;(1)Eureka用于服务的注册于发现，Feign支持服务的调用以及均衡负载，Hystrix处理服务的熔断防止故障扩散，Spring Cloud Config服务集群配置中心，似乎一个微服务框架已经完成了。  还是少考虑了一个问题，外部的应用如何来访问内部各种各样的微服务呢？ 在微服务架构中，后端服务往往不直接开放给调用端，而是通过一个API网关根据请求的url，路">
 <meta name="keywords" content="Spring cloud zuul (服务网关初级)">
@@ -328,9 +328,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-eureka1" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-zuul" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">eureka原理介绍</h1>
+        <h1 class="article-title">Spring cloud zuul (初级)</h1>
     
     <div class="article-meta">
         
@@ -345,14 +345,14 @@
         
         <span class="tag">
             
-            <a href="javascript:" target="_blank" rel="noopener" class="color1">eureka原理介绍</a>
+            <a href="javascript:" target="_blank" rel="noopener" class="color2">Spring cloud zuul (服务网关初级)</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-11-13 16:03:24'>2019-11-13 16:08</time>
+        创建时间:<time class="date" title='更新时间: 2019-11-13 17:35:49'>2019-11-13 17:35</time>
         
     </div>
     <div class="article-meta">
@@ -374,7 +374,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#原理简介"><span class="toc-text">原理简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1背景介绍"><span class="toc-text">1背景介绍</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-eureka介绍"><span class="toc-text">2 eureka介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-eureka代码实现（简单）"><span class="toc-text">3.eureka代码实现（简单）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置注意情况"><span class="toc-text">配置注意情况</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#server服务端"><span class="toc-text">server服务端</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#（1）-pom-xml"><span class="toc-text">（1）.pom.xml</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#client客户端"><span class="toc-text">client客户端</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#（1）-pom-xml-1"><span class="toc-text">（1）.pom.xml</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#（2）-main方法"><span class="toc-text">（2）.main方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#（3）-application-properties"><span class="toc-text">（3）.application.properties</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-理解集群-（可以作为面试答）"><span class="toc-text">4.理解集群 （可以作为面试答）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-eureka代码实现（集群）"><span class="toc-text">5.eureka代码实现（集群）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#server服务端集群"><span class="toc-text">server服务端集群</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-pom-xml"><span class="toc-text">(1) pom.xml</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-application配置"><span class="toc-text">(2)application配置</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#①-application-yml"><span class="toc-text">① application.yml</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#②-application-server1-yml"><span class="toc-text">② application-server1.yml</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#③-application-server2-yml"><span class="toc-text">③ application-server2.yml</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#④-host文件配置路径"><span class="toc-text">④ host文件配置路径</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#（3）-main方法"><span class="toc-text">（3） main方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#（4）注意事项"><span class="toc-text">（4）注意事项</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#client客户端集群"><span class="toc-text">client客户端集群</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-简介"><span class="toc-text">1.简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-为什么需要api-gateway"><span class="toc-text">2.为什么需要api gateway</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1简化客户端调用复杂度"><span class="toc-text">2.1简化客户端调用复杂度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2数据裁剪及聚合"><span class="toc-text">2.2数据裁剪及聚合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3多渠道支持"><span class="toc-text">2.3多渠道支持</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-遗留系统的微服务化改造"><span class="toc-text">2.4 遗留系统的微服务化改造</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1简单的应用"><span class="toc-text">3.1简单的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-1pom-xml"><span class="toc-text">3.1.1pom.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-2application-yml"><span class="toc-text">3.1.2application.yml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-3main方法启动"><span class="toc-text">3.1.3main方法启动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-4测试访问"><span class="toc-text">3.1.4测试访问</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2服务化"><span class="toc-text">3.2服务化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-1-1pom-xml"><span class="toc-text">3.2.1.1pom.xml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-1-2-application-yml"><span class="toc-text">3.2.1.2 application.yml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-1-3-main方法启动"><span class="toc-text">3.2.1.3 main方法启动</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-2producer生产者"><span class="toc-text">3.2.2producer生产者</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-2-1pom-xml"><span class="toc-text">3.2.2.1pom.xml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-2-2application-yml"><span class="toc-text">3.2.2.2application.yml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-2-3main方法启动"><span class="toc-text">3.2.2.3main方法启动</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-2-4Controller"><span class="toc-text">3.2.2.4Controller</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-3gataway-网关调用"><span class="toc-text">3.2.3gataway 网关调用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-3-1pom-xml"><span class="toc-text">3.2.3.1pom.xml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-3-2-application-yml"><span class="toc-text">3.2.3.2 application.yml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-3-3main方法启动"><span class="toc-text">3.2.3.3main方法启动</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-4调试说明"><span class="toc-text">3.2.4调试说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-5网关的默认路由规则"><span class="toc-text">3.2.5网关的默认路由规则</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#routes"><span class="toc-text">routes:</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#api-a"><span class="toc-text">api-a:</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#path-producer"><span class="toc-text">path: /producer/**</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#serviceId-zuul-producer"><span class="toc-text">serviceId: zuul-producer</span></a>
     
 <style>
     .left-col .switch-btn,
@@ -390,46 +390,97 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="原理简介"><a href="#原理简介" class="headerlink" title="原理简介"></a>原理简介</h1><blockquote>
-<p>Eureka是Netflix开源的一款提供服务注册和发现的产品，它提供了完整的Service Registry和Service Discovery实现。也是springcloud体系中最重要最核心的组件之一</p>
-</blockquote>
-<h3 id="1背景介绍"><a href="#1背景介绍" class="headerlink" title="1背景介绍"></a>1背景介绍</h3><p>&emsp;&emsp;服务中心又称注册中心，管理各种服务功能包括服务的注册、发现、熔断、负载、降级等，比如dubbo admin后台的各种功能。</p>
-<p>有了服务中心调用关系会有什么变化，画几个简图来帮忙理解</p>
-<p>项目A调用项目B</p>
+        <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>&emsp;&emsp;(1)Eureka用于服务的注册于发现，Feign支持服务的调用以及均衡负载，Hystrix处理服务的熔断防止故障扩散，Spring Cloud Config服务集群配置中心，似乎一个微服务框架已经完成了。</p>
 <blockquote>
-<p>正常调用项目A请求项目B<br> <img src="/2019/11/13/eureka1/1.jpg" alt></p>
+<p>还是少考虑了一个问题，外部的应用如何来访问内部各种各样的微服务呢？</p>
+<p>在微服务架构中，后端服务往往不直接开放给调用端，而是通过一个API网关根据请求的url，路由到相应的服务。当添加API网关后，在第三方调用端和服务提供方之间就创建了一面墙，这面墙直接与调用方通信进行权限控制，后将请求均衡分发给后台服务端。</p>
 </blockquote>
-<blockquote>
-<p>有了服务中心之后，任何一个服务都不能直接去掉用，都需要通过服务中心来调用<br> <img src="/2019/11/13/eureka1/2.jpg" alt></p>
+<p>&emsp;&emsp;(2)在Spring Cloud体系中， Spring Cloud Zuul就是提供负载均衡、反向代理、权限认证的一个API gateway。</p>
+<p>&emsp;&emsp;(3)Zuul网关使用模式，以及自动转发机制，但其实Zuul还有更多的应用场景，比如：鉴权、流量转发、请求统计等等，这些功能都可以使用Zuul来实现。</p>
+<h2 id="2-为什么需要api-gateway"><a href="#2-为什么需要api-gateway" class="headerlink" title="2.为什么需要api gateway"></a>2.为什么需要api gateway</h2><h3 id="2-1简化客户端调用复杂度"><a href="#2-1简化客户端调用复杂度" class="headerlink" title="2.1简化客户端调用复杂度"></a>2.1简化客户端调用复杂度</h3><p>&emsp;&emsp;在微服务架构模式下后端服务的实例数一般是动态的，对于客户端而言很难发现动态改变的服务实例的访问地址信息。因此在基于微服务的项目中为了简化前端的调用逻辑，通常会引入API Gateway作为轻量级网关，同时API Gateway中也会实现相关的认证逻辑从而简化内部服务之间相互调用的复杂度。</p>
+<h3 id="2-2数据裁剪及聚合"><a href="#2-2数据裁剪及聚合" class="headerlink" title="2.2数据裁剪及聚合"></a>2.2数据裁剪及聚合</h3><p>&emsp;&emsp;通常而言不同的客户端对于显示时对于数据的需求是不一致的，比如手机端或者Web端又或者在低延迟的网络环境或者高延迟的网络环境。<br>因此为了优化客户端的使用体验，API Gateway可以对通用性的响应数据进行裁剪以适应不同客户端的使用需求。同时还可以将多个API调用逻辑进行聚合，从而减少客户端的请求数，优化客户端用户体验</p>
+<h3 id="2-3多渠道支持"><a href="#2-3多渠道支持" class="headerlink" title="2.3多渠道支持"></a>2.3多渠道支持</h3><p>&emsp;&emsp;当然我们还可以针对不同的渠道和客户端提供不同的API Gateway,对于该模式的使用由另外一个大家熟知的方式叫Backend for front-end, 在Backend for front-end模式当中，我们可以针对不同的客户端分别创建其BFF，进一步了解BFF可以参考这篇文章：Pattern: Backends For Frontends</p>
+<h2 id="2-4-遗留系统的微服务化改造"><a href="#2-4-遗留系统的微服务化改造" class="headerlink" title="2.4 遗留系统的微服务化改造"></a>2.4 遗留系统的微服务化改造</h2><p>&emsp;&emsp;对于系统而言进行微服务改造通常是由于原有的系统存在或多或少的问题，比如技术债务，代码质量，可维护性，可扩展性等等。API Gateway的模式同样适用于这一类遗留系统的改造，通过微服务化的改造逐步实现对原有系统中的问题的修复，从而提升对于原有业务响应力的提升。通过引入抽象层，逐步使用新的实现替换旧的实现。</p>
+<p>#3.Spring cloud zuul (初级)</p>
+<p>&emsp;&emsp;Spring Cloud Zuul路由是微服务架构的不可或缺的一部分，提供动态路由，监控，弹性，安全等的边缘服务。Zuul是Netflix出品的一个基于JVM路由和服务端的负载均衡器。</p>
+<h2 id="3-1简单的应用"><a href="#3-1简单的应用" class="headerlink" title="3.1简单的应用"></a>3.1简单的应用</h2><h3 id="3-1-1pom-xml"><a href="#3-1-1pom-xml" class="headerlink" title="3.1.1pom.xml"></a>3.1.1pom.xml</h3><pre><code> &lt;parent&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+    &lt;version&gt;1.5.3.RELEASE&lt;/version&gt;
+&lt;/parent&gt; 
+  &lt;properties&gt;
+      &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+    &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;
+    &lt;java.version&gt;1.8&lt;/java.version&gt;
+&lt;/properties&gt;
+
+&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+        &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+
+    &lt;!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-config-server --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-cloud-starter-zuul&lt;/artifactId&gt;
+        &lt;version&gt;1.3.1.RELEASE&lt;/version&gt;
+    &lt;/dependency&gt;
+
+&lt;/dependencies&gt;
+&lt;build&gt;
+    &lt;plugins&gt;
+        &lt;plugin&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+        &lt;/plugin&gt;
+    &lt;/plugins&gt;
+&lt;/build&gt;
+&lt;!--注意：这里必须要添加，否则各种依赖有问题--&gt;
+&lt;repositories&gt;
+    &lt;repository&gt;
+        &lt;id&gt;spring-milestones&lt;/id&gt;
+        &lt;name&gt;Spring Milestones&lt;/name&gt;
+        &lt;url&gt;https://repo.spring.io/libs-milestone&lt;/url&gt;
+        &lt;snapshots&gt;
+            &lt;enabled&gt;false&lt;/enabled&gt;
+        &lt;/snapshots&gt;
+    &lt;/repository&gt;
+&lt;/repositories&gt;</code></pre><h3 id="3-1-2application-yml"><a href="#3-1-2application-yml" class="headerlink" title="3.1.2application.yml"></a>3.1.2application.yml</h3><pre><code>spring:
+  application:
+    name: cloud-starter-zuul
+
+server:
+  port: 8001
+
+zuul:
+  routes:
+    baidu:
+      path: /it/**
+      url: http://www.ityouknow.com/springcloud/</code></pre><h3 id="3-1-3main方法启动"><a href="#3-1-3main方法启动" class="headerlink" title="3.1.3main方法启动"></a>3.1.3main方法启动</h3><pre><code>@SpringBootApplication
+@EnableZuulProxy //支持网关路由。
+public class ZuulRun {
+    public static void main(String[] args) {
+        SpringApplication.run(ZuulRun.class, args);
+    }
+
+}</code></pre><h3 id="3-1-4测试访问"><a href="#3-1-4测试访问" class="headerlink" title="3.1.4测试访问"></a>3.1.4测试访问</h3><blockquote>
+<p>在浏览器中访问：<a href="http://127.0.0.1:8001/it/spring-cloud，看到页面返回了：http://www.ityouknow.com/spring-cloud" target="_blank" rel="noopener">http://127.0.0.1:8001/it/spring-cloud，看到页面返回了：http://www.ityouknow.com/spring-cloud</a> 页面的信息，<br>说明访问Cloud-Starter-ZUUL的请求自动转发到了<a href="http://www.ityouknow.com/spring-cloud，并且将结果返回。" target="_blank" rel="noopener">http://www.ityouknow.com/spring-cloud，并且将结果返回。</a></p>
 </blockquote>
-<blockquote>
-<p>项目A调用项目B，项目B在调用项目C<br> <img src="/2019/11/13/eureka1/3.jpg" alt></p>
-</blockquote>
-<blockquote>
-<p>这时候调用的步骤就会为两步：第一步，项目A首先从服务中心请求项目B服务器，然后项目B在从服务中心请求项目C服务。<br> <img src="/2019/11/13/eureka1/4.jpg" alt></p>
-</blockquote>
-<p>&emsp;&emsp;上面的项目只是两三个相互之间的简单调用，但是如果项目超过20个30个呢，任何一个项目改动，就会牵连好几个项目跟着重启，麻烦而且容易出错。</p>
-<p>&emsp;&emsp;通过服务中心来获取服务不需要关注调用项目IP地址，由几台服务器组成，每次直接去服务中心获取可以使用的服务去调用既可。</p>
-<p>&emsp;&emsp;由于各种服务都注册到了服务中心，就有了去做很多高级功能条件。</p>
-<blockquote>
-<p>1.几台服务提供相同服务来做均衡负载；</p>
-<p>2.监控服务器调用成功率来做熔断，移除服务列表中的故障点；</p>
-<p>3.监控服务调用时间来对不同的服务器设置不同的权重等等。</p>
-</blockquote>
-<h2 id="2-eureka介绍"><a href="#2-eureka介绍" class="headerlink" title="2 eureka介绍"></a>2 eureka介绍</h2><p>&emsp;&emsp;Spring Cloud 封装了 Netflix 公司开发的 Eureka 模块来实现服务注册和发现。Eureka 采用了 C-S 的设计架构。</p>
-<p>&emsp;&emsp;Eureka Server 作为服务注册功能的服务器，它是服务注册中心。而系统中的其他微服务，使用 Eureka 的客户端连接到 Eureka Server，并维持心跳连接。这样系统的维护人员就可以通过 Eureka Server 来监控系统中各个微服务是否正常运行。Spring Cloud 的一些其他模块（比如Zuul）就可以通过 Eureka Server 来发现系统中的其他微服务，并执行相关的逻辑。</p>
-<p>&emsp;&emsp;Eureka由两个组件组成：Eureka服务器和Eureka客户端。</p>
-<p>&emsp;&emsp;Eureka服务器用作服务注册服务器。Eureka客户端是一个java客户端，用来简化与服务器的交互、作为轮询负载均衡器，并提供服务的故障切换支持。Netflix在其生产环境中使用的是另外的客户端，它提供基于流量、资源利用率以及出错状态的加权负载均衡。<br> <img src="/2019/11/13/eureka1/6.png" alt></p>
-<p>####（1）、Eureka Server<br>&emsp;&emsp;提供服务注册和发现<br>####（2）、Service Provider<br>&emsp;&emsp;服务提供方将自身服务注册到Eureka，从而使服务消费方能够找到<br>####（3）、Service Consumer<br>&emsp;&emsp;服务消费方从Eureka获取注册服务列表，从而能够消费服务</p>
-<h2 id="3-eureka代码实现（简单）"><a href="#3-eureka代码实现（简单）" class="headerlink" title="3.eureka代码实现（简单）"></a>3.eureka代码实现（简单）</h2><h3 id="配置注意情况"><a href="#配置注意情况" class="headerlink" title="配置注意情况"></a>配置注意情况</h3><pre><code>eureka.client.register-with-eureka ：表示是否将自己注册到Eureka Server，默认为true。
-eureka.client.fetch-registry ：表示是否从Eureka Server获取注册信息，默认为true。
-eureka.client.serviceUrl.defaultZone ：设置与Eureka Server交互的地址，查询服务和注册服务都需要依赖这个地址。默认是http://localhost:8761/eureka ；多个地址可使用 , 分隔。</code></pre><h3 id="server服务端"><a href="#server服务端" class="headerlink" title="server服务端"></a>server服务端</h3><h5 id="（1）-pom-xml"><a href="#（1）-pom-xml" class="headerlink" title="（1）.pom.xml"></a>（1）.pom.xml</h5><pre><code>&lt;parent&gt;
+<h2 id="3-2服务化"><a href="#3-2服务化" class="headerlink" title="3.2服务化"></a>3.2服务化</h2><p>&emsp;&emsp;通过url映射的方式来实现zull的转发有局限性，比如每增加一个服务就需要配置一条内容，另外后端的服务如果是动态来提供，就不能采用这种方案来配置了。实际上在实现微服务架构时，服务名与服务实例地址的关系在eureka server中已经存在了，所以只需要将Zuul注册到eureka server上去发现其他服务，就可以实现对serviceId的映射。</p>
+<p>###　3.2.1eureka注册中心</p>
+<h4 id="3-2-1-1pom-xml"><a href="#3-2-1-1pom-xml" class="headerlink" title="3.2.1.1pom.xml"></a>3.2.1.1pom.xml</h4><pre><code>&lt;parent&gt;
     &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
     &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
     &lt;version&gt;2.0.1.RELEASE&lt;/version&gt;
 &lt;/parent&gt; 
-&lt;properties&gt;
-    &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+  &lt;properties&gt;
+      &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
     &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;
     &lt;java.version&gt;1.8&lt;/java.version&gt;
 &lt;/properties&gt;
@@ -468,37 +519,31 @@ eureka.client.serviceUrl.defaultZone ：设置与Eureka Server交互的地址，
             &lt;enabled&gt;false&lt;/enabled&gt;
         &lt;/snapshots&gt;
     &lt;/repository&gt;
-&lt;/repositories&gt;</code></pre><p>#####（2）main方法</p>
-<pre><code>@SpringBootApplication
-@EnableEurekaServer
-public class AppRunCloud {
-    public static void main(String[] args) {
-        SpringApplication.run(AppRunCloud.class, args);
-    }
-}</code></pre><p>#####（3） application.yml</p>
-<pre><code>server:
-  port: 8101
-spring: 
-  application: 
-    name: cw-server
+&lt;/repositories&gt;</code></pre><h4 id="3-2-1-2-application-yml"><a href="#3-2-1-2-application-yml" class="headerlink" title="3.2.1.2 application.yml"></a>3.2.1.2 application.yml</h4><pre><code>server:
+  port: 8000
+
+spring:
+  application:
+    name: zuul-eureka
+
 eureka:
-  instance:
-    ##注册中心的ip地址
-    hostname: 127.0.0.1
   client:
-    service-url: 
-        ##注册中心地址
-      defaultZone: http://${eureka.instance.hostname}:8101/eureka
-     ###自己是注册中心，是否要将自己注册到注册中心去,但是集群的时候需要设置为true
+    service-url:
+      defaultZone: http://127.0.0.1:8000/eureka
     register-with-eureka: false
-     ###自己是注册中心，不需要去检索服务信息
-    fetch-registry: false</code></pre><h3 id="client客户端"><a href="#client客户端" class="headerlink" title="client客户端"></a>client客户端</h3><h5 id="（1）-pom-xml-1"><a href="#（1）-pom-xml-1" class="headerlink" title="（1）.pom.xml"></a>（1）.pom.xml</h5><pre><code>&lt;parent&gt;
+fetchRegistry: false</code></pre><h4 id="3-2-1-3-main方法启动"><a href="#3-2-1-3-main方法启动" class="headerlink" title="3.2.1.3 main方法启动"></a>3.2.1.3 main方法启动</h4><pre><code>@SpringBootApplication
+@EnableEurekaServer
+public class EurekaRun {
+    public static void main(String[] args) {
+        SpringApplication.run(EurekaRun.class, args);
+    }
+}</code></pre><h3 id="3-2-2producer生产者"><a href="#3-2-2producer生产者" class="headerlink" title="3.2.2producer生产者"></a>3.2.2producer生产者</h3><h4 id="3-2-2-1pom-xml"><a href="#3-2-2-1pom-xml" class="headerlink" title="3.2.2.1pom.xml"></a>3.2.2.1pom.xml</h4><pre><code>&lt;parent&gt;
     &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
     &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
-    &lt;version&gt;2.0.1.RELEASE&lt;/version&gt;
+    &lt;version&gt;1.5.3.RELEASE&lt;/version&gt;
 &lt;/parent&gt; 
-&lt;properties&gt;
-    &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+  &lt;properties&gt;
+      &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
     &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;
     &lt;java.version&gt;1.8&lt;/java.version&gt;
 &lt;/properties&gt;
@@ -513,15 +558,13 @@ eureka:
         &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
         &lt;scope&gt;test&lt;/scope&gt;
     &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-client&lt;/artifactId&gt;
-        &lt;version&gt;2.0.1.RELEASE&lt;/version&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-         &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-         &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
-     &lt;/dependency&gt;
+    &lt;!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-eureka --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-cloud-starter-eureka&lt;/artifactId&gt;
+    &lt;version&gt;1.3.1.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+
 &lt;/dependencies&gt;
 &lt;build&gt;
     &lt;plugins&gt;
@@ -541,207 +584,118 @@ eureka:
             &lt;enabled&gt;false&lt;/enabled&gt;
         &lt;/snapshots&gt;
     &lt;/repository&gt;
-&lt;/repositories&gt;</code></pre><h5 id="（2）-main方法"><a href="#（2）-main方法" class="headerlink" title="（2）.main方法"></a>（2）.main方法</h5><pre><code>@SpringBootApplication
-@EnableEurekaClient
-public class AppClientRun {
-    public static void main(String[] args) {
-        SpringApplication.run(AppClientRun.class, args);
-
-    }
-}</code></pre><h5 id="（3）-application-properties"><a href="#（3）-application-properties" class="headerlink" title="（3）.application.properties"></a>（3）.application.properties</h5><pre><code>server.port=9200
-spring.application.name=cw-order
-
-eureka.client.service-url.defaultZone=http://127.0.0.1:8101/eureka
-#注册到eureka服务器上的地址
-eureka.client.register-with-eureka=true
-#是否需要注册到eureka
-eureka.client.fetch-register=true
-#需要检索服务</code></pre><h2 id="4-理解集群-（可以作为面试答）"><a href="#4-理解集群-（可以作为面试答）" class="headerlink" title="4.理解集群 （可以作为面试答）"></a>4.理解集群 （可以作为面试答）</h2><p>（cw的理解）通过集群代码：</p>
-<p>&emsp;&emsp;1.当服务器1打开后会发送心跳包连接服务器2，此时服务器1在工作，当服务器2连接成功后，服务器1和服务器2建立了集群，但实际上工作的是服务器1，服务器2休眠。</p>
-<p>&emsp;&emsp;2.当服务器1断开后，服务器2发送心跳包连接服务器1，此时服务器2在工作，当服务器1连接成功后，服务器1会工作，服务器2休眠。</p>
-<p>&emsp;&emsp;3.当服务器再次断开后，服务器2又处理工作状态，同时不断的发送心跳包给服务器1，当服务器1连接上时，服务器2休眠，服务器1继续工作。</p>
-<h2 id="5-eureka代码实现（集群）"><a href="#5-eureka代码实现（集群）" class="headerlink" title="5.eureka代码实现（集群）"></a>5.eureka代码实现（集群）</h2><h3 id="server服务端集群"><a href="#server服务端集群" class="headerlink" title="server服务端集群"></a>server服务端集群</h3><h5 id="1-pom-xml"><a href="#1-pom-xml" class="headerlink" title="(1) pom.xml"></a>(1) pom.xml</h5><pre><code>&lt;parent&gt;
-      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-      &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
-      &lt;version&gt;2.0.1.RELEASE&lt;/version&gt;
-  &lt;/parent&gt; 
-  &lt;properties&gt;
-      &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
-      &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;
-      &lt;java.version&gt;1.8&lt;/java.version&gt;
-  &lt;/properties&gt;
-
-  &lt;dependencies&gt;
-      &lt;dependency&gt;
-          &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-          &lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;
-      &lt;/dependency&gt;
-      &lt;dependency&gt;
-          &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-          &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
-          &lt;scope&gt;test&lt;/scope&gt;
-      &lt;/dependency&gt;
-      &lt;dependency&gt;
-          &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-          &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-server&lt;/artifactId&gt;
-          &lt;version&gt;2.0.1.RELEASE&lt;/version&gt;
-      &lt;/dependency&gt;
-  &lt;/dependencies&gt;
-  &lt;build&gt;
-      &lt;plugins&gt;
-          &lt;plugin&gt;
-              &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-              &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
-          &lt;/plugin&gt;
-      &lt;/plugins&gt;
-  &lt;/build&gt;
-  &lt;!--注意：这里必须要添加，否则各种依赖有问题--&gt;
-  &lt;repositories&gt;
-      &lt;repository&gt;
-          &lt;id&gt;spring-milestones&lt;/id&gt;
-          &lt;name&gt;Spring Milestones&lt;/name&gt;
-          &lt;url&gt;https://repo.spring.io/libs-milestone&lt;/url&gt;
-          &lt;snapshots&gt;
-              &lt;enabled&gt;false&lt;/enabled&gt;
-          &lt;/snapshots&gt;
-      &lt;/repository&gt;
-  &lt;/repositories&gt;
-
-&lt;description&gt;Eureka集群&lt;/description&gt;</code></pre><h5 id="2-application配置"><a href="#2-application配置" class="headerlink" title="(2)application配置"></a>(2)application配置</h5><h6 id="①-application-yml"><a href="#①-application-yml" class="headerlink" title="① application.yml"></a>① application.yml</h6><pre><code>#启动server1服务时，先注释掉server2配置
-spring.application.name=server1
-spring.profiles.active=server1
-
-#启动server1服务时，先注释掉server1配置
-#spring.application.name=server2
-#spring.profiles.active=server2</code></pre><h6 id="②-application-server1-yml"><a href="#②-application-server1-yml" class="headerlink" title="② application-server1.yml"></a>② application-server1.yml</h6><pre><code>server: 
-  port: 8001
-
-spring: 
-  application:
-    name: server1
-  security:
-    user:
-      name: admin
-      password: admin
-
-eureka:
-  instance: 
-    hostname: server1
-  client: 
-    registerWithEureka: true 
-    fetchRegistry: true #表示是否从eureka服务器获取注册信息
-    serviceUrl:
-      defaultZone: http://admin:admin@server2:8002/eureka/</code></pre><h6 id="③-application-server2-yml"><a href="#③-application-server2-yml" class="headerlink" title="③ application-server2.yml"></a>③ application-server2.yml</h6><pre><code>server: 
+&lt;/repositories&gt;</code></pre><h4 id="3-2-2-2application-yml"><a href="#3-2-2-2application-yml" class="headerlink" title="3.2.2.2application.yml"></a>3.2.2.2application.yml</h4><pre><code>server:
   port: 8002
 
-spring: 
+spring:
   application:
-    name: server2
-  security:
-    user:
-      name: admin
-      password: admin
+    name: zuul-producer
 
 eureka:
-  instance: 
-    hostname: server2
-  client: 
-    registerWithEureka: true 
-    fetchRegistry: true #表示是否从eureka服务器获取注册信息
-    serviceUrl:
-      defaultZone: http://admin:admin@server1:8001/eureka/</code></pre><h6 id="④-host文件配置路径"><a href="#④-host文件配置路径" class="headerlink" title="④ host文件配置路径"></a>④ host文件配置路径</h6><pre><code>由于采用了参数配置eureka.instance.hostnam及http://admin:admin@server1的写法，则需要在进行hosts的配置，
-
-Window   ： 在C:\Windows\System32\drivers\etc\hosts，
-Linux      ： /etc/host，</code></pre><p>如下图所示</p>
-<p><img src="/2019/11/13/eureka1/7.png" alt></p>
-<h5 id="（3）-main方法"><a href="#（3）-main方法" class="headerlink" title="（3） main方法"></a>（3） main方法</h5><pre><code>@SpringBootApplication
-@EnableEurekaServer
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8000/eureka</code></pre><h4 id="3-2-2-3main方法启动"><a href="#3-2-2-3main方法启动" class="headerlink" title="3.2.2.3main方法启动"></a>3.2.2.3main方法启动</h4><pre><code>@SpringBootApplication
 @EnableDiscoveryClient
-public class RunServer {
+public class ProducerRun {
+
     public static void main(String[] args) {
-        SpringApplication.run(RunServer.class, args);
+        SpringApplication.run(ProducerRun.class, args);
     }
-}</code></pre><h5 id="（4）注意事项"><a href="#（4）注意事项" class="headerlink" title="（4）注意事项"></a>（4）注意事项</h5><pre><code>启动第一个项目肯定会报错，因为互相注册导致无法找到另一个服务，不用惊慌，把两个服务全部启动。
-访问http://127.0.0.1:8001/或http://127.0.0.1:8002/ ，
-DS Replicas显示为另一个服务
+}</code></pre><h4 id="3-2-2-4Controller"><a href="#3-2-2-4Controller" class="headerlink" title="3.2.2.4Controller"></a>3.2.2.4Controller</h4><pre><code>@RestController
+public class TestHello {
 
-application.yml：(启动两次修改此配置文件即可，server-1，和server-2分别启动一次)</code></pre><h3 id="client客户端集群"><a href="#client客户端集群" class="headerlink" title="client客户端集群"></a>client客户端集群</h3><p>#####（1）pom.xml</p>
-<pre><code>&lt;parent&gt;
-       &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-       &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
-       &lt;version&gt;2.0.1.RELEASE&lt;/version&gt;
-   &lt;/parent&gt; 
-   &lt;properties&gt;
-       &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
-       &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;
-       &lt;java.version&gt;1.8&lt;/java.version&gt;
-   &lt;/properties&gt;
+    @RequestMapping(&quot;/test&quot;)
+    public String getHello(@RequestParam String name){
+        return name+&quot;,say hello1&quot;;
+    }
+}</code></pre><h3 id="3-2-3gataway-网关调用"><a href="#3-2-3gataway-网关调用" class="headerlink" title="3.2.3gataway 网关调用"></a>3.2.3gataway 网关调用</h3><h4 id="3-2-3-1pom-xml"><a href="#3-2-3-1pom-xml" class="headerlink" title="3.2.3.1pom.xml"></a>3.2.3.1pom.xml</h4><pre><code>&lt;parent&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+    &lt;version&gt;1.5.3.RELEASE&lt;/version&gt;
+&lt;/parent&gt; 
+  &lt;properties&gt;
+      &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+    &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;
+    &lt;java.version&gt;1.8&lt;/java.version&gt;
+&lt;/properties&gt;
 
-   &lt;dependencies&gt;
-       &lt;dependency&gt;
-           &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-           &lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;
-       &lt;/dependency&gt;
-       &lt;dependency&gt;
-           &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-           &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
-           &lt;scope&gt;test&lt;/scope&gt;
-       &lt;/dependency&gt;
-      &lt;dependency&gt;
-           &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-           &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-client&lt;/artifactId&gt;
-           &lt;version&gt;2.0.1.RELEASE&lt;/version&gt;
-       &lt;/dependency&gt;
-       &lt;!-- 这是因为client里不包含Tomcat的依赖，所以Spring容器无法创建一些实例，从而导致项目无法启动，只需在pom.xml文件中，加上web依赖即可 --&gt;
-        &lt;dependency&gt;
+&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+        &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+
+    &lt;!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-config-server --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-cloud-starter-zuul&lt;/artifactId&gt;
+        &lt;version&gt;1.3.1.RELEASE&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-cloud-starter-eureka&lt;/artifactId&gt;
+        &lt;version&gt;1.3.1.RELEASE&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+&lt;build&gt;
+    &lt;plugins&gt;
+        &lt;plugin&gt;
             &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
-       &lt;/dependency&gt;
-   &lt;/dependencies&gt;
-   &lt;build&gt;
-       &lt;plugins&gt;
-           &lt;plugin&gt;
-               &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-               &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
-           &lt;/plugin&gt;
-       &lt;/plugins&gt;
-   &lt;/build&gt;
-   &lt;!--注意：这里必须要添加，否则各种依赖有问题--&gt;
-   &lt;repositories&gt;
-       &lt;repository&gt;
-           &lt;id&gt;spring-milestones&lt;/id&gt;
-           &lt;name&gt;Spring Milestones&lt;/name&gt;
-           &lt;url&gt;https://repo.spring.io/libs-milestone&lt;/url&gt;
-           &lt;snapshots&gt;
-               &lt;enabled&gt;false&lt;/enabled&gt;
-           &lt;/snapshots&gt;
-       &lt;/repository&gt;
-   &lt;/repositories&gt;</code></pre><p>#####（2） application.yml</p>
-<pre><code>spring: 
-  application: 
-    name: client
-  security: 
-    user:
-      name: admin
-      password: admin
+            &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+        &lt;/plugin&gt;
+    &lt;/plugins&gt;
+&lt;/build&gt;
+&lt;!--注意：这里必须要添加，否则各种依赖有问题--&gt;
+&lt;repositories&gt;
+    &lt;repository&gt;
+        &lt;id&gt;spring-milestones&lt;/id&gt;
+        &lt;name&gt;Spring Milestones&lt;/name&gt;
+        &lt;url&gt;https://repo.spring.io/libs-milestone&lt;/url&gt;
+        &lt;snapshots&gt;
+            &lt;enabled&gt;false&lt;/enabled&gt;
+        &lt;/snapshots&gt;
+    &lt;/repository&gt;
+&lt;/repositories&gt;</code></pre><h4 id="3-2-3-2-application-yml"><a href="#3-2-3-2-application-yml" class="headerlink" title="3.2.3.2 application.yml"></a>3.2.3.2 application.yml</h4><pre><code>server:
+  port: 8003
 
-server: 
-  port: 8101
+spring:
+  application:
+    name: zuul-gataway
 
-eureka: 
-  client: 
-    fetchRegistry: true
-    registerWithEureka: true
-    serviceUrl: 
-      defaultZone: http://admin:admin@server2:8002/eureka/,
-http://admin:admin@server1:8001/eureka/</code></pre><p>#####（3） main方法</p>
-<pre><code>@SpringBootApplication
-@EnableEurekaClient
-public class RunClient {
+zuul:
+  routes:
+    api-a:
+      path: /producer/**
+      serviceId: zuul-producer
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8000/eureka</code></pre><h4 id="3-2-3-3main方法启动"><a href="#3-2-3-3main方法启动" class="headerlink" title="3.2.3.3main方法启动"></a>3.2.3.3main方法启动</h4><pre><code>@SpringBootApplication
+@EnableZuulProxy
+public class GateWayRuN {
     public static void main(String[] args) {
-        SpringApplication.run(RunClient.class, args);
+        SpringApplication.run(GateWayRuN.class, args);
     }
-}</code></pre>
+}</code></pre><h3 id="3-2-4调试说明"><a href="#3-2-4调试说明" class="headerlink" title="3.2.4调试说明"></a>3.2.4调试说明</h3><blockquote>
+<p>浏览器 访问：<a href="http://127.0.0.1:8003/zuul-producer/test?name=’cc’" target="_blank" rel="noopener">http://127.0.0.1:8003/zuul-producer/test?name=’cc’</a><br>或<br><a href="http://127.0.0.1:8003/producer/test?name=’cc’" target="_blank" rel="noopener">http://127.0.0.1:8003/producer/test?name=’cc’</a><br>说明访问zuul-gataway的请求自动转发到了zuul-producer，并且将结果返回。<br>返回：’cc’,say hello </p>
+</blockquote>
+<blockquote>
+<p><strong>负载均衡</strong>：    修改 producer生产者 启动端口，和controller 输出name,say hello 1<br>浏览器访问： <a href="http://127.0.0.1:8003/zuul-producer/test?name=’cc’" target="_blank" rel="noopener">http://127.0.0.1:8003/zuul-producer/test?name=’cc’</a><br>或<br><a href="http://127.0.0.1:8003/producer/test?name=’cc’" target="_blank" rel="noopener">http://127.0.0.1:8003/producer/test?name=’cc’</a><br>返回：’cc’,say hello ，和 ‘cc’,say hello1<br>说明访问zuul-gataway的请求自动转发到了zuul-producer，同时负载均衡成功。</p>
+</blockquote>
+<h3 id="3-2-5网关的默认路由规则"><a href="#3-2-5网关的默认路由规则" class="headerlink" title="3.2.5网关的默认路由规则"></a>3.2.5网关的默认路由规则</h3><p>&emsp;&emsp;但是如果后端服务多达十几个的时候，每一个都这样配置也挺麻烦的，spring cloud zuul已经帮我们做了默认配置。默认情况下，Zuul会代理所有注册到Eureka Server的微服务，并且Zuul的路由规则如下：<a href="http://ZUUL_HOST:ZUUL_PORT/微服务在Eureka上的serviceId/**会被转发到serviceId对应的微服务。" target="_blank" rel="noopener">http://ZUUL_HOST:ZUUL_PORT/微服务在Eureka上的serviceId/**会被转发到serviceId对应的微服务。</a></p>
+<p>我们注销掉zuul-gataway项目中关于路由的配置：</p>
+<blockquote>
+<p>#zuul:</p>
+<h1 id="routes"><a href="#routes" class="headerlink" title="routes:"></a>routes:</h1><h1 id="api-a"><a href="#api-a" class="headerlink" title="api-a:"></a>api-a:</h1><h1 id="path-producer"><a href="#path-producer" class="headerlink" title="path: /producer/**"></a>path: /producer/**</h1><h1 id="serviceId-zuul-producer"><a href="#serviceId-zuul-producer" class="headerlink" title="serviceId: zuul-producer"></a>serviceId: zuul-producer</h1></blockquote>
+<pre><code>重新启动后，访问http://127.0.0.1:8003/zuul-producer/test?name=’cc’
+
+测试返回结果如上述所示相同，说明Spring cloud zuul默认已经提供了转发功能。</code></pre>
       
        
     </div>
@@ -750,9 +704,9 @@ public class RunClient {
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>eureka原理介绍</p>
-    <p><span class="copy-title">发布时间:</span>2019-11-13, 16:08:48</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-13, 16:03:24</p>
+    <p><span class="copy-title">文章标题:</span>Spring cloud zuul (初级)</p>
+    <p><span class="copy-title">发布时间:</span>2019-11-13, 17:35:48</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-13, 17:35:49</p>
 </div>
 
 
