@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>eureka服务提供和调用 | Hexo</title>
-  <meta name="keywords" content=" eureka 服务提供和调用 ">
-  <meta name="description" content="eureka服务提供和调用 | Hexo">
+  <title>配置中心git服务化和高可用 | Hexo</title>
+  <meta name="keywords" content=" 配置中心git服务化和高可用 ">
+  <meta name="description" content="配置中心git服务化和高可用 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="简介 &amp;emsp;&amp;emsp;客户端都是直接调用配置中心的server端来获取配置文件信息。这样就存在了一个问题，客户端和服务端的耦合性太高，如果server端要做集群，客户端只能通过原始的方式来路由，server端改变IP地址的时候，客户端也需要修改配置，不符合springcloud服务治理的理念。  springcloud提供了这样的解决方案，将server端当做一个服务注册到eureka中，">
 <meta name="keywords" content="配置中心git服务化和高可用">
@@ -318,9 +318,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-eureka-Producer-Consumer" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-gitconfig-server-client" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">eureka服务提供和调用</h1>
+        <h1 class="article-title">配置中心git服务化和高可用</h1>
     
     <div class="article-meta">
         
@@ -335,14 +335,14 @@
         
         <span class="tag">
             
-            <a href="javascript:" target="_blank" rel="noopener" class="color5">eureka 服务提供和调用</a>
+            <a href="javascript:" target="_blank" rel="noopener" class="color5">配置中心git服务化和高可用</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-11-13 15:10:49'>2019-11-13 15:11</time>
+        创建时间:<time class="date" title='更新时间: 2019-11-13 17:11:42'>2019-11-13 17:11</time>
         
     </div>
     <div class="article-meta">
@@ -364,7 +364,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一-项目描述-非负载均衡"><span class="toc-text">一.项目描述(非负载均衡)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Eureka服务注册中心"><span class="toc-text">1.Eureka服务注册中心</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-pom-xml"><span class="toc-text">(1)pom.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-application-yml"><span class="toc-text">(2)application.yml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-main方法启动"><span class="toc-text">(3) main方法启动</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-生产者-Cloud-producer"><span class="toc-text">2.生产者 Cloud-producer</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-pom-xml-1"><span class="toc-text">(1)pom.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-application-yml-1"><span class="toc-text">(2)application.yml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-main方法启动-1"><span class="toc-text">(3) main方法启动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Controller"><span class="toc-text">(4)Controller</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-消费者-Cloud-consumer"><span class="toc-text">3.消费者 Cloud-consumer</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-pom-xml-2"><span class="toc-text">(1)pom.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-application-yml-2"><span class="toc-text">(2)application.yml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-main方法启动-2"><span class="toc-text">(3)main方法启动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-remote远程接口"><span class="toc-text">(4)remote远程接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Controller"><span class="toc-text">(5)Controller</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#调试说明"><span class="toc-text">调试说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二-负载均衡"><span class="toc-text">二.负载均衡</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-eureka服务注册（同上-一-1）"><span class="toc-text">1.eureka服务注册（同上 一.1）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-生产者（同上-一-2）"><span class="toc-text">2.生产者（同上 一.2）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-消费者（同上-一-3）"><span class="toc-text">3.消费者（同上 一.3）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#调试说明-1"><span class="toc-text">调试说明</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#简介"><span class="toc-text">简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Eureka服务注册中心"><span class="toc-text">2.Eureka服务注册中心</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1pom-xml"><span class="toc-text">2.1pom.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2application-yml"><span class="toc-text">2.2application.yml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3main方法启动"><span class="toc-text">2.3main方法启动</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-server服务端"><span class="toc-text">3.server服务端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1pom-xml"><span class="toc-text">3.1pom.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2application-yml"><span class="toc-text">3.2application.yml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3main方法启动"><span class="toc-text">3.3main方法启动</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-client客户端"><span class="toc-text">4.client客户端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1pom-xml"><span class="toc-text">4.1pom.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2application-yml"><span class="toc-text">4.2application.yml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3bootstrap-yml"><span class="toc-text">4.3bootstrap.yml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4main方法启动"><span class="toc-text">4.4main方法启动</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-高可用"><span class="toc-text">5 高可用</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -380,61 +380,61 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一-项目描述-非负载均衡"><a href="#一-项目描述-非负载均衡" class="headerlink" title="一.项目描述(非负载均衡)"></a>一.项目描述(非负载均衡)</h2><blockquote>
-<p>案例中有三个角色：服务注册中心、服务提供者、服务消费者，其中服务注册中心就是我们上一篇的eureka单机版启动既可，流程是首先启动注册中心，服务提供者生产服务并注册到服务中心中，消费者从服务中心中获取服务并执行</p>
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><blockquote>
+<p>&emsp;&emsp;客户端都是直接调用配置中心的server端来获取配置文件信息。这样就存在了一个问题，客户端和服务端的耦合性太高，如果server端要做集群，客户端只能通过原始的方式来路由，server端改变IP地址的时候，客户端也需要修改配置，不符合springcloud服务治理的理念。</p>
 </blockquote>
-<h2 id="1-Eureka服务注册中心"><a href="#1-Eureka服务注册中心" class="headerlink" title="1.Eureka服务注册中心"></a>1.Eureka服务注册中心</h2><h3 id="1-pom-xml"><a href="#1-pom-xml" class="headerlink" title="(1)pom.xml"></a>(1)pom.xml</h3><pre><code>&lt;parent&gt;
-       &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-       &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
-       &lt;version&gt;2.0.1.RELEASE&lt;/version&gt;
-   &lt;/parent&gt; 
-     &lt;properties&gt;
-         &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
-       &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;
-       &lt;java.version&gt;1.8&lt;/java.version&gt;
-   &lt;/properties&gt;
+<p>springcloud提供了这样的解决方案，将server端当做一个服务注册到eureka中，client端去eureka中去获取配置中心server端的服务既可。</p>
+<h2 id="2-Eureka服务注册中心"><a href="#2-Eureka服务注册中心" class="headerlink" title="2.Eureka服务注册中心"></a>2.Eureka服务注册中心</h2><h3 id="2-1pom-xml"><a href="#2-1pom-xml" class="headerlink" title="2.1pom.xml"></a>2.1pom.xml</h3><pre><code>&lt;parent&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+    &lt;version&gt;2.0.1.RELEASE&lt;/version&gt;
+&lt;/parent&gt; 
+  &lt;properties&gt;
+      &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+    &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;
+    &lt;java.version&gt;1.8&lt;/java.version&gt;
+&lt;/properties&gt;
 
-   &lt;dependencies&gt;
-       &lt;dependency&gt;
-           &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-           &lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;
-       &lt;/dependency&gt;
-       &lt;dependency&gt;
-           &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-           &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
-           &lt;scope&gt;test&lt;/scope&gt;
-       &lt;/dependency&gt;
-       &lt;dependency&gt;
-           &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-           &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-server&lt;/artifactId&gt;
-           &lt;version&gt;2.0.1.RELEASE&lt;/version&gt;
-       &lt;/dependency&gt;
-   &lt;/dependencies&gt;
-   &lt;build&gt;
-       &lt;plugins&gt;
-           &lt;plugin&gt;
-               &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-               &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
-           &lt;/plugin&gt;
-       &lt;/plugins&gt;
-   &lt;/build&gt;
-   &lt;!--注意：这里必须要添加，否则各种依赖有问题--&gt;
-   &lt;repositories&gt;
-       &lt;repository&gt;
-           &lt;id&gt;spring-milestones&lt;/id&gt;
-           &lt;name&gt;Spring Milestones&lt;/name&gt;
-           &lt;url&gt;https://repo.spring.io/libs-milestone&lt;/url&gt;
-           &lt;snapshots&gt;
-               &lt;enabled&gt;false&lt;/enabled&gt;
-           &lt;/snapshots&gt;
-       &lt;/repository&gt;
-   &lt;/repositories&gt;</code></pre><h3 id="2-application-yml"><a href="#2-application-yml" class="headerlink" title="(2)application.yml"></a>(2)application.yml</h3><pre><code>spring: 
+&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+        &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-server&lt;/artifactId&gt;
+        &lt;version&gt;2.0.1.RELEASE&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+&lt;build&gt;
+    &lt;plugins&gt;
+        &lt;plugin&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+        &lt;/plugin&gt;
+    &lt;/plugins&gt;
+&lt;/build&gt;
+&lt;!--注意：这里必须要添加，否则各种依赖有问题--&gt;
+&lt;repositories&gt;
+    &lt;repository&gt;
+        &lt;id&gt;spring-milestones&lt;/id&gt;
+        &lt;name&gt;Spring Milestones&lt;/name&gt;
+        &lt;url&gt;https://repo.spring.io/libs-milestone&lt;/url&gt;
+        &lt;snapshots&gt;
+            &lt;enabled&gt;false&lt;/enabled&gt;
+        &lt;/snapshots&gt;
+    &lt;/repository&gt;
+&lt;/repositories&gt;</code></pre><h3 id="2-2application-yml"><a href="#2-2application-yml" class="headerlink" title="2.2application.yml"></a>2.2application.yml</h3><pre><code>spring: 
   application: 
     name: EurekaServer
 
 server: 
   port: 5555
-
 eureka:
   instance:
     hostname: 127.0.0.1
@@ -442,239 +442,184 @@ eureka:
     register-with-eureka: false
     fetch-registry: false
     service-url:
-      defaultZone: http://127.0.0.1:5555/eureka/</code></pre><h3 id="3-main方法启动"><a href="#3-main方法启动" class="headerlink" title="(3) main方法启动"></a>(3) main方法启动</h3><pre><code>@SpringBootApplication
+      defaultZone: http://127.0.0.1:5555/eureka/</code></pre><h3 id="2-3main方法启动"><a href="#2-3main方法启动" class="headerlink" title="2.3main方法启动"></a>2.3main方法启动</h3><pre><code>@SpringBootApplication
 @EnableEurekaServer
 public class EurekaServerRun {
     public static void main(String[] args) {
         SpringApplication.run(EurekaServerRun.class, args);
     }
-}</code></pre><h2 id="2-生产者-Cloud-producer"><a href="#2-生产者-Cloud-producer" class="headerlink" title="2.生产者 Cloud-producer"></a>2.生产者 Cloud-producer</h2><h3 id="1-pom-xml-1"><a href="#1-pom-xml-1" class="headerlink" title="(1)pom.xml"></a>(1)pom.xml</h3><pre><code>&lt;parent&gt;
-     &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-     &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
-     &lt;version&gt;1.5.3.RELEASE&lt;/version&gt;
- &lt;/parent&gt; 
-   &lt;properties&gt;
-       &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
-     &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;
-     &lt;java.version&gt;1.8&lt;/java.version&gt;
- &lt;/properties&gt;
+}</code></pre><h2 id="3-server服务端"><a href="#3-server服务端" class="headerlink" title="3.server服务端"></a>3.server服务端</h2><h3 id="3-1pom-xml"><a href="#3-1pom-xml" class="headerlink" title="3.1pom.xml"></a>3.1pom.xml</h3><pre><code>&lt;parent&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+    &lt;version&gt;1.5.3.RELEASE&lt;/version&gt;
+&lt;/parent&gt; 
+  &lt;properties&gt;
+      &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+    &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;
+    &lt;java.version&gt;1.8&lt;/java.version&gt;
+&lt;/properties&gt;
 
- &lt;dependencies&gt;
-     &lt;dependency&gt;
-         &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-         &lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;
-     &lt;/dependency&gt;
-     &lt;dependency&gt;
-         &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-         &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
-         &lt;scope&gt;test&lt;/scope&gt;
-     &lt;/dependency&gt;
-     &lt;!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-eureka --&gt;
- &lt;dependency&gt;
-     &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-     &lt;artifactId&gt;spring-cloud-starter-eureka&lt;/artifactId&gt;
-     &lt;version&gt;1.3.1.RELEASE&lt;/version&gt;
- &lt;/dependency&gt;
-
- &lt;/dependencies&gt;
- &lt;build&gt;
-     &lt;plugins&gt;
-         &lt;plugin&gt;
-             &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-             &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
-         &lt;/plugin&gt;
-     &lt;/plugins&gt;
- &lt;/build&gt;
- &lt;!--注意：这里必须要添加，否则各种依赖有问题--&gt;
- &lt;repositories&gt;
-     &lt;repository&gt;
-         &lt;id&gt;spring-milestones&lt;/id&gt;
-         &lt;name&gt;Spring Milestones&lt;/name&gt;
-         &lt;url&gt;https://repo.spring.io/libs-milestone&lt;/url&gt;
-         &lt;snapshots&gt;
-             &lt;enabled&gt;false&lt;/enabled&gt;
-         &lt;/snapshots&gt;
-     &lt;/repository&gt;
- &lt;/repositories&gt;</code></pre><h3 id="2-application-yml-1"><a href="#2-application-yml-1" class="headerlink" title="(2)application.yml"></a>(2)application.yml</h3><pre><code>server:
-  port: 8001
-  context-path: /
-
-spring:
-  application:
-    name: producer
-
-eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url: 
-      defaultZone: http://127.0.0.1:5555/eureka/</code></pre><h3 id="3-main方法启动-1"><a href="#3-main方法启动-1" class="headerlink" title="(3) main方法启动"></a>(3) main方法启动</h3><pre><code>@SpringBootApplication
-@EnableDiscoveryClient
-public class ProducerRun {
-    public static void main(String[] args) {
-        SpringApplication.run(ProducerRun.class, args);
-    }
-}</code></pre><h3 id="4-Controller"><a href="#4-Controller" class="headerlink" title="(4)Controller"></a>(4)Controller</h3><pre><code>@RestController
-public class TestHello {
-
-    @RequestMapping(&quot;/hello&quot;)
-    public String testHello(@RequestParam String param){
-        return &quot;hello &quot;+param+&quot; ,this is Producer1 message&quot;;
-    }
-}</code></pre><h2 id="3-消费者-Cloud-consumer"><a href="#3-消费者-Cloud-consumer" class="headerlink" title="3.消费者 Cloud-consumer"></a>3.消费者 Cloud-consumer</h2><h3 id="1-pom-xml-2"><a href="#1-pom-xml-2" class="headerlink" title="(1)pom.xml"></a>(1)pom.xml</h3><pre><code>&lt;parent&gt;
+&lt;dependencies&gt;
+    &lt;dependency&gt;
         &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
-        &lt;version&gt;1.5.3.RELEASE&lt;/version&gt;
-    &lt;/parent&gt; 
-      &lt;properties&gt;
-          &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
-        &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;
-        &lt;java.version&gt;1.8&lt;/java.version&gt;
-    &lt;/properties&gt;
+        &lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+        &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
 
-    &lt;dependencies&gt;
-        &lt;dependency&gt;
+    &lt;!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-config-server --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-cloud-config-server&lt;/artifactId&gt;
+        &lt;version&gt;1.3.4.RELEASE&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-cloud-starter-eureka&lt;/artifactId&gt;
+        &lt;version&gt;1.3.4.RELEASE&lt;/version&gt;
+    &lt;/dependency&gt;
+
+&lt;/dependencies&gt;
+&lt;build&gt;
+    &lt;plugins&gt;
+        &lt;plugin&gt;
             &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;
-        &lt;/dependency&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
-            &lt;scope&gt;test&lt;/scope&gt;
-        &lt;/dependency&gt;
-        &lt;!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-eureka --&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-cloud-starter-eureka&lt;/artifactId&gt;
-            &lt;version&gt;1.3.1.RELEASE&lt;/version&gt;
-        &lt;/dependency&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-cloud-starter-feign&lt;/artifactId&gt;
-            &lt;version&gt;1.3.1.RELEASE&lt;/version&gt;
-        &lt;/dependency&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;
-        &lt;/dependency&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
-            &lt;!-- 移除嵌入式tomcat插件 --&gt;
-            &lt;exclusions&gt;
-                &lt;exclusion&gt;
-                    &lt;groupId&gt; org.hibernate&lt;/groupId&gt;
-                    &lt;artifactId&gt;hibernate-validator&lt;/artifactId&gt;
-                &lt;/exclusion&gt;
-            &lt;/exclusions&gt;
-        &lt;/dependency&gt;
-    &lt;/dependencies&gt;
-    &lt;build&gt;
-        &lt;plugins&gt;
-            &lt;plugin&gt;
-                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-                &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
-            &lt;/plugin&gt;
-        &lt;/plugins&gt;
-    &lt;/build&gt;
-    &lt;!--注意：这里必须要添加，否则各种依赖有问题--&gt;
-    &lt;repositories&gt;
-        &lt;repository&gt;
-            &lt;id&gt;spring-milestones&lt;/id&gt;
-            &lt;name&gt;Spring Milestones&lt;/name&gt;
-            &lt;url&gt;https://repo.spring.io/libs-milestone&lt;/url&gt;
-            &lt;snapshots&gt;
-                &lt;enabled&gt;false&lt;/enabled&gt;
-            &lt;/snapshots&gt;
-        &lt;/repository&gt;
-&lt;/repositories&gt;</code></pre><h3 id="2-application-yml-2"><a href="#2-application-yml-2" class="headerlink" title="(2)application.yml"></a>(2)application.yml</h3><pre><code>server:
-  port: 8002
+            &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+        &lt;/plugin&gt;
+    &lt;/plugins&gt;
+&lt;/build&gt;
+&lt;!--注意：这里必须要添加，否则各种依赖有问题--&gt;
+&lt;repositories&gt;
+    &lt;repository&gt;
+        &lt;id&gt;spring-milestones&lt;/id&gt;
+        &lt;name&gt;Spring Milestones&lt;/name&gt;
+        &lt;url&gt;https://repo.spring.io/libs-milestone&lt;/url&gt;
+        &lt;snapshots&gt;
+            &lt;enabled&gt;false&lt;/enabled&gt;
+        &lt;/snapshots&gt;
+    &lt;/repository&gt;
+&lt;/repositories&gt;</code></pre><h3 id="3-2application-yml"><a href="#3-2application-yml" class="headerlink" title="3.2application.yml"></a>3.2application.yml</h3><pre><code>server:
+  port: 8007
 
 spring:
   application:
-    name: Consumer
+    name: serverConfigHigh
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/mayunchenwei/test.git  #git仓库地址
+          username: 17809213302@163.com    
+          password: chenwei0307 
 
 eureka:
   client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://127.0.0.1:5555/eureka/    </code></pre><h3 id="3-main方法启动-2"><a href="#3-main方法启动-2" class="headerlink" title="(3)main方法启动"></a>(3)main方法启动</h3><pre><code>@SpringBootApplication
+   service-url:
+defaultZone: http://127.0.0.1:5555/eureka/  #注册中心eureka地址</code></pre><h3 id="3-3main方法启动"><a href="#3-3main方法启动" class="headerlink" title="3.3main方法启动"></a>3.3main方法启动</h3><pre><code>@SpringBootApplication
 @EnableDiscoveryClient
-@EnableFeignClients
-/**
- * @EnableDiscoveryClient :启用服务注册与发现
- * @EnableFeignClients：启用feign进行远程调用
- * Feign是一个声明式Web Service客户端。使用Feign能让编写Web Service客户端更加简单,
- * 它的使用方法是定义一个接口，然后在上面添加注解，同时也支持JAX-RS标准的注解。Feign也支持可拔插式的编码器和解码器。
- * Spring Cloud对Feign进行了封装，使其支持了Spring MVC标准注解和HttpMessageConverters。
- * Feign可以与Eureka和Ribbon组合使用以支持负载均衡
- * @author cw  
- *
- */
-public class ConsumerRun {
+@EnableConfigServer
+public class ServerConfigHighRun {
+    public static void main(String[] args) {
+        SpringApplication.run(ServerConfigHighRun.class, args);
+    }
+}</code></pre><h2 id="4-client客户端"><a href="#4-client客户端" class="headerlink" title="4.client客户端"></a>4.client客户端</h2><h3 id="4-1pom-xml"><a href="#4-1pom-xml" class="headerlink" title="4.1pom.xml"></a>4.1pom.xml</h3><pre><code>&lt;parent&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+    &lt;version&gt;1.5.3.RELEASE&lt;/version&gt;
+&lt;/parent&gt; 
+  &lt;properties&gt;
+      &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+    &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;
+    &lt;java.version&gt;1.8&lt;/java.version&gt;
+&lt;/properties&gt;
+
+&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-cloud-starter-eureka&lt;/artifactId&gt;
+        &lt;version&gt;1.3.4.RELEASE&lt;/version&gt;
+    &lt;/dependency&gt;
+       &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-cloud-starter-config&lt;/artifactId&gt;
+        &lt;version&gt;1.3.4.RELEASE&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+        &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+    &lt;!-- 监控程序在运行时的状态，包括refresh功能 --&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-actuator&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+&lt;build&gt;
+    &lt;plugins&gt;
+        &lt;plugin&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+        &lt;/plugin&gt;
+    &lt;/plugins&gt;
+&lt;/build&gt;
+&lt;!--注意：这里必须要添加，否则各种依赖有问题--&gt;
+&lt;repositories&gt;
+    &lt;repository&gt;
+        &lt;id&gt;spring-milestones&lt;/id&gt;
+        &lt;name&gt;Spring Milestones&lt;/name&gt;
+        &lt;url&gt;https://repo.spring.io/libs-milestone&lt;/url&gt;
+        &lt;snapshots&gt;
+            &lt;enabled&gt;false&lt;/enabled&gt;
+        &lt;/snapshots&gt;
+    &lt;/repository&gt;
+&lt;/repositories&gt;</code></pre><h3 id="4-2application-yml"><a href="#4-2application-yml" class="headerlink" title="4.2application.yml"></a>4.2application.yml</h3><pre><code>server:
+  port: 8008</code></pre><h3 id="4-3bootstrap-yml"><a href="#4-3bootstrap-yml" class="headerlink" title="4.3bootstrap.yml"></a>4.3bootstrap.yml</h3><pre><code>spring:
+  application:
+    name: clientConfigHigh
+  cloud:
+    config:
+      name: neo-config
+      profile: dev
+      uri: http://localhost:8007
+      discovery:
+        enabled: true 
+        serviceId: serverConfigHigh
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:5555/eureka/</code></pre><h3 id="4-4main方法启动"><a href="#4-4main方法启动" class="headerlink" title="4.4main方法启动"></a>4.4main方法启动</h3><pre><code>@SpringBootApplication
+@EnableDiscoveryClient
+public class ClientConfigHighRun {
 
     public static void main(String[] args) {
-        SpringApplication.run(ConsumerRun.class, args);
-    }</code></pre><h3 id="4-remote远程接口"><a href="#4-remote远程接口" class="headerlink" title="(4)remote远程接口"></a>(4)remote远程接口</h3><pre><code>@Component
-@FeignClient(name=&quot;producer&quot;) //name:远程服务名，spring.application.name配置的名称
-public interface HelloRemote {
-    @RequestMapping(value=&quot;/hello&quot;)
-    public String testHello(@RequestParam(value=&quot;param&quot;) String param);
-
-    //注意：    此方法和远程服务的contoller中的方法名和参数需保持一致。
-}</code></pre><h3 id="5-Controller"><a href="#5-Controller" class="headerlink" title="(5)Controller"></a>(5)Controller</h3><pre><code>@RestController
-public class TestHello {
-    @Autowired
-    HelloRemote helloRemote;
-
-    @RequestMapping(&quot;/hello/{param}&quot;)
-    public String index(@PathVariable(&quot;param&quot;) String param){
-        return helloRemote.testHello(param);
+        SpringApplication.run(ClientConfigHighRun.class, args);
     }
-}</code></pre><h2 id="调试说明"><a href="#调试说明" class="headerlink" title="调试说明"></a>调试说明</h2><blockquote>
-<p>1.依次启动Cloud-EurekaServer、Cloud-Producer、Cloud-Consumer三个项目</p>
-</blockquote>
-<blockquote>
-<p>2.先输入：<a href="http://127.0.0.1:5555/检查Cloud-EurekaServe注册服务是否正常" target="_blank" rel="noopener">http://127.0.0.1:5555/检查Cloud-EurekaServe注册服务是否正常</a><br>再输入：<a href="http://192.168.18.106:8001/hello?param=’test’" target="_blank" rel="noopener">http://192.168.18.106:8001/hello?param=’test’</a> 检查Cloud-Producer服务是否正常<br>返回：hello ‘test’ ,this is Producer message<br>说明Cloud-Producr正常启动，提供的服务也正常。</p>
-</blockquote>
-<blockquote>
-<p>3.浏览器中输入：<a href="http://192.168.18.106:8002/hello/param" target="_blank" rel="noopener">http://192.168.18.106:8002/hello/param</a><br>返回：hello param ,this is Producer2 message<br>说明客户端已经成功的通过feign调用了远程服务hello，并且将结果返回到了浏览器。</p>
-</blockquote>
-<h2 id="二-负载均衡"><a href="#二-负载均衡" class="headerlink" title="二.负载均衡"></a>二.负载均衡</h2><h3 id="1-eureka服务注册（同上-一-1）"><a href="#1-eureka服务注册（同上-一-1）" class="headerlink" title="1.eureka服务注册（同上 一.1）"></a>1.eureka服务注册（同上 一.1）</h3><h3 id="2-生产者（同上-一-2）"><a href="#2-生产者（同上-一-2）" class="headerlink" title="2.生产者（同上 一.2）"></a>2.生产者（同上 一.2）</h3><blockquote>
-<p>但需要如下修改：Application.yml</p>
-</blockquote>
-<pre><code>server:
-  port: 8003
-  context-path: /
-
-spring:
-  application:
-    name: producer
-
-eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url: 
-      defaultZone: http://127.0.0.1:5555/eureka/</code></pre><blockquote>
-<p>需要如下修改：Controller</p>
-</blockquote>
+}</code></pre><p>###　4.5Controller</p>
 <pre><code>@RestController
-public class TestHello {
+@RefreshScope //使用该注解的类，会在接收springcloud配置中心配置刷新时，自动将新的配置更新到该类的对应的字段
+public class testHello {
+    @Value(value=&quot;${neo.hello}&quot;)
+    private String hello;
 
-    @RequestMapping(&quot;/hello&quot;)
-    public String testHello(@RequestParam String param){
-        return &quot;hello &quot;+param+&quot; ,this is Producer2 message&quot;;
+    @RequestMapping(&quot;/testController&quot;)
+    public String tetst(){
+        return this.hello; 
     }
-}</code></pre><blockquote>
-<p>再次启动该服务。</p>
+}</code></pre><h2 id="5-高可用"><a href="#5-高可用" class="headerlink" title="5 高可用"></a>5 高可用</h2><blockquote>
+<p>为了模拟生产集群环境，我们改动server端的端口为8009，再启动一个server端来做服务的负载，提供高可用的server端支持。</p>
 </blockquote>
-<h3 id="3-消费者（同上-一-3）"><a href="#3-消费者（同上-一-3）" class="headerlink" title="3.消费者（同上 一.3）"></a>3.消费者（同上 一.3）</h3><h3 id="调试说明-1"><a href="#调试说明-1" class="headerlink" title="调试说明"></a>调试说明</h3><blockquote>
-<p>浏览器访问： <a href="http://192.168.18.106:8002/hello/param" target="_blank" rel="noopener">http://192.168.18.106:8002/hello/param</a> </p>
-</blockquote>
+<p><img src="/2019/11/13/gitconfig-server-client/1.png" alt></p>
 <blockquote>
-<p>会交互显示：hello param ,this is Producer1 message<br>hello param ,this is Producer2 message</p>
+<p>单独测试服务端，分别访问：<a href="http://127.0.0.1:8007/neo-config/dev、http://127.0.0.1:8009/neo-config/dev返回信息：则可正常读取配置信息。" target="_blank" rel="noopener">http://127.0.0.1:8007/neo-config/dev、http://127.0.0.1:8009/neo-config/dev返回信息：则可正常读取配置信息。</a><br>浏览器输入 <a href="http://127.0.0.1:8008/testController" target="_blank" rel="noopener">http://127.0.0.1:8008/testController</a> 返回 dev is updata，关闭其中一台服务器，再次输入<a href="http://127.0.0.1:8008/testController" target="_blank" rel="noopener">http://127.0.0.1:8008/testController</a> 返回 dev is updata，<br>说明已经达到了高可用的目的。</p>
 </blockquote>
 
       
@@ -685,9 +630,9 @@ public class TestHello {
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>eureka服务提供和调用</p>
-    <p><span class="copy-title">发布时间:</span>2019-11-13, 15:11:06</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-13, 15:10:49</p>
+    <p><span class="copy-title">文章标题:</span>配置中心git服务化和高可用</p>
+    <p><span class="copy-title">发布时间:</span>2019-11-13, 17:11:42</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-13, 17:11:42</p>
 </div>
 
 
