@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>消息队列 | Hexo</title>
+  <meta name="keywords" content=" rabbitMQ ">
+  <meta name="description" content="消息队列 | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="消息队列1.为什么使用消息队列(1)解耦传统模式：系统间耦合性太强. 如上图所示，系统A在代码中直接调用系统B和系统C的代码，如果将来D系统接入，系统A还需要修改代码，过于麻烦！    中间件模式：将消息写入消息队列，需要消息的系统自己从消息队列中订阅，从而系统A不需要做任何修改。 (2)异步  传统模式：一些非必要的业务逻辑以同步的方式运行，太耗费时间。   中间件模式：将消息写入消息队列，非必">
+<meta name="keywords" content="rabbitMQ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="消息队列">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;13&#x2F;rabbitMQBase&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="消息队列1.为什么使用消息队列(1)解耦传统模式：系统间耦合性太强. 如上图所示，系统A在代码中直接调用系统B和系统C的代码，如果将来D系统接入，系统A还需要修改代码，过于麻烦！    中间件模式：将消息写入消息队列，需要消息的系统自己从消息队列中订阅，从而系统A不需要做任何修改。 (2)异步  传统模式：一些非必要的业务逻辑以同步的方式运行，太耗费时间。   中间件模式：将消息写入消息队列，非必">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;13&#x2F;rabbitMQBase&#x2F;1.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;13&#x2F;rabbitMQBase&#x2F;2.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;13&#x2F;rabbitMQBase&#x2F;3.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;13&#x2F;rabbitMQBase&#x2F;4.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;13&#x2F;rabbitMQBase&#x2F;5.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;13&#x2F;rabbitMQBase&#x2F;6.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;13&#x2F;rabbitMQBase&#x2F;6.png">
+<meta property="og:updated_time" content="2019-11-13T01:50:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;13&#x2F;rabbitMQBase&#x2F;1.png">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>cwstudy</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="github" href="https://github.com/chenweistudy" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(5)</small></div></li>
+    
+        
+            
+            <li><div data-rel="架构">架构<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="消息队列">消息队列<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="redis">redis<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="5">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">分布式</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">rabbitMQ</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">redis</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="架构 "
+           href="/2019/11/11/indexs/"
+           data-tag="分布式"
+           data-author="" >
+            <span class="post-title" title="用【快餐店】理解分布式架构">用【快餐店】理解分布式架构</span>
+            <span class="post-date" title="2019-11-11 13:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="消息队列 "
+           href="/2019/11/13/rabbitMQBase/"
+           data-tag="rabbitMQ"
+           data-author="" >
+            <span class="post-title" title="消息队列">消息队列</span>
+            <span class="post-date" title="2019-11-13 09:58:16">2019/11/13</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/11/11/redis/"
+           data-tag="redis"
+           data-author="" >
+            <span class="post-title" title="Redis基本命令和java基本操作">Redis基本命令和java基本操作</span>
+            <span class="post-date" title="2019-11-11 10:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/11/11/redisCache/"
+           data-tag="redis"
+           data-author="" >
+            <span class="post-title" title="redis缓存">redis缓存</span>
+            <span class="post-date" title="2019-11-11 17:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/11/11/redisPersister/"
+           data-tag="redis"
+           data-author="" >
+            <span class="post-title" title="redis持久化">redis持久化</span>
+            <span class="post-date" title="2019-11-11 16:01:24">2019/11/11</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-rabbitMQBase" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">消息队列</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a href="javascript:" target="_blank" data-rel="消息队列 noopener">消息队列</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" target="_blank" rel="noopener" class="color4">rabbitMQ</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2019-11-13 09:50:18'>2019-11-13 09:58</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#消息队列"><span class="toc-text">消息队列</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-为什么使用消息队列"><span class="toc-text">1.为什么使用消息队列</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-解耦"><span class="toc-text">(1)解耦</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-异步"><span class="toc-text">(2)异步</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-削峰"><span class="toc-text">(3)削峰</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-使用消息队列的缺点"><span class="toc-text">2.使用消息队列的缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-如何保证消息队列是高可用的"><span class="toc-text">3.如何保证消息队列是高可用的</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-消息队列丢数据"><span class="toc-text">(2)消息队列丢数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-消费者丢数据"><span class="toc-text">(3)消费者丢数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-消息确认模式"><span class="toc-text">4.消息确认模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#模式1：自动确认"><span class="toc-text">模式1：自动确认</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#模式2：手动确认"><span class="toc-text">模式2：手动确认</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-解决消息丢失"><span class="toc-text">5.解决消息丢失</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-直连接和首部类型的比较"><span class="toc-text">6.直连接和首部类型的比较</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-对于交换机模式自身理解"><span class="toc-text">7.对于交换机模式自身理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-如何保证消息不被重复消费？"><span class="toc-text">8.如何保证消息不被重复消费？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-RabbitMQ交换器"><span class="toc-text">9.RabbitMQ交换器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Fanout-Exchange"><span class="toc-text">(1) Fanout Exchange</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Direct-Exchange"><span class="toc-text">(2) Direct Exchange</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Topic-Exchange"><span class="toc-text">(3) Topic Exchange</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Headers-Exchange"><span class="toc-text">(4) Headers Exchange</span></a></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h1><h2 id="1-为什么使用消息队列"><a href="#1-为什么使用消息队列" class="headerlink" title="1.为什么使用消息队列"></a>1.为什么使用消息队列</h2><h3 id="1-解耦"><a href="#1-解耦" class="headerlink" title="(1)解耦"></a>(1)解耦</h3><p><strong>传统模式</strong>：系统间耦合性太强.<br><img src="/2019/11/13/rabbitMQBase/1.png" alt></p>
+<p>如上图所示，系统A在代码中直接调用系统B和系统C的代码，如果将来D系统接入，系统A还需要修改代码，过于麻烦！</p>
+<p>  <img src="/2019/11/13/rabbitMQBase/2.png" alt></p>
+<p><strong>中间件模式</strong>：将消息写入消息队列，需要消息的系统自己从消息队列中订阅，从而系统A不需要做任何修改。</p>
+<h3 id="2-异步"><a href="#2-异步" class="headerlink" title="(2)异步"></a>(2)异步</h3><p> <img src="/2019/11/13/rabbitMQBase/3.png" alt></p>
+<p><strong>传统模式</strong>：一些非必要的业务逻辑以同步的方式运行，太耗费时间。</p>
+<p> <img src="/2019/11/13/rabbitMQBase/4.png" alt></p>
+<p><strong>中间件模式</strong>：将消息写入消息队列，非必要的业务逻辑以异步的方式运行，加快响应速度。</p>
+<h3 id="3-削峰"><a href="#3-削峰" class="headerlink" title="(3)削峰"></a>(3)削峰</h3><p> <img src="/2019/11/13/rabbitMQBase/5.png" alt></p>
+<p><strong>传统模式</strong>：并发量大的时候，所有的请求直接怼到数据库，造成数据库连接异常</p>
+<p> <img src="/2019/11/13/rabbitMQBase/6.png" alt></p>
+<p><strong>中间件模式</strong>：系统A慢慢的按照数据库能处理的并发量，从消息队列中慢慢拉取消息。在生产中，这个短暂的高峰期积压是允许的。</p>
+<p> <img src="/2019/11/13/rabbitMQBase/6.png" alt></p>
+<h2 id="2-使用消息队列的缺点"><a href="#2-使用消息队列的缺点" class="headerlink" title="2.使用消息队列的缺点"></a>2.使用消息队列的缺点</h2><p><strong>（1）系统可用性降低</strong>:</p>
+<p>&emsp;&emsp;你想啊，本来其他系统只要运行好好的，那你的系统就是正常的。现在你非要加个消息队列进去，那消息队列挂了，你的系统不是呵呵了。因此，系统可用性降低</p>
+<p><strong>（2）系统复杂性增加</strong>:</p>
+<p>&emsp;&emsp;要多考虑很多方面的问题，比如一致性问题、如何保证消息不被重复消费，如何保证保证消息可靠传输。因此，需要考虑的东西更多，系统复杂性增大。</p>
+<h2 id="3-如何保证消息队列是高可用的"><a href="#3-如何保证消息队列是高可用的" class="headerlink" title="3.如何保证消息队列是高可用的"></a>3.如何保证消息队列是高可用的</h2><p>&emsp;&emsp;我们在使用消息队列的过程中，应该做到消息不能多消费，也不能少消费。</p>
+<p><strong>可靠性传输</strong> :每种MQ都要从三个角度来分析:生产者弄丢数据、消息队列弄丢数据、消费者弄丢数据</p>
+<blockquote>
+<p>RabbitMQ消息队列：</p>
+</blockquote>
+<p>###(1)生产者丢数据</p>
+<p>&emsp;&emsp;从生产者弄丢数据这个角度来看，RabbitMQ提供transaction和confirm模式来确保生产者不丢消息。</p>
+<p>#####A:transaction机制</p>
+<p>&emsp;&emsp;发送消息前，开启事物(channel.txSelect())，然后发送消息，如果发送过程中出现什么异常，事物就会回滚(channel.txRollback())，如果发送成功则提交事物(channel.txCommit())。</p>
+<p><strong>缺点</strong>:就是吞吐量下降了。</p>
+<p>#####B:confirm机制(生产上confirm模式的居多)</p>
+<p>&emsp;&emsp;channel进入confirm模式，所有在该信道上面发布的消息都将会被指派一个唯一的ID(从1开始)，一旦消息被投递到所有匹配的队列之后，rabbitMQ就会发送一个Ack给生产者(包含消息的唯一ID)，这样生产者知道消息已经到达目的队列了.如果rabiitMQ没能处理该消息，则会发送一个Nack消息，进行重试操作。</p>
+<blockquote>
+<p>处理Ack和Nack的代码如下所示:</p>
+</blockquote>
+<figure class="highlight plain"><figcaption><span>ConfirmListener() &#123;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@Override</span><br><span class="line"></span><br><span class="line">public void handleNack(long deliveryTag, boolean multiple) throws IOException &#123;</span><br><span class="line"></span><br><span class="line">System.out.println(&quot;nack: deliveryTag = &quot;+deliveryTag+&quot; multiple: &quot;+multiple);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line"></span><br><span class="line">public void handleAck(long deliveryTag, boolean multiple) throws IOException &#123;</span><br><span class="line"></span><br><span class="line">System.out.println(&quot;ack: deliveryTag = &quot;+deliveryTag+&quot; multiple: &quot;+multiple);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="2-消息队列丢数据"><a href="#2-消息队列丢数据" class="headerlink" title="(2)消息队列丢数据"></a>(2)消息队列丢数据</h3><p>&emsp;&emsp;处理消息队列丢数据的情况，一般是开启持久化磁盘的配置。这个持久化配置可以和confirm机制配合使用，你可以在消息持久化磁盘后，再给生产者发送一个Ack信号。这样，如果消息持久化磁盘之前，rabbitMQ阵亡了，那么生产者收不到Ack信号，生产者会自动重发。</p>
+<p><strong>那么如何持久化呢?</strong></p>
+<p>&emsp;&emsp;1、将queue的持久化标识durable设置为true,则代表是一个持久的队列</p>
+<p>&emsp;&emsp;2、发送消息的时候将deliveryMode=2<br>这样设置以后，rabbitMQ就算挂了，重启后也能恢复数据</p>
+<h3 id="3-消费者丢数据"><a href="#3-消费者丢数据" class="headerlink" title="(3)消费者丢数据"></a>(3)消费者丢数据</h3><p>&emsp;&emsp;消费者丢数据一般采用了自动确认消息模式。这种模式下，消费者会自动确认收到信息。这时rahbitMQ会立即将消息删除，这种情况下如果消费者出现异常而没能处理该消息，就会丢失该消息。</p>
+<p><strong>解决方案</strong>:采用手动确认消息即可。</p>
+<h2 id="4-消息确认模式"><a href="#4-消息确认模式" class="headerlink" title="4.消息确认模式"></a>4.消息确认模式</h2><blockquote>
+<p>消费者从队列中获取消息，服务端如何知道消息已经被消费呢？</p>
+</blockquote>
+<h4 id="模式1：自动确认"><a href="#模式1：自动确认" class="headerlink" title="模式1：自动确认"></a>模式1：自动确认</h4><p>只要消息从队列中获取，无论消费者获取到消息后是否成功消息，都认为是消息已经成功消费。</p>
+<h4 id="模式2：手动确认"><a href="#模式2：手动确认" class="headerlink" title="模式2：手动确认"></a>模式2：手动确认</h4><p>消费者从队列中获取消息后，服务器会将该消息标记为不可用状态，等待消费者的反馈，如果消费者一直没有反馈，那么该消息将一直处于不可用状态。</p>
+<h2 id="5-解决消息丢失"><a href="#5-解决消息丢失" class="headerlink" title="5.解决消息丢失"></a>5.解决消息丢失</h2><p><strong>取消自动回复机制，改成手动回复机制</strong></p>
+<p>&emsp;&emsp;RabbitMQ提供了消息确认机制：message acknowledgments，一个消费者处理完成后，将会回传一个ack给生产者，以表示处理成功，这样生产者才可以将消息删除.</p>
+<p>&emsp;&emsp;没有回传ack，那么发送者便会重发消息到队列，如果这时候有其他的消费者服务该队列，便会从队列中取出消息并处理。这就保证了消息的不丢失。</p>
+<p><strong>自动回复机制</strong>：不管是否处理成功，还是失败，都会回复ack。</p>
+<p>&emsp;&emsp;自动回复的理解，生产者发送后，消费者会默认自动回复ack（一般自动回复是没有问题的），收到之后就立即删除。 不再重发。</p>
+<h2 id="6-直连接和首部类型的比较"><a href="#6-直连接和首部类型的比较" class="headerlink" title="6.直连接和首部类型的比较"></a>6.直连接和首部类型的比较</h2><p>(1). <strong>绑定规则不同</strong>：</p>
+<p>&emsp;&emsp;直连接是一个简单的String；而首部是键值对Entry，而且键值对的value可以是任意类型Object</p>
+<p>(2). <strong>绑定个数不同</strong>：</p>
+<p>&emsp;&emsp;直连接一次只能绑定一个字符串，如果想绑定多个字符串就需要绑定多次或者循环调用queueBind()方法来绑定多次；而首部类型直接可以往Map中添加多个实体Entry即可</p>
+<p>(3).<strong>映射规则不同</strong>：</p>
+<p>&emsp;&emsp;直连接只需要比较路由键是否相等即可，而首部类型除了比较value还要比较key，因为首部类型是Entry类型，需要同时比较key和value，而且首部类型还可以通过x-match来控制匹配的条件</p>
+<blockquote>
+<p>all：需要匹配所有Entry，相当于SQL中的 and操作，</p>
+<p>any：只需要匹配上一个Entry即可，相当于SQL中的or操作</p>
+</blockquote>
+<p>(4).<strong>直连接适用于计较简单的路由，而首部类型相比直连接匹配规则更强大</strong></p>
+<h2 id="7-对于交换机模式自身理解"><a href="#7-对于交换机模式自身理解" class="headerlink" title="7.对于交换机模式自身理解"></a>7.对于交换机模式自身理解</h2><p>&emsp;&emsp;当消费者第一次绑定交换机时，首先得启动消费者服务器，再启动生产者服务器。若没有启动，则生成者服务器就不会把消息发送到对应的消费者绑定的队列。<br>第一次绑定完成后，生产者服务和消费者服务器启动顺序无要求。（亲测有效）</p>
+<h2 id="8-如何保证消息不被重复消费？"><a href="#8-如何保证消息不被重复消费？" class="headerlink" title="8.如何保证消息不被重复消费？"></a>8.如何保证消息不被重复消费？</h2><blockquote>
+<p>分析:这个问题其实换一种问法就是，如何保证消息队列的幂等性?</p>
+</blockquote>
+<p><strong>（1）为什么会造成重复消费?</strong></p>
+<blockquote>
+<p> 其实无论是那种消息队列，造成重复消费原因其实都是类似的。</p>
+</blockquote>
+<p>正常情况下，消费者在消费消息时候，消费完毕后，会发送一个确认信息给消息队列，消息队列就知道该消息被消费了，就会将该消息从消息队列中删除。只是不同的消息队列发送的确认信息形式不同,</p>
+<blockquote>
+<p>例如RabbitMQ是发送一个ACK确认消息，</p>
+<p>RocketMQ是返回一个CONSUME_SUCCESS成功标志，</p>
+<p>kafka实际上有个offset的概念，每一个消息有一个offset，kafka消费过消息后，需要提交offset，让消息队列知道自己已经消费过了。</p>
+</blockquote>
+<p><strong>（2）那造成重复消费的原因?</strong>，</p>
+<p>网络传输等等故障，确认信息没有传送到消息队列，导致消息队列不知道已经消费过该消息了，再次将该消息分发给其他的消费者。</p>
+<p><strong>（3）如何解决?</strong></p>
+<p>  (1)比如，你拿到这个消息做数据库的insert操作。那就容易了，给这个消息做一个唯一主键，那么就算出现重复消费的情况，就会导致主键冲突，避免数据库出现脏数据。</p>
+<p>  (2)再比如，你拿到这个消息做redis的set的操作，那就容易了，不用解决，因为你无论set几次结果都是一样的，set操作本来就算幂等操作。</p>
+<p>  (3)如果上面两种情况还不行，准备一个第三方介质,来做消费记录。以redis为例，给消息分配一个全局id，只要消费过该消息，将&lt;id,message&gt;以K-V形式写入redis。那消费者开始消费前，先去redis中查询有没消费记录即可。</p>
+<h2 id="9-RabbitMQ交换器"><a href="#9-RabbitMQ交换器" class="headerlink" title="9.RabbitMQ交换器"></a>9.RabbitMQ交换器</h2><blockquote>
+<p>RabbitMQ服务器会根据路由键将消息从交换器路由到队列中，如何处理投递到多个队列的情况？这里不同类型的交换器起到了重要的作用。分别是fanout,direct，topic，Headers每一种类型实现了不同的路由算法。</p>
+</blockquote>
+<h3 id="1-Fanout-Exchange"><a href="#1-Fanout-Exchange" class="headerlink" title="(1) Fanout Exchange"></a>(1) Fanout Exchange</h3><p>&emsp;&emsp;<strong>不处理路由键</strong>。简单将队列绑定到交换机上。一个发送到交换机的消息都会被转发到与该交换机绑定的所有队列上。很像子网广播，每台子网内的主机都获得了一份复制的消息。</p>
+<pre><code>Fanout交换机转发消息是最快的。 </code></pre><h3 id="2-Direct-Exchange"><a href="#2-Direct-Exchange" class="headerlink" title="(2) Direct Exchange"></a>(2) Direct Exchange</h3><p>&emsp;&emsp;<strong>处理路由键</strong>。需要将一个队列绑定到交换机上，要求该消息与一个特定的路由键完全匹配。这是一个完整的匹配。如果一个队列绑定到该交换机上要求路由键 “test”，则只有被标记为“test”的消息才被转发，不会转发test.aaa，也不会转发dog.123，只会转发test。</p>
+<h3 id="3-Topic-Exchange"><a href="#3-Topic-Exchange" class="headerlink" title="(3) Topic Exchange"></a>(3) Topic Exchange</h3><p>&emsp;&emsp;<strong>将路由键和某模式进行匹配</strong>。队列需要绑定一个模式上。</p>
+<pre><code>符号“#”匹配一个或多个词，
+符号“*”匹配不多不少一个词。</code></pre><p>&emsp;&emsp;因此“audit.#”能够匹配到“audit.irs.corporate”，但是“audit.*” 只会匹配到“audit.irs”。</p>
+<h3 id="4-Headers-Exchange"><a href="#4-Headers-Exchange" class="headerlink" title="(4) Headers Exchange"></a>(4) Headers Exchange</h3><p>&emsp;&emsp;<strong>首部交换机和扇形交换机都不需要路由键routingKey</strong>.</p>
+<p>&emsp;&emsp;交换机通过Headers头部来将消息映射到队列的，有点像HTTP的Headers，Hash结构中要求携带一个键“x-match”，这个键的Value可以是any或者all，这代表消息携带的Hash是需要全部匹配(all)，还是仅匹配一个键(any)就可以了。</p>
+<p><strong>相比直连交换机，首部交换机的优势是匹配的规则不被限定为字符串(string)而是Object类型。</strong></p>
+<p>####(1)any: </p>
+<p>&emsp;&emsp;只要在发布消息时携带一对键值对headers满足队列定义的多个参数arguments的其中一个就能匹配上，注意这里是键值对的完全匹配，只匹配到键了，值却不一样是不行的；</p>
+<p>####(2)all：</p>
+<p>&emsp;&emsp;在发布消息时携带的所有Entry必须和绑定在队列上的所有Entry完全匹配.</p>
+
+      
+       
+    </div>
+</article>
+
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>消息队列</p>
+    <p><span class="copy-title">发布时间:</span>2019-11-13, 09:58:16</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-13, 09:50:18</p>
+</div>
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2019 chen wei</p>
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<!--
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+-->
+<a class="" id="rocket" href="javascript:void(0)" target="_blank" rel="noopener"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#分布式','#rabbitMQ','#redis',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
