@@ -6,15 +6,15 @@
   <meta name="keywords" content=" Spring-cloud和Spring-boot ">
   <meta name="description" content="Spring-cloud和Spring-boot区别 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="二．Spring常用配置1.bean的Scope Scope描述的是spring容器如何新建bean的实例，通常用@Scope实现。 （1）Singleton:一个spring容器中只有一个bean的实例，spring的默认配置，整个容器共享一个实例。 （2）Prototype：每次调用新建一个bean实例。 （3）Request：web项目中，给每一个HTTP request 新建一个bean实">
-<meta name="keywords" content="Spring常用配置">
+<meta name="description" content="三．Spring高级话题1.spring aware&amp;emsp;&amp;emsp;Spring的依赖注入的最大亮点就是bean对spring容器的存在是没有意识的。  若你想用spring容器本身的资源，bean就要意识到spring容器的存在。 Spring提供的aware接口：   (1) beanNameAware  : 获得到容器中bean名称。 (2) beanFactoryAware ：获得">
+<meta name="keywords" content="Spring高级话题">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spring常用配置">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;14&#x2F;spring-config&#x2F;index.html">
+<meta property="og:title" content="Spring高级话题">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;14&#x2F;spring-high&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="二．Spring常用配置1.bean的Scope Scope描述的是spring容器如何新建bean的实例，通常用@Scope实现。 （1）Singleton:一个spring容器中只有一个bean的实例，spring的默认配置，整个容器共享一个实例。 （2）Prototype：每次调用新建一个bean实例。 （3）Request：web项目中，给每一个HTTP request 新建一个bean实">
+<meta property="og:description" content="三．Spring高级话题1.spring aware&amp;emsp;&amp;emsp;Spring的依赖注入的最大亮点就是bean对spring容器的存在是没有意识的。  若你想用spring容器本身的资源，bean就要意识到spring容器的存在。 Spring提供的aware接口：   (1) beanNameAware  : 获得到容器中bean名称。 (2) beanFactoryAware ：获得">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-14T08:44:14.721Z">
+<meta property="og:updated_time" content="2019-11-14T09:04:22.266Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -78,7 +78,7 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(21)</small></div></li>
+    <li><div class="all active">全部文章<small>(22)</small></div></li>
     
         
             
@@ -130,7 +130,7 @@
     
         
             
-            <li><div data-rel="spring">spring<small>(2)</small></div>
+            <li><div data-rel="spring">spring<small>(3)</small></div>
                 
             </li>
             
@@ -146,7 +146,7 @@
     </div>
     <div></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="21">
+<input type="hidden" id="yelog_site_posts_number" value="22">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -179,11 +179,11 @@
     <div class="tags-list">
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color2">熔断监控Hystrix-Dashboard</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Hystrix和Feign Hystrix</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color2">Hystrix和Feign Hystrix</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">熔断监控Hystrix-Dashboard</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -211,11 +211,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot项目导可执行jar</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot日志配置</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot日志配置</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot项目导可执行jar</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -223,11 +223,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color1">eureka原理介绍</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">eureka 服务提供和调用</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color5">eureka 服务提供和调用</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">eureka原理介绍</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -251,6 +251,10 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring高级话题</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" target="_blank" rel="noopener" class="color2">Spring cloud zuul (服务网关初级)</a>
     </li>
     
@@ -265,19 +269,19 @@
     <nav id="title-list-nav">
         
         <a  class="springcloud "
-           href="/2019/11/13/Hystrix-Dashboard/"
-           data-tag="熔断监控Hystrix-Dashboard"
-           data-author="" >
-            <span class="post-title" title="熔断监控Hystrix-Dashboard">熔断监控Hystrix-Dashboard</span>
-            <span class="post-date" title="2019-11-13 15:58:13">2019/11/13</span>
-        </a>
-        
-        <a  class="springcloud "
            href="/2019/11/13/Hystrix/"
            data-tag="Hystrix和Feign Hystrix"
            data-author="" >
             <span class="post-title" title="熔断器（Hystrix）">熔断器（Hystrix）</span>
             <span class="post-date" title="2019-11-13 15:58:16">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/Hystrix-Dashboard/"
+           data-tag="熔断监控Hystrix-Dashboard"
+           data-author="" >
+            <span class="post-title" title="熔断监控Hystrix-Dashboard">熔断监控Hystrix-Dashboard</span>
+            <span class="post-date" title="2019-11-13 15:58:13">2019/11/13</span>
         </a>
         
         <a  class="springcloud "
@@ -329,19 +333,19 @@
         </a>
         
         <a  class="springboot "
-           href="/2019/11/14/springboot-jar/"
-           data-tag="Springboot项目导可执行jar"
-           data-author="" >
-            <span class="post-title" title="Springboot项目导可执行jar">Springboot项目导可执行jar</span>
-            <span class="post-date" title="2019-11-14 15:26:12">2019/11/14</span>
-        </a>
-        
-        <a  class="springboot "
            href="/2019/11/14/springboot-config/"
            data-tag="Springboot日志配置"
            data-author="" >
             <span class="post-title" title="Springboot日志配置">Springboot日志配置</span>
             <span class="post-date" title="2019-11-14 15:19:38">2019/11/14</span>
+        </a>
+        
+        <a  class="springboot "
+           href="/2019/11/14/springboot-jar/"
+           data-tag="Springboot项目导可执行jar"
+           data-author="" >
+            <span class="post-title" title="Springboot项目导可执行jar">Springboot项目导可执行jar</span>
+            <span class="post-date" title="2019-11-14 15:26:12">2019/11/14</span>
         </a>
         
         <a  class="springboot "
@@ -353,19 +357,19 @@
         </a>
         
         <a  class="springcloud "
-           href="/2019/11/13/eureka1/"
-           data-tag="eureka原理介绍"
-           data-author="" >
-            <span class="post-title" title="eureka原理介绍">eureka原理介绍</span>
-            <span class="post-date" title="2019-11-13 16:08:48">2019/11/13</span>
-        </a>
-        
-        <a  class="springcloud "
            href="/2019/11/13/eureka-Producer-Consumer/"
            data-tag="eureka 服务提供和调用"
            data-author="" >
             <span class="post-title" title="eureka服务提供和调用">eureka服务提供和调用</span>
             <span class="post-date" title="2019-11-13 15:11:06">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/eureka1/"
+           data-tag="eureka原理介绍"
+           data-author="" >
+            <span class="post-title" title="eureka原理介绍">eureka原理介绍</span>
+            <span class="post-date" title="2019-11-13 16:08:48">2019/11/13</span>
         </a>
         
         <a  class="springcloud "
@@ -384,20 +388,20 @@
             <span class="post-date" title="2019-11-13 17:11:42">2019/11/13</span>
         </a>
         
-        <a  class="redis "
-           href="/2019/11/11/redis1/"
-           data-tag="redis"
-           data-author="" >
-            <span class="post-title" title="Redis基本命令和java基本操作">Redis基本命令和java基本操作</span>
-            <span class="post-date" title="2019-11-11 10:01:24">2019/11/11</span>
-        </a>
-        
         <a  class="消息队列 "
            href="/2019/11/13/rabbitMQBase/"
            data-tag="rabbitMQ"
            data-author="" >
             <span class="post-title" title="消息队列">消息队列</span>
             <span class="post-date" title="2019-11-13 09:58:16">2019/11/13</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/11/11/redis1/"
+           data-tag="redis"
+           data-author="" >
+            <span class="post-title" title="Redis基本命令和java基本操作">Redis基本命令和java基本操作</span>
+            <span class="post-date" title="2019-11-11 10:01:24">2019/11/11</span>
         </a>
         
         <a  class="spring "
@@ -414,6 +418,14 @@
            data-author="" >
             <span class="post-title" title="Spring常用配置">Spring常用配置</span>
             <span class="post-date" title="2019-11-14 16:44:14">2019/11/14</span>
+        </a>
+        
+        <a  class="spring "
+           href="/2019/11/14/spring-high/"
+           data-tag="Spring高级话题"
+           data-author="" >
+            <span class="post-title" title="Spring高级话题">Spring高级话题</span>
+            <span class="post-date" title="2019-11-14 17:04:21">2019/11/14</span>
         </a>
         
         <a  class="springcloud "
@@ -582,7 +594,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#熔断监控Hystrix-Dashboard','#Hystrix和Feign Hystrix','#Spring-Cloud-Sleuth','#Zipkin','#Spring-cloud和Spring-boot','#docker','#分布式','#redis','#Springboot项目导可执行jar','#Springboot日志配置','#Springboot基础知识','#eureka原理介绍','#eureka 服务提供和调用','#配置中心git','#配置中心git服务化和高可用','#rabbitMQ','#Spring基础知识','#Spring常用配置','#Spring cloud zuul (服务网关初级)','#Spring cloud zuul (服务网关高级)',],
+            'data': ['#Hystrix和Feign Hystrix','#熔断监控Hystrix-Dashboard','#Spring-Cloud-Sleuth','#Zipkin','#Spring-cloud和Spring-boot','#docker','#分布式','#redis','#Springboot日志配置','#Springboot项目导可执行jar','#Springboot基础知识','#eureka 服务提供和调用','#eureka原理介绍','#配置中心git','#配置中心git服务化和高可用','#rabbitMQ','#Spring基础知识','#Spring常用配置','#Spring高级话题','#Spring cloud zuul (服务网关初级)','#Spring cloud zuul (服务网关高级)',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');

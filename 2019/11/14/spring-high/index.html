@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>redis持久化 | Hexo</title>
-  <meta name="keywords" content=" redis ">
-  <meta name="description" content="redis持久化 | Hexo">
+  <title>Spring高级话题 | Hexo</title>
+  <meta name="keywords" content=" Spring高级话题 ">
+  <meta name="description" content="Spring高级话题 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="三．Spring高级话题1.spring aware&amp;emsp;&amp;emsp;Spring的依赖注入的最大亮点就是bean对spring容器的存在是没有意识的。  若你想用spring容器本身的资源，bean就要意识到spring容器的存在。 Spring提供的aware接口：   (1) beanNameAware  : 获得到容器中bean名称。 (2) beanFactoryAware ：获得">
 <meta name="keywords" content="Spring高级话题">
@@ -456,9 +456,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-redisPersister" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-spring-high" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">redis持久化</h1>
+        <h1 class="article-title">Spring高级话题</h1>
     
     <div class="article-meta">
         
@@ -466,21 +466,21 @@
         
         <span class="book">
             
-                <a href="javascript:" target="_blank" data-rel="redis noopener">redis</a>
+                <a href="javascript:" target="_blank" data-rel="spring noopener">spring</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" target="_blank" rel="noopener" class="color1">redis</a>
+            <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring高级话题</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-11-11 17:40:08'>2019-11-11 16:01</time>
+        创建时间:<time class="date" title='更新时间: 2019-11-14 17:04:22'>2019-11-14 17:04</time>
         
     </div>
     <div class="article-meta">
@@ -502,7 +502,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#redis持久化的方式"><span class="toc-text">redis持久化的方式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#RDB（Redis-DataBase）"><span class="toc-text">RDB（Redis DataBase）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AOF（Append-Only-File）"><span class="toc-text">AOF（Append Only File）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RDB和AOF联系"><span class="toc-text">RDB和AOF联系</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#三．Spring高级话题"><span class="toc-text">三．Spring高级话题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-spring-aware"><span class="toc-text">1.spring aware</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-多线程"><span class="toc-text">2.多线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-计划任务"><span class="toc-text">3.计划任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-条件注解-Conditional"><span class="toc-text">4.条件注解@Conditional</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-组合注解与元注解"><span class="toc-text">5.组合注解与元注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Enable-注解的工作原理"><span class="toc-text">6.@Enable* 注解的工作原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-测试"><span class="toc-text">7.测试</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -518,20 +518,312 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="redis持久化的方式"><a href="#redis持久化的方式" class="headerlink" title="redis持久化的方式"></a>redis持久化的方式</h1><h2 id="RDB（Redis-DataBase）"><a href="#RDB（Redis-DataBase）" class="headerlink" title="RDB（Redis DataBase）"></a>RDB（Redis DataBase）</h2><p>1.RDB（Redis DataBase）,是在不同的时间点，将redis存储的数据生成快照并存储到磁盘等介质上；</p>
-<p>2.redis在进行数据持久化时，先将数据写入到临时文件，待持久化过程都结束，用临时文件替换上次持久化好的文件。</p>
-<p>3.redis会单独创建（fork）一个子进程持久化，主进程不会进行任何IO操作，确保redis极高的性能。</p>
-<p>4.即使每5分钟都持久化一次，当redis故障时，仍然会有近5分钟的数据丢失。</p>
-<h2 id="AOF（Append-Only-File）"><a href="#AOF（Append-Only-File）" class="headerlink" title="AOF（Append Only File）"></a>AOF（Append Only File）</h2><p>1.AOF（Append Only File），是将redis执行过的所有写指令记录下来，在下次redis重新启动时，执行一遍这些写指令，数据就可以恢复。</p>
-<p>2.默认的AOF持久化策略是每秒钟fsync一次（fsync是指把缓存中的写指令记录到磁盘中），即使redis故障，会丢失最近1秒钟的数据。</p>
-<p>3.AOF文件的大小超过所设定的阈值时，redis启动AOF文件的内容压缩，保留恢复数据的最小指令集。</p>
-<p>4在进行AOF重写时，采用先写临时文件，全部完成后再替换，断电、磁盘满等问题不会影响AOF文件的可用性，</p>
-<h2 id="RDB和AOF联系"><a href="#RDB和AOF联系" class="headerlink" title="RDB和AOF联系"></a>RDB和AOF联系</h2><p>1.进行大规模数据的恢复，且数据恢复的完整性不是非常敏感，使用RDB方式。</p>
-<p>2.数据的完整性非常敏感，使用AOF方式。</p>
-<p>3.redis重启时，若RDB和AOF同时使用，优先采用AOF方式恢复数据，AOF方式的数据恢复完整度更高。</p>
-<p>4.如果没有数据持久化的需求，关闭RDB和AOF方式，redis将变成一个纯内存数据库。</p>
-<p>5.同样数据规模的情况下，AOF文件比RDB文件体积大。AOF恢复速度慢于RDB方式。</p>
+        <h1 id="三．Spring高级话题"><a href="#三．Spring高级话题" class="headerlink" title="三．Spring高级话题"></a>三．Spring高级话题</h1><h2 id="1-spring-aware"><a href="#1-spring-aware" class="headerlink" title="1.spring aware"></a>1.spring aware</h2><p>&emsp;&emsp;Spring的依赖注入的最大亮点就是bean对spring容器的存在是没有意识的。</p>
+<blockquote>
+<p>若你想用spring容器本身的资源，bean就要意识到spring容器的存在。</p>
+<p>Spring提供的aware接口：</p>
+</blockquote>
+<blockquote>
+<p>(1) beanNameAware  : 获得到容器中bean名称。</p>
+<p>(2) beanFactoryAware ：获得当前bean factory，这样可以调用容器的服务。</p>
+<p>(3) applicationContextAware：当前的application  context.这样可以调用容器的服务。</p>
+<p>(4) messageSourceAware ：获得message source,这样可以获得文本信息。</p>
+<p>(5) ApplicationEventPublisherAware：应用事件发布器，可以发布事件。</p>
+<p>(6) ResourceLoaderAware：获得资源加载器，可以获得外部资源文件。</p>
+</blockquote>
+<p>Spring aware 的目的是为了让bean获得spring容器的服务，因为applicationContext接口集成了messageSource接口、applicationEventPublisher接口和ResourceLoader接口。<br>所以bean继承applicationContextAware可以获取到spring容器的所有服务。</p>
+<p><strong>代码示例：</strong></p>
+<pre><code>@Service
+public class AwareService implements BeanNameAware,ResourceLoaderAware{
+    private String beanName;
+    private ResourceLoader loader;
 
+    @Override
+    public void setResourceLoader(ResourceLoader paramResourceLoader) {
+        // TODO Auto-generated method stub
+        this.loader = paramResourceLoader;
+    }
+
+    @Override
+    public void setBeanName(String msg) {
+        // TODO Auto-generated method stub
+        this.beanName = msg;
+    }
+
+    public void outputResult(){
+        System.out.println(&quot;bean的名称为：&quot;+beanName);
+        Resource resource = loader.getResource(&quot;classpath:cn/cw/study/springaware/test.txt&quot;);
+
+        try {
+            String string = IOUtils.toString(resource.getInputStream());
+            System.out.println(&quot;接收的内容是：&quot;+string);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+
+    }
+
+}
+---------------------------------------------------------------------
+@Configuration
+@ComponentScan(&quot;cn.cw.study.springaware&quot;)
+public class AwareConfig {
+
+}
+---------------------------------------------------------------------
+public class AppMain {
+    public static void main(String[] args) {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AwareConfig.class);
+        AwareService bean = context.getBean(AwareService.class);
+        bean.outputResult();
+        context.close();
+    }
+}</code></pre><h2 id="2-多线程"><a href="#2-多线程" class="headerlink" title="2.多线程"></a>2.多线程</h2><p>&emsp;&emsp;Spring通过任务执行器（TaskExecutor）来实现多线程和并发编程。使用ThreadPoolTaskExecutor可实现一个基于线程池的TaskExecutor。而实际开发中任务一般是非阻碍的，即异步的，所以我们要在配置类中通过@EnableAsync开启对异步任务的支持，并通过在实际执行的bean的方法中使用@Async注解来声明其是一个异步任务。</p>
+<p><strong>@Async注解：</strong></p>
+<blockquote>
+<p>①如果注解在方法级别，则表明该方法是异步方法，</p>
+<p>②如果注解在类级别，则表明类所有的方法都是异步方法，</p>
+</blockquote>
+<p><strong>@EnableAsync注解：</strong></p>
+<blockquote>
+<p>开启对异步任务的支持。</p>
+</blockquote>
+<p><strong>代码示例：</strong></p>
+<pre><code>@Configuration
+@ComponentScan(&quot;cn.cw.study.ThreadPool&quot;)
+@EnableAsync //开启异步任务支持
+public class TaskExecutorConfig implements AsyncConfigurer{
+
+    @Override
+    public Executor getAsyncExecutor() {
+        // TODO Auto-generated method stub
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        executor.setCorePoolSize(5);//核心线程数
+        executor.setMaxPoolSize(10);//最大线程数
+        executor.setQueueCapacity(25);//队列最大长度
+        executor.initialize();
+        return executor;
+    }
+
+    @Override
+    public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+}
+
+@Service
+public class AsyncTaskService {
+    //无注解表明是同步方法，顺序执行
+    public void executeTask(int i){
+        System.out.println(&quot;执行同步任务：&quot;+i);
+    }
+    //注解表明该方法是异步方法，如果注解在类级别，则表明该类所有的方法都是异步方法，而这里的方法自动被注解使用ThreadPoolTaskExecutor作为TaskExecutor
+    @Async
+    public void executeTaskTest(int i){
+        System.out.println(&quot;执行异步任务+1：&quot;+(i+1));
+    }
+}
+
+public class AppMain {
+
+    public static void main(String[] args) {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(TaskExecutorConfig.class);
+        AsyncTaskService bean = context.getBean(AsyncTaskService.class);
+        for(int i=0;i&lt;10;i++){
+            bean.executeTask(i);
+            bean.executeTaskTest(i);
+        }
+        context.close();
+    }
+}</code></pre><h2 id="3-计划任务"><a href="#3-计划任务" class="headerlink" title="3.计划任务"></a>3.计划任务</h2><p>&emsp;&emsp;从spring 3.1开始，计划任务在spring中实现变得异常简单，首先通过在配置类注解@EnableScheduling来开启对计划任务的支持，然后再要执行计划任务的方法上注解@Sheduled，声明这是一个计划任务。</p>
+<p>&emsp;&emsp;Spring 通过@Scheduled支持多种类型的计划任务，包含cron、fixDelay、fixRate等。</p>
+<p><strong>代码示例：</strong></p>
+<pre><code>@Service
+public class ScheduleTaskService {
+
+    private SimpleDateFormat format = new SimpleDateFormat(&quot;yyyyMMdd HH:mm:ss&quot;);
+
+
+    @Scheduled(fixedRate=1000)
+    public void reportFixedRate(){
+        System.out.println(&quot;rate:&quot;+format.format(new Date()));
+    }
+    @Scheduled(fixedDelay=4000)
+    public void reportDelay(){
+        System.out.println(&quot;delay:&quot;+format.format(new Date()));
+    }
+    @Scheduled(cron=&quot;0 29 11 * * *&quot;)
+    public void reportCron(){
+        System.out.println(&quot;rate:&quot;+format.format(new Date()));
+    }
+}
+
+@Configuration
+@ComponentScan(&quot;cn.cw.study.schedule&quot;)
+@EnableScheduling  //开启对计划任务的支持
+public class TaskConfig {
+
+}
+
+public class AppMain {
+    public static void main(String[] args) {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(TaskConfig.class);
+//        context.close();不能关闭context,关闭后 将不会执行定时任务
+    }
+}</code></pre><h2 id="4-条件注解-Conditional"><a href="#4-条件注解-Conditional" class="headerlink" title="4.条件注解@Conditional"></a>4.条件注解@Conditional</h2><p>Spring 通过活动创建一个特定bean。</p>
+<p>spring4提供了一个更通用的基于条件的bean创建。使用注解@Conditional。<br>@Conditional根据满足某一个特定条件创建一个特定bean。</p>
+<blockquote>
+<p>比如，当某一个jar包在一个类路径下的时候，会自动配置一个或者多个bean;或者只有某个bean被创建才会创建另一个bean;总的来说，就是根据特定条件来控制bean的创建行为，这样我们可以利用这个特性进行一些自动配置。</p>
+</blockquote>
+<blockquote>
+<p>下面例子代码思想：<br>通过实现condition接口，并重写matches方法来构造条件。<br>若在windows系统下运行程序，则输出列表命令为dir；若在linux系统下运行程序，则输出列表命令ls</p>
+</blockquote>
+<p><strong>代码示例：</strong></p>
+<pre><code>public class WindowsCondition implements Condition{
+
+    @Override
+    public boolean matches(ConditionContext context, AnnotatedTypeMetadata data) {
+        System.out.println(context.getEnvironment().getProperty(&quot;os.name&quot;));
+        // TODO Auto-generated method stub
+        return context.getEnvironment().getProperty(&quot;os.name&quot;).contains(&quot;Windows&quot;);
+    }
+}
+
+
+public class LinuxCondition implements Condition{
+
+    @Override
+    public boolean matches(ConditionContext context, AnnotatedTypeMetadata data) {
+        // TODO Auto-generated method stub
+        return context.getEnvironment().getProperty(&quot;os.name&quot;).contains(&quot;Linux&quot;);
+    }
+
+}
+
+public interface ListServer {
+    public String showListCmd();
+}
+
+public class WindowsListService implements ListServer{
+
+    @Override
+    public String showListCmd() {
+        // TODO Auto-generated method stub
+        return &quot;dir&quot;;
+    }
+
+}
+
+public class LinuxListService implements ListServer{
+
+    @Override
+    public String showListCmd() {
+        // TODO Auto-generated method stub
+        return &quot;ls&quot;;
+    }
+
+}
+
+@Configuration
+public class ConditionConfig {
+
+    @Bean
+    @Conditional(WindowsCondition.class)
+    public ListServer windowsService(){
+        return new WindowsListService();
+    }
+
+    @Bean
+    @Conditional(LinuxCondition.class)
+    public ListServer linuxService(){
+        return new LinuxListService();
+    }
+
+}
+
+public class AppMain {
+    public static void main(String[] args) {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ConditionConfig.class);
+        ListServer listServer = context.getBean(ListServer.class);
+        System.out.println(context.getEnvironment().getProperty(&quot;os.name&quot;)+&quot;系统下的列表命名为：&quot;+listServer.showListCmd());
+    }
+}</code></pre><h2 id="5-组合注解与元注解"><a href="#5-组合注解与元注解" class="headerlink" title="5.组合注解与元注解"></a>5.组合注解与元注解</h2><p>&emsp;&emsp;从spring2开始，为了响应jdk1.5推出的注解功能，spring开始大量加入注解来替代xml配置，spring的注解主要用来配置和注入bean，以及aop相关配置（@Transactional）.</p>
+<p>&emsp;&emsp;随着注解的大量使用，尤其相同的多个注解用到各个类或方法中，会相当繁琐。</p>
+<p>&emsp;&emsp;<strong>所谓元注解其实就是可以注解到别的注解上的注解，被注解的注解称之为组合注解，组合注解具备注解其上的元注解的功能。</strong></p>
+<p>&emsp;&emsp;Spring的很多注解都可以作为元注解，而且spring 本身已经有很多组合注解，如@Configuration就是一个组合@Component注解，表明这个类其实也是一个bean.</p>
+<blockquote>
+<p>代码示例：</p>
+<p>将@Configuration和@ComponentScan注解组成一个组合注解。</p>
+</blockquote>
+<pre><code>@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@Configuration
+@ComponentScan
+public @interface WiselyConfiguration {
+    String[] value() default{};//覆盖value参数
+}
+
+@Service
+public class DemoService {
+    public void outputResult(){
+        System.out.println(&quot;组合注解可以获得bean&quot;);
+    }
+
+}
+
+@WiselyConfiguration(&quot;cn.cw.study.compositeAnnotation&quot;)
+public class DemoConfig {
+
+}
+
+public class AppMain {
+    public static void main(String[] args) {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DemoConfig.class);
+        DemoService bean = context.getBean(DemoService.class);
+        bean.outputResult();
+        context.close();
+    }
+}</code></pre><h2 id="6-Enable-注解的工作原理"><a href="#6-Enable-注解的工作原理" class="headerlink" title="6.@Enable* 注解的工作原理"></a>6.@Enable* 注解的工作原理</h2><blockquote>
+<p>(1).@EnableAspectJAutoProxy  开启对AspectJ 自动代理的支持。</p>
+<p>(2).@EnableAsync  开启异步方法的支持。</p>
+<p>(3).@EnableScheduling 开启计划任务的支持。</p>
+<p>(4).@EnableWebMvc 开启web mvc的配置支持。</p>
+<p>(5).@EnableConfigurationProperties 开启对@ConfigurationProperties注解配置的bean的支持</p>
+<p>(6).@EnableJpaRepositories 开启对spring data JPA Repository的支持</p>
+<p>(7).@EnableTransactionManagement 开启注解式事务的支持</p>
+<p>(8).@EnableCaching 开启注解式缓存的支持</p>
+</blockquote>
+<p>通过简单的@Enable*来开启一项功能的支持，从而避免配置大量代码，大大降低使用难度。</p>
+<p><strong>原理：</strong></p>
+<p>所有的@Enable*注解都有一个@import注解，@import是用来导入 配置类的，这也就意味着这些自动开启的实现其实是导入了一些自动配置的bean。</p>
+<blockquote>
+<p>这些导入配置的方式主要分为以下三种类型：</p>
+</blockquote>
+<p><strong>第一类：直接导入配置类</strong></p>
+<pre><code>@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@Import(SchedulingConfiguration.class)
+@Documented
+public @interface EnableScheduling {
+
+}</code></pre><p>编写上述代码类，可查看SchedulingConfiguration源码。</p>
+<p><strong>第二类：依据条件选择配置类（可在网上查看资料）</strong></p>
+<p><strong>第三类：动态注册bean（可在网上查看资料）</strong></p>
+<h2 id="7-测试"><a href="#7-测试" class="headerlink" title="7.测试"></a>7.测试</h2><p><strong>Maven依赖：</strong></p>
+<pre><code>&lt;dependency&gt;
+      &lt;artifactId&gt;spring-test&lt;/artifactId&gt;
+      &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+      &lt;version&gt;5.1.5.RELEASE&lt;/version&gt;
+  &lt;/dependency&gt;
+  &lt;dependency&gt;
+      &lt;artifactId&gt;junit&lt;/artifactId&gt;
+      &lt;groupId&gt;junit&lt;/groupId&gt;
+      &lt;version&gt;4.11&lt;/version&gt;
+  &lt;/dependency&gt;</code></pre>
       
        
     </div>
@@ -540,9 +832,9 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>redis持久化</p>
-    <p><span class="copy-title">发布时间:</span>2019-11-11, 16:01:24</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-11, 17:40:08</p>
+    <p><span class="copy-title">文章标题:</span>Spring高级话题</p>
+    <p><span class="copy-title">发布时间:</span>2019-11-14, 17:04:21</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-14, 17:04:22</p>
 </div>
 
 
