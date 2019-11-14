@@ -6,15 +6,15 @@
   <meta name="keywords" content=" Hystrix和Feign Hystrix ">
   <meta name="description" content="熔断器（Hystrix） | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="1.spring的发展史。第一阶段：xml配置&amp;emsp;&amp;emsp;在spring 1.x时代，使用spring开发满是xml配置的bean，随着项目的扩大。我们需要把xml配置文件分放到不同的配置文件里，那时候需要频繁的在开发的类和配置文件之间切换。 第二阶段：注解配置&amp;emsp;&amp;emsp;在spring 2.x时代，随着jdk1.5 带来的注解支持，spring提供了声明bean的注解（@">
-<meta name="keywords" content="Spring基础知识">
+<meta name="description" content="二．Spring常用配置1.bean的Scope Scope描述的是spring容器如何新建bean的实例，通常用@Scope实现。 （1）Singleton:一个spring容器中只有一个bean的实例，spring的默认配置，整个容器共享一个实例。 （2）Prototype：每次调用新建一个bean实例。 （3）Request：web项目中，给每一个HTTP request 新建一个bean实">
+<meta name="keywords" content="Spring常用配置">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spring基础知识">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;14&#x2F;spring-base1&#x2F;index.html">
+<meta property="og:title" content="Spring常用配置">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;14&#x2F;spring-config&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1.spring的发展史。第一阶段：xml配置&amp;emsp;&amp;emsp;在spring 1.x时代，使用spring开发满是xml配置的bean，随着项目的扩大。我们需要把xml配置文件分放到不同的配置文件里，那时候需要频繁的在开发的类和配置文件之间切换。 第二阶段：注解配置&amp;emsp;&amp;emsp;在spring 2.x时代，随着jdk1.5 带来的注解支持，spring提供了声明bean的注解（@">
+<meta property="og:description" content="二．Spring常用配置1.bean的Scope Scope描述的是spring容器如何新建bean的实例，通常用@Scope实现。 （1）Singleton:一个spring容器中只有一个bean的实例，spring的默认配置，整个容器共享一个实例。 （2）Prototype：每次调用新建一个bean实例。 （3）Request：web项目中，给每一个HTTP request 新建一个bean实">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-14T08:19:45.362Z">
+<meta property="og:updated_time" content="2019-11-14T08:44:14.721Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -78,7 +78,7 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(20)</small></div></li>
+    <li><div class="all active">全部文章<small>(21)</small></div></li>
     
         
             
@@ -130,7 +130,7 @@
     
         
             
-            <li><div data-rel="spring">spring<small>(1)</small></div>
+            <li><div data-rel="spring">spring<small>(2)</small></div>
                 
             </li>
             
@@ -146,7 +146,7 @@
     </div>
     <div></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="20">
+<input type="hidden" id="yelog_site_posts_number" value="21">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -183,15 +183,15 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Hystrix和Feign Hystrix</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" target="_blank" rel="noopener" class="color5">Spring-Cloud-Sleuth</a>
     </li>
     
     <li class="article-tag-list-item">
         <a href="javascript:" target="_blank" rel="noopener" class="color2">Zipkin</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color2">Hystrix和Feign Hystrix</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -211,11 +211,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot日志配置</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot项目导可执行jar</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot项目导可执行jar</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot日志配置</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -247,6 +247,10 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring常用配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" target="_blank" rel="noopener" class="color2">Spring cloud zuul (服务网关初级)</a>
     </li>
     
@@ -269,19 +273,19 @@
         </a>
         
         <a  class="springcloud "
-           href="/2019/11/14/Sleuth-ZipKin/"
-           data-tag="Spring-Cloud-Sleuth,Zipkin"
-           data-author="" >
-            <span class="post-title" title="Spring-Cloud-Sleuth和Zipkin进行分布式链路跟踪">Spring-Cloud-Sleuth和Zipkin进行分布式链路跟踪</span>
-            <span class="post-date" title="2019-11-14 15:03:35">2019/11/14</span>
-        </a>
-        
-        <a  class="springcloud "
            href="/2019/11/13/Hystrix/"
            data-tag="Hystrix和Feign Hystrix"
            data-author="" >
             <span class="post-title" title="熔断器（Hystrix）">熔断器（Hystrix）</span>
             <span class="post-date" title="2019-11-13 15:58:16">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/14/Sleuth-ZipKin/"
+           data-tag="Spring-Cloud-Sleuth,Zipkin"
+           data-author="" >
+            <span class="post-title" title="Spring-Cloud-Sleuth和Zipkin进行分布式链路跟踪">Spring-Cloud-Sleuth和Zipkin进行分布式链路跟踪</span>
+            <span class="post-date" title="2019-11-14 15:03:35">2019/11/14</span>
         </a>
         
         <a  class="springcloud "
@@ -325,19 +329,19 @@
         </a>
         
         <a  class="springboot "
-           href="/2019/11/14/springboot-config/"
-           data-tag="Springboot日志配置"
-           data-author="" >
-            <span class="post-title" title="Springboot日志配置">Springboot日志配置</span>
-            <span class="post-date" title="2019-11-14 15:19:38">2019/11/14</span>
-        </a>
-        
-        <a  class="springboot "
            href="/2019/11/14/springboot-jar/"
            data-tag="Springboot项目导可执行jar"
            data-author="" >
             <span class="post-title" title="Springboot项目导可执行jar">Springboot项目导可执行jar</span>
             <span class="post-date" title="2019-11-14 15:26:12">2019/11/14</span>
+        </a>
+        
+        <a  class="springboot "
+           href="/2019/11/14/springboot-config/"
+           data-tag="Springboot日志配置"
+           data-author="" >
+            <span class="post-title" title="Springboot日志配置">Springboot日志配置</span>
+            <span class="post-date" title="2019-11-14 15:19:38">2019/11/14</span>
         </a>
         
         <a  class="springboot "
@@ -380,14 +384,6 @@
             <span class="post-date" title="2019-11-13 17:11:42">2019/11/13</span>
         </a>
         
-        <a  class="消息队列 "
-           href="/2019/11/13/rabbitMQBase/"
-           data-tag="rabbitMQ"
-           data-author="" >
-            <span class="post-title" title="消息队列">消息队列</span>
-            <span class="post-date" title="2019-11-13 09:58:16">2019/11/13</span>
-        </a>
-        
         <a  class="redis "
            href="/2019/11/11/redis1/"
            data-tag="redis"
@@ -396,12 +392,28 @@
             <span class="post-date" title="2019-11-11 10:01:24">2019/11/11</span>
         </a>
         
+        <a  class="消息队列 "
+           href="/2019/11/13/rabbitMQBase/"
+           data-tag="rabbitMQ"
+           data-author="" >
+            <span class="post-title" title="消息队列">消息队列</span>
+            <span class="post-date" title="2019-11-13 09:58:16">2019/11/13</span>
+        </a>
+        
         <a  class="spring "
            href="/2019/11/14/spring-base1/"
            data-tag="Spring基础知识"
            data-author="" >
             <span class="post-title" title="Spring基础知识">Spring基础知识</span>
             <span class="post-date" title="2019-11-14 16:19:44">2019/11/14</span>
+        </a>
+        
+        <a  class="spring "
+           href="/2019/11/14/spring-config/"
+           data-tag="Spring常用配置"
+           data-author="" >
+            <span class="post-title" title="Spring常用配置">Spring常用配置</span>
+            <span class="post-date" title="2019-11-14 16:44:14">2019/11/14</span>
         </a>
         
         <a  class="springcloud "
@@ -599,7 +611,7 @@ public class HelloRemoteHystrix implements HelloRemote{
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#熔断监控Hystrix-Dashboard','#Spring-Cloud-Sleuth','#Zipkin','#Hystrix和Feign Hystrix','#Spring-cloud和Spring-boot','#docker','#分布式','#redis','#Springboot日志配置','#Springboot项目导可执行jar','#Springboot基础知识','#eureka原理介绍','#eureka 服务提供和调用','#配置中心git','#配置中心git服务化和高可用','#rabbitMQ','#Spring基础知识','#Spring cloud zuul (服务网关初级)','#Spring cloud zuul (服务网关高级)',],
+            'data': ['#熔断监控Hystrix-Dashboard','#Hystrix和Feign Hystrix','#Spring-Cloud-Sleuth','#Zipkin','#Spring-cloud和Spring-boot','#docker','#分布式','#redis','#Springboot项目导可执行jar','#Springboot日志配置','#Springboot基础知识','#eureka原理介绍','#eureka 服务提供和调用','#配置中心git','#配置中心git服务化和高可用','#rabbitMQ','#Spring基础知识','#Spring常用配置','#Spring cloud zuul (服务网关初级)','#Spring cloud zuul (服务网关高级)',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');

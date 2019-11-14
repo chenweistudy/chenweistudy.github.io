@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>redis持久化 | Hexo</title>
-  <meta name="keywords" content=" redis ">
-  <meta name="description" content="redis持久化 | Hexo">
+  <title>Spring常用配置 | Hexo</title>
+  <meta name="keywords" content=" Spring常用配置 ">
+  <meta name="description" content="Spring常用配置 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="二．Spring常用配置1.bean的Scope Scope描述的是spring容器如何新建bean的实例，通常用@Scope实现。 （1）Singleton:一个spring容器中只有一个bean的实例，spring的默认配置，整个容器共享一个实例。 （2）Prototype：每次调用新建一个bean实例。 （3）Request：web项目中，给每一个HTTP request 新建一个bean实">
 <meta name="keywords" content="Spring常用配置">
@@ -444,9 +444,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-redisPersister" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-spring-config" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">redis持久化</h1>
+        <h1 class="article-title">Spring常用配置</h1>
     
     <div class="article-meta">
         
@@ -454,21 +454,21 @@
         
         <span class="book">
             
-                <a href="javascript:" target="_blank" data-rel="redis noopener">redis</a>
+                <a href="javascript:" target="_blank" data-rel="spring noopener">spring</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" target="_blank" rel="noopener" class="color1">redis</a>
+            <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring常用配置</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-11-11 17:40:08'>2019-11-11 16:01</time>
+        创建时间:<time class="date" title='更新时间: 2019-11-14 16:44:14'>2019-11-14 16:44</time>
         
     </div>
     <div class="article-meta">
@@ -490,7 +490,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#redis持久化的方式"><span class="toc-text">redis持久化的方式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#RDB（Redis-DataBase）"><span class="toc-text">RDB（Redis DataBase）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AOF（Append-Only-File）"><span class="toc-text">AOF（Append Only File）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RDB和AOF联系"><span class="toc-text">RDB和AOF联系</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#二．Spring常用配置"><span class="toc-text">二．Spring常用配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-bean的Scope"><span class="toc-text">1.bean的Scope</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Spring-El-和资源调用"><span class="toc-text">2.Spring El 和资源调用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-准备，增加commons-io可以简化文件相关操作。"><span class="toc-text">(1).准备，增加commons-io可以简化文件相关操作。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-需被注入的bean。"><span class="toc-text">(2)需被注入的bean。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-演示配置类。"><span class="toc-text">(3)演示配置类。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-运行"><span class="toc-text">(4)运行</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Bean的初始化和销毁"><span class="toc-text">3.Bean的初始化和销毁</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-Profile相关知识点"><span class="toc-text">4.Profile相关知识点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-事件（application-event）"><span class="toc-text">5.事件（application event）</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -506,20 +506,282 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="redis持久化的方式"><a href="#redis持久化的方式" class="headerlink" title="redis持久化的方式"></a>redis持久化的方式</h1><h2 id="RDB（Redis-DataBase）"><a href="#RDB（Redis-DataBase）" class="headerlink" title="RDB（Redis DataBase）"></a>RDB（Redis DataBase）</h2><p>1.RDB（Redis DataBase）,是在不同的时间点，将redis存储的数据生成快照并存储到磁盘等介质上；</p>
-<p>2.redis在进行数据持久化时，先将数据写入到临时文件，待持久化过程都结束，用临时文件替换上次持久化好的文件。</p>
-<p>3.redis会单独创建（fork）一个子进程持久化，主进程不会进行任何IO操作，确保redis极高的性能。</p>
-<p>4.即使每5分钟都持久化一次，当redis故障时，仍然会有近5分钟的数据丢失。</p>
-<h2 id="AOF（Append-Only-File）"><a href="#AOF（Append-Only-File）" class="headerlink" title="AOF（Append Only File）"></a>AOF（Append Only File）</h2><p>1.AOF（Append Only File），是将redis执行过的所有写指令记录下来，在下次redis重新启动时，执行一遍这些写指令，数据就可以恢复。</p>
-<p>2.默认的AOF持久化策略是每秒钟fsync一次（fsync是指把缓存中的写指令记录到磁盘中），即使redis故障，会丢失最近1秒钟的数据。</p>
-<p>3.AOF文件的大小超过所设定的阈值时，redis启动AOF文件的内容压缩，保留恢复数据的最小指令集。</p>
-<p>4在进行AOF重写时，采用先写临时文件，全部完成后再替换，断电、磁盘满等问题不会影响AOF文件的可用性，</p>
-<h2 id="RDB和AOF联系"><a href="#RDB和AOF联系" class="headerlink" title="RDB和AOF联系"></a>RDB和AOF联系</h2><p>1.进行大规模数据的恢复，且数据恢复的完整性不是非常敏感，使用RDB方式。</p>
-<p>2.数据的完整性非常敏感，使用AOF方式。</p>
-<p>3.redis重启时，若RDB和AOF同时使用，优先采用AOF方式恢复数据，AOF方式的数据恢复完整度更高。</p>
-<p>4.如果没有数据持久化的需求，关闭RDB和AOF方式，redis将变成一个纯内存数据库。</p>
-<p>5.同样数据规模的情况下，AOF文件比RDB文件体积大。AOF恢复速度慢于RDB方式。</p>
+        <h1 id="二．Spring常用配置"><a href="#二．Spring常用配置" class="headerlink" title="二．Spring常用配置"></a>二．Spring常用配置</h1><h2 id="1-bean的Scope"><a href="#1-bean的Scope" class="headerlink" title="1.bean的Scope"></a>1.bean的Scope</h2><blockquote>
+<p>Scope描述的是spring容器如何新建bean的实例，通常用@Scope实现。</p>
+<p>（1）Singleton:一个spring容器中只有一个bean的实例，spring的默认配置，整个容器共享一个实例。</p>
+<p>（2）Prototype：每次调用新建一个bean实例。</p>
+<p>（3）Request：web项目中，给每一个HTTP request 新建一个bean实例。</p>
+<p>（4）Session：web项目中，给每一个HTTP session 新建一个bean实例。</p>
+</blockquote>
+<pre><code>@Service
+@Scope(&quot;prototype&quot;)
+public class ProtoTypeDemo {
+}
 
+@Service
+//默认是singleton，单例
+public class SingletonDemo {
+}
+
+@Configuration
+@ComponentScan(&quot;cn.cw.study.scope&quot;)
+public class AppConfig {
+}
+
+public static void main(String[] args) {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+        ProtoTypeDemo protoTypeDemo = context.getBean(ProtoTypeDemo.class);
+        ProtoTypeDemo protoTypeDemo2 = context.getBean(ProtoTypeDemo.class);
+        System.out.println(protoTypeDemo==protoTypeDemo2);//false
+        SingletonDemo singletonDemo = context.getBean(SingletonDemo.class);
+        SingletonDemo singletonDemo1 = context.getBean(SingletonDemo.class);
+    System.out.println(singletonDemo==singletonDemo1);//true
+        context.close();
+    }</code></pre><h2 id="2-Spring-El-和资源调用"><a href="#2-Spring-El-和资源调用" class="headerlink" title="2.Spring El 和资源调用"></a>2.Spring El 和资源调用</h2><p>Spring El :   Spring表达式语言，支持在xml和注解中使用表达式，类似于jsp的El表达式语言。</p>
+<p>Spring开发中经常涉及调用各种资源的情况，包含普通文件、网址、配置文件、系统环境变量等。</p>
+<p>我们可以使用spring的表达式语言实现资源注入。Spring主要在注解@Value的参数中使用表达式。</p>
+<h3 id="1-准备，增加commons-io可以简化文件相关操作。"><a href="#1-准备，增加commons-io可以简化文件相关操作。" class="headerlink" title="(1).准备，增加commons-io可以简化文件相关操作。"></a>(1).准备，增加commons-io可以简化文件相关操作。</h3><pre><code>&lt;dependency&gt;
+          &lt;artifactId&gt;commons-io&lt;/artifactId&gt;
+          &lt;groupId&gt;commons-io&lt;/groupId&gt;
+          &lt;version&gt;2.3&lt;/version&gt;
+  &lt;/dependency&gt;</code></pre><blockquote>
+<p>test.txt</p>
+<p>生活</p>
+</blockquote>
+<blockquote>
+<p>test.properties</p>
+</blockquote>
+<pre><code>book.author=ss    
+book.name=spring boot</code></pre><h2 id="2-需被注入的bean。"><a href="#2-需被注入的bean。" class="headerlink" title="(2)需被注入的bean。"></a>(2)需被注入的bean。</h2><pre><code>public class DemoComponent {
+    @Value(&quot;其他类的属性&quot;)
+    private String name;
+        public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+}</code></pre><h2 id="3-演示配置类。"><a href="#3-演示配置类。" class="headerlink" title="(3)演示配置类。"></a>(3)演示配置类。</h2><pre><code>@Configuration
+@ComponentScan(&quot;cn.cw.study.springel&quot;)
+@PropertySource(&quot;classpath:cn/cw/study/springel/test.properties&quot;)
+public class AppConfig {
+    @Value(&quot;I&quot;) //注入普通字符串
+    private String normal;
+    @Value(&quot;#{systemProperties[&apos;os.name&apos;]}&quot;) //注入操作系统属性
+    private String osName; 
+    @Value(&quot;#{ T(java.lang.Math).random()*100.0}&quot;) //注入表达式结果
+    private double randomNumber;
+    @Value(&quot;#{demoComponent.name}&quot;)//注入其他bean属性
+    private String fromAnother;
+    @Value(&quot;classpath:cn/cw/study/springel/test.txt&quot;)//注入文件资源
+    private Resource testFile;
+    @Value(&quot;http://www.baidu.com&quot;)//注入网址资源
+    private Resource testUrl;
+    @Value(&quot;${book.name}&quot;)  //注入配置文件
+    private String bookName;
+    @Bean   //注入配置文件
+    public static PropertySourcesPlaceholderConfigurer propertyConfigure(){
+        return new PropertySourcesPlaceholderConfigurer();
+    }
+    @Autowired  //注入配置文件
+    private Environment environment;
+
+    public void test(){
+        try {
+            System.out.println(normal);
+            System.out.println(osName);
+            System.out.println(randomNumber);
+            System.out.println(fromAnother);
+        System.out.println(IOUtils.toString(testFile.getInputStream()));
+        System.out.println(IOUtils.toString(testUrl.getInputStream()));
+            System.out.println(bookName);
+            System.out.println(environment.getProperty(&quot;book.author&quot;));
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+    }
+}</code></pre><h2 id="4-运行"><a href="#4-运行" class="headerlink" title="(4)运行"></a>(4)运行</h2><pre><code>public static void main(String[] args) {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+        AppConfig bean = context.getBean(AppConfig.class);
+        bean.test();
+        context.close();
+    }</code></pre><h1 id="3-Bean的初始化和销毁"><a href="#3-Bean的初始化和销毁" class="headerlink" title="3.Bean的初始化和销毁"></a>3.Bean的初始化和销毁</h1><p>在实际开发中，经常遇到bean 在使用前或使用后做些必要的操作，spring对bean的生命周期的操作提供了支持:java配置和注解配置。</p>
+<p><strong>Java配置方式</strong>：使用@bean 的initMethod 和 destroyMethod (相当于xml配置的init-method 和 destroy-method)</p>
+<p><strong>注解方式</strong>：使用JSR-250的@PostConstruct 和 @PreDestory</p>
+<blockquote>
+<p>添加jsr-250支持</p>
+</blockquote>
+<pre><code>&lt;dependency&gt;
+      &lt;artifactId&gt;jsr250-api&lt;/artifactId&gt;
+      &lt;groupId&gt;javax.annotation&lt;/groupId&gt;
+      &lt;version&gt;1.0&lt;/version&gt;
+  &lt;/dependency&gt;
+
+public class BeanWayServiceDemo {
+    public void init(){
+        System.out.println(&quot;@Bean-init-method&quot;);
+    }
+    public BeanWayServiceDemo(){
+        super();
+        System.out.println(&quot;初始化构造函数-BeanWayServiceDemo&quot;);
+    }
+    public void destory(){
+        System.out.println(&quot;@Bean-destory-method&quot;);
+    }
+}
+
+public class JSR250WayServiceDemo {
+    @PostConstruct  //在构造函数执行完之后执行
+    public void init(){
+        System.out.println(&quot;@jsr250-init-method&quot;);
+    }
+    public JSR250WayServiceDemo(){
+        super();
+        System.out.println(&quot;初始化构造函数-JSR250WayServiceDemo&quot;);
+    }
+    @PreDestroy //在bean销毁之前执行
+    public void destory(){
+        System.out.println(&quot;@jsr250-destory-method&quot;);
+    }
+}
+
+@Configuration
+@ComponentScan(&quot;cn.cw.study.initAnddestroy&quot;)
+public class PrePostConfig {
+    @Bean(initMethod=&quot;init&quot;,destroyMethod=&quot;destory&quot;)//在构造函数后、bean销毁前执行
+    public BeanWayServiceDemo getBeanWayServiceDemo(){
+        return new BeanWayServiceDemo();
+    }
+    @Bean
+    public JSR250WayServiceDemo getJSR250WayServiceDemo(){
+        return new JSR250WayServiceDemo();
+    }
+}
+
+public static void main(String[] args) {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(PrePostConfig.class);
+        PrePostConfig bean = context.getBean(PrePostConfig.class);
+        BeanWayServiceDemo beanWayServiceDemo = bean.getBeanWayServiceDemo();
+        JSR250WayServiceDemo jsr250WayServiceDemo = bean.getJSR250WayServiceDemo();
+        context.close();
+    }</code></pre><h1 id="4-Profile相关知识点"><a href="#4-Profile相关知识点" class="headerlink" title="4.Profile相关知识点"></a>4.Profile相关知识点</h1><p>Profile为在不同环境下使用不同的配置提供了支持（开发环境下的配置和生产环境下配置肯定是不同的，例如，数据库的配置）</p>
+<blockquote>
+<p>(1).通过设定Environment 的ActiveProfiles来设定当前context需要使用的配置环境。开发中使用@Profile注解类或者方法，达到在不同情况下选择实例化不同的bean。</p>
+<p>(2)通过设定jvm的spring.profiles.active参数来设置配置环境。</p>
+<p>(3)Web项目设置在servlet的context parameter中。</p>
+</blockquote>
+<p><strong>Servlet2.5及以下：</strong></p>
+<pre><code>&lt;servlet&gt;
+    &lt;servlet-name&gt;dispatcher&lt;/servlet-name&gt;
+  &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;
+    &lt;init-param&gt;
+        &lt;param-name&gt;spring.profiles.active&lt;/param-name&gt;
+        &lt;param-value&gt;production&lt;/param-value&gt;
+    &lt;/init-param&gt;
+&lt;/servlet&gt;</code></pre><p><strong>Servlet3.0及以上：</strong></p>
+<pre><code>public class WebInit implements WebApplicationInitializer{
+    @Override
+    public void onStartup(ServletContext container) throws ServletException{
+        container.setInitParameter(&quot;spring.profiles.default&quot;,&quot;dev&quot;);
+    }
+}</code></pre><blockquote>
+<p>profile代码示例：</p>
+</blockquote>
+<pre><code>@Configuration
+public class ProfileConfig {
+    @Bean
+    @Profile(&quot;dev&quot;) //实例化devDemoBean
+    public DemoBean devDemoBean(){
+        return new DemoBean(&quot;from development profile&quot;);
+    }
+    @Bean
+    @Profile(&quot;prod&quot;) //实例化prodDemoBean
+    public DemoBean prodDemoBean(){
+        return new DemoBean(&quot;from production profile&quot;);
+    }
+}
+public class DemoBean {
+    private String content;
+    public DemoBean(String content){
+        super();
+        this.content = content;
+    }
+    public String getContent() {
+        return content;
+    }
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+}
+public class AppMain {
+    public static void main(String[] args) {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+
+        context.getEnvironment().setActiveProfiles(&quot;dev&quot;); //将活动的profile设置为prod
+        context.register(ProfileConfig.class); //后置注册bean配置类，不然会报bean未定义的错误
+        context.refresh();//刷新容器
+        DemoBean bean = context.getBean(DemoBean.class);
+        System.out.println(bean.getContent());
+        context.close();
+    }
+}</code></pre><h1 id="5-事件（application-event）"><a href="#5-事件（application-event）" class="headerlink" title="5.事件（application event）"></a>5.事件（application event）</h1><p>Spring的事件（application event）为bean与bean之间的消息通信提供了支持，当bean处理完一个任务之后，希望另外的一个bean知道并能做相应的处理，这时需要让另外一个bean监听当前bean所发送的事件。</p>
+<p><strong>Spring事件需要遵循如下流程：</strong></p>
+<blockquote>
+<p>（1）自定义事件，继承 applicationEvent。</p>
+<p>（2）定义事件监听器，实现applicationEvent。</p>
+<p>（3）使用容器发布事件。</p>
+</blockquote>
+<p><strong>代码示例：</strong></p>
+<pre><code>public class DemoEvent extends ApplicationEvent{
+    private String msg;
+    public DemoEvent(Object source,String msg) {
+        super(source);
+        this.msg = msg;
+    }
+    public String getMsg() {
+        return msg;
+    }
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+}
+
+@Component
+public class DemoListerner implements ApplicationListener&lt;DemoEvent&gt;{
+
+    @Override
+    public void onApplicationEvent(DemoEvent event) {
+        // TODO Auto-generated method stub
+        String msString = event.getMsg();
+        System.out.println(&quot;demolisterner 接收到了 bean--&gt; demopublish 发布的消息：&quot;+msString);
+    }
+}
+
+@Component
+public class DemoPublisher {
+    @Autowired
+    ApplicationContext context;
+
+    public void publishTest(String msg){
+        context.publishEvent(new DemoEvent(this, msg));
+    }
+}
+
+@Configuration
+@ComponentScan(&quot;cn.cw.study.applicationEvent&quot;)
+public class EventConfig {
+
+}
+public class AppMain {
+    public static void main(String[] args) {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(EventConfig.class);
+        DemoPublisher bean = context.getBean(DemoPublisher.class);
+        bean.publishTest(&quot;test publish!&quot;);
+        context.close();
+    }
+}</code></pre>
       
        
     </div>
@@ -528,9 +790,9 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>redis持久化</p>
-    <p><span class="copy-title">发布时间:</span>2019-11-11, 16:01:24</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-11, 17:40:08</p>
+    <p><span class="copy-title">文章标题:</span>Spring常用配置</p>
+    <p><span class="copy-title">发布时间:</span>2019-11-14, 16:44:14</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-14, 16:44:14</p>
 </div>
 
 
