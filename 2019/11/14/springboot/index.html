@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>redis持久化 | Hexo</title>
-  <meta name="keywords" content=" redis ">
-  <meta name="description" content="redis持久化 | Hexo">
+  <title>Springboot基础知识 | Hexo</title>
+  <meta name="keywords" content=" Springboot基础知识 ">
+  <meta name="description" content="Springboot基础知识 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="学习网址1.springboot的优缺点优点： （1）.快速构建项目。 （2）对主流开发框架的无配置集成。 （3）项目可独立运行，无须外部依赖servlet容器。 （4）提供运行时的应用监控。 （5）极大地提高了开发、部署效率。 （6）与云计算的天然集成。  缺点： （1）书籍文档较少且不够深入。 （2）开发人员是否认同spring框架，是否会使用spring框架。2.搭建项目说明（1）.启动sp">
 <meta name="keywords" content="Springboot基础知识">
@@ -418,9 +418,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-redisPersister" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-springboot" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">redis持久化</h1>
+        <h1 class="article-title">Springboot基础知识</h1>
     
     <div class="article-meta">
         
@@ -428,21 +428,21 @@
         
         <span class="book">
             
-                <a href="javascript:" target="_blank" data-rel="redis noopener">redis</a>
+                <a href="javascript:" target="_blank" data-rel="springboot noopener">springboot</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" target="_blank" rel="noopener" class="color1">redis</a>
+            <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot基础知识</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-11-11 17:40:08'>2019-11-11 16:01</time>
+        创建时间:<time class="date" title='更新时间: 2019-11-14 15:37:49'>2019-11-14 15:37</time>
         
     </div>
     <div class="article-meta">
@@ -464,7 +464,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#redis持久化的方式"><span class="toc-text">redis持久化的方式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#RDB（Redis-DataBase）"><span class="toc-text">RDB（Redis DataBase）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AOF（Append-Only-File）"><span class="toc-text">AOF（Append Only File）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RDB和AOF联系"><span class="toc-text">RDB和AOF联系</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#学习网址"><span class="toc-text">学习网址</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-springboot的优缺点"><span class="toc-text">1.springboot的优缺点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-搭建项目说明"><span class="toc-text">2.搭建项目说明</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#（1）-启动springboot项目。"><span class="toc-text">（1）.启动springboot项目。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（2）-配置数据库相关"><span class="toc-text">（2）.配置数据库相关</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -480,19 +480,31 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="redis持久化的方式"><a href="#redis持久化的方式" class="headerlink" title="redis持久化的方式"></a>redis持久化的方式</h1><h2 id="RDB（Redis-DataBase）"><a href="#RDB（Redis-DataBase）" class="headerlink" title="RDB（Redis DataBase）"></a>RDB（Redis DataBase）</h2><p>1.RDB（Redis DataBase）,是在不同的时间点，将redis存储的数据生成快照并存储到磁盘等介质上；</p>
-<p>2.redis在进行数据持久化时，先将数据写入到临时文件，待持久化过程都结束，用临时文件替换上次持久化好的文件。</p>
-<p>3.redis会单独创建（fork）一个子进程持久化，主进程不会进行任何IO操作，确保redis极高的性能。</p>
-<p>4.即使每5分钟都持久化一次，当redis故障时，仍然会有近5分钟的数据丢失。</p>
-<h2 id="AOF（Append-Only-File）"><a href="#AOF（Append-Only-File）" class="headerlink" title="AOF（Append Only File）"></a>AOF（Append Only File）</h2><p>1.AOF（Append Only File），是将redis执行过的所有写指令记录下来，在下次redis重新启动时，执行一遍这些写指令，数据就可以恢复。</p>
-<p>2.默认的AOF持久化策略是每秒钟fsync一次（fsync是指把缓存中的写指令记录到磁盘中），即使redis故障，会丢失最近1秒钟的数据。</p>
-<p>3.AOF文件的大小超过所设定的阈值时，redis启动AOF文件的内容压缩，保留恢复数据的最小指令集。</p>
-<p>4在进行AOF重写时，采用先写临时文件，全部完成后再替换，断电、磁盘满等问题不会影响AOF文件的可用性，</p>
-<h2 id="RDB和AOF联系"><a href="#RDB和AOF联系" class="headerlink" title="RDB和AOF联系"></a>RDB和AOF联系</h2><p>1.进行大规模数据的恢复，且数据恢复的完整性不是非常敏感，使用RDB方式。</p>
-<p>2.数据的完整性非常敏感，使用AOF方式。</p>
-<p>3.redis重启时，若RDB和AOF同时使用，优先采用AOF方式恢复数据，AOF方式的数据恢复完整度更高。</p>
-<p>4.如果没有数据持久化的需求，关闭RDB和AOF方式，redis将变成一个纯内存数据库。</p>
-<p>5.同样数据规模的情况下，AOF文件比RDB文件体积大。AOF恢复速度慢于RDB方式。</p>
+        <h1 id="学习网址"><a href="#学习网址" class="headerlink" title="学习网址"></a><a href="http://springboot.fun/" target="_blank" rel="noopener">学习网址</a></h1><h1 id="1-springboot的优缺点"><a href="#1-springboot的优缺点" class="headerlink" title="1.springboot的优缺点"></a>1.springboot的优缺点</h1><pre><code>优点：
+（1）.快速构建项目。
+（2）对主流开发框架的无配置集成。
+（3）项目可独立运行，无须外部依赖servlet容器。
+（4）提供运行时的应用监控。
+（5）极大地提高了开发、部署效率。
+（6）与云计算的天然集成。
+
+缺点：
+（1）书籍文档较少且不够深入。
+（2）开发人员是否认同spring框架，是否会使用spring框架。</code></pre><h1 id="2-搭建项目说明"><a href="#2-搭建项目说明" class="headerlink" title="2.搭建项目说明"></a>2.搭建项目说明</h1><h2 id="（1）-启动springboot项目。"><a href="#（1）-启动springboot项目。" class="headerlink" title="（1）.启动springboot项目。"></a>（1）.启动springboot项目。</h2><p><img src="/2019/11/14/springboot/1.png" alt></p>
+<p><img src="/2019/11/14/springboot/2.png" alt></p>
+<blockquote>
+<p>当启动springboot时出现上述错误时：需要配置数据库如下：</p>
+</blockquote>
+<p><img src="/2019/11/14/springboot/3.png" alt></p>
+<blockquote>
+<p>Application.yml文件如下所示：</p>
+</blockquote>
+<p><img src="/2019/11/14/springboot/4.png" alt></p>
+<blockquote>
+<p>注意：@bean @primary和@ConfigurationProperties是必不可少的。</p>
+</blockquote>
+<h2 id="（2）-配置数据库相关"><a href="#（2）-配置数据库相关" class="headerlink" title="（2）.配置数据库相关"></a>（2）.配置数据库相关</h2><p>例：机器登录</p>
+<p><img src="/2019/11/14/springboot/5.png" alt></p>
 
       
        
@@ -502,9 +514,9 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>redis持久化</p>
-    <p><span class="copy-title">发布时间:</span>2019-11-11, 16:01:24</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-11, 17:40:08</p>
+    <p><span class="copy-title">文章标题:</span>Springboot基础知识</p>
+    <p><span class="copy-title">发布时间:</span>2019-11-14, 15:37:49</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-14, 15:37:49</p>
 </div>
 
 
