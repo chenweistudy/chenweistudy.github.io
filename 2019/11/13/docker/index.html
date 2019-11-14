@@ -6,16 +6,18 @@
   <meta name="keywords" content=" docker ">
   <meta name="description" content="docker | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="4.1zuul的核心Filter是Zuul的核心，用来实现对外服务的控制。Filter的生命周期有4个，分别是“PRE”、“ROUTING”、“POST”、“ERROR”， 4.2 zuul的生命周期 Zuul大部分功能都是通过过滤器来实现的，这些过滤器类型对应于请求的典型生命周期。   (1).PRE： 这种过滤器在请求被路由之前调用。我们可利用这种过滤器实现身份验证、在集群中选择请求的微服务、">
-<meta name="keywords" content="Spring cloud zuul (服务网关高级)">
+<meta name="description" content="1.springcloud问题 2.什么是spring boot(1).Spring Boot简化了基于Spring的应用开发，通过少量的代码就能创建一个独立的、产品级别的Spring应用。  (2).Spring Boot为Spring平台及第三方库提供开箱即用的设置，这样你就可以有条不紊地开始。多数Spring Boot应用只需要很少的Spring配置。 (3).Spring Boot是由Pi">
+<meta name="keywords" content="Spring-cloud和Spring-boot">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spring cloud zuul (高级)">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;14&#x2F;zuulhigh&#x2F;index.html">
+<meta property="og:title" content="Spring-cloud和Spring-boot区别">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;14&#x2F;boot-cloud&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="4.1zuul的核心Filter是Zuul的核心，用来实现对外服务的控制。Filter的生命周期有4个，分别是“PRE”、“ROUTING”、“POST”、“ERROR”， 4.2 zuul的生命周期 Zuul大部分功能都是通过过滤器来实现的，这些过滤器类型对应于请求的典型生命周期。   (1).PRE： 这种过滤器在请求被路由之前调用。我们可利用这种过滤器实现身份验证、在集群中选择请求的微服务、">
+<meta property="og:description" content="1.springcloud问题 2.什么是spring boot(1).Spring Boot简化了基于Spring的应用开发，通过少量的代码就能创建一个独立的、产品级别的Spring应用。  (2).Spring Boot为Spring平台及第三方库提供开箱即用的设置，这样你就可以有条不紊地开始。多数Spring Boot应用只需要很少的Spring配置。 (3).Spring Boot是由Pi">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-14T01:48:56.919Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;14&#x2F;boot-cloud&#x2F;1.png">
+<meta property="og:updated_time" content="2019-11-14T06:52:22.456Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;14&#x2F;boot-cloud&#x2F;1.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -78,11 +80,11 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(14)</small></div></li>
+    <li><div class="all active">全部文章<small>(15)</small></div></li>
     
         
             
-            <li><div data-rel="springcloud">springcloud<small>(8)</small></div>
+            <li><div data-rel="springcloud">springcloud<small>(9)</small></div>
                 
             </li>
             
@@ -130,7 +132,7 @@
     </div>
     <div></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="14">
+<input type="hidden" id="yelog_site_posts_number" value="15">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -167,11 +169,15 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Hystrix和Feign Hystrix</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" target="_blank" rel="noopener" class="color2">docker</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color2">Hystrix和Feign Hystrix</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Spring-cloud和Spring-boot</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -187,15 +193,15 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color3">配置中心git</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" target="_blank" rel="noopener" class="color1">eureka原理介绍</a>
     </li>
     
     <li class="article-tag-list-item">
         <a href="javascript:" target="_blank" rel="noopener" class="color5">配置中心git服务化和高可用</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">配置中心git</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -224,6 +230,14 @@
             <span class="post-date" title="2019-11-13 15:58:13">2019/11/13</span>
         </a>
         
+        <a  class="springcloud "
+           href="/2019/11/13/Hystrix/"
+           data-tag="Hystrix和Feign Hystrix"
+           data-author="" >
+            <span class="post-title" title="熔断器（Hystrix）">熔断器（Hystrix）</span>
+            <span class="post-date" title="2019-11-13 15:58:16">2019/11/13</span>
+        </a>
+        
         <a  class="项目部署 "
            href="/2019/11/13/docker/"
            data-tag="docker"
@@ -233,11 +247,11 @@
         </a>
         
         <a  class="springcloud "
-           href="/2019/11/13/Hystrix/"
-           data-tag="Hystrix和Feign Hystrix"
+           href="/2019/11/14/boot-cloud/"
+           data-tag="Spring-cloud和Spring-boot"
            data-author="" >
-            <span class="post-title" title="熔断器（Hystrix）">熔断器（Hystrix）</span>
-            <span class="post-date" title="2019-11-13 15:58:16">2019/11/13</span>
+            <span class="post-title" title="Spring-cloud和Spring-boot区别">Spring-cloud和Spring-boot区别</span>
+            <span class="post-date" title="2019-11-14 14:52:22">2019/11/14</span>
         </a>
         
         <a  class="架构 "
@@ -273,14 +287,6 @@
         </a>
         
         <a  class="springcloud "
-           href="/2019/11/13/gitConfig/"
-           data-tag="配置中心git"
-           data-author="" >
-            <span class="post-title" title="配置中心git">配置中心git</span>
-            <span class="post-date" title="2019-11-13 16:58:00">2019/11/13</span>
-        </a>
-        
-        <a  class="springcloud "
            href="/2019/11/13/eureka1/"
            data-tag="eureka原理介绍"
            data-author="" >
@@ -294,6 +300,14 @@
            data-author="" >
             <span class="post-title" title="配置中心git服务化和高可用">配置中心git服务化和高可用</span>
             <span class="post-date" title="2019-11-13 17:11:42">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/gitConfig/"
+           data-tag="配置中心git"
+           data-author="" >
+            <span class="post-title" title="配置中心git">配置中心git</span>
+            <span class="post-date" title="2019-11-13 16:58:00">2019/11/13</span>
         </a>
         
         <a  class="消息队列 "
@@ -482,7 +496,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#熔断监控Hystrix-Dashboard','#docker','#Hystrix和Feign Hystrix','#分布式','#redis','#eureka 服务提供和调用','#配置中心git','#eureka原理介绍','#配置中心git服务化和高可用','#rabbitMQ','#Spring cloud zuul (服务网关初级)','#Spring cloud zuul (服务网关高级)',],
+            'data': ['#熔断监控Hystrix-Dashboard','#Hystrix和Feign Hystrix','#docker','#Spring-cloud和Spring-boot','#分布式','#redis','#eureka 服务提供和调用','#eureka原理介绍','#配置中心git服务化和高可用','#配置中心git','#rabbitMQ','#Spring cloud zuul (服务网关初级)','#Spring cloud zuul (服务网关高级)',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
