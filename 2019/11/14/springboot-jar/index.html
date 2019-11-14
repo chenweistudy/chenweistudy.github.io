@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>redis持久化 | Hexo</title>
-  <meta name="keywords" content=" redis ">
-  <meta name="description" content="redis持久化 | Hexo">
+  <title>Springboot项目导可执行jar | Hexo</title>
+  <meta name="keywords" content=" Springboot项目导可执行jar ">
+  <meta name="description" content="Springboot项目导可执行jar | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="1.pom.xml配置：&amp;lt;build&amp;gt;     &amp;lt;resources&amp;gt;         &amp;lt;!--指定src&#x2F;main&#x2F;resources资源要过滤--&amp;gt;         &amp;lt;resource&amp;gt;             &amp;lt;directory&amp;gt;src&#x2F;main&#x2F;resources&amp;lt;&#x2F;directory&amp;gt;             &amp;l">
 <meta name="keywords" content="Springboot项目导可执行jar">
@@ -400,9 +400,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-redisPersister" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-springboot-jar" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">redis持久化</h1>
+        <h1 class="article-title">Springboot项目导可执行jar</h1>
     
     <div class="article-meta">
         
@@ -410,21 +410,21 @@
         
         <span class="book">
             
-                <a href="javascript:" target="_blank" data-rel="redis noopener">redis</a>
+                <a href="javascript:" target="_blank" data-rel="springboot noopener">springboot</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" target="_blank" rel="noopener" class="color1">redis</a>
+            <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot项目导可执行jar</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-11-11 17:40:08'>2019-11-11 16:01</time>
+        创建时间:<time class="date" title='更新时间: 2019-11-14 15:26:12'>2019-11-14 15:26</time>
         
     </div>
     <div class="article-meta">
@@ -446,7 +446,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#redis持久化的方式"><span class="toc-text">redis持久化的方式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#RDB（Redis-DataBase）"><span class="toc-text">RDB（Redis DataBase）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AOF（Append-Only-File）"><span class="toc-text">AOF（Append Only File）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RDB和AOF联系"><span class="toc-text">RDB和AOF联系</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-pom-xml配置："><span class="toc-text">1.pom.xml配置：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Run-AS-gt-Maven-clean"><span class="toc-text">2.Run AS -&gt;Maven clean</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Run-AS-gt-Maven-install"><span class="toc-text">3.Run AS -&gt;Maven install</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -462,20 +462,107 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="redis持久化的方式"><a href="#redis持久化的方式" class="headerlink" title="redis持久化的方式"></a>redis持久化的方式</h1><h2 id="RDB（Redis-DataBase）"><a href="#RDB（Redis-DataBase）" class="headerlink" title="RDB（Redis DataBase）"></a>RDB（Redis DataBase）</h2><p>1.RDB（Redis DataBase）,是在不同的时间点，将redis存储的数据生成快照并存储到磁盘等介质上；</p>
-<p>2.redis在进行数据持久化时，先将数据写入到临时文件，待持久化过程都结束，用临时文件替换上次持久化好的文件。</p>
-<p>3.redis会单独创建（fork）一个子进程持久化，主进程不会进行任何IO操作，确保redis极高的性能。</p>
-<p>4.即使每5分钟都持久化一次，当redis故障时，仍然会有近5分钟的数据丢失。</p>
-<h2 id="AOF（Append-Only-File）"><a href="#AOF（Append-Only-File）" class="headerlink" title="AOF（Append Only File）"></a>AOF（Append Only File）</h2><p>1.AOF（Append Only File），是将redis执行过的所有写指令记录下来，在下次redis重新启动时，执行一遍这些写指令，数据就可以恢复。</p>
-<p>2.默认的AOF持久化策略是每秒钟fsync一次（fsync是指把缓存中的写指令记录到磁盘中），即使redis故障，会丢失最近1秒钟的数据。</p>
-<p>3.AOF文件的大小超过所设定的阈值时，redis启动AOF文件的内容压缩，保留恢复数据的最小指令集。</p>
-<p>4在进行AOF重写时，采用先写临时文件，全部完成后再替换，断电、磁盘满等问题不会影响AOF文件的可用性，</p>
-<h2 id="RDB和AOF联系"><a href="#RDB和AOF联系" class="headerlink" title="RDB和AOF联系"></a>RDB和AOF联系</h2><p>1.进行大规模数据的恢复，且数据恢复的完整性不是非常敏感，使用RDB方式。</p>
-<p>2.数据的完整性非常敏感，使用AOF方式。</p>
-<p>3.redis重启时，若RDB和AOF同时使用，优先采用AOF方式恢复数据，AOF方式的数据恢复完整度更高。</p>
-<p>4.如果没有数据持久化的需求，关闭RDB和AOF方式，redis将变成一个纯内存数据库。</p>
-<p>5.同样数据规模的情况下，AOF文件比RDB文件体积大。AOF恢复速度慢于RDB方式。</p>
+        <h1 id="1-pom-xml配置："><a href="#1-pom-xml配置：" class="headerlink" title="1.pom.xml配置："></a>1.pom.xml配置：</h1><pre><code>&lt;build&gt;
+    &lt;resources&gt;
+        &lt;!--指定src/main/resources资源要过滤--&gt;
+        &lt;resource&gt;
+            &lt;directory&gt;src/main/resources&lt;/directory&gt;
+            &lt;filtering&gt;true&lt;/filtering&gt;
+        &lt;/resource&gt;
+    &lt;/resources&gt;
+    &lt;plugins&gt;
+        &lt;!-- 可执行jar插件 --&gt;
+        &lt;plugin&gt;
+            &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+            &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt;
+            &lt;configuration&gt;
+                &lt;archive&gt;
+                    &lt;manifest&gt;
+                        &lt;addClasspath&gt;true&lt;/addClasspath&gt;
+                        &lt;classpathPrefix&gt;lib/&lt;/classpathPrefix&gt;
+                        &lt;mainClass&gt;cn.com.sinodata.AppRun&lt;/mainClass&gt;
+                    &lt;/manifest&gt;
+                    &lt;manifestEntries&gt;
+                        &lt;Class-Path&gt;.&lt;/Class-Path&gt;
+                    &lt;/manifestEntries&gt;
+                &lt;/archive&gt;
+                &lt;excludes&gt;
+                    &lt;!-- &lt;exclude&gt;**/*.xml&lt;/exclude&gt;
+                    &lt;exclude&gt;**/*.conf&lt;/exclude&gt;
+                    &lt;exclude&gt;**/*.properties&lt;/exclude&gt; --&gt;
+                    &lt;exclude&gt;**/*.yml&lt;/exclude&gt;
+                    &lt;exclude&gt;**/logback-spring.xml&lt;/exclude&gt;
+                    &lt;exclude&gt;**/*.sh&lt;/exclude&gt;
+                &lt;/excludes&gt;
 
+            &lt;/configuration&gt;
+        &lt;/plugin&gt;
+        &lt;!-- maven资源文件复制插件 --&gt;
+        &lt;plugin&gt;
+            &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+            &lt;artifactId&gt;maven-resources-plugin&lt;/artifactId&gt;
+            &lt;version&gt;2.7&lt;/version&gt;
+            &lt;executions&gt;
+                &lt;execution&gt;
+                    &lt;id&gt;copy-resources&lt;/id&gt;
+                    &lt;!-- here the phase you need --&gt;
+                    &lt;phase&gt;package&lt;/phase&gt;
+                    &lt;goals&gt;
+                        &lt;goal&gt;copy-resources&lt;/goal&gt;
+                    &lt;/goals&gt;
+                    &lt;configuration&gt;
+                        &lt;outputDirectory&gt;${project.build.directory}/LottSellNetManage&lt;/outputDirectory&gt;
+                        &lt;resources&gt;
+                            &lt;resource&gt;
+                                &lt;directory&gt;src/main/resources&lt;/directory&gt;
+                                &lt;includes&gt;
+                              &lt;!--       &lt;exclude&gt;**/*.xml&lt;/exclude&gt;
+                                    &lt;exclude&gt;**/*.conf&lt;/exclude&gt;
+                                    &lt;exclude&gt;**/*.properties&lt;/exclude&gt; --&gt;
+                                    &lt;exclude&gt;**/*.yml&lt;/exclude&gt;
+                                    &lt;exclude&gt;**/logback-spring.xml&lt;/exclude&gt;
+                                    &lt;exclude&gt;**/*.sh&lt;/exclude&gt;
+                                &lt;/includes&gt;
+                                &lt;filtering&gt;true&lt;/filtering&gt;
+                            &lt;/resource&gt;
+                        &lt;/resources&gt;
+                        &lt;encoding&gt;UTF-8&lt;/encoding&gt;
+                    &lt;/configuration&gt;
+                &lt;/execution&gt;
+            &lt;/executions&gt;
+        &lt;/plugin&gt;
+        &lt;!-- 依赖包插件 --&gt;
+        &lt;plugin&gt;
+            &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+            &lt;artifactId&gt;maven-dependency-plugin&lt;/artifactId&gt;
+            &lt;executions&gt;
+                &lt;execution&gt;
+                    &lt;id&gt;copy-dependencies&lt;/id&gt;
+                    &lt;phase&gt;package&lt;/phase&gt;
+                    &lt;goals&gt;
+                        &lt;goal&gt;copy-dependencies&lt;/goal&gt;
+                    &lt;/goals&gt;
+                    &lt;configuration&gt;
+                        &lt;outputDirectory&gt;${project.build.directory}/LottSellNetManage/lib&lt;/outputDirectory&gt;
+                        &lt;!-- 是否不包含间接依赖 --&gt;
+                        &lt;excludeTransitive&gt;false&lt;/excludeTransitive&gt;
+                        &lt;!-- 忽略版本 --&gt;
+                        &lt;stripVersion&gt;false&lt;/stripVersion&gt;
+                    &lt;/configuration&gt;
+                &lt;/execution&gt;
+            &lt;/executions&gt;
+        &lt;/plugin&gt;
+
+        &lt;plugin&gt;
+            &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+            &lt;artifactId&gt;maven-surefire-plugin&lt;/artifactId&gt;
+            &lt;version&gt;2.18.1&lt;/version&gt;
+            &lt;configuration&gt;
+                &lt;skipTests&gt;true&lt;/skipTests&gt;
+            &lt;/configuration&gt;
+        &lt;/plugin&gt;
+    &lt;/plugins&gt;
+&lt;/build&gt;</code></pre><h1 id="2-Run-AS-gt-Maven-clean"><a href="#2-Run-AS-gt-Maven-clean" class="headerlink" title="2.Run AS -&gt;Maven clean"></a>2.Run AS -&gt;Maven clean</h1><h1 id="3-Run-AS-gt-Maven-install"><a href="#3-Run-AS-gt-Maven-install" class="headerlink" title="3.Run AS -&gt;Maven install"></a>3.Run AS -&gt;Maven install</h1>
       
        
     </div>
@@ -484,9 +571,9 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>redis持久化</p>
-    <p><span class="copy-title">发布时间:</span>2019-11-11, 16:01:24</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-11, 17:40:08</p>
+    <p><span class="copy-title">文章标题:</span>Springboot项目导可执行jar</p>
+    <p><span class="copy-title">发布时间:</span>2019-11-14, 15:26:12</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-14, 15:26:12</p>
 </div>
 
 
