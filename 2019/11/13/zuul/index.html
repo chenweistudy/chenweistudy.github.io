@@ -6,15 +6,15 @@
   <meta name="keywords" content=" Spring cloud zuul (服务网关初级) ">
   <meta name="description" content="Spring cloud zuul (初级) | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="1.简介&amp;emsp;&amp;emsp;(1)Eureka用于服务的注册于发现，Feign支持服务的调用以及均衡负载，Hystrix处理服务的熔断防止故障扩散，Spring Cloud Config服务集群配置中心，似乎一个微服务框架已经完成了。  还是少考虑了一个问题，外部的应用如何来访问内部各种各样的微服务呢？ 在微服务架构中，后端服务往往不直接开放给调用端，而是通过一个API网关根据请求的url，路">
-<meta name="keywords" content="Spring cloud zuul (服务网关初级)">
+<meta name="description" content="4.1zuul的核心Filter是Zuul的核心，用来实现对外服务的控制。Filter的生命周期有4个，分别是“PRE”、“ROUTING”、“POST”、“ERROR”， 4.2 zuul的生命周期 Zuul大部分功能都是通过过滤器来实现的，这些过滤器类型对应于请求的典型生命周期。   (1).PRE： 这种过滤器在请求被路由之前调用。我们可利用这种过滤器实现身份验证、在集群中选择请求的微服务、">
+<meta name="keywords" content="Spring cloud zuul (服务网关高级)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spring cloud zuul (初级)">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;13&#x2F;zuul&#x2F;index.html">
+<meta property="og:title" content="Spring cloud zuul (高级)">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;14&#x2F;zuulhigh&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1.简介&amp;emsp;&amp;emsp;(1)Eureka用于服务的注册于发现，Feign支持服务的调用以及均衡负载，Hystrix处理服务的熔断防止故障扩散，Spring Cloud Config服务集群配置中心，似乎一个微服务框架已经完成了。  还是少考虑了一个问题，外部的应用如何来访问内部各种各样的微服务呢？ 在微服务架构中，后端服务往往不直接开放给调用端，而是通过一个API网关根据请求的url，路">
+<meta property="og:description" content="4.1zuul的核心Filter是Zuul的核心，用来实现对外服务的控制。Filter的生命周期有4个，分别是“PRE”、“ROUTING”、“POST”、“ERROR”， 4.2 zuul的生命周期 Zuul大部分功能都是通过过滤器来实现的，这些过滤器类型对应于请求的典型生命周期。   (1).PRE： 这种过滤器在请求被路由之前调用。我们可利用这种过滤器实现身份验证、在集群中选择请求的微服务、">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-13T09:35:49.331Z">
+<meta property="og:updated_time" content="2019-11-14T01:48:56.919Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -78,11 +78,11 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(13)</small></div></li>
+    <li><div class="all active">全部文章<small>(14)</small></div></li>
     
         
             
-            <li><div data-rel="springcloud">springcloud<small>(7)</small></div>
+            <li><div data-rel="springcloud">springcloud<small>(8)</small></div>
                 
             </li>
             
@@ -98,7 +98,7 @@
     
         
             
-            <li><div data-rel="架构">架构<small>(1)</small></div>
+            <li><div data-rel="redis">redis<small>(3)</small></div>
                 
             </li>
             
@@ -106,7 +106,7 @@
     
         
             
-            <li><div data-rel="redis">redis<small>(3)</small></div>
+            <li><div data-rel="架构">架构<small>(1)</small></div>
                 
             </li>
             
@@ -130,7 +130,7 @@
     </div>
     <div></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="13">
+<input type="hidden" id="yelog_site_posts_number" value="14">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -175,11 +175,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color4">分布式</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">redis</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color1">redis</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">分布式</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -191,11 +191,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color1">eureka原理介绍</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">配置中心git服务化和高可用</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color5">配置中心git服务化和高可用</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">eureka原理介绍</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -204,6 +204,10 @@
     
     <li class="article-tag-list-item">
         <a href="javascript:" target="_blank" rel="noopener" class="color2">Spring cloud zuul (服务网关初级)</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Spring cloud zuul (服务网关高级)</a>
     </li>
     
     <div class="clearfix"></div>
@@ -236,14 +240,6 @@
             <span class="post-date" title="2019-11-13 14:11:55">2019/11/13</span>
         </a>
         
-        <a  class="架构 "
-           href="/2019/11/11/indexs/"
-           data-tag="分布式"
-           data-author="" >
-            <span class="post-title" title="用【快餐店】理解分布式架构">用【快餐店】理解分布式架构</span>
-            <span class="post-date" title="2019-11-11 13:01:24">2019/11/11</span>
-        </a>
-        
         <a  class="redis "
            href="/2019/11/11/redisCache/"
            data-tag="redis"
@@ -258,6 +254,14 @@
            data-author="" >
             <span class="post-title" title="redis持久化">redis持久化</span>
             <span class="post-date" title="2019-11-11 16:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="架构 "
+           href="/2019/11/11/indexs/"
+           data-tag="分布式"
+           data-author="" >
+            <span class="post-title" title="用【快餐店】理解分布式架构">用【快餐店】理解分布式架构</span>
+            <span class="post-date" title="2019-11-11 13:01:24">2019/11/11</span>
         </a>
         
         <a  class="springcloud "
@@ -277,27 +281,11 @@
         </a>
         
         <a  class="springcloud "
-           href="/2019/11/13/eureka1/"
-           data-tag="eureka原理介绍"
-           data-author="" >
-            <span class="post-title" title="eureka原理介绍">eureka原理介绍</span>
-            <span class="post-date" title="2019-11-13 16:08:48">2019/11/13</span>
-        </a>
-        
-        <a  class="springcloud "
            href="/2019/11/13/gitconfig-server-client/"
            data-tag="配置中心git服务化和高可用"
            data-author="" >
             <span class="post-title" title="配置中心git服务化和高可用">配置中心git服务化和高可用</span>
             <span class="post-date" title="2019-11-13 17:11:42">2019/11/13</span>
-        </a>
-        
-        <a  class="消息队列 "
-           href="/2019/11/13/rabbitMQBase/"
-           data-tag="rabbitMQ"
-           data-author="" >
-            <span class="post-title" title="消息队列">消息队列</span>
-            <span class="post-date" title="2019-11-13 09:58:16">2019/11/13</span>
         </a>
         
         <a  class="redis "
@@ -309,11 +297,35 @@
         </a>
         
         <a  class="springcloud "
+           href="/2019/11/13/eureka1/"
+           data-tag="eureka原理介绍"
+           data-author="" >
+            <span class="post-title" title="eureka原理介绍">eureka原理介绍</span>
+            <span class="post-date" title="2019-11-13 16:08:48">2019/11/13</span>
+        </a>
+        
+        <a  class="消息队列 "
+           href="/2019/11/13/rabbitMQBase/"
+           data-tag="rabbitMQ"
+           data-author="" >
+            <span class="post-title" title="消息队列">消息队列</span>
+            <span class="post-date" title="2019-11-13 09:58:16">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
            href="/2019/11/13/zuul/"
            data-tag="Spring cloud zuul (服务网关初级)"
            data-author="" >
             <span class="post-title" title="Spring cloud zuul (初级)">Spring cloud zuul (初级)</span>
             <span class="post-date" title="2019-11-13 17:35:48">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/14/zuulhigh/"
+           data-tag="Spring cloud zuul (服务网关高级)"
+           data-author="" >
+            <span class="post-title" title="Spring cloud zuul (高级)">Spring cloud zuul (高级)</span>
+            <span class="post-date" title="2019-11-14 09:48:56">2019/11/14</span>
         </a>
         
     </nav>
@@ -747,7 +759,7 @@ public class GateWayRuN {
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#Hystrix和Feign Hystrix','#熔断监控Hystrix-Dashboard','#docker','#分布式','#redis','#eureka 服务提供和调用','#配置中心git','#eureka原理介绍','#配置中心git服务化和高可用','#rabbitMQ','#Spring cloud zuul (服务网关初级)',],
+            'data': ['#Hystrix和Feign Hystrix','#熔断监控Hystrix-Dashboard','#docker','#redis','#分布式','#eureka 服务提供和调用','#配置中心git','#配置中心git服务化和高可用','#eureka原理介绍','#rabbitMQ','#Spring cloud zuul (服务网关初级)','#Spring cloud zuul (服务网关高级)',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
