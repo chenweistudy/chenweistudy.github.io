@@ -1,0 +1,81 @@
+<hr>
+<p>title: SpringMVC基础<br>comments: true #是否可评论<br>toc: true #是否显示文章目录<br>categories: “spring-mvc” #分类<br>tags:   #标签<br>    -  SpringMVC基础</p>
+<hr>
+<h1 id="1-spring-mvc概述"><a href="#1-spring-mvc概述" class="headerlink" title="1.spring mvc概述"></a>1.spring mvc概述</h1><pre><code>MVC :   model + view + controller(数据模型+视图+控制器)
+
+三层架构 : 展现层+应用层+数据访问层</code></pre><h1 id="2-spring-mvc项目快速搭建"><a href="#2-spring-mvc项目快速搭建" class="headerlink" title="2.spring mvc项目快速搭建"></a>2.spring mvc项目快速搭建</h1><pre><code>简单的web项目搭建Spring MVC 常用的注解</code></pre><h1 id="3-spring-mvc常用注解"><a href="#3-spring-mvc常用注解" class="headerlink" title="3.spring mvc常用注解"></a>3.spring mvc常用注解</h1><h3 id="1-Controller"><a href="#1-Controller" class="headerlink" title="(1).@Controller"></a>(1).@Controller</h3><p>&emsp;&emsp;@Controller 注解在类上，表明这个类是spring mvc里的controller,将其声明为spring的一个bean，dispatcher servlet会自动扫描注解了此注解的类（用注解做拦截方式的例子原理类似），并将web请求映射到注解了@RequestMapping的方法上，这里特别指出，在声明普通的bean时，使用@Component、@Service、@Repository、@Controller是等同的，因为@Service、@Repository、@Controller都组合了@Component元注解；但在spring mvc声明控制器bean的时候，只能使用@Controller.</p>
+<h3 id="2-RequestMapping"><a href="#2-RequestMapping" class="headerlink" title="(2).@RequestMapping"></a>(2).@RequestMapping</h3><p>&emsp;&emsp;@RequestMapping注解是用来映射web请求（访问路径和参数）、处理类和方法的。@RequestMapping可注解在类和方法上，注解在方法上的@RequestMapping路径会继承注解在类上的路径，@RequestMapping支持servlet和reponse作为参数，也支持对request和response的媒体类型进行配置。</p>
+<h3 id="3-ResponseBody"><a href="#3-ResponseBody" class="headerlink" title="(3).@ResponseBody"></a>(3).@ResponseBody</h3><p>&emsp;&emsp;@ResponseBody 支持返回值放在response体内，而不是返回一个页面，我们在很多基于ajax请求的程序时，可以以此注解返回数据而不是页面；此注解可放置在返回值前或者方法上。</p>
+<h3 id="4-RequestBody"><a href="#4-RequestBody" class="headerlink" title="(4).@RequestBody"></a>(4).@RequestBody</h3><p>&emsp;&emsp;@RequestBody 允许request的参数在request体中，而不是在直接链接在地址后面。此注解放置在参数前。</p>
+<h3 id="5-PathVariable"><a href="#5-PathVariable" class="headerlink" title="(5).@PathVariable"></a>(5).@PathVariable</h3><p>&emsp;&emsp;@PathVariable 用来接收路径参数，如/news/001 可接收001 作为参数，此注解放置在参数前。</p>
+<h3 id="6-RestController"><a href="#6-RestController" class="headerlink" title="(6).@RestController"></a>(6).@RestController</h3><p>&emsp;&emsp;@RestController 是一个组合注解，组合了@Controller和@ResponseBody，    这就意味着当你只开发一个和页面交互数据的控制参数时，需要使用此注解。若没有    此注解，要实现上述功能，则需在代码中加@Controller和@ResponseBody两个注解。</p>
+<p><strong>代码演示：</strong></p>
+<blockquote>
+<p>ABCDE五个方面</p>
+</blockquote>
+<pre><code>@Controller //注解声明此类是一个控制器
+@RequestMapping(&quot;/anno&quot;) //映射此类的访问路径是/anno
+public class AnnoController {
+
+A:接受httpServletRequest作为参数
+    @RequestMapping(produces=&quot;text/plain;charset=UTF-8&quot;)
+    //此方法未标注路径，则使用类路径/anno;produces可定制返回的response媒体类型和字符集，
+//若返回值是json对象，则设置为 produces=&quot;application/json;charset=UTF-8&quot;.
+    public @ResponseBody String index(HttpServletRequest request){
+//可接收httpServletRequest作为参数
+        return &quot;url&quot;+request.getRequestURL()+&quot;can access&quot;;
+
+    }
+
+B:接受路径参数，@PathVariable使用。
+//    访问   http://localhost:8080/MySpringMvc/anno/pathvar/name
+    @RequestMapping(value=&quot;/pathvar/{str}&quot;,produces=&quot;text/plain;charset=UTF-8&quot;)
+    //接受路径参数,并在方法参数前结合@PathVariable使用,访问路径/anno/pathvar/xx
+    public @ResponseBody String login(@PathVariable String str,HttpServletRequest request){
+        return &quot;str&quot;+str;
+    }
+
+C:接受路径请求参数
+    //访问   http://localhost:8080/MySpringMvc/anno/param?id=12
+    @RequestMapping(value=&quot;/param&quot;,produces=&quot;text/plain;charset=UTF-8&quot;)
+    //若返回值是json对象，则设置为 produces=&quot;application/json;charset=UTF-8&quot;.
+    public @ResponseBody String getParam(Long id,HttpServletRequest request){//可获取访问参数Id的值，可接收httpServletRequest作为参数
+        return &quot;id=&quot;+id+request.getRequestURL();
+    }
+
+D:接受路径请求参数到对象
+请求对象javaBean示例
+public class RequestBean {
+    private String name;
+    private int id;
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+}
+    //访问   http://localhost:8080/MySpringMvc/anno/obj?id=12&amp;name=&quot;cc&quot;
+    @RequestMapping(value=&quot;/obj&quot;,produces=&quot;text/plain;charset=UTF-8&quot;)
+    //若返回值是json对象，则设置为 produces=&quot;application/json;charset=UTF-8&quot;.
+    public @ResponseBody String test(RequestBean bean,HttpServletRequest request){
+        //可获取访问javaBean的值，可接收httpServletRequest作为参数
+        return &quot;id=&quot;+bean.getId()+&quot;name=&quot;+bean.getName()+request.getRequestURL();
+    }
+
+    E:接受不同路径进入相同方法
+    //演示不同路径进入相同的方法
+//    http://localhost:8080/MySpringMvc/anno/name1
+//    http://localhost:8080/MySpringMvc/anno/name2
+    @RequestMapping(value={&quot;/name1&quot;,&quot;/name2&quot;},produces=&quot;text/plain;charset=UTF-8&quot;)
+    //若返回值是json对象，则设置为 produces=&quot;application/json;charset=UTF-8&quot;.
+    public @ResponseBody String testValue(HttpServletRequest request){
+        return &quot;url=&quot;+request.getRequestURL();
+    }
+}</code></pre>

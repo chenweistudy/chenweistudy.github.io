@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Spring-cloud和Spring-boot区别 | Hexo</title>
-  <meta name="keywords" content=" Spring-cloud和Spring-boot ">
-  <meta name="description" content="Spring-cloud和Spring-boot区别 | Hexo">
+  <title>SpringMVC基础 | Hexo</title>
+  <meta name="keywords" content=" SpringMVC基础 ">
+  <meta name="description" content="SpringMVC基础 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="springMVC基本配置&amp;emsp;&amp;emsp;Spring mvc 的定制配置需要我们的配置类继承一个WebMvcConfigurerAdapter类，并在此类使用@EnableWebMvc注解，来开启对spring mvc 的配置支持，这样我们就可以重写这类的方法，完成我们的配置。 1.静态资源映射@Controller public class HelloController {">
 <meta name="keywords" content="SpringMVC配置">
@@ -490,9 +490,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-boot-cloud" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Hystrix/springmvcbase" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Spring-cloud和Spring-boot区别</h1>
+        <h1 class="article-title">SpringMVC基础</h1>
     
     <div class="article-meta">
         
@@ -500,21 +500,21 @@
         
         <span class="book">
             
-                <a href="javascript:" target="_blank" data-rel="springcloud noopener">springcloud</a>
+                <a href="javascript:" target="_blank" data-rel="spring-mvc noopener">spring-mvc</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" target="_blank" rel="noopener" class="color5">Spring-cloud和Spring-boot</a>
+            <a href="javascript:" target="_blank" rel="noopener" class="color2">SpringMVC基础</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-11-14 14:52:22'>2019-11-14 14:52</time>
+        创建时间:<time class="date" title='更新时间: 2019-11-15 14:38:17'>2019-11-15 14:38</time>
         
     </div>
     <div class="article-meta">
@@ -536,7 +536,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-springcloud问题"><span class="toc-text">1.springcloud问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-什么是spring-boot"><span class="toc-text">2.什么是spring boot</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-什么是spring-cloud"><span class="toc-text">3.什么是spring cloud</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-spring-cloud-和spring-boot-关系"><span class="toc-text">4.spring cloud 和spring boot 关系</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-spring-mvc概述"><span class="toc-text">1.spring mvc概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-spring-mvc项目快速搭建"><span class="toc-text">2.spring mvc项目快速搭建</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-spring-mvc常用注解"><span class="toc-text">3.spring mvc常用注解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Controller"><span class="toc-text">(1).@Controller</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-RequestMapping"><span class="toc-text">(2).@RequestMapping</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-ResponseBody"><span class="toc-text">(3).@ResponseBody</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-RequestBody"><span class="toc-text">(4).@RequestBody</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-PathVariable"><span class="toc-text">(5).@PathVariable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-RestController"><span class="toc-text">(6).@RestController</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -552,31 +552,84 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1-springcloud问题"><a href="#1-springcloud问题" class="headerlink" title="1.springcloud问题"></a>1.springcloud问题</h1><p><img src="/2019/11/14/boot-cloud/1.png" alt></p>
-<h1 id="2-什么是spring-boot"><a href="#2-什么是spring-boot" class="headerlink" title="2.什么是spring boot"></a>2.什么是spring boot</h1><p>(1).Spring Boot简化了基于Spring的应用开发，通过少量的代码就能创建一个独立的、产品级别的Spring应用。 </p>
-<p>(2).Spring Boot为Spring平台及第三方库提供开箱即用的设置，这样你就可以有条不紊地开始。多数Spring Boot应用只需要很少的Spring配置。</p>
-<p>(3).Spring Boot是由Pivotal团队提供的全新框架，其设计目的是用来简化新Spring应用的初始搭建以及开发过程。该框架使用了特定的方式来进行配置，从而使开发人员不再需要定义样板化的配置。</p>
-<blockquote>
-<p>用我的话来理解，Spring Boot其实不是什么新的框架，它默认配置了很多框架的使用方式，</p>
-<p>maven整合了所有的jar包，</p>
-<p>Spring Boot整合所有的框架（不知道这样比喻是否合适）。</p>
-</blockquote>
-<p>(4).Spring Boot的核心思想就是约定大于配置，一切自动完成。</p>
-<p>(5).采用Spring Boot可以大大的简化开发模式，所有想集成的常用框架，它都有对应的组件支持。</p>
-<h1 id="3-什么是spring-cloud"><a href="#3-什么是spring-cloud" class="headerlink" title="3.什么是spring cloud"></a>3.什么是spring cloud</h1><blockquote>
-<p>(1).Spring Cloud是一系列框架的有序集合。它利用Spring Boot的开发便利性巧妙地简化了分布式系统基础设施的开发，如服务发现注册、配置中心、消息总线、负载均衡、断路器、数据监控等，都可以用Spring Boot的开发风格做到一键启动和部署。</p>
-<p>(2).Spring并没有重复制造轮子，它只是将目前各家公司开发的比较成熟、经得起实际考验的服务框架组合起来，通过Spring Boot风格进行再封装屏蔽掉了复杂的配置和实现原理，最终给开发者留出了一套简单易懂、易部署和易维护的分布式系统开发工具包。</p>
-<p>(3).微服务是可以独立部署、水平扩展、独立访问（或者有独立的数据库）的服务单元，Spring Cloud就是这些微服务的大管家，采用了微服务这种架构之后，项目的数量会非常多，Spring Cloud做为大管家就需要提供各种方案来维护整个生态。</p>
-<p>(4).Spring Cloud就是一套分布式服务治理的框架，它是一套服务治理的框架，不会提供具体功能性的操作，更专注于服务之间的通讯、熔断、监控等</p>
-</blockquote>
-<h1 id="4-spring-cloud-和spring-boot-关系"><a href="#4-spring-cloud-和spring-boot-关系" class="headerlink" title="4.spring cloud 和spring boot 关系"></a>4.spring cloud 和spring boot 关系</h1><p>(1).Spring Boot 是 Spring 的一套快速配置脚手架，可以基于Spring Boot 快速开发单个微服务，<br>Spring Cloud是一个基于Spring Boot实现的云应用开发工具；</p>
-<p>(2).Spring Boot专注于快速、方便集成的单个微服务个体，Spring Cloud关注全局的服务治理框架；</p>
-<p>(3).Spring Boot使用了默认大于配置的理念，很多集成方案已经选择好了，能不配置就不配置，Spring Cloud很大的一部分是基于Spring Boot来实现，可以不基于Spring Boot吗？不可以。</p>
-<p>(4).Spring Boot可以离开Spring Cloud独立使用开发项目，但是Spring Cloud离不开Spring Boot，属于依赖的关系。</p>
-<blockquote>
-<p>Spring -&gt; Spring Boot &gt; Spring Cloud 这样的关系。</p>
-</blockquote>
+        <h1 id="1-spring-mvc概述"><a href="#1-spring-mvc概述" class="headerlink" title="1.spring mvc概述"></a>1.spring mvc概述</h1><pre><code>MVC :   model + view + controller(数据模型+视图+控制器)
 
+三层架构 : 展现层+应用层+数据访问层</code></pre><h1 id="2-spring-mvc项目快速搭建"><a href="#2-spring-mvc项目快速搭建" class="headerlink" title="2.spring mvc项目快速搭建"></a>2.spring mvc项目快速搭建</h1><pre><code>简单的web项目搭建Spring MVC 常用的注解</code></pre><h1 id="3-spring-mvc常用注解"><a href="#3-spring-mvc常用注解" class="headerlink" title="3.spring mvc常用注解"></a>3.spring mvc常用注解</h1><h3 id="1-Controller"><a href="#1-Controller" class="headerlink" title="(1).@Controller"></a>(1).@Controller</h3><p>&emsp;&emsp;@Controller 注解在类上，表明这个类是spring mvc里的controller,将其声明为spring的一个bean，dispatcher servlet会自动扫描注解了此注解的类（用注解做拦截方式的例子原理类似），并将web请求映射到注解了@RequestMapping的方法上，这里特别指出，在声明普通的bean时，使用@Component、@Service、@Repository、@Controller是等同的，因为@Service、@Repository、@Controller都组合了@Component元注解；但在spring mvc声明控制器bean的时候，只能使用@Controller.</p>
+<h3 id="2-RequestMapping"><a href="#2-RequestMapping" class="headerlink" title="(2).@RequestMapping"></a>(2).@RequestMapping</h3><p>&emsp;&emsp;@RequestMapping注解是用来映射web请求（访问路径和参数）、处理类和方法的。@RequestMapping可注解在类和方法上，注解在方法上的@RequestMapping路径会继承注解在类上的路径，@RequestMapping支持servlet和reponse作为参数，也支持对request和response的媒体类型进行配置。</p>
+<h3 id="3-ResponseBody"><a href="#3-ResponseBody" class="headerlink" title="(3).@ResponseBody"></a>(3).@ResponseBody</h3><p>&emsp;&emsp;@ResponseBody 支持返回值放在response体内，而不是返回一个页面，我们在很多基于ajax请求的程序时，可以以此注解返回数据而不是页面；此注解可放置在返回值前或者方法上。</p>
+<h3 id="4-RequestBody"><a href="#4-RequestBody" class="headerlink" title="(4).@RequestBody"></a>(4).@RequestBody</h3><p>&emsp;&emsp;@RequestBody 允许request的参数在request体中，而不是在直接链接在地址后面。此注解放置在参数前。</p>
+<h3 id="5-PathVariable"><a href="#5-PathVariable" class="headerlink" title="(5).@PathVariable"></a>(5).@PathVariable</h3><p>&emsp;&emsp;@PathVariable 用来接收路径参数，如/news/001 可接收001 作为参数，此注解放置在参数前。</p>
+<h3 id="6-RestController"><a href="#6-RestController" class="headerlink" title="(6).@RestController"></a>(6).@RestController</h3><p>&emsp;&emsp;@RestController 是一个组合注解，组合了@Controller和@ResponseBody，    这就意味着当你只开发一个和页面交互数据的控制参数时，需要使用此注解。若没有    此注解，要实现上述功能，则需在代码中加@Controller和@ResponseBody两个注解。</p>
+<p><strong>代码演示：</strong></p>
+<blockquote>
+<p>ABCDE五个方面</p>
+</blockquote>
+<pre><code>@Controller //注解声明此类是一个控制器
+@RequestMapping(&quot;/anno&quot;) //映射此类的访问路径是/anno
+public class AnnoController {
+
+A:接受httpServletRequest作为参数
+    @RequestMapping(produces=&quot;text/plain;charset=UTF-8&quot;)
+    //此方法未标注路径，则使用类路径/anno;produces可定制返回的response媒体类型和字符集，
+//若返回值是json对象，则设置为 produces=&quot;application/json;charset=UTF-8&quot;.
+    public @ResponseBody String index(HttpServletRequest request){
+//可接收httpServletRequest作为参数
+        return &quot;url&quot;+request.getRequestURL()+&quot;can access&quot;;
+
+    }
+
+B:接受路径参数，@PathVariable使用。
+//    访问   http://localhost:8080/MySpringMvc/anno/pathvar/name
+    @RequestMapping(value=&quot;/pathvar/{str}&quot;,produces=&quot;text/plain;charset=UTF-8&quot;)
+    //接受路径参数,并在方法参数前结合@PathVariable使用,访问路径/anno/pathvar/xx
+    public @ResponseBody String login(@PathVariable String str,HttpServletRequest request){
+        return &quot;str&quot;+str;
+    }
+
+C:接受路径请求参数
+    //访问   http://localhost:8080/MySpringMvc/anno/param?id=12
+    @RequestMapping(value=&quot;/param&quot;,produces=&quot;text/plain;charset=UTF-8&quot;)
+    //若返回值是json对象，则设置为 produces=&quot;application/json;charset=UTF-8&quot;.
+    public @ResponseBody String getParam(Long id,HttpServletRequest request){//可获取访问参数Id的值，可接收httpServletRequest作为参数
+        return &quot;id=&quot;+id+request.getRequestURL();
+    }
+
+D:接受路径请求参数到对象
+请求对象javaBean示例
+public class RequestBean {
+    private String name;
+    private int id;
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+}
+    //访问   http://localhost:8080/MySpringMvc/anno/obj?id=12&amp;name=&quot;cc&quot;
+    @RequestMapping(value=&quot;/obj&quot;,produces=&quot;text/plain;charset=UTF-8&quot;)
+    //若返回值是json对象，则设置为 produces=&quot;application/json;charset=UTF-8&quot;.
+    public @ResponseBody String test(RequestBean bean,HttpServletRequest request){
+        //可获取访问javaBean的值，可接收httpServletRequest作为参数
+        return &quot;id=&quot;+bean.getId()+&quot;name=&quot;+bean.getName()+request.getRequestURL();
+    }
+
+    E:接受不同路径进入相同方法
+    //演示不同路径进入相同的方法
+//    http://localhost:8080/MySpringMvc/anno/name1
+//    http://localhost:8080/MySpringMvc/anno/name2
+    @RequestMapping(value={&quot;/name1&quot;,&quot;/name2&quot;},produces=&quot;text/plain;charset=UTF-8&quot;)
+    //若返回值是json对象，则设置为 produces=&quot;application/json;charset=UTF-8&quot;.
+    public @ResponseBody String testValue(HttpServletRequest request){
+        return &quot;url=&quot;+request.getRequestURL();
+    }
+}</code></pre>
       
        
     </div>
@@ -585,9 +638,9 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>Spring-cloud和Spring-boot区别</p>
-    <p><span class="copy-title">发布时间:</span>2019-11-14, 14:52:22</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-14, 14:52:22</p>
+    <p><span class="copy-title">文章标题:</span>SpringMVC基础</p>
+    <p><span class="copy-title">发布时间:</span>2019-11-15, 14:38:17</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-15, 14:38:17</p>
 </div>
 
 
