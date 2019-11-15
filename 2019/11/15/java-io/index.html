@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Java-IO | Hexo</title>
+  <meta name="keywords" content=" Java-IO ">
+  <meta name="description" content="Java-IO | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="2.1 传统的BIO编程&amp;emsp;&amp;emsp;网络编程的基本模型是Client&#x2F;Server模型，也就是两个进程之间进行相互通信，其中服务端提供位置信息（绑定IP地址和监听端口），客户端通过连接操作向服务器监听的地址发起连接请求，通过三次握手建立连接，如果连接成功建立，双方就可以通过网络套接字（socket）. 在基于传统同步阻塞模型开发中，ServerSocket负责绑定IP地址，启动监听端口">
+<meta name="keywords" content="Java-NIO">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java-NIO">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;15&#x2F;java-nio&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="2.1 传统的BIO编程&amp;emsp;&amp;emsp;网络编程的基本模型是Client&#x2F;Server模型，也就是两个进程之间进行相互通信，其中服务端提供位置信息（绑定IP地址和监听端口），客户端通过连接操作向服务器监听的地址发起连接请求，通过三次握手建立连接，如果连接成功建立，双方就可以通过网络套接字（socket）. 在基于传统同步阻塞模型开发中，ServerSocket负责绑定IP地址，启动监听端口">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;15&#x2F;java-nio&#x2F;1.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;15&#x2F;java-nio&#x2F;2.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;15&#x2F;java-nio&#x2F;3.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;15&#x2F;java-nio&#x2F;4.png">
+<meta property="og:updated_time" content="2019-11-15T07:43:16.974Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;15&#x2F;java-nio&#x2F;1.png">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>cwstudy</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="github" href="https://github.com/chenweistudy" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(26)</small></div></li>
+    
+        
+            
+            <li><div data-rel="springcloud">springcloud<small>(10)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="项目部署">项目部署<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="java">java<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="架构">架构<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="redis">redis<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="springboot">springboot<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="消息队列">消息队列<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="spring">spring<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="spring-mvc">spring-mvc<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="26">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">熔断监控Hystrix-Dashboard</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Hystrix和Feign Hystrix</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Spring-Cloud-Sleuth</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Zipkin</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">docker</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Spring-cloud和Spring-boot</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">Java-IO</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">分布式</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">redis</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot日志配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot基础知识</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot项目导可执行jar</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">eureka 服务提供和调用</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">配置中心git</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">eureka原理介绍</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">配置中心git服务化和高可用</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">rabbitMQ</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring基础知识</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring常用配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring高级话题</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Spring cloud zuul (服务网关初级)</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">SpringMVC基础</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">SpringMVC配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">Java-NIO</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Spring cloud zuul (服务网关高级)</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="springcloud "
+           href="/2019/11/13/Hystrix-Dashboard/"
+           data-tag="熔断监控Hystrix-Dashboard"
+           data-author="" >
+            <span class="post-title" title="熔断监控Hystrix-Dashboard">熔断监控Hystrix-Dashboard</span>
+            <span class="post-date" title="2019-11-13 15:58:13">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/Hystrix/"
+           data-tag="Hystrix和Feign Hystrix"
+           data-author="" >
+            <span class="post-title" title="熔断器（Hystrix）">熔断器（Hystrix）</span>
+            <span class="post-date" title="2019-11-13 15:58:16">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/14/Sleuth-ZipKin/"
+           data-tag="Spring-Cloud-Sleuth,Zipkin"
+           data-author="" >
+            <span class="post-title" title="Spring-Cloud-Sleuth和Zipkin进行分布式链路跟踪">Spring-Cloud-Sleuth和Zipkin进行分布式链路跟踪</span>
+            <span class="post-date" title="2019-11-14 15:03:35">2019/11/14</span>
+        </a>
+        
+        <a  class="项目部署 "
+           href="/2019/11/13/docker/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="docker">docker</span>
+            <span class="post-date" title="2019-11-13 14:11:55">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/14/boot-cloud/"
+           data-tag="Spring-cloud和Spring-boot"
+           data-author="" >
+            <span class="post-title" title="Spring-cloud和Spring-boot区别">Spring-cloud和Spring-boot区别</span>
+            <span class="post-date" title="2019-11-14 14:52:22">2019/11/14</span>
+        </a>
+        
+        <a  class="java "
+           href="/2019/11/15/java-io/"
+           data-tag="Java-IO"
+           data-author="" >
+            <span class="post-title" title="Java-IO">Java-IO</span>
+            <span class="post-date" title="2019-11-15 15:43:15">2019/11/15</span>
+        </a>
+        
+        <a  class="架构 "
+           href="/2019/11/11/indexs/"
+           data-tag="分布式"
+           data-author="" >
+            <span class="post-title" title="用【快餐店】理解分布式架构">用【快餐店】理解分布式架构</span>
+            <span class="post-date" title="2019-11-11 13:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/11/11/redisCache/"
+           data-tag="redis"
+           data-author="" >
+            <span class="post-title" title="redis缓存">redis缓存</span>
+            <span class="post-date" title="2019-11-11 17:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/11/11/redisPersister/"
+           data-tag="redis"
+           data-author="" >
+            <span class="post-title" title="redis持久化">redis持久化</span>
+            <span class="post-date" title="2019-11-11 16:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="springboot "
+           href="/2019/11/14/springboot-config/"
+           data-tag="Springboot日志配置"
+           data-author="" >
+            <span class="post-title" title="Springboot日志配置">Springboot日志配置</span>
+            <span class="post-date" title="2019-11-14 15:19:38">2019/11/14</span>
+        </a>
+        
+        <a  class="springboot "
+           href="/2019/11/14/springboot/"
+           data-tag="Springboot基础知识"
+           data-author="" >
+            <span class="post-title" title="Springboot基础知识">Springboot基础知识</span>
+            <span class="post-date" title="2019-11-14 15:37:49">2019/11/14</span>
+        </a>
+        
+        <a  class="springboot "
+           href="/2019/11/14/springboot-jar/"
+           data-tag="Springboot项目导可执行jar"
+           data-author="" >
+            <span class="post-title" title="Springboot项目导可执行jar">Springboot项目导可执行jar</span>
+            <span class="post-date" title="2019-11-14 15:26:12">2019/11/14</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/eureka-Producer-Consumer/"
+           data-tag="eureka 服务提供和调用"
+           data-author="" >
+            <span class="post-title" title="eureka服务提供和调用">eureka服务提供和调用</span>
+            <span class="post-date" title="2019-11-13 15:11:06">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/gitConfig/"
+           data-tag="配置中心git"
+           data-author="" >
+            <span class="post-title" title="配置中心git">配置中心git</span>
+            <span class="post-date" title="2019-11-13 16:58:00">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/eureka1/"
+           data-tag="eureka原理介绍"
+           data-author="" >
+            <span class="post-title" title="eureka原理介绍">eureka原理介绍</span>
+            <span class="post-date" title="2019-11-13 16:08:48">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/gitconfig-server-client/"
+           data-tag="配置中心git服务化和高可用"
+           data-author="" >
+            <span class="post-title" title="配置中心git服务化和高可用">配置中心git服务化和高可用</span>
+            <span class="post-date" title="2019-11-13 17:11:42">2019/11/13</span>
+        </a>
+        
+        <a  class="消息队列 "
+           href="/2019/11/13/rabbitMQBase/"
+           data-tag="rabbitMQ"
+           data-author="" >
+            <span class="post-title" title="消息队列">消息队列</span>
+            <span class="post-date" title="2019-11-13 09:58:16">2019/11/13</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/11/11/redis1/"
+           data-tag="redis"
+           data-author="" >
+            <span class="post-title" title="Redis基本命令和java基本操作">Redis基本命令和java基本操作</span>
+            <span class="post-date" title="2019-11-11 10:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="spring "
+           href="/2019/11/14/spring-base1/"
+           data-tag="Spring基础知识"
+           data-author="" >
+            <span class="post-title" title="Spring基础知识">Spring基础知识</span>
+            <span class="post-date" title="2019-11-14 16:19:44">2019/11/14</span>
+        </a>
+        
+        <a  class="spring "
+           href="/2019/11/14/spring-config/"
+           data-tag="Spring常用配置"
+           data-author="" >
+            <span class="post-title" title="Spring常用配置">Spring常用配置</span>
+            <span class="post-date" title="2019-11-14 16:44:14">2019/11/14</span>
+        </a>
+        
+        <a  class="spring "
+           href="/2019/11/14/spring-high/"
+           data-tag="Spring高级话题"
+           data-author="" >
+            <span class="post-title" title="Spring高级话题">Spring高级话题</span>
+            <span class="post-date" title="2019-11-14 17:04:21">2019/11/14</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/zuul/"
+           data-tag="Spring cloud zuul (服务网关初级)"
+           data-author="" >
+            <span class="post-title" title="Spring cloud zuul (初级)">Spring cloud zuul (初级)</span>
+            <span class="post-date" title="2019-11-13 17:35:48">2019/11/13</span>
+        </a>
+        
+        <a  class="spring-mvc "
+           href="/2019/11/15/Hystrix/springmvcbase/"
+           data-tag="SpringMVC基础"
+           data-author="" >
+            <span class="post-title" title="SpringMVC基础">SpringMVC基础</span>
+            <span class="post-date" title="2019-11-15 14:38:17">2019/11/15</span>
+        </a>
+        
+        <a  class="spring-mvc "
+           href="/2019/11/15/Hystrix/springmvcconfig/"
+           data-tag="SpringMVC配置"
+           data-author="" >
+            <span class="post-title" title="SpringMVC配置">SpringMVC配置</span>
+            <span class="post-date" title="2019-11-15 14:38:17">2019/11/15</span>
+        </a>
+        
+        <a  class="java "
+           href="/2019/11/15/java-nio/"
+           data-tag="Java-NIO"
+           data-author="" >
+            <span class="post-title" title="Java-NIO">Java-NIO</span>
+            <span class="post-date" title="2019-11-15 15:43:16">2019/11/15</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/14/zuulhigh/"
+           data-tag="Spring cloud zuul (服务网关高级)"
+           data-author="" >
+            <span class="post-title" title="Spring cloud zuul (高级)">Spring cloud zuul (高级)</span>
+            <span class="post-date" title="2019-11-14 09:48:56">2019/11/14</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-java-io" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">Java-IO</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a href="javascript:" target="_blank" data-rel="java noopener">java</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" target="_blank" rel="noopener" class="color3">Java-IO</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2019-11-15 15:43:16'>2019-11-15 15:43</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-JAVA的I-O演进之路"><span class="toc-text">1.JAVA的I/O演进之路</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-I-O基础入门"><span class="toc-text">1.1 I/O基础入门</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-linux网络I-O模型简介。"><span class="toc-text">1.2 linux网络I/O模型简介。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-java的I-O演进"><span class="toc-text">1.3 java的I/O演进</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-java的I-O发展简史"><span class="toc-text">1.4 java的I/O发展简史</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-JAVA的I-O演进之路"><a href="#1-JAVA的I-O演进之路" class="headerlink" title="1.JAVA的I/O演进之路"></a>1.JAVA的I/O演进之路</h1><p>&emsp;&emsp;Java 之所以能够得到如此广泛的应用，除了拜托硬件平台的依赖，具有“一次编写、到处运行”的平台无关性特性外，另一个重要原因:其丰富二强大的类库以及众多第三方开源类库使得基于java语言的开发更加简单和便捷。</p>
+<p>&emsp;&emsp;java的一些类库在早期设计中功能并不完善或存在缺陷，其中最令人恼火的就是基于同步I/O 的socket通信类库，知道2002年2月13日JDK1.4 的发布，java才第一次支持非阻塞I/O，这个类库的提供为JDK的通信模型带来翻天覆地的变化。</p>
+<h2 id="1-1-I-O基础入门"><a href="#1-1-I-O基础入门" class="headerlink" title="1.1 I/O基础入门"></a>1.1 I/O基础入门</h2><p>&emsp;&emsp;Java1.4 之前的早期版本，java对I/O的支持并不完善，开发人员在开发高性能I/O程序的时候，会面临一些巨大的挑战和困难，主要问题如下：</p>
+<blockquote>
+<p>A： 没有数据缓冲区，I/O性能存在问题。</p>
+<p>B： 没有C 或 C++ 中的Channel概念，只有输入和输出流。</p>
+<p>C： 同步阻塞式I/O通信（BIO），通常会导致通信线程被长时间阻塞。</p>
+<p>D： 支持的字符集有限，硬件可移植性不好。</p>
+</blockquote>
+<p>&emsp;&emsp;在java支持异步I/O之前的很长一段时间，高性能服务端开发领域一直被C 和C++长期占据，java的同步阻塞I/O被大家锁诟病。</p>
+<h2 id="1-2-linux网络I-O模型简介。"><a href="#1-2-linux网络I-O模型简介。" class="headerlink" title="1.2 linux网络I/O模型简介。"></a>1.2 linux网络I/O模型简介。</h2><pre><code>根据UNIX网络编程对I/O模型的分类，UNIX提供了5种I/O模型。</code></pre><p><strong>A： 阻塞I/O模型：</strong></p>
+<p><img src="/2019/11/15/java-io/1.png" alt></p>
+<p>&emsp;&emsp;最常用的I/O模型就是阻塞I/O模型，缺省情形下，所有文件操作都是阻塞的，<br>我们以套接字接口为例：在进程空间中调用recvfrom（应用程序），其系统调用直到数据包到达且被复制到应用进程的缓冲区或者发生错误时才返回，在此期间一直会等待，进程在从调用recvfrom开始到它返回的整段时间内都是被阻塞的，因此被称为 阻塞I/O模型。</p>
+<p><strong>B： 非阻塞I/O模型：</strong></p>
+<p><img src="/2019/11/15/java-io/2.png" alt></p>
+<p>&emsp;&emsp;Recvfrom从应用层到内核的时候，如果缓冲区没有数据的话，就直接返回一个ewouldblock错误，一般都对非阻塞I/O模型进行轮询检查这个状态，看内核是不是有数据到来。</p>
+<p><strong>C：I/O复用模型：</strong></p>
+<p><img src="/2019/11/15/java-io/3.png" alt></p>
+<p>&emsp;&emsp;Linux提供select/poll,进程通过将一个或多个fd传递给select或poll系统调用，阻塞在select操作上，这样select/poll 可以帮我们侦测多个fd是否处于就绪状态。Select/poll是顺序扫描fd是否就绪，而且支持的fd数据有限，因此它的使用受到了一些制约，Linux还提供了一个epoll系统调用，epoll使用基于事件驱动方式代替顺序扫描，因此性能更高，当有fd就绪时，立即回调函数rollback.</p>
+<p><strong>D：信号驱动I/O模型</strong></p>
+<p><img src="/2019/11/15/java-io/4.png" alt></p>
+<p>&emsp;&emsp;首先开启套接口信号驱动I/O功能，并通过系统调用sigaction执行一个信号处理函数（此系统调用立即返回，进程继续工作，它是非阻塞的）。当数据准备就绪时，就为改进程生成一个sigio信息,通过信号回调通知应用程序调用recvfrom来读取数据，并通知主循环函数处理数据。</p>
+<p><strong>E：异步I/O</strong></p>
+<p><img src="/2019/11/15/java-io/5.png" alt></p>
+<p>&emsp;&emsp;告知内核启动某个操作，并让内核在整个操作完成后（包括将数据从内核复制到用户自己的缓冲区）通知我们。这种模型与信号驱动模型的主要区别是：信号驱动I/O由内核通知我们何时开始一个I/O操作。异步I/O模型有内核通知我们I/O操作何时已经完成。</p>
+<blockquote>
+<p>对于大多数程序员而言，不需要了解网络编程的底层细节，大家只需要知道这个概念，知道操作系统底层是支持异步I/O通信的，只不过在很长一段时间java并没有提供异步I/O通信的类库，导致很多原生的java程序员对这块很陌生。</p>
+</blockquote>
+<h2 id="1-3-java的I-O演进"><a href="#1-3-java的I-O演进" class="headerlink" title="1.3 java的I/O演进"></a>1.3 java的I/O演进</h2><p>&emsp;&emsp;在JDK1.4 推出java nio之前，基于java和所有socket通信都采用了同步阻塞式（BIO），这种一请求一应答的通信模型简化了上层的应用开发，但在性能和可靠性方面却存在着巨大的瓶颈。</p>
+<p>&emsp;&emsp;当并发访问量增大、响应时间延迟增大之后，采用javaBIO开发的服务端软件只有通过硬件的不断扩容来满足高并发和低时延，它极大地增加了企业的成本，并且随着集群模式的不断膨胀，系统的可维护性也面临着巨大的挑战，只能采购性能更高的硬件服务器来解决问题，这导致了恶性循环。</p>
+<pre><code>因此，JDK1.4版本提供了新的NIO类库，java也就支持了非阻塞I/O</code></pre><h2 id="1-4-java的I-O发展简史"><a href="#1-4-java的I-O发展简史" class="headerlink" title="1.4 java的I/O发展简史"></a>1.4 java的I/O发展简史</h2><p>&emsp;&emsp;JDK1.0 到JDK1.3，java的I/O类库都非常原始，很多Unix网络编程中的概念或者接口在I/O类库中都没有体现，例如Pipe、Channel、Buffer 和selector等。</p>
+<p>&emsp;&emsp;JDK1.4时，新增了java.nio包，提供了很多进行异步I/O开发的api和类库，主要的类和接口如下：</p>
+<p><strong>优点：</strong></p>
+<blockquote>
+<p>A： 进行异步I/O操作的缓冲区ByteBuffer</p>
+<p>B： 进行异步I/O操作的Pipe</p>
+<p>C: 各种I/O操作（异步或同步）的channel,包括ServerSocketChannel和SocketChannel.</p>
+<p>D:    多种字符集的编码能力和解码能力。</p>
+<p>E：    实现非阻塞I/O操作的多路复用器selector</p>
+<p>F:    基于流行的perl实现的正则表达式类库</p>
+<p>G：    文件通道FileChannel</p>
+</blockquote>
+<pre><code>新的Nio类库的提供，极大地促进了基于java的异步非阻塞编程的发展和应用。</code></pre><p><strong>缺点：</strong></p>
+<blockquote>
+<p>A： 没有统一的文件属性（例如读写权限）</p>
+<p>B： api能力比较弱，例如目录的级联创建和递归遍历，往往需要自己实现</p>
+<p>C： 底层存储系统的一些高级Api无法使用</p>
+<p>D： 所有文件操作都是同步阻塞调用，不支持异步文件读写操作。</p>
+</blockquote>
+<p>&emsp;&emsp;JDK1.7 正式发布（2011年7月28日）。它的比较大的亮点将原来的NIO类库进行升级，被称为NIO2.0.</p>
+<p><strong>改进点：</strong></p>
+<blockquote>
+<p>A：提供能够批量获取文件属性的api,这些API具有平台无关性，不与特性的文件系统相耦合，另外它还提供了标准的文件系统的SPI，供各个服务提供商扩展实现。</p>
+<p>B：提供AIO功能，支持基于文件的异步I/O操作和针对网络套接字的异步操作。</p>
+<p>C： 完成JSR-51定义的通道功能，包括对配置和多播数据报的支持等。</p>
+</blockquote>
+
+      
+       
+    </div>
+</article>
+
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>Java-IO</p>
+    <p><span class="copy-title">发布时间:</span>2019-11-15, 15:43:15</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-15, 15:43:16</p>
+</div>
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2019 chen wei</p>
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<!--
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+-->
+<a class="" id="rocket" href="javascript:void(0)" target="_blank" rel="noopener"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#熔断监控Hystrix-Dashboard','#Hystrix和Feign Hystrix','#Spring-Cloud-Sleuth','#Zipkin','#docker','#Spring-cloud和Spring-boot','#Java-IO','#分布式','#redis','#Springboot日志配置','#Springboot基础知识','#Springboot项目导可执行jar','#eureka 服务提供和调用','#配置中心git','#eureka原理介绍','#配置中心git服务化和高可用','#rabbitMQ','#Spring基础知识','#Spring常用配置','#Spring高级话题','#Spring cloud zuul (服务网关初级)','#SpringMVC基础','#SpringMVC配置','#Java-NIO','#Spring cloud zuul (服务网关高级)',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

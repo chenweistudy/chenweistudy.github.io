@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Java-NIO | Hexo</title>
+  <meta name="keywords" content=" Java-NIO ">
+  <meta name="description" content="Java-NIO | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="2.1 传统的BIO编程&amp;emsp;&amp;emsp;网络编程的基本模型是Client&#x2F;Server模型，也就是两个进程之间进行相互通信，其中服务端提供位置信息（绑定IP地址和监听端口），客户端通过连接操作向服务器监听的地址发起连接请求，通过三次握手建立连接，如果连接成功建立，双方就可以通过网络套接字（socket）. 在基于传统同步阻塞模型开发中，ServerSocket负责绑定IP地址，启动监听端口">
+<meta name="keywords" content="Java-NIO">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java-NIO">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;15&#x2F;java-nio&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="2.1 传统的BIO编程&amp;emsp;&amp;emsp;网络编程的基本模型是Client&#x2F;Server模型，也就是两个进程之间进行相互通信，其中服务端提供位置信息（绑定IP地址和监听端口），客户端通过连接操作向服务器监听的地址发起连接请求，通过三次握手建立连接，如果连接成功建立，双方就可以通过网络套接字（socket）. 在基于传统同步阻塞模型开发中，ServerSocket负责绑定IP地址，启动监听端口">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;15&#x2F;java-nio&#x2F;1.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;15&#x2F;java-nio&#x2F;2.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;15&#x2F;java-nio&#x2F;3.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;15&#x2F;java-nio&#x2F;4.png">
+<meta property="og:updated_time" content="2019-11-15T07:43:16.974Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;15&#x2F;java-nio&#x2F;1.png">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>cwstudy</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="github" href="https://github.com/chenweistudy" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(26)</small></div></li>
+    
+        
+            
+            <li><div data-rel="springcloud">springcloud<small>(10)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="项目部署">项目部署<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="java">java<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="架构">架构<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="redis">redis<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="springboot">springboot<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="消息队列">消息队列<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="spring">spring<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="spring-mvc">spring-mvc<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="26">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">熔断监控Hystrix-Dashboard</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Hystrix和Feign Hystrix</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Spring-Cloud-Sleuth</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Zipkin</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">docker</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Spring-cloud和Spring-boot</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">Java-IO</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">分布式</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">redis</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot日志配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot基础知识</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot项目导可执行jar</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">eureka 服务提供和调用</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">配置中心git</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">eureka原理介绍</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">配置中心git服务化和高可用</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">rabbitMQ</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring基础知识</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring常用配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring高级话题</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Spring cloud zuul (服务网关初级)</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">SpringMVC基础</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">SpringMVC配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">Java-NIO</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Spring cloud zuul (服务网关高级)</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="springcloud "
+           href="/2019/11/13/Hystrix-Dashboard/"
+           data-tag="熔断监控Hystrix-Dashboard"
+           data-author="" >
+            <span class="post-title" title="熔断监控Hystrix-Dashboard">熔断监控Hystrix-Dashboard</span>
+            <span class="post-date" title="2019-11-13 15:58:13">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/Hystrix/"
+           data-tag="Hystrix和Feign Hystrix"
+           data-author="" >
+            <span class="post-title" title="熔断器（Hystrix）">熔断器（Hystrix）</span>
+            <span class="post-date" title="2019-11-13 15:58:16">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/14/Sleuth-ZipKin/"
+           data-tag="Spring-Cloud-Sleuth,Zipkin"
+           data-author="" >
+            <span class="post-title" title="Spring-Cloud-Sleuth和Zipkin进行分布式链路跟踪">Spring-Cloud-Sleuth和Zipkin进行分布式链路跟踪</span>
+            <span class="post-date" title="2019-11-14 15:03:35">2019/11/14</span>
+        </a>
+        
+        <a  class="项目部署 "
+           href="/2019/11/13/docker/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="docker">docker</span>
+            <span class="post-date" title="2019-11-13 14:11:55">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/14/boot-cloud/"
+           data-tag="Spring-cloud和Spring-boot"
+           data-author="" >
+            <span class="post-title" title="Spring-cloud和Spring-boot区别">Spring-cloud和Spring-boot区别</span>
+            <span class="post-date" title="2019-11-14 14:52:22">2019/11/14</span>
+        </a>
+        
+        <a  class="java "
+           href="/2019/11/15/java-io/"
+           data-tag="Java-IO"
+           data-author="" >
+            <span class="post-title" title="Java-IO">Java-IO</span>
+            <span class="post-date" title="2019-11-15 15:43:15">2019/11/15</span>
+        </a>
+        
+        <a  class="架构 "
+           href="/2019/11/11/indexs/"
+           data-tag="分布式"
+           data-author="" >
+            <span class="post-title" title="用【快餐店】理解分布式架构">用【快餐店】理解分布式架构</span>
+            <span class="post-date" title="2019-11-11 13:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/11/11/redisCache/"
+           data-tag="redis"
+           data-author="" >
+            <span class="post-title" title="redis缓存">redis缓存</span>
+            <span class="post-date" title="2019-11-11 17:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/11/11/redisPersister/"
+           data-tag="redis"
+           data-author="" >
+            <span class="post-title" title="redis持久化">redis持久化</span>
+            <span class="post-date" title="2019-11-11 16:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="springboot "
+           href="/2019/11/14/springboot-config/"
+           data-tag="Springboot日志配置"
+           data-author="" >
+            <span class="post-title" title="Springboot日志配置">Springboot日志配置</span>
+            <span class="post-date" title="2019-11-14 15:19:38">2019/11/14</span>
+        </a>
+        
+        <a  class="springboot "
+           href="/2019/11/14/springboot/"
+           data-tag="Springboot基础知识"
+           data-author="" >
+            <span class="post-title" title="Springboot基础知识">Springboot基础知识</span>
+            <span class="post-date" title="2019-11-14 15:37:49">2019/11/14</span>
+        </a>
+        
+        <a  class="springboot "
+           href="/2019/11/14/springboot-jar/"
+           data-tag="Springboot项目导可执行jar"
+           data-author="" >
+            <span class="post-title" title="Springboot项目导可执行jar">Springboot项目导可执行jar</span>
+            <span class="post-date" title="2019-11-14 15:26:12">2019/11/14</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/eureka-Producer-Consumer/"
+           data-tag="eureka 服务提供和调用"
+           data-author="" >
+            <span class="post-title" title="eureka服务提供和调用">eureka服务提供和调用</span>
+            <span class="post-date" title="2019-11-13 15:11:06">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/gitConfig/"
+           data-tag="配置中心git"
+           data-author="" >
+            <span class="post-title" title="配置中心git">配置中心git</span>
+            <span class="post-date" title="2019-11-13 16:58:00">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/eureka1/"
+           data-tag="eureka原理介绍"
+           data-author="" >
+            <span class="post-title" title="eureka原理介绍">eureka原理介绍</span>
+            <span class="post-date" title="2019-11-13 16:08:48">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/gitconfig-server-client/"
+           data-tag="配置中心git服务化和高可用"
+           data-author="" >
+            <span class="post-title" title="配置中心git服务化和高可用">配置中心git服务化和高可用</span>
+            <span class="post-date" title="2019-11-13 17:11:42">2019/11/13</span>
+        </a>
+        
+        <a  class="消息队列 "
+           href="/2019/11/13/rabbitMQBase/"
+           data-tag="rabbitMQ"
+           data-author="" >
+            <span class="post-title" title="消息队列">消息队列</span>
+            <span class="post-date" title="2019-11-13 09:58:16">2019/11/13</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/11/11/redis1/"
+           data-tag="redis"
+           data-author="" >
+            <span class="post-title" title="Redis基本命令和java基本操作">Redis基本命令和java基本操作</span>
+            <span class="post-date" title="2019-11-11 10:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="spring "
+           href="/2019/11/14/spring-base1/"
+           data-tag="Spring基础知识"
+           data-author="" >
+            <span class="post-title" title="Spring基础知识">Spring基础知识</span>
+            <span class="post-date" title="2019-11-14 16:19:44">2019/11/14</span>
+        </a>
+        
+        <a  class="spring "
+           href="/2019/11/14/spring-config/"
+           data-tag="Spring常用配置"
+           data-author="" >
+            <span class="post-title" title="Spring常用配置">Spring常用配置</span>
+            <span class="post-date" title="2019-11-14 16:44:14">2019/11/14</span>
+        </a>
+        
+        <a  class="spring "
+           href="/2019/11/14/spring-high/"
+           data-tag="Spring高级话题"
+           data-author="" >
+            <span class="post-title" title="Spring高级话题">Spring高级话题</span>
+            <span class="post-date" title="2019-11-14 17:04:21">2019/11/14</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/zuul/"
+           data-tag="Spring cloud zuul (服务网关初级)"
+           data-author="" >
+            <span class="post-title" title="Spring cloud zuul (初级)">Spring cloud zuul (初级)</span>
+            <span class="post-date" title="2019-11-13 17:35:48">2019/11/13</span>
+        </a>
+        
+        <a  class="spring-mvc "
+           href="/2019/11/15/Hystrix/springmvcbase/"
+           data-tag="SpringMVC基础"
+           data-author="" >
+            <span class="post-title" title="SpringMVC基础">SpringMVC基础</span>
+            <span class="post-date" title="2019-11-15 14:38:17">2019/11/15</span>
+        </a>
+        
+        <a  class="spring-mvc "
+           href="/2019/11/15/Hystrix/springmvcconfig/"
+           data-tag="SpringMVC配置"
+           data-author="" >
+            <span class="post-title" title="SpringMVC配置">SpringMVC配置</span>
+            <span class="post-date" title="2019-11-15 14:38:17">2019/11/15</span>
+        </a>
+        
+        <a  class="java "
+           href="/2019/11/15/java-nio/"
+           data-tag="Java-NIO"
+           data-author="" >
+            <span class="post-title" title="Java-NIO">Java-NIO</span>
+            <span class="post-date" title="2019-11-15 15:43:16">2019/11/15</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/14/zuulhigh/"
+           data-tag="Spring cloud zuul (服务网关高级)"
+           data-author="" >
+            <span class="post-title" title="Spring cloud zuul (高级)">Spring cloud zuul (高级)</span>
+            <span class="post-date" title="2019-11-14 09:48:56">2019/11/14</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-java-nio" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">Java-NIO</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a href="javascript:" target="_blank" data-rel="java noopener">java</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" target="_blank" rel="noopener" class="color4">Java-NIO</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2019-11-15 15:43:16'>2019-11-15 15:43</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2-1-传统的BIO编程"><span class="toc-text">2.1 传统的BIO编程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-1-BIO通信模型图"><span class="toc-text">2.1.1 BIO通信模型图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-2-同步阻塞式I-O代码示例"><span class="toc-text">2.1.2 同步阻塞式I/O代码示例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-2-1-Server-服务端"><span class="toc-text">2.1.2.1 Server 服务端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-2-2-Client-客户端"><span class="toc-text">2.1.2.2 Client 客户端</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-3-同步阻塞式I-O整理"><span class="toc-text">2.1.3 同步阻塞式I/O整理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-2-伪异步I-O编程。"><span class="toc-text">2.2 伪异步I/O编程。</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-伪异步I-O模型图"><span class="toc-text">2.2.1 伪异步I/O模型图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-伪异步I-O"><span class="toc-text">2.2.2 伪异步I/O</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2-1-线程类"><span class="toc-text">2.2.2.1 线程类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2-2服务启动类"><span class="toc-text">2.2.2.2服务启动类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2-3-服务业务处理类"><span class="toc-text">2.2.2.3 服务业务处理类</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-3-伪异步I-O说明"><span class="toc-text">2.2.3 伪异步I/O说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-NIO编程（Non-block-I-O）"><span class="toc-text">2.3 NIO编程（Non-block I/O）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1-NIO类库简介"><span class="toc-text">2.3.1 NIO类库简介</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-1-1-缓冲区buffer"><span class="toc-text">2.3.1.1 缓冲区buffer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-1-2-通道channel"><span class="toc-text">2.3.1.2 通道channel</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-1-3-多路复用器Selector"><span class="toc-text">2.3.1.3 多路复用器Selector</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-2-NIO服务端序列图"><span class="toc-text">2.3.2 NIO服务端序列图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-3-NIO客户端序列图"><span class="toc-text">2.3.3 NIO客户端序列图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-4-代码演示"><span class="toc-text">2.3.4 代码演示</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-4-1-server端"><span class="toc-text">2.3.4.1 server端</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-4-2-client客户端"><span class="toc-text">2.3.4.2 client客户端</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-5-使用NIO编程的优点"><span class="toc-text">2.3.5 使用NIO编程的优点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-AIO和NIO的区别"><span class="toc-text">2.4 AIO和NIO的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-选择Netty的理由"><span class="toc-text">2.5 选择Netty的理由</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-1-不选择java原生的NIO编程原因"><span class="toc-text">2.5.1 不选择java原生的NIO编程原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-2-使用netty的原因"><span class="toc-text">2.5.2 使用netty的原因</span></a></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="2-1-传统的BIO编程"><a href="#2-1-传统的BIO编程" class="headerlink" title="2.1 传统的BIO编程"></a>2.1 传统的BIO编程</h1><p>&emsp;&emsp;网络编程的基本模型是Client/Server模型，也就是两个进程之间进行相互通信，其中服务端提供位置信息（绑定IP地址和监听端口），客户端通过连接操作向服务器监听的地址发起连接请求，通过三次握手建立连接，如果连接成功建立，双方就可以通过网络套接字（socket）. 在基于传统同步阻塞模型开发中，ServerSocket负责绑定IP地址，启动监听端口，Socket负责发起连接操作，连接成功后，双方通过输入和输出流进行同步阻塞式通信。</p>
+<h2 id="2-1-1-BIO通信模型图"><a href="#2-1-1-BIO通信模型图" class="headerlink" title="2.1.1 BIO通信模型图"></a>2.1.1 BIO通信模型图</h2><p><strong>典型的一请求一应答通信模型</strong></p>
+<p>&emsp;&emsp;采用BIO通信模型的服务端，通常由一个独立的Acceptor线程负责监听客户端的连接，它接收到客户端的连接请求之后为每个客户端创建一个新的线程进行链路处理，处理完成之后，通过输出流返回应答给客户端，线程销毁。</p>
+<p><img src="/2019/11/15/java-nio/1.png" alt></p>
+<p><strong>缺点：</strong></p>
+<p>&emsp;&emsp;缺乏弹性伸缩能力，当客户端并发访问量增加后，服务端的线程个数和客户端并发访问数呈 1：1的正比关系，由于线程是java虚拟机非常宝贵的系统资源，当线程数膨胀后，系统的性能将急剧下降，随着并发访问量的继续增大，系统会发生线程堆栈溢出、创建新的线程失败等问题，并最终导致进程怠机或者僵死，不能对外提供服务。</p>
+<h2 id="2-1-2-同步阻塞式I-O代码示例"><a href="#2-1-2-同步阻塞式I-O代码示例" class="headerlink" title="2.1.2 同步阻塞式I/O代码示例"></a>2.1.2 同步阻塞式I/O代码示例</h2><h3 id="2-1-2-1-Server-服务端"><a href="#2-1-2-1-Server-服务端" class="headerlink" title="2.1.2.1 Server 服务端"></a>2.1.2.1 Server 服务端</h3><pre><code>public static void main(String[] args) {
+        int port = 8889;
+        Socket accept = null;
+        try {
+            ServerSocket serverSocket = new ServerSocket(port);
+            while(true){
+                accept = serverSocket.accept();
+                new Thread(new ServerSokcetHandler(accept)).start();    
+            }
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }finally {
+            if (accept!=null) {
+                try {
+                    accept.close();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        }
+}
+public class ServerSokcetHandler implements Runnable{
+    private Socket socket;
+
+    public ServerSokcetHandler(Socket socket) {
+        // TODO Auto-generated constructor stub
+        this.socket = socket;
+    }
+
+    @Override
+    public void run() {
+        // TODO Auto-generated method stub
+        try {
+            OutputStream outputStream = socket.getOutputStream();
+            InputStream inputStream = socket.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, &quot;UTF-8&quot;));
+            PrintWriter writer = new PrintWriter(outputStream);
+            long time = System.currentTimeMillis();
+            String message = &quot;&quot;;
+            while((message = reader.readLine())!=null){
+                System.out.println(&quot;#####&quot;+message);
+                if(&quot;time&quot;.equals(message)){
+                    writer.write(&quot;now is : &quot;+new Date(time));
+                    writer.flush();
+                    System.out.println(&quot;时间是：&quot;+new Date(time));
+
+                }
+                writer.println(&quot;已经收到信息&quot;);
+                writer.flush();
+            }
+            reader.close();
+            writer.close();
+
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+}</code></pre><h3 id="2-1-2-2-Client-客户端"><a href="#2-1-2-2-Client-客户端" class="headerlink" title="2.1.2.2 Client 客户端"></a>2.1.2.2 Client 客户端</h3><pre><code>public static void main(String[] args) {
+        int port = 8889;
+        String host= &quot;127.0.0.1&quot;;
+        Socket socket = null;
+        try {
+            socket = new Socket(host,port);
+            InputStream inputStream = socket.getInputStream();
+            OutputStream outputStream = socket.getOutputStream();
+            PrintWriter writer = new PrintWriter(outputStream,true);
+            Scanner scanner = new Scanner(System.in);
+            String next = scanner.next();
+            writer.println(next);
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, &quot;UTF-8&quot;));
+            String message=reader.readLine();
+
+            System.out.println(&quot;收到消息&quot;+message);
+            reader.close();
+            outputStream.close();
+
+        } catch (UnknownHostException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }finally {
+            if(socket!=null){
+                try {
+                    socket.close();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        }
+}</code></pre><h2 id="2-1-3-同步阻塞式I-O整理"><a href="#2-1-3-同步阻塞式I-O整理" class="headerlink" title="2.1.3 同步阻塞式I/O整理"></a>2.1.3 同步阻塞式I/O整理</h2><p><strong>BIO的主要问题：</strong></p>
+<p>&emsp;&emsp;在于每当有一个新的客户端请求接入时，服务端必须创建一个新的线程处理新的接入客户端链路，一个线程只能处理一个客户端连接，在高性能服务器应用领域，往往需要面向成千上万个客户端的并发连接，这种模型显然无法满足高性能、高并发接入场景。</p>
+<h1 id="2-2-伪异步I-O编程。"><a href="#2-2-伪异步I-O编程。" class="headerlink" title="2.2 伪异步I/O编程。"></a>2.2 伪异步I/O编程。</h1><p>&emsp;&emsp;为了改进一线程一连接模型，后来演进出了一个通过线程池或者消息队列实现1个或者多个线程处理N个客户端的模型，由于它的底层通信机制依然是沿用同步阻塞I/O，所以被称为“伪异步”。<br>为了解决同步阻塞I/O面临的一个链路需要一个线程处理的问题，后来有人对它的线程 模型进行了优化，后端通过一个线程池来处理多个客户端的请求接入，形成客户端个数M：线程池最大线程数N的比例关系，其中M可以远远大于N，通过线程池可以灵活的调配线程资源，设置线程的最大值，防止由于海量并发接入导致线程耗尽。</p>
+<h3 id="2-2-1-伪异步I-O模型图"><a href="#2-2-1-伪异步I-O模型图" class="headerlink" title="2.2.1 伪异步I/O模型图"></a>2.2.1 伪异步I/O模型图</h3><p>&emsp;&emsp;当有新的客户端接入的时候，将客户端的socket封装成一个Task（改任务实现java.lang.RUnnnable接口）投递到后端的线程池中进行处理，JDK的线程池维护一个消息队列和N个活跃线程对消息队列中的任务进行处理，由于线程池可以设置消息队列的大小和最大线程数，因此，它的资源占用是可控的，无论多少个客户端并发访问，都不会导致资源的耗尽好怠机。</p>
+<p><img src="/2019/11/15/java-nio/2.png" alt></p>
+<h3 id="2-2-2-伪异步I-O"><a href="#2-2-2-伪异步I-O" class="headerlink" title="2.2.2 伪异步I/O"></a>2.2.2 伪异步I/O</h3><h4 id="2-2-2-1-线程类"><a href="#2-2-2-1-线程类" class="headerlink" title="2.2.2.1 线程类"></a>2.2.2.1 线程类</h4><pre><code>public class TimeServerHandlerExecutePool {
+    private ExecutorService execute;
+
+    public TimeServerHandlerExecutePool(int maxPoolSize,int queueSize){
+        execute = new ThreadPoolExecutor(Runtime.getRuntime().availableProcessors(), maxPoolSize, 120L, TimeUnit.SECONDS, new ArrayBlockingQueue&lt;Runnable&gt;(queueSize));
+    }
+
+    public void execute(Runnable task){
+        execute.execute(task);
+    }
+}</code></pre><h4 id="2-2-2-2服务启动类"><a href="#2-2-2-2服务启动类" class="headerlink" title="2.2.2.2服务启动类"></a>2.2.2.2服务启动类</h4><pre><code>public class ThreadServerDemo {
+    public static void main(String[] args) {
+        ServerSocket serverSocket = null;
+        try {
+            serverSocket = new ServerSocket(8889);
+            TimeServerHandlerExecutePool pool = new TimeServerHandlerExecutePool(50,1000);//创建I/O任务线程池
+            while(true){
+                Socket accept = serverSocket.accept();
+                pool.execute(new ThreadServerSokcetHandler(accept));
+            }
+
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }finally {
+            if(serverSocket!=null){
+                try {
+                    serverSocket.close();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        }
+
+    }
+}</code></pre><h4 id="2-2-2-3-服务业务处理类"><a href="#2-2-2-3-服务业务处理类" class="headerlink" title="2.2.2.3 服务业务处理类"></a>2.2.2.3 服务业务处理类</h4><pre><code>public class ThreadServerSokcetHandler implements Runnable{
+private Socket socket;
+
+    public ThreadServerSokcetHandler(Socket socket) {
+        // TODO Auto-generated constructor stub
+        this.socket = socket;
+    }
+
+    @Override
+    public void run() {
+        // TODO Auto-generated method stub
+        try {
+            OutputStream outputStream = socket.getOutputStream();
+            InputStream inputStream = socket.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, &quot;UTF-8&quot;));
+            PrintWriter writer = new PrintWriter(outputStream);
+            long time = System.currentTimeMillis();
+            String message = &quot;&quot;;
+            while((message = reader.readLine())!=null){
+                System.out.println(&quot;#####&quot;+message);
+                if(&quot;time&quot;.equals(message)){
+                    writer.write(&quot;now is : &quot;+new Date(time));
+                    writer.flush();
+                    System.out.println(&quot;时间是：&quot;+new Date(time));
+
+                }
+                writer.println(&quot;已经收到信息&quot;);
+                writer.flush();
+            }
+            reader.close();
+            writer.close();
+
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+}</code></pre><h3 id="2-2-3-伪异步I-O说明"><a href="#2-2-3-伪异步I-O说明" class="headerlink" title="2.2.3 伪异步I/O说明"></a>2.2.3 伪异步I/O说明</h3><p>&emsp;&emsp;伪异步I/O的主函数代码发生了变化，我们首先创建一个时间服务器处理类的线程池，当接收到新的客户端连接的时候，将请求Socket封装成一个Task，然后调用线程池的execute方法执行，从而避免了每个请求接入都创建一个新的线程。</p>
+<p>&emsp;&emsp;由于线程池和消息队列都是有界的，因此，无论客户端并发连接数多大，它都不会导致线程个数过于膨胀或者内存溢出，相比于传统的一连接一线程模型，是一种改良。<br>伪异步I/O通信框架采用了线程池实现，因此避免了为每个请求都创建一个独立线程造成的线程资源耗尽问题。但是由于它底层的通信依然采用同步阻塞模型，因此无法从根本上解决问题。</p>
+<p><strong>原因：</strong></p>
+<blockquote>
+<p>（1）.服务端处理缓慢，返回应答消息耗费60s,平时只需要10ms</p>
+<p>（2）采用伪异步I/O的线程正在读取故障服务节点的响应，由于读取输入流是阻塞的，因此，它将会被同步阻塞60s.</p>
+<p>（3）假如所有的可用线程都被故障服务器阻塞，那后续所有的I/O消息都将在队列中排队。</p>
+<p>（4）由于线程池采用阻塞队列实现，当队列积满之后，后续入队列的操作将被阻塞。</p>
+<p>（5）由于前端只有一个accptor线程接收客户端接入，它被阻塞在线程池的同步阻塞队列后，新的客户端请求消息将被拒绝，客户端会发生大量的连接超时。</p>
+<p>（6）由于几乎所有的连接都超时，调用这会认为系统已经崩溃，无法接收新的请求消息。</p>
+</blockquote>
+<h2 id="2-3-NIO编程（Non-block-I-O）"><a href="#2-3-NIO编程（Non-block-I-O）" class="headerlink" title="2.3 NIO编程（Non-block I/O）"></a>2.3 NIO编程（Non-block I/O）</h2><p>&emsp;&emsp;与socket类和ServerSocket类相对应，NIO也提供了SocketChannel 和ServerSocketChannel两种不同的套接字通道实现。这两种新增的通道都支持阻塞和非阻塞两种模式。阻塞模式使用非常简单，但是性能和可靠性都不好，非阻塞模式则正好相反。</p>
+<pre><code>同步阻塞I/O： 低负载、低并发的应用程序。（可降低编程复杂度）
+
+NIO非阻塞：  高负载、高并发的网络应用。</code></pre><h3 id="2-3-1-NIO类库简介"><a href="#2-3-1-NIO类库简介" class="headerlink" title="2.3.1 NIO类库简介"></a>2.3.1 NIO类库简介</h3><p>&emsp;&emsp;新的输入/输出 (NIO) 库是在 JDK 1.4 中引入的。NIO 弥补了原来同步阻塞I/O 的不足，它在标准 Java 代码中提供了高速的、面向块的 I/O。通过定义包含数据的类，以及通过以块的形式处理这些数据，NIO 不用使用本机代码就可以利用底层优化，这是原来的 I/O 包所无法做到的</p>
+<h4 id="2-3-1-1-缓冲区buffer"><a href="#2-3-1-1-缓冲区buffer" class="headerlink" title="2.3.1.1 缓冲区buffer"></a>2.3.1.1 缓冲区buffer</h4><p>&emsp;&emsp;Buffer 是一个对象， 它包含一些要写入或者要读出的数据。 在 NIO类库 中加入 Buffer 对象，体现了新库与原 I/O 的一个重要区别。在面向流的 I/O 中，我们将数据直接写入或者将数据直接读到 Stream 对象中。</p>
+<blockquote>
+<p>在 NIO 库中，所有数据都是用缓冲区进行处理的。在读取数据时，它是直接读到缓冲区中；在写入数据时，它也是写入到缓冲区中。任何时候访问 NIO 中的数据，我们都是通过缓冲区进行读写操作。<br>缓冲区实质上是一个数组。通常它是一个字节数组（ByteBuffer），也可以使用其它种类的数组。但是一个缓冲区不仅仅是一个数组，缓冲区提供了对数据的结构化访问，及维护读写位置（limit）等信息。</p>
+</blockquote>
+<blockquote>
+<p>最常用的缓冲区是ByteBuffer，一个ByteBuffer提供了一组功能用于操作byte数组。除了ByteBuffer，还有其它的一些缓冲区，事实上，每一种Java基本类型(除了Boolean类型)都对应有一种缓冲区，如下所示：</p>
+</blockquote>
+<pre><code>ByteBuffer：字节缓冲区
+
+CharBuffer：字符缓冲区
+
+ShortBuffer：短整型缓冲区
+
+IntBuffer：整形缓冲区
+
+LongBuffer：长整形缓冲区
+
+FloatBuffer：浮点型缓冲区
+
+DoubleBuffer：双精度浮点型缓冲区</code></pre><p>&emsp;&emsp;每一个Buffer类都是Buffer接口的一个子实例。除了 ByteBuffer，每一个 Buffer 类都有完全一样的操作，只是它们所处理的数据类型不一样。因为大多数标准I/O操作都使用ByteBuffer，所以它除了具有一般缓冲区的操作之外还提供一些特有的操作，方便网络读写。</p>
+<h4 id="2-3-1-2-通道channel"><a href="#2-3-1-2-通道channel" class="headerlink" title="2.3.1.2 通道channel"></a>2.3.1.2 通道channel</h4><p>&emsp;&emsp;Channel是一个通道，可以通过它读取和写入数据，它就像自来水管一样，网络数据通过Channel读取和写入。通道与流的不同之处在于通道是双向的。而流只是在一个方向上移动(一个流必须是 InputStream 或者 OutputStream 的子类)，而通道可以用于读、写或者同时用于读写。</p>
+<p>&emsp;&emsp;因为Channel是全双工的，所以它可以比流更好地映射底层操作系统的API。特别是在UNIX网络编程模型中，底层操作系统的通道都是全双工的，同时支持读写操作。</p>
+<p>&emsp;&emsp;自顶向下，前三层主要是Channel接口，用于定义它的功能，后面是一些具体的功能类（抽象类），从类图可以看出，实际上Channel可以分为两大类，分别是用于网络读写的<br>SelectableChannel和用于文件操作的FileChannel。<br>ServerSocketChannel和SocketChannel都是SelectableChannel的子类</p>
+<h4 id="2-3-1-3-多路复用器Selector"><a href="#2-3-1-3-多路复用器Selector" class="headerlink" title="2.3.1.3 多路复用器Selector"></a>2.3.1.3 多路复用器Selector</h4><p>&emsp;&emsp;它是JAVA NIO编程的基础，熟练的掌握Selector对于掌握NIO编程至关重要。多路复用器提供选择已经就绪的任务的能力。简单来讲，Selector会不断的轮询注册在其上的Channel，如果某个Channel上面有新的TCP连接接入、读和写事件，这个Channel就处于就绪状态，会被Selector轮询出来，然后通过SelectionKey可以获取就绪Channel的集合进行后续的IO操作。</p>
+<p>&emsp;&emsp;一个多路复用器Selector可以同时轮询多个Channel，由于JDK使用了epoll()代替传统的select实现，所以它并没有最大连接句柄1024/2048的限制。这也就意味着只需要一个线程负责Selector的轮询，就可以接入成千上万的客户端，这的确是一个巨大的改进。</p>
+<h3 id="2-3-2-NIO服务端序列图"><a href="#2-3-2-NIO服务端序列图" class="headerlink" title="2.3.2 NIO服务端序列图"></a>2.3.2 NIO服务端序列图</h3><p><img src="/2019/11/15/java-nio/3.png" alt></p>
+<h3 id="2-3-3-NIO客户端序列图"><a href="#2-3-3-NIO客户端序列图" class="headerlink" title="2.3.3 NIO客户端序列图"></a>2.3.3 NIO客户端序列图</h3><p><img src="/2019/11/15/java-nio/4.png" alt></p>
+<h3 id="2-3-4-代码演示"><a href="#2-3-4-代码演示" class="headerlink" title="2.3.4 代码演示"></a>2.3.4 代码演示</h3><h4 id="2-3-4-1-server端"><a href="#2-3-4-1-server端" class="headerlink" title="2.3.4.1 server端"></a>2.3.4.1 server端</h4><pre><code>public class TimeServer {
+    public static void main(String[] args) {
+        MultiTimeServerHandler handler = new MultiTimeServerHandler(8800);
+        new Thread(handler,&quot;nio-100&quot;).start();
+    }
+}
+public class MultiTimeServerHandler implements Runnable{
+
+    private Selector selector;//多路复用器
+
+    private ServerSocketChannel serverChannel;//客户端连接父管道
+
+    private volatile boolean stop;
+
+    public  MultiTimeServerHandler(int port) {
+        // TODO Auto-generated constructor stub
+        try {
+            selector = Selector.open();
+            serverChannel = ServerSocketChannel.open();
+            serverChannel.configureBlocking(false);
+            serverChannel.socket().bind(new InetSocketAddress(port), 1024);
+            serverChannel.register(selector, SelectionKey.OP_ACCEPT);
+            System.out.println(&quot;服务器启动监听端口：&quot;+port);
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            System.exit(1);
+        }
+
+    }
+    public void stop(){
+        this.stop = true;
+    }
+
+
+    @Override
+    public void run() {
+        // TODO Auto-generated method stub
+        while (!stop) {
+            try {
+                selector.select(1000);//1秒选择一次
+                Set&lt;SelectionKey&gt; selectedKeys = selector.selectedKeys();
+                Iterator&lt;SelectionKey&gt; iterator = selectedKeys.iterator();
+                SelectionKey key = null;
+                while(iterator.hasNext()){
+                    key = iterator.next();
+                    iterator.remove();
+                    try {
+                        handlerInput(key);
+                    } catch (Exception e) {
+                        // TODO: handle exception
+                        key.cancel();
+                        if(key.channel()!=null){
+                            key.channel().close();
+                        }
+                    }
+                }
+            } catch (Throwable e) {
+                // TODO: handle exception
+                e.printStackTrace();
+            }
+
+        }
+
+        //多路复用器关闭后，所有注册在上面的Channel和pipe等资源都会被自动去注册并关闭，所以不需要重复释放资源
+        if(selector!=null){
+            try {
+                selector.close();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    private void handlerInput(SelectionKey key) throws IOException{
+        //处理新接入的请求信息
+        if(key.isValid()){
+            SelectableChannel channel = key.channel();
+            ServerSocketChannel ssc = (ServerSocketChannel) channel;
+            SocketChannel accept = ssc.accept();
+            ssc.configureBlocking(false);
+            ssc.register(selector, SelectionKey.OP_READ);
+        }
+
+        if(key.isReadable()){
+            SocketChannel sc = (SocketChannel)key.channel();
+            ByteBuffer readBuffer = ByteBuffer.allocate(1024);
+            int readBytes = sc.read(readBuffer);
+            if(readBytes&gt;0){
+                readBuffer.flip();
+                byte[] bytes = new byte[readBuffer.remaining()];
+                readBuffer.get(bytes);
+                String body = new String(bytes,&quot;UTF-8&quot;);
+                System.out.println(&quot;the server receive order: &quot;+body);
+
+
+                doWrite(sc,&quot;cccccc&quot;);
+
+            }else if(readBytes&lt;0){
+                //对链路关闭
+                key.cancel();
+                sc.close();
+            }else{
+                ;
+            }
+
+        }
+
+
+    }
+
+    private void doWrite(SocketChannel sc,String response) throws IOException{
+        if(response!=null &amp;&amp; response.trim().length()&gt;0){
+            byte[] bytes = response.getBytes();
+            ByteBuffer writeBuffer = ByteBuffer.allocate(bytes.length);
+            writeBuffer.put(bytes);
+            writeBuffer.flip();
+            sc.write(writeBuffer);
+        }
+    }
+
+}</code></pre><h4 id="2-3-4-2-client客户端"><a href="#2-3-4-2-client客户端" class="headerlink" title="2.3.4.2 client客户端"></a>2.3.4.2 client客户端</h4><pre><code>public class TimeClient {
+    public static void main(String[] args) {
+        try {
+            new Thread(new MutilTimeClientHandler(&quot;127.0.0.1&quot;, 8800),&quot;client-001&quot;).start();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+}
+public class MutilTimeClientHandler implements Runnable {
+    private String host;
+    private int port;
+    private Selector selector;
+    private SocketChannel socketChannel;
+    private volatile boolean stop;
+
+    public MutilTimeClientHandler(String host,int port) throws IOException{
+        this.host = host == null ?&quot;127.0.0.1&quot;:host;
+        this.port = port;
+        try {
+            selector = Selector.open();
+            socketChannel = SocketChannel.open();
+            socketChannel.configureBlocking(false);
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            System.exit(1);
+        }
+
+    }
+
+    @Override
+    public void run() {
+        // TODO Auto-generated method stub
+        try {
+            doConnect();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            System.exit(1);
+        }
+
+        while(!stop){
+            try {
+                selector.select(1000);//1秒唤醒
+                Set&lt;SelectionKey&gt; selectedKeys = selector.selectedKeys();
+                Iterator&lt;SelectionKey&gt; iterator = selectedKeys.iterator();
+                SelectionKey key = null;
+                while(iterator.hasNext()){
+                    key = iterator.next();
+                    iterator.remove();
+                    try {
+                        handlerInput(key);
+                    } catch (Exception e) {
+                        // TODO: handle exception
+                        if(key!=null){
+                            key.cancel();
+                            if(key.channel()!=null){
+                                key.channel().close();
+                            }
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                // TODO: handle exception
+                e.printStackTrace();
+                System.exit(1);
+            }
+
+
+        }
+        if (selector!=null) {
+            try {
+                selector.close();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    private void handlerInput(SelectionKey selectionKey) throws IOException{
+        if(selectionKey.isValid()){
+            SocketChannel sc =(SocketChannel)selectionKey.channel();
+            if(selectionKey.isConnectable()){
+
+                System.out.println(&quot;finshed: &quot;+ sc.finishConnect());
+
+                if(sc.finishConnect()){
+                    sc.register(selector, SelectionKey.OP_READ);
+                    doWrite(sc);
+                }else{
+                    System.exit(1);
+                }
+            }
+
+            if(selectionKey.isReadable()){
+                ByteBuffer readBuffer = ByteBuffer.allocate(1024);
+                int readBytes = sc.read(readBuffer);
+                if(readBytes&gt;0){
+                    readBuffer.flip();
+                    byte[] bytes = new byte[readBuffer.remaining()];
+                    readBuffer.get(bytes);
+                    String data = new String(bytes, &quot;UTF-8&quot;);
+                    System.out.println(data);
+
+                    this.stop = true;
+
+                }else if(readBytes&lt;0){
+                    //链路关闭
+                    selectionKey.cancel();
+                    socketChannel.close();
+                }else{
+                    ;
+                }
+            }
+        }
+    }
+    private void doConnect() throws IOException{
+        //直接连接成功，则注册到多路复用器上，发送请求消息，读应答
+        if(socketChannel.connect(new InetSocketAddress(host, port))){
+            socketChannel.register(selector, SelectionKey.OP_READ);
+            doWrite(socketChannel);
+        }else{
+            socketChannel.register(selector, SelectionKey.OP_CONNECT);
+        }
+    }
+
+    private void doWrite(SocketChannel sc) throws IOException{
+        byte[] bytes = &quot;query time order&quot;.getBytes();
+        ByteBuffer writeBuffer = ByteBuffer.allocate(bytes.length);
+        writeBuffer.put(bytes);
+        writeBuffer.flip();
+        sc.write(writeBuffer);
+        if(!writeBuffer.hasRemaining()){
+            System.out.println(&quot;send order 2 server Successed&quot;);
+        }
+    }
+}</code></pre><h3 id="2-3-5-使用NIO编程的优点"><a href="#2-3-5-使用NIO编程的优点" class="headerlink" title="2.3.5 使用NIO编程的优点"></a>2.3.5 使用NIO编程的优点</h3><blockquote>
+<p>1.客户端发起的连接操作是异步的，可以通过多路复用器注册OP_CONNECT等待后续结果，不需要像之前的客户端那样被同步阻塞。</p>
+<p>2.SocketChannel的读写操作都是异步的，如果没有可读写的数据它不会同步等待，直接返回，这样I/O通信线程就可以处理其他的链路，不需要同步等待这个链路可用。</p>
+<p>3.线程模型的优化：由于JDK的Selector在Linux等主流操作系统上通过epoll实现，它没有连接句柄数的限制（只受限于操作系统的最大句柄数或者对单个进程的句柄限制），这意味着一个Selector线程可以同时处理成千上万个客户端连接，而且性能不会随着客户端的增加而线性下降，因此，它非常适合做高性能、高负载的网络服务器。</p>
+</blockquote>
+<h2 id="2-4-AIO和NIO的区别"><a href="#2-4-AIO和NIO的区别" class="headerlink" title="2.4 AIO和NIO的区别"></a>2.4 AIO和NIO的区别</h2><p>&emsp;&emsp;NIO是同步的，它需要tomcat去轮询。连接多且短的时候，轮询效率较高，但如果大多数连接耗时都比较长，则会增加轮询开销，空耗很多cpu周期。</p>
+<p>&emsp;&emsp;AIO是异步的，无需轮询，但需要操作系统参与，因此如果连接多而短，就会在内核和用户态之间频繁切换，性能反而不如轮询。</p>
+<h2 id="2-5-选择Netty的理由"><a href="#2-5-选择Netty的理由" class="headerlink" title="2.5 选择Netty的理由"></a>2.5 选择Netty的理由</h2><p>&emsp;&emsp;开发出高质量的NIO程序并不是一件简单的事情，除去NIO固有的复杂性和BUG不谈，作为一个NIO服务端需要能够处理网络的闪断、客户端的重复接入、客户端的安全认证、消息的编解码、半包读写等等，如果你没有足够的NIO编程经验积累，一个NIO框架的稳定往往需要半年甚至更长的时间。更为糟糕的是一旦在生产环境中发生问题，往往会导致跨节点的服务调用中断，严重的可能会导致整个集群环境都不可用，需要重启服务器，这种非正常停机会带来巨大的损失。</p>
+<p>&emsp;&emsp;从可维护性角度看，由于NIO采用了异步非阻塞编程模型，而且是一个IO线程处理多条链路，它的调试和跟踪非常麻烦，特别是生产环境中的问题，我们无法有效调试和跟踪，往往只能靠一些日志来辅助分析，定位难度很大。</p>
+<h3 id="2-5-1-不选择java原生的NIO编程原因"><a href="#2-5-1-不选择java原生的NIO编程原因" class="headerlink" title="2.5.1 不选择java原生的NIO编程原因"></a>2.5.1 不选择java原生的NIO编程原因</h3><blockquote>
+<p>(1)NIO的类库和API繁杂，使用麻烦，你需要熟练掌握Selector、ServerSocketChannel、SocketChannel、ByteBuffer等；</p>
+<p>(2)需要具备其它的额外技能做铺垫，例如熟悉Java多线程编程，因为NIO编程涉及到Reactor模式，你必须对多线程和网路编程非常熟悉，才能编写出高质量的NIO程序；</p>
+<p>(3)可靠性能力补齐，工作量和难度都非常大。例如客户端面临断连重连、网络闪断、半包读写、失败缓存、网络拥塞和异常码流的处理等等，NIO编程的特点是功能开发相对容易，但是可靠性能力补齐工作量和难度都非常大；</p>
+<p>(4)JDK NIO的BUG，例如臭名昭著的epoll bug，它会导致Selector空轮询，最终导致CPU 100%。官方声称在JDK1.6版本的update18修复了该问题，但是直到JDK1.7版本该问题仍旧存在，只不过该bug发生概率降低了一些而已，它并没有被根本解决。</p>
+</blockquote>
+<p>&emsp;&emsp;Epoll: 在Linux平台上一种高效的I/O方法—epoll,针对网络游戏中大量并发客户请求问题,提出采用epoll机制建立高效网络游戏服务器思想,较好地解决了网络游戏服务器中的大量用户并发接入问题。</p>
+<h3 id="2-5-2-使用netty的原因"><a href="#2-5-2-使用netty的原因" class="headerlink" title="2.5.2 使用netty的原因"></a>2.5.2 使用netty的原因</h3><p>&emsp;&emsp;Netty是业界最流行的NIO框架之一，它的健壮性、功能、性能、可定制性和可扩展性在同类框架中都是首屈一指的，它已经得到成百上千的商用项目验证，例如Hadoop的RPC框架avro使用Netty作为底层通信框架。很多其它业界主流的RPC框架，也使用Netty来构建高性能的异步通信能力。</p>
+<p>&emsp;&emsp;通过对Netty的分析，我们将它的优点总结如下：</p>
+<blockquote>
+<p>(1).API使用简单，开发门槛低；</p>
+<p>(2).功能强大，预置了多种编解码功能，支持多种主流协议；</p>
+<p>(3).定制能力强，可以通过ChannelHandler对通信框架进行灵活的扩展；</p>
+<p>(4).性能高，通过与其它业界主流的NIO框架对比，Netty的综合性能最优；</p>
+<p>(5).成熟、稳定，Netty修复了已经发现的所有JDK NIO BUG，业务开发人员不需要再为NIO的BUG而烦恼；</p>
+<p>(6).社区活跃，版本迭代周期短，发现的BUG可以被及时修复，同时，更多的新功能会被加入；</p>
+<p>(7).经历了大规模的商业应用考验，质量已经得到验证。在互联网、大数据、网络游戏、企业应用、电信软件等众多行业得到成功商用，证明了它可以完全满足不同行业的商业应用。</p>
+</blockquote>
+<p><a href="https://www.cnblogs.com/imstudy/p/9908791.html" target="_blank" rel="noopener">学习netty的理由</a></p>
+
+      
+       
+    </div>
+</article>
+
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>Java-NIO</p>
+    <p><span class="copy-title">发布时间:</span>2019-11-15, 15:43:16</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-15, 15:43:16</p>
+</div>
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2019 chen wei</p>
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<!--
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+-->
+<a class="" id="rocket" href="javascript:void(0)" target="_blank" rel="noopener"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#熔断监控Hystrix-Dashboard','#Hystrix和Feign Hystrix','#Spring-Cloud-Sleuth','#Zipkin','#docker','#Spring-cloud和Spring-boot','#Java-IO','#分布式','#redis','#Springboot日志配置','#Springboot基础知识','#Springboot项目导可执行jar','#eureka 服务提供和调用','#配置中心git','#eureka原理介绍','#配置中心git服务化和高可用','#rabbitMQ','#Spring基础知识','#Spring常用配置','#Spring高级话题','#Spring cloud zuul (服务网关初级)','#SpringMVC基础','#SpringMVC配置','#Java-NIO','#Spring cloud zuul (服务网关高级)',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

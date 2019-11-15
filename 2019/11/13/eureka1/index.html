@@ -6,18 +6,21 @@
   <meta name="keywords" content=" eureka原理介绍 ">
   <meta name="description" content="eureka原理介绍 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="springMVC基本配置&amp;emsp;&amp;emsp;Spring mvc 的定制配置需要我们的配置类继承一个WebMvcConfigurerAdapter类，并在此类使用@EnableWebMvc注解，来开启对spring mvc 的配置支持，这样我们就可以重写这类的方法，完成我们的配置。 1.静态资源映射@Controller public class HelloController {">
-<meta name="keywords" content="SpringMVC配置">
+<meta name="description" content="2.1 传统的BIO编程&amp;emsp;&amp;emsp;网络编程的基本模型是Client&#x2F;Server模型，也就是两个进程之间进行相互通信，其中服务端提供位置信息（绑定IP地址和监听端口），客户端通过连接操作向服务器监听的地址发起连接请求，通过三次握手建立连接，如果连接成功建立，双方就可以通过网络套接字（socket）. 在基于传统同步阻塞模型开发中，ServerSocket负责绑定IP地址，启动监听端口">
+<meta name="keywords" content="Java-NIO">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SpringMVC配置">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;15&#x2F;Hystrix&#x2F;springmvcconfig&#x2F;index.html">
+<meta property="og:title" content="Java-NIO">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;15&#x2F;java-nio&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="springMVC基本配置&amp;emsp;&amp;emsp;Spring mvc 的定制配置需要我们的配置类继承一个WebMvcConfigurerAdapter类，并在此类使用@EnableWebMvc注解，来开启对spring mvc 的配置支持，这样我们就可以重写这类的方法，完成我们的配置。 1.静态资源映射@Controller public class HelloController {">
+<meta property="og:description" content="2.1 传统的BIO编程&amp;emsp;&amp;emsp;网络编程的基本模型是Client&#x2F;Server模型，也就是两个进程之间进行相互通信，其中服务端提供位置信息（绑定IP地址和监听端口），客户端通过连接操作向服务器监听的地址发起连接请求，通过三次握手建立连接，如果连接成功建立，双方就可以通过网络套接字（socket）. 在基于传统同步阻塞模型开发中，ServerSocket负责绑定IP地址，启动监听端口">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;15&#x2F;Hystrix&#x2F;springmvcconfig&#x2F;1.png">
-<meta property="og:updated_time" content="2019-11-15T06:38:18.418Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;15&#x2F;java-nio&#x2F;1.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;15&#x2F;java-nio&#x2F;2.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;15&#x2F;java-nio&#x2F;3.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;15&#x2F;java-nio&#x2F;4.png">
+<meta property="og:updated_time" content="2019-11-15T07:43:16.974Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;15&#x2F;Hystrix&#x2F;springmvcconfig&#x2F;1.png">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;15&#x2F;java-nio&#x2F;1.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -80,7 +83,7 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(24)</small></div></li>
+    <li><div class="all active">全部文章<small>(26)</small></div></li>
     
         
             
@@ -93,6 +96,14 @@
         
             
             <li><div data-rel="项目部署">项目部署<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="java">java<small>(2)</small></div>
                 
             </li>
             
@@ -156,7 +167,7 @@
     </div>
     <div></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="24">
+<input type="hidden" id="yelog_site_posts_number" value="26">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -205,11 +216,15 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">docker</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" target="_blank" rel="noopener" class="color5">Spring-cloud和Spring-boot</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color2">docker</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">Java-IO</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -221,11 +236,15 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot项目导可执行jar</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot日志配置</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot日志配置</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot基础知识</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot项目导可执行jar</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -233,11 +252,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color1">eureka原理介绍</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">配置中心git</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color3">配置中心git</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">eureka原理介绍</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -253,6 +272,14 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring常用配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring高级话题</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" target="_blank" rel="noopener" class="color2">Spring cloud zuul (服务网关初级)</a>
     </li>
     
@@ -265,19 +292,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot基础知识</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring常用配置</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">Java-NIO</a>
     </li>
     
     <li class="article-tag-list-item">
         <a href="javascript:" target="_blank" rel="noopener" class="color2">Spring cloud zuul (服务网关高级)</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring高级话题</a>
     </li>
     
     <div class="clearfix"></div>
@@ -310,6 +329,14 @@
             <span class="post-date" title="2019-11-14 15:03:35">2019/11/14</span>
         </a>
         
+        <a  class="项目部署 "
+           href="/2019/11/13/docker/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="docker">docker</span>
+            <span class="post-date" title="2019-11-13 14:11:55">2019/11/13</span>
+        </a>
+        
         <a  class="springcloud "
            href="/2019/11/14/boot-cloud/"
            data-tag="Spring-cloud和Spring-boot"
@@ -318,12 +345,12 @@
             <span class="post-date" title="2019-11-14 14:52:22">2019/11/14</span>
         </a>
         
-        <a  class="项目部署 "
-           href="/2019/11/13/docker/"
-           data-tag="docker"
+        <a  class="java "
+           href="/2019/11/15/java-io/"
+           data-tag="Java-IO"
            data-author="" >
-            <span class="post-title" title="docker">docker</span>
-            <span class="post-date" title="2019-11-13 14:11:55">2019/11/13</span>
+            <span class="post-title" title="Java-IO">Java-IO</span>
+            <span class="post-date" title="2019-11-15 15:43:15">2019/11/15</span>
         </a>
         
         <a  class="架构 "
@@ -351,19 +378,27 @@
         </a>
         
         <a  class="springboot "
-           href="/2019/11/14/springboot-jar/"
-           data-tag="Springboot项目导可执行jar"
-           data-author="" >
-            <span class="post-title" title="Springboot项目导可执行jar">Springboot项目导可执行jar</span>
-            <span class="post-date" title="2019-11-14 15:26:12">2019/11/14</span>
-        </a>
-        
-        <a  class="springboot "
            href="/2019/11/14/springboot-config/"
            data-tag="Springboot日志配置"
            data-author="" >
             <span class="post-title" title="Springboot日志配置">Springboot日志配置</span>
             <span class="post-date" title="2019-11-14 15:19:38">2019/11/14</span>
+        </a>
+        
+        <a  class="springboot "
+           href="/2019/11/14/springboot/"
+           data-tag="Springboot基础知识"
+           data-author="" >
+            <span class="post-title" title="Springboot基础知识">Springboot基础知识</span>
+            <span class="post-date" title="2019-11-14 15:37:49">2019/11/14</span>
+        </a>
+        
+        <a  class="springboot "
+           href="/2019/11/14/springboot-jar/"
+           data-tag="Springboot项目导可执行jar"
+           data-author="" >
+            <span class="post-title" title="Springboot项目导可执行jar">Springboot项目导可执行jar</span>
+            <span class="post-date" title="2019-11-14 15:26:12">2019/11/14</span>
         </a>
         
         <a  class="springcloud "
@@ -375,19 +410,19 @@
         </a>
         
         <a  class="springcloud "
-           href="/2019/11/13/eureka1/"
-           data-tag="eureka原理介绍"
-           data-author="" >
-            <span class="post-title" title="eureka原理介绍">eureka原理介绍</span>
-            <span class="post-date" title="2019-11-13 16:08:48">2019/11/13</span>
-        </a>
-        
-        <a  class="springcloud "
            href="/2019/11/13/gitConfig/"
            data-tag="配置中心git"
            data-author="" >
             <span class="post-title" title="配置中心git">配置中心git</span>
             <span class="post-date" title="2019-11-13 16:58:00">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/eureka1/"
+           data-tag="eureka原理介绍"
+           data-author="" >
+            <span class="post-title" title="eureka原理介绍">eureka原理介绍</span>
+            <span class="post-date" title="2019-11-13 16:08:48">2019/11/13</span>
         </a>
         
         <a  class="springcloud "
@@ -422,6 +457,22 @@
             <span class="post-date" title="2019-11-14 16:19:44">2019/11/14</span>
         </a>
         
+        <a  class="spring "
+           href="/2019/11/14/spring-config/"
+           data-tag="Spring常用配置"
+           data-author="" >
+            <span class="post-title" title="Spring常用配置">Spring常用配置</span>
+            <span class="post-date" title="2019-11-14 16:44:14">2019/11/14</span>
+        </a>
+        
+        <a  class="spring "
+           href="/2019/11/14/spring-high/"
+           data-tag="Spring高级话题"
+           data-author="" >
+            <span class="post-title" title="Spring高级话题">Spring高级话题</span>
+            <span class="post-date" title="2019-11-14 17:04:21">2019/11/14</span>
+        </a>
+        
         <a  class="springcloud "
            href="/2019/11/13/zuul/"
            data-tag="Spring cloud zuul (服务网关初级)"
@@ -446,20 +497,12 @@
             <span class="post-date" title="2019-11-15 14:38:17">2019/11/15</span>
         </a>
         
-        <a  class="springboot "
-           href="/2019/11/14/springboot/"
-           data-tag="Springboot基础知识"
+        <a  class="java "
+           href="/2019/11/15/java-nio/"
+           data-tag="Java-NIO"
            data-author="" >
-            <span class="post-title" title="Springboot基础知识">Springboot基础知识</span>
-            <span class="post-date" title="2019-11-14 15:37:49">2019/11/14</span>
-        </a>
-        
-        <a  class="spring "
-           href="/2019/11/14/spring-config/"
-           data-tag="Spring常用配置"
-           data-author="" >
-            <span class="post-title" title="Spring常用配置">Spring常用配置</span>
-            <span class="post-date" title="2019-11-14 16:44:14">2019/11/14</span>
+            <span class="post-title" title="Java-NIO">Java-NIO</span>
+            <span class="post-date" title="2019-11-15 15:43:16">2019/11/15</span>
         </a>
         
         <a  class="springcloud "
@@ -468,14 +511,6 @@
            data-author="" >
             <span class="post-title" title="Spring cloud zuul (高级)">Spring cloud zuul (高级)</span>
             <span class="post-date" title="2019-11-14 09:48:56">2019/11/14</span>
-        </a>
-        
-        <a  class="spring "
-           href="/2019/11/14/spring-high/"
-           data-tag="Spring高级话题"
-           data-author="" >
-            <span class="post-title" title="Spring高级话题">Spring高级话题</span>
-            <span class="post-date" title="2019-11-14 17:04:21">2019/11/14</span>
         </a>
         
     </nav>
@@ -955,7 +990,7 @@ public class RunClient {
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#熔断监控Hystrix-Dashboard','#Hystrix和Feign Hystrix','#Spring-Cloud-Sleuth','#Zipkin','#Spring-cloud和Spring-boot','#docker','#分布式','#redis','#Springboot项目导可执行jar','#Springboot日志配置','#eureka 服务提供和调用','#eureka原理介绍','#配置中心git','#配置中心git服务化和高可用','#rabbitMQ','#Spring基础知识','#Spring cloud zuul (服务网关初级)','#SpringMVC基础','#SpringMVC配置','#Springboot基础知识','#Spring常用配置','#Spring cloud zuul (服务网关高级)','#Spring高级话题',],
+            'data': ['#熔断监控Hystrix-Dashboard','#Hystrix和Feign Hystrix','#Spring-Cloud-Sleuth','#Zipkin','#docker','#Spring-cloud和Spring-boot','#Java-IO','#分布式','#redis','#Springboot日志配置','#Springboot基础知识','#Springboot项目导可执行jar','#eureka 服务提供和调用','#配置中心git','#eureka原理介绍','#配置中心git服务化和高可用','#rabbitMQ','#Spring基础知识','#Spring常用配置','#Spring高级话题','#Spring cloud zuul (服务网关初级)','#SpringMVC基础','#SpringMVC配置','#Java-NIO','#Spring cloud zuul (服务网关高级)',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
