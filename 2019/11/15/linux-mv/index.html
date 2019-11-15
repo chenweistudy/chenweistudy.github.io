@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>mv命令 | Hexo</title>
+  <meta name="keywords" content=" mv命令 ">
+  <meta name="description" content="mv命令 | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="&amp;emsp;&amp;emsp;Linux中的ps命令是Process Status的缩写。ps命令用来列出系统中当前运行的那些进程。ps命令列出的是当前那些进程的快照，就是执行ps命令的那个时刻的那些进程，如果想要动态的显示进程信息，就可以使用top命令。 &amp;emsp;&amp;emsp;要对进程进行监测和控制，首先必须要了解当前进程的情况，也就是需要查看当前进程，而 ps 命令就是最基本同时也是非常强大的进程">
+<meta name="keywords" content="ps命令">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ps命令">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;15&#x2F;linux-ps&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;Linux中的ps命令是Process Status的缩写。ps命令用来列出系统中当前运行的那些进程。ps命令列出的是当前那些进程的快照，就是执行ps命令的那个时刻的那些进程，如果想要动态的显示进程信息，就可以使用top命令。 &amp;emsp;&amp;emsp;要对进程进行监测和控制，首先必须要了解当前进程的情况，也就是需要查看当前进程，而 ps 命令就是最基本同时也是非常强大的进程">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-11-15T09:20:52.562Z">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>cwstudy</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="github" href="https://github.com/chenweistudy" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(33)</small></div></li>
+    
+        
+            
+            <li><div data-rel="springcloud">springcloud<small>(10)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="项目部署">项目部署<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="linux">linux<small>(6)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="架构">架构<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="java">java<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="redis">redis<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="springboot">springboot<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="消息队列">消息队列<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="spring">spring<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="spring-mvc">spring-mvc<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="33">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">熔断监控Hystrix-Dashboard</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Hystrix和Feign Hystrix</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Spring-Cloud-Sleuth</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Zipkin</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Spring-cloud和Spring-boot</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">docker</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">find命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">分布式</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">Java-IO</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">JDK工具使用</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">linux基本命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">linux安装jre</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">redis</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot日志配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot基础知识</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot项目导可执行jar</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">eureka原理介绍</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">eureka 服务提供和调用</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">配置中心git</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">配置中心git服务化和高可用</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">ps命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">rabbitMQ</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">mv命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring高级话题</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring常用配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring基础知识</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Spring cloud zuul (服务网关初级)</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">linux高级命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">SpringMVC基础</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">SpringMVC配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">Java-NIO</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Spring cloud zuul (服务网关高级)</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="springcloud "
+           href="/2019/11/13/Hystrix-Dashboard/"
+           data-tag="熔断监控Hystrix-Dashboard"
+           data-author="" >
+            <span class="post-title" title="熔断监控Hystrix-Dashboard">熔断监控Hystrix-Dashboard</span>
+            <span class="post-date" title="2019-11-13 15:58:13">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/Hystrix/"
+           data-tag="Hystrix和Feign Hystrix"
+           data-author="" >
+            <span class="post-title" title="熔断器（Hystrix）">熔断器（Hystrix）</span>
+            <span class="post-date" title="2019-11-13 15:58:16">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/14/Sleuth-ZipKin/"
+           data-tag="Spring-Cloud-Sleuth,Zipkin"
+           data-author="" >
+            <span class="post-title" title="Spring-Cloud-Sleuth和Zipkin进行分布式链路跟踪">Spring-Cloud-Sleuth和Zipkin进行分布式链路跟踪</span>
+            <span class="post-date" title="2019-11-14 15:03:35">2019/11/14</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/14/boot-cloud/"
+           data-tag="Spring-cloud和Spring-boot"
+           data-author="" >
+            <span class="post-title" title="Spring-cloud和Spring-boot区别">Spring-cloud和Spring-boot区别</span>
+            <span class="post-date" title="2019-11-14 14:52:22">2019/11/14</span>
+        </a>
+        
+        <a  class="项目部署 "
+           href="/2019/11/13/docker/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="docker">docker</span>
+            <span class="post-date" title="2019-11-13 14:11:55">2019/11/13</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/find/"
+           data-tag="find命令"
+           data-author="" >
+            <span class="post-title" title="find命令">find命令</span>
+            <span class="post-date" title="2019-11-15 17:20:49">2019/11/15</span>
+        </a>
+        
+        <a  class="架构 "
+           href="/2019/11/11/indexs/"
+           data-tag="分布式"
+           data-author="" >
+            <span class="post-title" title="用【快餐店】理解分布式架构">用【快餐店】理解分布式架构</span>
+            <span class="post-date" title="2019-11-11 13:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="java "
+           href="/2019/11/15/java-io/"
+           data-tag="Java-IO"
+           data-author="" >
+            <span class="post-title" title="Java-IO">Java-IO</span>
+            <span class="post-date" title="2019-11-15 15:43:15">2019/11/15</span>
+        </a>
+        
+        <a  class="java "
+           href="/2019/11/15/java-jvm/"
+           data-tag="JDK工具使用"
+           data-author="" >
+            <span class="post-title" title="JDK工具使用">JDK工具使用</span>
+            <span class="post-date" title="2019-11-15 16:14:52">2019/11/15</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/linux-base/"
+           data-tag="linux基本命令"
+           data-author="" >
+            <span class="post-title" title="linux基本命令">linux基本命令</span>
+            <span class="post-date" title="2019-11-15 17:20:49">2019/11/15</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/linux-jre/"
+           data-tag="linux安装jre"
+           data-author="" >
+            <span class="post-title" title="linux安装jre">linux安装jre</span>
+            <span class="post-date" title="2019-11-15 17:20:51">2019/11/15</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/11/11/redisCache/"
+           data-tag="redis"
+           data-author="" >
+            <span class="post-title" title="redis缓存">redis缓存</span>
+            <span class="post-date" title="2019-11-11 17:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/11/11/redisPersister/"
+           data-tag="redis"
+           data-author="" >
+            <span class="post-title" title="redis持久化">redis持久化</span>
+            <span class="post-date" title="2019-11-11 16:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="springboot "
+           href="/2019/11/14/springboot-config/"
+           data-tag="Springboot日志配置"
+           data-author="" >
+            <span class="post-title" title="Springboot日志配置">Springboot日志配置</span>
+            <span class="post-date" title="2019-11-14 15:19:38">2019/11/14</span>
+        </a>
+        
+        <a  class="springboot "
+           href="/2019/11/14/springboot/"
+           data-tag="Springboot基础知识"
+           data-author="" >
+            <span class="post-title" title="Springboot基础知识">Springboot基础知识</span>
+            <span class="post-date" title="2019-11-14 15:37:49">2019/11/14</span>
+        </a>
+        
+        <a  class="springboot "
+           href="/2019/11/14/springboot-jar/"
+           data-tag="Springboot项目导可执行jar"
+           data-author="" >
+            <span class="post-title" title="Springboot项目导可执行jar">Springboot项目导可执行jar</span>
+            <span class="post-date" title="2019-11-14 15:26:12">2019/11/14</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/eureka1/"
+           data-tag="eureka原理介绍"
+           data-author="" >
+            <span class="post-title" title="eureka原理介绍">eureka原理介绍</span>
+            <span class="post-date" title="2019-11-13 16:08:48">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/eureka-Producer-Consumer/"
+           data-tag="eureka 服务提供和调用"
+           data-author="" >
+            <span class="post-title" title="eureka服务提供和调用">eureka服务提供和调用</span>
+            <span class="post-date" title="2019-11-13 15:11:06">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/gitConfig/"
+           data-tag="配置中心git"
+           data-author="" >
+            <span class="post-title" title="配置中心git">配置中心git</span>
+            <span class="post-date" title="2019-11-13 16:58:00">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/gitconfig-server-client/"
+           data-tag="配置中心git服务化和高可用"
+           data-author="" >
+            <span class="post-title" title="配置中心git服务化和高可用">配置中心git服务化和高可用</span>
+            <span class="post-date" title="2019-11-13 17:11:42">2019/11/13</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/linux-ps/"
+           data-tag="ps命令"
+           data-author="" >
+            <span class="post-title" title="ps命令">ps命令</span>
+            <span class="post-date" title="2019-11-15 17:20:52">2019/11/15</span>
+        </a>
+        
+        <a  class="消息队列 "
+           href="/2019/11/13/rabbitMQBase/"
+           data-tag="rabbitMQ"
+           data-author="" >
+            <span class="post-title" title="消息队列">消息队列</span>
+            <span class="post-date" title="2019-11-13 09:58:16">2019/11/13</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/linux-mv/"
+           data-tag="mv命令"
+           data-author="" >
+            <span class="post-title" title="mv命令">mv命令</span>
+            <span class="post-date" title="2019-11-15 17:20:51">2019/11/15</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/11/11/redis1/"
+           data-tag="redis"
+           data-author="" >
+            <span class="post-title" title="Redis基本命令和java基本操作">Redis基本命令和java基本操作</span>
+            <span class="post-date" title="2019-11-11 10:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="spring "
+           href="/2019/11/14/spring-high/"
+           data-tag="Spring高级话题"
+           data-author="" >
+            <span class="post-title" title="Spring高级话题">Spring高级话题</span>
+            <span class="post-date" title="2019-11-14 17:04:21">2019/11/14</span>
+        </a>
+        
+        <a  class="spring "
+           href="/2019/11/14/spring-config/"
+           data-tag="Spring常用配置"
+           data-author="" >
+            <span class="post-title" title="Spring常用配置">Spring常用配置</span>
+            <span class="post-date" title="2019-11-14 16:44:14">2019/11/14</span>
+        </a>
+        
+        <a  class="spring "
+           href="/2019/11/14/spring-base1/"
+           data-tag="Spring基础知识"
+           data-author="" >
+            <span class="post-title" title="Spring基础知识">Spring基础知识</span>
+            <span class="post-date" title="2019-11-14 16:19:44">2019/11/14</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/zuul/"
+           data-tag="Spring cloud zuul (服务网关初级)"
+           data-author="" >
+            <span class="post-title" title="Spring cloud zuul (初级)">Spring cloud zuul (初级)</span>
+            <span class="post-date" title="2019-11-13 17:35:48">2019/11/13</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/linux-high/"
+           data-tag="linux高级命令"
+           data-author="" >
+            <span class="post-title" title="linux高级命令">linux高级命令</span>
+            <span class="post-date" title="2019-11-15 17:20:50">2019/11/15</span>
+        </a>
+        
+        <a  class="spring-mvc "
+           href="/2019/11/15/Hystrix/springmvcbase/"
+           data-tag="SpringMVC基础"
+           data-author="" >
+            <span class="post-title" title="SpringMVC基础">SpringMVC基础</span>
+            <span class="post-date" title="2019-11-15 14:38:17">2019/11/15</span>
+        </a>
+        
+        <a  class="spring-mvc "
+           href="/2019/11/15/Hystrix/springmvcconfig/"
+           data-tag="SpringMVC配置"
+           data-author="" >
+            <span class="post-title" title="SpringMVC配置">SpringMVC配置</span>
+            <span class="post-date" title="2019-11-15 14:38:17">2019/11/15</span>
+        </a>
+        
+        <a  class="java "
+           href="/2019/11/15/java-nio/"
+           data-tag="Java-NIO"
+           data-author="" >
+            <span class="post-title" title="Java-NIO">Java-NIO</span>
+            <span class="post-date" title="2019-11-15 15:43:16">2019/11/15</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/14/zuulhigh/"
+           data-tag="Spring cloud zuul (服务网关高级)"
+           data-author="" >
+            <span class="post-title" title="Spring cloud zuul (高级)">Spring cloud zuul (高级)</span>
+            <span class="post-date" title="2019-11-14 09:48:56">2019/11/14</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-linux-mv" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">mv命令</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a href="javascript:" target="_blank" data-rel="linux noopener">linux</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" target="_blank" rel="noopener" class="color5">mv命令</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2019-11-15 17:20:52'>2019-11-15 17:20</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1．命令格式："><span class="toc-text">1．命令格式：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2．命令功能："><span class="toc-text">2．命令功能：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3．命令参数："><span class="toc-text">3．命令参数：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4．命令实例："><span class="toc-text">4．命令实例：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#实例一：文件改名"><span class="toc-text">实例一：文件改名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例二：移动文件"><span class="toc-text">实例二：移动文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例三：将文件log1-txt-log2-txt-log3-txt移动到目录test3中。"><span class="toc-text">实例三：将文件log1.txt,log2.txt,log3.txt移动到目录test3中。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例四：将文件file1改名为file2，如果file2已经存在，则询问是否覆盖"><span class="toc-text">实例四：将文件file1改名为file2，如果file2已经存在，则询问是否覆盖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例五：将文件file1改名为file2，即使file2存在，也是直接覆盖掉。"><span class="toc-text">实例五：将文件file1改名为file2，即使file2存在，也是直接覆盖掉。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例六：目录的移动"><span class="toc-text">实例六：目录的移动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例7：移动当前文件夹下的所有文件到上一级目录"><span class="toc-text">实例7：移动当前文件夹下的所有文件到上一级目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例八：把当前目录的一个子目录里的文件移动到另一个子目录里"><span class="toc-text">实例八：把当前目录的一个子目录里的文件移动到另一个子目录里</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例九：文件被覆盖前做简单备份，前面加参数-b"><span class="toc-text">实例九：文件被覆盖前做简单备份，前面加参数-b</span></a></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&emsp;&emsp;mv命令是move的缩写，可以用来移动文件或者将文件改名（move (rename) files），是Linux系统下常用的命令，经常用来备份文件或者目录。</p>
+<h1 id="1．命令格式："><a href="#1．命令格式：" class="headerlink" title="1．命令格式："></a>1．命令格式：</h1><pre><code>mv [选项] 源文件或目录 目标文件或目录</code></pre><h1 id="2．命令功能："><a href="#2．命令功能：" class="headerlink" title="2．命令功能："></a>2．命令功能：</h1><p>&emsp;&emsp;视mv命令中第二个参数类型的不同（是目标文件还是目标目录），mv命令将文件重命名或将其移至一个新的目录中。当第二个参数类型是文件时，mv命令完成文件重命名，此时，源文件只能有一个（也可以是源目录名），它将所给的源文件或目录重命名为给定的目标文件名。当第二个参数是已存在的目录名称时，源文件或目录参数可以有多个，mv命令将各参数指定的源文件均移至目标目录中。在跨文件系统移动文件时，mv先拷贝，再将原有文件删除，而链至该文件的链接也将丢失。</p>
+<h1 id="3．命令参数："><a href="#3．命令参数：" class="headerlink" title="3．命令参数："></a>3．命令参数：</h1><pre><code>-b ：若需覆盖文件，则覆盖前先行备份。 
+-f ：force 强制的意思，如果目标文件已经存在，不会询问而直接覆盖；
+-i ：若目标文件 (destination) 已经存在时，就会询问是否覆盖！
+-u ：若目标文件已经存在，且 source 比较新，才会更新(update)
+    -t  ： --target-directory=DIRECTORY move all SOURCE arguments into DIRECTORY，即指定mv的目标目录，该选项适用于移动多个源文件到一个目录的情况，此时目标目录在前，源文件在后。</code></pre><h1 id="4．命令实例："><a href="#4．命令实例：" class="headerlink" title="4．命令实例："></a>4．命令实例：</h1><h3 id="实例一：文件改名"><a href="#实例一：文件改名" class="headerlink" title="实例一：文件改名"></a>实例一：文件改名</h3><pre><code>命令：
+mv test.log test1.txt
+
+代码如下:
+
+[root@localhost test]# ll
+总计 20drwxr-xr-x 6 root root 4096 10-27 01:58 scf
+drwxrwxrwx 2 root root 4096 10-25 17:46 test3
+drwxr-xr-x 2 root root 4096 10-25 17:56 test4
+drwxr-xr-x 3 root root 4096 10-25 17:56 test5
+-rw-r--r-- 1 root root 16 10-28 06:04 test.log
+[root@localhost test]# mv test.log test1.txt
+[root@localhost test]# ll
+总计 20drwxr-xr-x 6 root root 4096 10-27 01:58 scf
+-rw-r--r-- 1 root root 16 10-28 06:04 test1.txt
+drwxrwxrwx 2 root root 4096 10-25 17:46 test3
+drwxr-xr-x 2 root root 4096 10-25 17:56 test4
+drwxr-xr-x 3 root root 4096 10-25 17:56 test5
+
+说明：
+将文件test.log重命名为test1.txt</code></pre><h3 id="实例二：移动文件"><a href="#实例二：移动文件" class="headerlink" title="实例二：移动文件"></a>实例二：移动文件</h3><pre><code>命令：
+mv test1.txt test3
+
+代码如下:
+
+[root@localhost test]# ll
+总计 20drwxr-xr-x 6 root root 4096 10-27 01:58 scf
+-rw-r--r-- 1 root root 29 10-28 06:05 test1.txt
+drwxrwxrwx 2 root root 4096 10-25 17:46 test3
+drwxr-xr-x 2 root root 4096 10-25 17:56 test4
+drwxr-xr-x 3 root root 4096 10-25 17:56 test5
+[root@localhost test]# mv test1.txt test3
+[root@localhost test]# ll
+总计 16drwxr-xr-x 6 root root 4096 10-27 01:58 scf
+drwxrwxrwx 2 root root 4096 10-28 06:09 test3
+drwxr-xr-x 2 root root 4096 10-25 17:56 test4
+drwxr-xr-x 3 root root 4096 10-25 17:56 test5
+[root@localhost test]# cd test3
+[root@localhost test3]# ll
+总计 4
+-rw-r--r-- 1 root root 29 10-28 06:05 test1.txt
+[root@localhost test3]#
+
+说明：
+将test1.txt文件移到目录test3中</code></pre><h3 id="实例三：将文件log1-txt-log2-txt-log3-txt移动到目录test3中。"><a href="#实例三：将文件log1-txt-log2-txt-log3-txt移动到目录test3中。" class="headerlink" title="实例三：将文件log1.txt,log2.txt,log3.txt移动到目录test3中。"></a>实例三：将文件log1.txt,log2.txt,log3.txt移动到目录test3中。</h3><pre><code>命令：
+mv log1.txt log2.txt log3.txt test3
+mv -t /opt/soft/test/test4/ log1.txt log2.txt  log3.txt 
+
+代码如下:
+
+[root@localhost test]# ll
+总计 28
+-rw-r--r-- 1 root root 8 10-28 06:15 log1.txt
+-rw-r--r-- 1 root root 12 10-28 06:15 log2.txt
+-rw-r--r-- 1 root root 13 10-28 06:16 log3.txt
+drwxrwxrwx 2 root root 4096 10-28 06:09 test3
+[root@localhost test]# mv log1.txt log2.txt log3.txt test3
+[root@localhost test]# ll
+总计 16drwxrwxrwx 2 root root 4096 10-28 06:18 test3
+[root@localhost test]# cd test3/
+[root@localhost test3]# ll
+总计 16
+-rw-r--r-- 1 root root 8 10-28 06:15 log1.txt
+-rw-r--r-- 1 root root 12 10-28 06:15 log2.txt
+-rw-r--r-- 1 root root 13 10-28 06:16 log3.txt
+-rw-r--r-- 1 root root 29 10-28 06:05 test1.txt
+[root@localhost test3]#
+[root@localhost test3]# ll
+总计 20
+-rw-r--r-- 1 root root 8 10-28 06:15 log1.txt
+-rw-r--r-- 1 root root 12 10-28 06:15 log2.txt
+-rw-r--r-- 1 root root 13 10-28 06:16 log3.txt
+drwxr-xr-x 2 root root 4096 10-28 06:21 logs
+-rw-r--r-- 1 root root 29 10-28 06:05 test1.txt
+[root@localhost test3]# mv -t /opt/soft/test/test4/ log1.txt log2.txt log3.txt 
+[root@localhost test3]# cd ..
+[root@localhost test]# cd test4/
+[root@localhost test4]# ll
+总计 12
+-rw-r--r-- 1 root root 8 10-28 06:15 log1.txt
+-rw-r--r-- 1 root root 12 10-28 06:15 log2.txt
+-rw-r--r-- 1 root root 13 10-28 06:16 log3.txt
+[root@localhost test4]#
+
+
+
+说明：
+mv log1.txt log2.txt log3.txt test3 命令将log1.txt ，log2.txt， log3.txt 三个文件移到 test3目录中去，mv -t /opt/soft/test/test4/ log1.txt log2.txt log3.txt 命令又将三个文件移动到test4目录中去</code></pre><h3 id="实例四：将文件file1改名为file2，如果file2已经存在，则询问是否覆盖"><a href="#实例四：将文件file1改名为file2，如果file2已经存在，则询问是否覆盖" class="headerlink" title="实例四：将文件file1改名为file2，如果file2已经存在，则询问是否覆盖"></a>实例四：将文件file1改名为file2，如果file2已经存在，则询问是否覆盖</h3><pre><code>命令：
+mv -i log1.txt log2.txt
+
+代码如下:
+
+[root@localhost test4]# ll
+总计 12
+-rw-r--r-- 1 root root 8 10-28 06:15 log1.txt
+-rw-r--r-- 1 root root 12 10-28 06:15 log2.txt
+-rw-r--r-- 1 root root 13 10-28 06:16 log3.txt
+[root@localhost test4]# cat log1.txt 
+odfdfs
+[root@localhost test4]# cat log2.txt 
+ererwerwer
+[root@localhost test4]# mv -i log1.txt log2.txt 
+mv：是否覆盖“log2.txt”? y
+[root@localhost test4]# cat log2.txt 
+odfdfs
+[root@localhost test4]#</code></pre><h3 id="实例五：将文件file1改名为file2，即使file2存在，也是直接覆盖掉。"><a href="#实例五：将文件file1改名为file2，即使file2存在，也是直接覆盖掉。" class="headerlink" title="实例五：将文件file1改名为file2，即使file2存在，也是直接覆盖掉。"></a>实例五：将文件file1改名为file2，即使file2存在，也是直接覆盖掉。</h3><pre><code>命令：
+mv -f log3.txt log2.txt
+
+代码如下:
+
+[root@localhost test4]# ll
+总计 8
+-rw-r--r-- 1 root root 8 10-28 06:15 log2.txt
+-rw-r--r-- 1 root root 13 10-28 06:16 log3.txt
+[root@localhost test4]# cat log2.txt 
+odfdfs
+[root@localhost test4]# cat log3
+cat: log3: 没有那个文件或目录
+[root@localhost test4]# ll
+总计 8
+-rw-r--r-- 1 root root 8 10-28 06:15 log2.txt
+-rw-r--r-- 1 root root 13 10-28 06:16 log3.txt
+[root@localhost test4]# cat log2.txt 
+odfdfs
+[root@localhost test4]# cat log3.txt 
+dfosdfsdfdss
+[root@localhost test4]# mv -f log3.txt log2.txt 
+[root@localhost test4]# cat log2.txt 
+dfosdfsdfdss
+[root@localhost test4]# ll
+总计 4
+-rw-r--r-- 1 root root 13 10-28 06:16 log2.txt
+[root@localhost test4]#
+
+
+
+说明：
+log3.txt的内容直接覆盖了log2.txt内容，-f 这是个危险的选项，使用的时候一定要保持头脑清晰，一般情况下最好不用加上它。</code></pre><h3 id="实例六：目录的移动"><a href="#实例六：目录的移动" class="headerlink" title="实例六：目录的移动"></a>实例六：目录的移动</h3><pre><code>命令：
+mv dir1 dir2 
+
+代码如下:
+
+[root@localhost test4]# ll
+-rw-r--r-- 1 root root 13 10-28 06:16 log2.txt
+[root@localhost test4]# ll
+-rw-r--r-- 1 root root 13 10-28 06:16 log2.txt
+[root@localhost test4]# cd ..
+[root@localhost test]# ll
+drwxr-xr-x 6 root root 4096 10-27 01:58 scf
+drwxrwxrwx 3 root root 4096 10-28 06:24 test3
+drwxr-xr-x 2 root root 4096 10-28 06:48 test4
+drwxr-xr-x 3 root root 4096 10-25 17:56 test5
+[root@localhost test]# cd test3
+[root@localhost test3]# ll
+drwxr-xr-x 2 root root 4096 10-28 06:21 logs
+-rw-r--r-- 1 root root 29 10-28 06:05 test1.txt
+[root@localhost test3]# cd ..
+[root@localhost test]# mv test4 test3
+[root@localhost test]# ll
+drwxr-xr-x 6 root root 4096 10-27 01:58 scf
+drwxrwxrwx 4 root root 4096 10-28 06:54 test3
+drwxr-xr-x 3 root root 4096 10-25 17:56 test5
+[root@localhost test]# cd test3/
+[root@localhost test3]# ll
+drwxr-xr-x 2 root root 4096 10-28 06:21 logs
+-rw-r--r-- 1 root root 29 10-28 06:05 test1.txt
+drwxr-xr-x 2 root root 4096 10-28 06:48 test4
+[root@localhost test3]#
+
+
+
+说明：
+如果目录dir2不存在，将目录dir1改名为dir2；否则，将dir1移动到dir2中。</code></pre><h3 id="实例7：移动当前文件夹下的所有文件到上一级目录"><a href="#实例7：移动当前文件夹下的所有文件到上一级目录" class="headerlink" title="实例7：移动当前文件夹下的所有文件到上一级目录"></a>实例7：移动当前文件夹下的所有文件到上一级目录</h3><pre><code>命令：
+mv * ../
+
+代码如下:
+
+[root@localhost test4]# ll
+-rw-r--r-- 1 root root 25 10-28 07:02 log1.txt
+-rw-r--r-- 1 root root 13 10-28 06:16 log2.txt
+[root@localhost test4]# mv * ../
+[root@localhost test4]# ll
+[root@localhost test4]# cd ..
+[root@localhost test3]# ll
+-rw-r--r-- 1 root root 25 10-28 07:02 log1.txt
+-rw-r--r-- 1 root root 13 10-28 06:16 log2.txt
+drwxr-xr-x 2 root root 4096 10-28 06:21 logs
+-rw-r--r-- 1 root root 29 10-28 06:05 test1.txt
+drwxr-xr-x 2 root root 4096 10-28 07:02 test4</code></pre><h3 id="实例八：把当前目录的一个子目录里的文件移动到另一个子目录里"><a href="#实例八：把当前目录的一个子目录里的文件移动到另一个子目录里" class="headerlink" title="实例八：把当前目录的一个子目录里的文件移动到另一个子目录里"></a>实例八：把当前目录的一个子目录里的文件移动到另一个子目录里</h3><pre><code>命令：
+mv test3/*.txt test5
+
+代码如下:
+
+[root@localhost test]# ll
+drwxr-xr-x 6 root root 4096 10-27 01:58 scf
+drwxrwxrwx 4 root root 4096 10-28 07:02 test3
+drwxr-xr-x 3 root root 4096 10-25 17:56 test5
+[root@localhost test]# cd test3
+[root@localhost test3]# ll
+-rw-r--r-- 1 root root 25 10-28 07:02 log1.txt
+-rw-r--r-- 1 root root 13 10-28 06:16 log2.txt
+drwxr-xr-x 2 root root 4096 10-28 06:21 logs
+-rw-r--r-- 1 root root 29 10-28 06:05 test1.txt
+drwxr-xr-x 2 root root 4096 10-28 07:02 test4
+[root@localhost test3]# cd ..
+[root@localhost test]# mv test3/*.txt test5
+[root@localhost test]# cd test5
+[root@localhost test5]# ll
+-rw-r--r-- 1 root root 25 10-28 07:02 log1.txt
+-rw-r--r-- 1 root root 13 10-28 06:16 log2.txt
+-rw-r--r-- 1 root root 29 10-28 06:05 test1.txt
+drwxr-xr-x 2 root root 4096 10-25 17:56 test5-1
+[root@localhost test5]# cd ..
+[root@localhost test]# cd test3/
+[root@localhost test3]# ll
+drwxr-xr-x 2 root root 4096 10-28 06:21 logs
+drwxr-xr-x 2 root root 4096 10-28 07:02 test4
+[root@localhost test3]#</code></pre><h3 id="实例九：文件被覆盖前做简单备份，前面加参数-b"><a href="#实例九：文件被覆盖前做简单备份，前面加参数-b" class="headerlink" title="实例九：文件被覆盖前做简单备份，前面加参数-b"></a>实例九：文件被覆盖前做简单备份，前面加参数-b</h3><pre><code>命令：
+mv log1.txt -b log2.txt
+代码如下:
+
+[root@localhost test5]# ll
+-rw-r--r-- 1 root root 25 10-28 07:02 log1.txt
+-rw-r--r-- 1 root root 13 10-28 06:16 log2.txt
+-rw-r--r-- 1 root root 29 10-28 06:05 test1.txt
+drwxr-xr-x 2 root root 4096 10-25 17:56 test5-1
+[root@localhost test5]# mv log1.txt -b log2.txt
+mv：是否覆盖“log2.txt”? y
+[root@localhost test5]# ll
+-rw-r--r-- 1 root root 25 10-28 07:02 log2.txt
+-rw-r--r-- 1 root root 13 10-28 06:16 log2.txt~
+-rw-r--r-- 1 root root 29 10-28 06:05 test1.txt
+drwxr-xr-x 2 root root 4096 10-25 17:56 test5-1
+[root@localhost test5]#
+
+说明：
+-b 不接受参数，mv会去读取环境变量VERSION_CONTROL来作为备份策略。
+--backup该选项指定如果目标文件存在时的动作，共有四种备份策略：
+1.CONTROL=none或off : 不备份。
+2.CONTROL=numbered或t：数字编号的备份
+3.CONTROL=existing或nil：如果存在以数字编号的备份，则继续编号备份m+1...n：
+执行mv操作前已存在以数字编号的文件log2.txt.~1~，那么再次执行将产生log2.txt~2~，以次类推。如果之前没有以数字编号的文件，则使用下面讲到的简单备份。
+4.CONTROL=simple或never：使用简单备份：在被覆盖前进行了简单备份，简单备份只能有一份，再次被覆盖时，简单备份也会被覆盖。</code></pre>
+      
+       
+    </div>
+</article>
+
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>mv命令</p>
+    <p><span class="copy-title">发布时间:</span>2019-11-15, 17:20:51</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-15, 17:20:52</p>
+</div>
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2019 chen wei</p>
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<!--
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+-->
+<a class="" id="rocket" href="javascript:void(0)" target="_blank" rel="noopener"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#熔断监控Hystrix-Dashboard','#Hystrix和Feign Hystrix','#Spring-Cloud-Sleuth','#Zipkin','#Spring-cloud和Spring-boot','#docker','#find命令','#分布式','#Java-IO','#JDK工具使用','#linux基本命令','#linux安装jre','#redis','#Springboot日志配置','#Springboot基础知识','#Springboot项目导可执行jar','#eureka原理介绍','#eureka 服务提供和调用','#配置中心git','#配置中心git服务化和高可用','#ps命令','#rabbitMQ','#mv命令','#Spring高级话题','#Spring常用配置','#Spring基础知识','#Spring cloud zuul (服务网关初级)','#linux高级命令','#SpringMVC基础','#SpringMVC配置','#Java-NIO','#Spring cloud zuul (服务网关高级)',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

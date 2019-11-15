@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>linux高级命令 | Hexo</title>
+  <meta name="keywords" content=" linux高级命令 ">
+  <meta name="description" content="linux高级命令 | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="&amp;emsp;&amp;emsp;Linux中的ps命令是Process Status的缩写。ps命令用来列出系统中当前运行的那些进程。ps命令列出的是当前那些进程的快照，就是执行ps命令的那个时刻的那些进程，如果想要动态的显示进程信息，就可以使用top命令。 &amp;emsp;&amp;emsp;要对进程进行监测和控制，首先必须要了解当前进程的情况，也就是需要查看当前进程，而 ps 命令就是最基本同时也是非常强大的进程">
+<meta name="keywords" content="ps命令">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ps命令">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;15&#x2F;linux-ps&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;Linux中的ps命令是Process Status的缩写。ps命令用来列出系统中当前运行的那些进程。ps命令列出的是当前那些进程的快照，就是执行ps命令的那个时刻的那些进程，如果想要动态的显示进程信息，就可以使用top命令。 &amp;emsp;&amp;emsp;要对进程进行监测和控制，首先必须要了解当前进程的情况，也就是需要查看当前进程，而 ps 命令就是最基本同时也是非常强大的进程">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-11-15T09:20:52.562Z">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>cwstudy</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="github" href="https://github.com/chenweistudy" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(33)</small></div></li>
+    
+        
+            
+            <li><div data-rel="springcloud">springcloud<small>(10)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="项目部署">项目部署<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="linux">linux<small>(6)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="架构">架构<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="java">java<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="redis">redis<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="springboot">springboot<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="消息队列">消息队列<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="spring">spring<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="spring-mvc">spring-mvc<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="33">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">熔断监控Hystrix-Dashboard</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Hystrix和Feign Hystrix</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Spring-Cloud-Sleuth</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Zipkin</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Spring-cloud和Spring-boot</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">docker</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">find命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">分布式</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">Java-IO</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">JDK工具使用</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">linux基本命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">linux安装jre</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">redis</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot日志配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot基础知识</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot项目导可执行jar</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">eureka原理介绍</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">eureka 服务提供和调用</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">配置中心git</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">配置中心git服务化和高可用</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">ps命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">rabbitMQ</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">mv命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring高级话题</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring常用配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring基础知识</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Spring cloud zuul (服务网关初级)</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">linux高级命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">SpringMVC基础</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">SpringMVC配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">Java-NIO</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Spring cloud zuul (服务网关高级)</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="springcloud "
+           href="/2019/11/13/Hystrix-Dashboard/"
+           data-tag="熔断监控Hystrix-Dashboard"
+           data-author="" >
+            <span class="post-title" title="熔断监控Hystrix-Dashboard">熔断监控Hystrix-Dashboard</span>
+            <span class="post-date" title="2019-11-13 15:58:13">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/Hystrix/"
+           data-tag="Hystrix和Feign Hystrix"
+           data-author="" >
+            <span class="post-title" title="熔断器（Hystrix）">熔断器（Hystrix）</span>
+            <span class="post-date" title="2019-11-13 15:58:16">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/14/Sleuth-ZipKin/"
+           data-tag="Spring-Cloud-Sleuth,Zipkin"
+           data-author="" >
+            <span class="post-title" title="Spring-Cloud-Sleuth和Zipkin进行分布式链路跟踪">Spring-Cloud-Sleuth和Zipkin进行分布式链路跟踪</span>
+            <span class="post-date" title="2019-11-14 15:03:35">2019/11/14</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/14/boot-cloud/"
+           data-tag="Spring-cloud和Spring-boot"
+           data-author="" >
+            <span class="post-title" title="Spring-cloud和Spring-boot区别">Spring-cloud和Spring-boot区别</span>
+            <span class="post-date" title="2019-11-14 14:52:22">2019/11/14</span>
+        </a>
+        
+        <a  class="项目部署 "
+           href="/2019/11/13/docker/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="docker">docker</span>
+            <span class="post-date" title="2019-11-13 14:11:55">2019/11/13</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/find/"
+           data-tag="find命令"
+           data-author="" >
+            <span class="post-title" title="find命令">find命令</span>
+            <span class="post-date" title="2019-11-15 17:20:49">2019/11/15</span>
+        </a>
+        
+        <a  class="架构 "
+           href="/2019/11/11/indexs/"
+           data-tag="分布式"
+           data-author="" >
+            <span class="post-title" title="用【快餐店】理解分布式架构">用【快餐店】理解分布式架构</span>
+            <span class="post-date" title="2019-11-11 13:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="java "
+           href="/2019/11/15/java-io/"
+           data-tag="Java-IO"
+           data-author="" >
+            <span class="post-title" title="Java-IO">Java-IO</span>
+            <span class="post-date" title="2019-11-15 15:43:15">2019/11/15</span>
+        </a>
+        
+        <a  class="java "
+           href="/2019/11/15/java-jvm/"
+           data-tag="JDK工具使用"
+           data-author="" >
+            <span class="post-title" title="JDK工具使用">JDK工具使用</span>
+            <span class="post-date" title="2019-11-15 16:14:52">2019/11/15</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/linux-base/"
+           data-tag="linux基本命令"
+           data-author="" >
+            <span class="post-title" title="linux基本命令">linux基本命令</span>
+            <span class="post-date" title="2019-11-15 17:20:49">2019/11/15</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/linux-jre/"
+           data-tag="linux安装jre"
+           data-author="" >
+            <span class="post-title" title="linux安装jre">linux安装jre</span>
+            <span class="post-date" title="2019-11-15 17:20:51">2019/11/15</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/11/11/redisCache/"
+           data-tag="redis"
+           data-author="" >
+            <span class="post-title" title="redis缓存">redis缓存</span>
+            <span class="post-date" title="2019-11-11 17:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/11/11/redisPersister/"
+           data-tag="redis"
+           data-author="" >
+            <span class="post-title" title="redis持久化">redis持久化</span>
+            <span class="post-date" title="2019-11-11 16:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="springboot "
+           href="/2019/11/14/springboot-config/"
+           data-tag="Springboot日志配置"
+           data-author="" >
+            <span class="post-title" title="Springboot日志配置">Springboot日志配置</span>
+            <span class="post-date" title="2019-11-14 15:19:38">2019/11/14</span>
+        </a>
+        
+        <a  class="springboot "
+           href="/2019/11/14/springboot/"
+           data-tag="Springboot基础知识"
+           data-author="" >
+            <span class="post-title" title="Springboot基础知识">Springboot基础知识</span>
+            <span class="post-date" title="2019-11-14 15:37:49">2019/11/14</span>
+        </a>
+        
+        <a  class="springboot "
+           href="/2019/11/14/springboot-jar/"
+           data-tag="Springboot项目导可执行jar"
+           data-author="" >
+            <span class="post-title" title="Springboot项目导可执行jar">Springboot项目导可执行jar</span>
+            <span class="post-date" title="2019-11-14 15:26:12">2019/11/14</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/eureka1/"
+           data-tag="eureka原理介绍"
+           data-author="" >
+            <span class="post-title" title="eureka原理介绍">eureka原理介绍</span>
+            <span class="post-date" title="2019-11-13 16:08:48">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/eureka-Producer-Consumer/"
+           data-tag="eureka 服务提供和调用"
+           data-author="" >
+            <span class="post-title" title="eureka服务提供和调用">eureka服务提供和调用</span>
+            <span class="post-date" title="2019-11-13 15:11:06">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/gitConfig/"
+           data-tag="配置中心git"
+           data-author="" >
+            <span class="post-title" title="配置中心git">配置中心git</span>
+            <span class="post-date" title="2019-11-13 16:58:00">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/gitconfig-server-client/"
+           data-tag="配置中心git服务化和高可用"
+           data-author="" >
+            <span class="post-title" title="配置中心git服务化和高可用">配置中心git服务化和高可用</span>
+            <span class="post-date" title="2019-11-13 17:11:42">2019/11/13</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/linux-ps/"
+           data-tag="ps命令"
+           data-author="" >
+            <span class="post-title" title="ps命令">ps命令</span>
+            <span class="post-date" title="2019-11-15 17:20:52">2019/11/15</span>
+        </a>
+        
+        <a  class="消息队列 "
+           href="/2019/11/13/rabbitMQBase/"
+           data-tag="rabbitMQ"
+           data-author="" >
+            <span class="post-title" title="消息队列">消息队列</span>
+            <span class="post-date" title="2019-11-13 09:58:16">2019/11/13</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/linux-mv/"
+           data-tag="mv命令"
+           data-author="" >
+            <span class="post-title" title="mv命令">mv命令</span>
+            <span class="post-date" title="2019-11-15 17:20:51">2019/11/15</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/11/11/redis1/"
+           data-tag="redis"
+           data-author="" >
+            <span class="post-title" title="Redis基本命令和java基本操作">Redis基本命令和java基本操作</span>
+            <span class="post-date" title="2019-11-11 10:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="spring "
+           href="/2019/11/14/spring-high/"
+           data-tag="Spring高级话题"
+           data-author="" >
+            <span class="post-title" title="Spring高级话题">Spring高级话题</span>
+            <span class="post-date" title="2019-11-14 17:04:21">2019/11/14</span>
+        </a>
+        
+        <a  class="spring "
+           href="/2019/11/14/spring-config/"
+           data-tag="Spring常用配置"
+           data-author="" >
+            <span class="post-title" title="Spring常用配置">Spring常用配置</span>
+            <span class="post-date" title="2019-11-14 16:44:14">2019/11/14</span>
+        </a>
+        
+        <a  class="spring "
+           href="/2019/11/14/spring-base1/"
+           data-tag="Spring基础知识"
+           data-author="" >
+            <span class="post-title" title="Spring基础知识">Spring基础知识</span>
+            <span class="post-date" title="2019-11-14 16:19:44">2019/11/14</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/zuul/"
+           data-tag="Spring cloud zuul (服务网关初级)"
+           data-author="" >
+            <span class="post-title" title="Spring cloud zuul (初级)">Spring cloud zuul (初级)</span>
+            <span class="post-date" title="2019-11-13 17:35:48">2019/11/13</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/linux-high/"
+           data-tag="linux高级命令"
+           data-author="" >
+            <span class="post-title" title="linux高级命令">linux高级命令</span>
+            <span class="post-date" title="2019-11-15 17:20:50">2019/11/15</span>
+        </a>
+        
+        <a  class="spring-mvc "
+           href="/2019/11/15/Hystrix/springmvcbase/"
+           data-tag="SpringMVC基础"
+           data-author="" >
+            <span class="post-title" title="SpringMVC基础">SpringMVC基础</span>
+            <span class="post-date" title="2019-11-15 14:38:17">2019/11/15</span>
+        </a>
+        
+        <a  class="spring-mvc "
+           href="/2019/11/15/Hystrix/springmvcconfig/"
+           data-tag="SpringMVC配置"
+           data-author="" >
+            <span class="post-title" title="SpringMVC配置">SpringMVC配置</span>
+            <span class="post-date" title="2019-11-15 14:38:17">2019/11/15</span>
+        </a>
+        
+        <a  class="java "
+           href="/2019/11/15/java-nio/"
+           data-tag="Java-NIO"
+           data-author="" >
+            <span class="post-title" title="Java-NIO">Java-NIO</span>
+            <span class="post-date" title="2019-11-15 15:43:16">2019/11/15</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/14/zuulhigh/"
+           data-tag="Spring cloud zuul (服务网关高级)"
+           data-author="" >
+            <span class="post-title" title="Spring cloud zuul (高级)">Spring cloud zuul (高级)</span>
+            <span class="post-date" title="2019-11-14 09:48:56">2019/11/14</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-linux-high" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">linux高级命令</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a href="javascript:" target="_blank" data-rel="linux noopener">linux</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" target="_blank" rel="noopener" class="color5">linux高级命令</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2019-11-15 17:20:51'>2019-11-15 17:20</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-linux打开ssh允许远程登录"><span class="toc-text">1.linux打开ssh允许远程登录</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-linux让程序自动运行而不受终端连接或关闭影响的命令"><span class="toc-text">2.linux让程序自动运行而不受终端连接或关闭影响的命令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-linux下安装java及环境配置"><span class="toc-text">3.linux下安装java及环境配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-linux查看jdk安装路径"><span class="toc-text">4.linux查看jdk安装路径</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-linux下调用图形化界面遇到的问题"><span class="toc-text">5.linux下调用图形化界面遇到的问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-linux修改ip"><span class="toc-text">6.linux修改ip</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-linux直接给根目录所在的分区扩容"><span class="toc-text">7.linux直接给根目录所在的分区扩容</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8-系统信息"><span class="toc-text">8.系统信息</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9-关机-系统的关机、重启以及登出"><span class="toc-text">9.关机 (系统的关机、重启以及登出 )</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#10-文件和目录"><span class="toc-text">10.文件和目录</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#11-文件搜索"><span class="toc-text">11.文件搜索</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#12-挂载一个文件系统"><span class="toc-text">12.挂载一个文件系统</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#13-磁盘空间"><span class="toc-text">13.磁盘空间</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#14-用户和群组"><span class="toc-text">14.用户和群组</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#15-文件的权限-使用-“-”-设置权限，使用-“-“-用于取消"><span class="toc-text">15.文件的权限 - 使用 “+” 设置权限，使用 “-“ 用于取消</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#16-文件的特殊属性-使用-“-”-设置权限，使用-“-“-用于取消"><span class="toc-text">16.文件的特殊属性 - 使用 “+” 设置权限，使用 “-“ 用于取消</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#17-打包和压缩文件"><span class="toc-text">17.打包和压缩文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#18-RPM-包-（Fedora-Redhat及类似系统）"><span class="toc-text">18.RPM 包 - （Fedora, Redhat及类似系统）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#19-YUM-软件包升级器-（Fedora-RedHat及类似系统）"><span class="toc-text">19.YUM 软件包升级器 - （Fedora, RedHat及类似系统）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#20-DEB-包-Debian-Ubuntu-以及类似系统"><span class="toc-text">20.DEB 包 (Debian, Ubuntu 以及类似系统)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#21-APT-软件工具-Debian-Ubuntu-以及类似系统"><span class="toc-text">21.APT 软件工具 (Debian, Ubuntu 以及类似系统)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#22-查看文件内容"><span class="toc-text">22.查看文件内容</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#23-文本处理"><span class="toc-text">23.文本处理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#24-字符设置和文件格式转换"><span class="toc-text">24.字符设置和文件格式转换</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#25-文件系统分析"><span class="toc-text">25.文件系统分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#26-初始化一个文件系统"><span class="toc-text">26.初始化一个文件系统</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#27-SWAP文件系统"><span class="toc-text">27.SWAP文件系统</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#28-备份"><span class="toc-text">28.备份</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#29-光盘"><span class="toc-text">29.光盘</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-linux打开ssh允许远程登录"><a href="#1-linux打开ssh允许远程登录" class="headerlink" title="1.linux打开ssh允许远程登录"></a>1.linux打开ssh允许远程登录</h1><p><a href="http://blog.csdn.net/a351945755/article/details/19630525" target="_blank" rel="noopener">参考</a></p>
+<pre><code>在/etc/ssh/sshd_config　文件中，将permitRootLogin no|yes设置为允许root用户远程登录
+
+/etc/init.d/sshd start 启动ssh服务
+
+/etc/init.d/sshd stop关闭服务</code></pre><h1 id="2-linux让程序自动运行而不受终端连接或关闭影响的命令"><a href="#2-linux让程序自动运行而不受终端连接或关闭影响的命令" class="headerlink" title="2.linux让程序自动运行而不受终端连接或关闭影响的命令"></a>2.linux让程序自动运行而不受终端连接或关闭影响的命令</h1><p><a href="http://swordshadow.iteye.com/blog/1921814" target="_blank" rel="noopener">参考</a></p>
+<pre><code>nohup command &amp;
+
+如: nohup java -jar A.jar &amp;</code></pre><h1 id="3-linux下安装java及环境配置"><a href="#3-linux下安装java及环境配置" class="headerlink" title="3.linux下安装java及环境配置"></a>3.linux下安装java及环境配置</h1><pre><code>(1).安装包 jdk-6u20-linux-i586-rpm.bin
+执行 chmod 755 jdk-6u20-linux-i586-rpm.bin
+rpm –ivh jdk-6u20-linux-i586.rpm
+然后后面选择y进行安装
+
+(2).系统环境变量路径
+vim /etc/profile
+添加
+export JAVA_HOME=/usr/local/java/jdk1.6.0_20
+export JAVA_BIN=/usr/local/java/jdk1.6.0_20/bin
+export PATH=$PATH:$JAVA_HOME/bin
+export classpath=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tool.jar
+然后保存 /etc/profile
+执行 . /etc/profile 立即生效（.后有空格）
+重启不生效，可以加改~/.bash_profile。
+
+(3).增加软链接
+cd /usr/bin
+ln -s -f /usr/local/java/jdk1.6.0_20/jre/bin/java
+ln -s -f /usr/local/java/jdk1.6.0_20/bin/javac
+
+(4).java -version 查看是否安装成功</code></pre><h1 id="4-linux查看jdk安装路径"><a href="#4-linux查看jdk安装路径" class="headerlink" title="4.linux查看jdk安装路径"></a>4.linux查看jdk安装路径</h1><pre><code>java -version 
+
+which java 
+
+echo $JAVA_HOME
+
+echo $PATH</code></pre><h1 id="5-linux下调用图形化界面遇到的问题"><a href="#5-linux下调用图形化界面遇到的问题" class="headerlink" title="5.linux下调用图形化界面遇到的问题"></a>5.linux下调用图形化界面遇到的问题</h1><p><a href="http://blog.csdn.net/u012377134/article/details/41060009" target="_blank" rel="noopener">参考</a></p>
+<pre><code>首先，程序中有类继承了JFrame并且该类被实例化了
+1.然后程序运行报错:
+    Can&apos;t connect to X11 window serve
+找资料说可以在运行命令前加 -Djava.awt.headless=true
+如:java -Djava.awt.headless=true  -classpath lib/ant.jar:lib/commons-io-2.5.jar:lib/commons-logging.jar:lib/httpclient-4.3.6.jar:lib/httpcore-4.3.3.jar:lib/junrar-0.7.jar:lib/log4j-1.2.16.jar:lib/lombok.jar:DeviceInterface.jar com.sino.update.DownLoad
+
+2.但是接着报错:
+Exception in thread &quot;main&quot; java.awt.HeadlessException
+
+解决办法:
+1.linux启动后，执行startx &amp;命令进入图形化界面
+2.然后执行命令    export DISPLAY=:0.0
+
+再次执行java程序，就不会再报错，而且能够正常显示图像化界面了</code></pre><h1 id="6-linux修改ip"><a href="#6-linux修改ip" class="headerlink" title="6.linux修改ip"></a>6.linux修改ip</h1><pre><code>vim /etc/sysconfig/network-scripts/ifcfg-eth0
+
+
+TYPE=Ethernet
+BOOTPROTO=static
+IPADDR=192.168.18.88
+PREFIX=32
+GATEWAY=192.168.18.1
+DNS1=8.8.8.8
+DEFROUTE=yes
+NAME=eth0
+UUID=b8b1c2f9-14bd-4fe4-97a7-0d5e8a77fef3
+DEVICE=eth0
+ONBOOT=yes
+HWADDR=00:50:56:26:79:D2
+
+service network start 重启网口</code></pre><h1 id="7-linux直接给根目录所在的分区扩容"><a href="#7-linux直接给根目录所在的分区扩容" class="headerlink" title="7.linux直接给根目录所在的分区扩容"></a>7.linux直接给根目录所在的分区扩容</h1><p><a href="https://www.jianshu.com/p/7d23e6d1f313" target="_blank" rel="noopener">参考</a></p>
+<h1 id="8-系统信息"><a href="#8-系统信息" class="headerlink" title="8.系统信息"></a>8.系统信息</h1><pre><code>arch 显示机器的处理器架构(1)
+uname -m 显示机器的处理器架构(2)
+uname -r 显示正在使用的内核版本
+dmidecode -q 显示硬件系统部件 - (SMBIOS / DMI)
+hdparm -i /dev/hda 罗列一个磁盘的架构特性
+hdparm -tT /dev/sda 在磁盘上执行测试性读取操作
+cat /proc/cpuinfo 显示CPU info的信息
+cat /proc/interrupts 显示中断
+cat /proc/meminfo 校验内存使用
+cat /proc/swaps 显示哪些swap被使用
+cat /proc/version 显示内核的版本
+cat /proc/net/dev 显示网络适配器及统计
+cat /proc/mounts 显示已加载的文件系统
+lspci -tv 罗列 PCI 设备
+lsusb -tv 显示 USB 设备
+date 显示系统日期
+cal 2007 显示2007年的日历表
+date 041217002007.00 设置日期和时间 - 月日时分年.秒
+clock -w 将时间修改保存到 BIOS</code></pre><h1 id="9-关机-系统的关机、重启以及登出"><a href="#9-关机-系统的关机、重启以及登出" class="headerlink" title="9.关机 (系统的关机、重启以及登出 )"></a>9.关机 (系统的关机、重启以及登出 )</h1><pre><code>shutdown -h now 关闭系统(1)
+init 0 关闭系统(2)
+telinit 0 关闭系统(3)
+shutdown -h hours:minutes &amp; 按预定时间关闭系统
+shutdown -c 取消按预定时间关闭系统
+shutdown -r now 重启(1)
+reboot 重启(2)
+logout 注销</code></pre><h1 id="10-文件和目录"><a href="#10-文件和目录" class="headerlink" title="10.文件和目录"></a>10.文件和目录</h1><pre><code>cd /home 进入 &apos;/ home&apos; 目录&apos;
+cd .. 返回上一级目录
+cd ../.. 返回上两级目录
+cd 进入个人的主目录
+cd ~user1 进入个人的主目录
+cd - 返回上次所在的目录
+pwd 显示工作路径
+ls 查看目录中的文件
+ls -F 查看目录中的文件
+ls -l 显示文件和目录的详细资料
+ls -a 显示隐藏文件
+ls *[0-9]* 显示包含数字的文件名和目录名
+tree 显示文件和目录由根目录开始的树形结构(1)
+lstree 显示文件和目录由根目录开始的树形结构(2)
+mkdir dir1 创建一个叫做 &apos;dir1&apos; 的目录&apos;
+mkdir dir1 dir2 同时创建两个目录
+mkdir -p /tmp/dir1/dir2 创建一个目录树
+rm -f file1 删除一个叫做 &apos;file1&apos; 的文件&apos;
+rmdir dir1 删除一个叫做 &apos;dir1&apos; 的目录&apos;
+rm -rf dir1 删除一个叫做 &apos;dir1&apos; 的目录并同时删除其内容
+rm -rf dir1 dir2 同时删除两个目录及它们的内容
+mv dir1 new_dir 重命名/移动 一个目录
+cp file1 file2 复制一个文件
+cp dir/* . 复制一个目录下的所有文件到当前工作目录
+cp -a /tmp/dir1 . 复制一个目录到当前工作目录
+cp -a dir1 dir2 复制一个目录
+ln -s file1 lnk1 创建一个指向文件或目录的软链接
+ln file1 lnk1 创建一个指向文件或目录的物理链接
+touch -t 0712250000 file1 修改一个文件或目录的时间戳 - (YYMMDDhhmm)
+file file1 outputs the mime type of the file as text
+iconv -l 列出已知的编码
+iconv -f fromEncoding -t toEncoding inputFile &gt; outputFile creates a new from the given input file by assuming it is encoded in fromEncoding and converting it to toEncoding.
+find . -maxdepth 1 -name *.jpg -print -exec convert &quot;{}&quot; -resize 80x60 &quot;thumbs/{}&quot; \; batch resize files in the current directory and send them to a thumbnails directory (requires convert from Imagemagick)</code></pre><h1 id="11-文件搜索"><a href="#11-文件搜索" class="headerlink" title="11.文件搜索"></a>11.文件搜索</h1><pre><code>find / -name file1 从 &apos;/&apos; 开始进入根文件系统搜索文件和目录
+find / -user user1 搜索属于用户 &apos;user1&apos; 的文件和目录
+find /home/user1 -name \*.bin 在目录 &apos;/ home/user1&apos; 中搜索带有&apos;.bin&apos; 结尾的文件
+find /usr/bin -type f -atime +100 搜索在过去100天内未被使用过的执行文件
+find /usr/bin -type f -mtime -10 搜索在10天内被创建或者修改过的文件
+find / -name \*.rpm -exec chmod 755 &apos;{}&apos; \; 搜索以 &apos;.rpm&apos; 结尾的文件并定义其权限
+find / -xdev -name \*.rpm 搜索以 &apos;.rpm&apos; 结尾的文件，忽略光驱、捷盘等可移动设备
+locate \*.ps 寻找以 &apos;.ps&apos; 结尾的文件 - 先运行 &apos;updatedb&apos; 命令
+whereis halt 显示一个二进制文件、源码或man的位置
+which halt 显示一个二进制文件或可执行文件的完整路径</code></pre><h1 id="12-挂载一个文件系统"><a href="#12-挂载一个文件系统" class="headerlink" title="12.挂载一个文件系统"></a>12.挂载一个文件系统</h1><pre><code>mount /dev/hda2 /mnt/hda2 挂载一个叫做hda2的盘 - 确定目录 &apos;/ mnt/hda2&apos; 已经存在
+umount /dev/hda2 卸载一个叫做hda2的盘 - 先从挂载点 &apos;/ mnt/hda2&apos; 退出
+fuser -km /mnt/hda2 当设备繁忙时强制卸载
+umount -n /mnt/hda2 运行卸载操作而不写入 /etc/mtab 文件- 当文件为只读或当磁盘写满时非常有用
+mount /dev/fd0 /mnt/floppy 挂载一个软盘
+mount /dev/cdrom /mnt/cdrom 挂载一个cdrom或dvdrom
+mount /dev/hdc /mnt/cdrecorder 挂载一个cdrw或dvdrom
+mount /dev/hdb /mnt/cdrecorder 挂载一个cdrw或dvdrom
+mount -o loop file.iso /mnt/cdrom 挂载一个文件或ISO镜像文件
+mount -t vfat /dev/hda5 /mnt/hda5 挂载一个Windows FAT32文件系统
+mount /dev/sda1 /mnt/usbdisk 挂载一个usb 捷盘或闪存设备
+mount -t smbfs -o username=user,password=pass //WinClient/share /mnt/share 挂载一个windows网络共享</code></pre><h1 id="13-磁盘空间"><a href="#13-磁盘空间" class="headerlink" title="13.磁盘空间"></a>13.磁盘空间</h1><pre><code>df -h 显示已经挂载的分区列表
+ls -lSr |more 以尺寸大小排列文件和目录
+du -sh dir1 估算目录 &apos;dir1&apos; 已经使用的磁盘空间&apos;
+du -sk * | sort -rn 以容量大小为依据依次显示文件和目录的大小
+rpm -q -a --qf &apos;%10{SIZE}t%{NAME}n&apos; | sort -k1,1n 以大小为依据依次显示已安装的rpm包所使用的空间 (fedora, redhat类系统)
+dpkg-query -W -f=&apos;${Installed-Size;10}t${Package}n&apos; | sort -k1,1n 以大小为依据显示已安装的deb包所使用的空间 (ubuntu, debian类系统)</code></pre><h1 id="14-用户和群组"><a href="#14-用户和群组" class="headerlink" title="14.用户和群组"></a>14.用户和群组</h1><pre><code>groupadd group_name 创建一个新用户组
+groupdel group_name 删除一个用户组
+groupmod -n new_group_name old_group_name 重命名一个用户组
+useradd -c &quot;Name Surname &quot; -g admin -d /home/user1 -s /bin/bash user1 创建一个属于 &quot;admin&quot; 用户组的用户
+useradd user1 创建一个新用户
+userdel -r user1 删除一个用户 ( &apos;-r&apos; 排除主目录)
+usermod -c &quot;User FTP&quot; -g system -d /ftp/user1 -s /bin/nologin user1 修改用户属性
+passwd 修改口令
+passwd user1 修改一个用户的口令 (只允许root执行)
+chage -E 2005-12-31 user1 设置用户口令的失效期限
+pwck 检查 &apos;/etc/passwd&apos; 的文件格式和语法修正以及存在的用户
+grpck 检查 &apos;/etc/passwd&apos; 的文件格式和语法修正以及存在的群组
+newgrp group_name 登陆进一个新的群组以改变新创建文件的预设群组</code></pre><h1 id="15-文件的权限-使用-“-”-设置权限，使用-“-“-用于取消"><a href="#15-文件的权限-使用-“-”-设置权限，使用-“-“-用于取消" class="headerlink" title="15.文件的权限 - 使用 “+” 设置权限，使用 “-“ 用于取消"></a>15.文件的权限 - 使用 “+” 设置权限，使用 “-“ 用于取消</h1><pre><code>ls -lh 显示权限
+ls /tmp | pr -T5 -W$COLUMNS 将终端划分成5栏显示
+chmod ugo+rwx directory1 设置目录的所有人(u)、群组(g)以及其他人(o)以读（r ）、写(w)和执行(x)的权限
+chmod go-rwx directory1 删除群组(g)与其他人(o)对目录的读写执行权限
+chown user1 file1 改变一个文件的所有人属性
+chown -R user1 directory1 改变一个目录的所有人属性并同时改变改目录下所有文件的属性
+chgrp group1 file1 改变文件的群组
+chown user1:group1 file1 改变一个文件的所有人和群组属性
+find / -perm -u+s 罗列一个系统中所有使用了SUID控制的文件
+chmod u+s /bin/file1 设置一个二进制文件的 SUID 位 - 运行该文件的用户也被赋予和所有者同样的权限
+chmod u-s /bin/file1 禁用一个二进制文件的 SUID位
+chmod g+s /home/public 设置一个目录的SGID 位 - 类似SUID ，不过这是针对目录的
+chmod g-s /home/public 禁用一个目录的 SGID 位
+chmod o+t /home/public 设置一个文件的 STIKY 位 - 只允许合法所有人删除文件
+chmod o-t /home/public 禁用一个目录的 STIKY 位</code></pre><h1 id="16-文件的特殊属性-使用-“-”-设置权限，使用-“-“-用于取消"><a href="#16-文件的特殊属性-使用-“-”-设置权限，使用-“-“-用于取消" class="headerlink" title="16.文件的特殊属性 - 使用 “+” 设置权限，使用 “-“ 用于取消"></a>16.文件的特殊属性 - 使用 “+” 设置权限，使用 “-“ 用于取消</h1><pre><code>chattr +a file1 只允许以追加方式读写文件
+chattr +c file1 允许这个文件能被内核自动压缩/解压
+chattr +d file1 在进行文件系统备份时，dump程序将忽略这个文件
+chattr +i file1 设置成不可变的文件，不能被删除、修改、重命名或者链接
+chattr +s file1 允许一个文件被安全地删除
+chattr +S file1 一旦应用程序对这个文件执行了写操作，使系统立刻把修改的结果写到磁盘
+chattr +u file1 若文件被删除，系统会允许你在以后恢复这个被删除的文件
+lsattr 显示特殊的属性</code></pre><h1 id="17-打包和压缩文件"><a href="#17-打包和压缩文件" class="headerlink" title="17.打包和压缩文件"></a>17.打包和压缩文件</h1><pre><code>bunzip2 file1.bz2 解压一个叫做 &apos;file1.bz2&apos;的文件
+bzip2 file1 压缩一个叫做 &apos;file1&apos; 的文件
+gunzip file1.gz 解压一个叫做 &apos;file1.gz&apos;的文件
+gzip file1 压缩一个叫做 &apos;file1&apos;的文件
+gzip -9 file1 最大程度压缩
+rar a file1.rar test_file 创建一个叫做 &apos;file1.rar&apos; 的包
+rar a file1.rar file1 file2 dir1 同时压缩 &apos;file1&apos;, &apos;file2&apos; 以及目录 &apos;dir1&apos;
+rar x file1.rar 解压rar包
+unrar x file1.rar 解压rar包
+tar -cvf archive.tar file1 创建一个非压缩的 tarball
+tar -cvf archive.tar file1 file2 dir1 创建一个包含了 &apos;file1&apos;, &apos;file2&apos; 以及 &apos;dir1&apos;的档案文件
+tar -tf archive.tar 显示一个包中的内容
+tar -xvf archive.tar 释放一个包
+tar -xvf archive.tar -C /tmp 将压缩包释放到 /tmp目录下
+tar -cvfj archive.tar.bz2 dir1 创建一个bzip2格式的压缩包
+tar -xvfj archive.tar.bz2 解压一个bzip2格式的压缩包
+tar -cvfz archive.tar.gz dir1 创建一个gzip格式的压缩包
+tar -xvfz archive.tar.gz 解压一个gzip格式的压缩包
+zip file1.zip file1 创建一个zip格式的压缩包
+zip -r file1.zip file1 file2 dir1 将几个文件和目录同时压缩成一个zip格式的压缩包
+unzip file1.zip 解压一个zip格式压缩包</code></pre><h1 id="18-RPM-包-（Fedora-Redhat及类似系统）"><a href="#18-RPM-包-（Fedora-Redhat及类似系统）" class="headerlink" title="18.RPM 包 - （Fedora, Redhat及类似系统）"></a>18.RPM 包 - （Fedora, Redhat及类似系统）</h1><pre><code>rpm -ivh package.rpm 安装一个rpm包
+rpm -ivh --nodeeps package.rpm 安装一个rpm包而忽略依赖关系警告
+rpm -U package.rpm 更新一个rpm包但不改变其配置文件
+rpm -F package.rpm 更新一个确定已经安装的rpm包
+rpm -e package_name.rpm 删除一个rpm包
+rpm -qa 显示系统中所有已经安装的rpm包
+rpm -qa | grep httpd 显示所有名称中包含 &quot;httpd&quot; 字样的rpm包
+rpm -qi package_name 获取一个已安装包的特殊信息
+rpm -qg &quot;System Environment/Daemons&quot; 显示一个组件的rpm包
+rpm -ql package_name 显示一个已经安装的rpm包提供的文件列表
+rpm -qc package_name 显示一个已经安装的rpm包提供的配置文件列表
+rpm -q package_name --whatrequires 显示与一个rpm包存在依赖关系的列表
+rpm -q package_name --whatprovides 显示一个rpm包所占的体积
+rpm -q package_name --scripts 显示在安装/删除期间所执行的脚本l
+rpm -q package_name --changelog 显示一个rpm包的修改历史
+rpm -qf /etc/httpd/conf/httpd.conf 确认所给的文件由哪个rpm包所提供
+rpm -qp package.rpm -l 显示由一个尚未安装的rpm包提供的文件列表
+rpm --import /media/cdrom/RPM-GPG-KEY 导入公钥数字证书
+rpm --checksig package.rpm 确认一个rpm包的完整性
+rpm -qa gpg-pubkey 确认已安装的所有rpm包的完整性
+rpm -V package_name 检查文件尺寸、 许可、类型、所有者、群组、MD5检查以及最后修改时间
+rpm -Va 检查系统中所有已安装的rpm包- 小心使用
+rpm -Vp package.rpm 确认一个rpm包还未安装
+rpm2cpio package.rpm | cpio --extract --make-directories *bin* 从一个rpm包运行可执行文件
+rpm -ivh /usr/src/redhat/RPMS/`arch`/package.rpm 从一个rpm源码安装一个构建好的包
+rpmbuild --rebuild package_name.src.rpm 从一个rpm源码构建一个 rpm 包</code></pre><h1 id="19-YUM-软件包升级器-（Fedora-RedHat及类似系统）"><a href="#19-YUM-软件包升级器-（Fedora-RedHat及类似系统）" class="headerlink" title="19.YUM 软件包升级器 - （Fedora, RedHat及类似系统）"></a>19.YUM 软件包升级器 - （Fedora, RedHat及类似系统）</h1><pre><code>yum install package_name 下载并安装一个rpm包
+yum localinstall package_name.rpm 将安装一个rpm包，使用你自己的软件仓库为你解决所有依赖关系
+yum update package_name.rpm 更新当前系统中所有安装的rpm包
+yum update package_name 更新一个rpm包
+yum remove package_name 删除一个rpm包
+yum list 列出当前系统中安装的所有包
+yum search package_name 在rpm仓库中搜寻软件包
+yum clean packages 清理rpm缓存删除下载的包
+yum clean headers 删除所有头文件
+yum clean all 删除所有缓存的包和头文件</code></pre><h1 id="20-DEB-包-Debian-Ubuntu-以及类似系统"><a href="#20-DEB-包-Debian-Ubuntu-以及类似系统" class="headerlink" title="20.DEB 包 (Debian, Ubuntu 以及类似系统)"></a>20.DEB 包 (Debian, Ubuntu 以及类似系统)</h1><pre><code>dpkg -i package.deb 安装/更新一个 deb 包
+dpkg -r package_name 从系统删除一个 deb 包
+dpkg -l 显示系统中所有已经安装的 deb 包
+dpkg -l | grep httpd 显示所有名称中包含 &quot;httpd&quot; 字样的deb包
+dpkg -s package_name 获得已经安装在系统中一个特殊包的信息
+dpkg -L package_name 显示系统中已经安装的一个deb包所提供的文件列表
+dpkg --contents package.deb 显示尚未安装的一个包所提供的文件列表
+dpkg -S /bin/ping 确认所给的文件由哪个deb包提供</code></pre><h1 id="21-APT-软件工具-Debian-Ubuntu-以及类似系统"><a href="#21-APT-软件工具-Debian-Ubuntu-以及类似系统" class="headerlink" title="21.APT 软件工具 (Debian, Ubuntu 以及类似系统)"></a>21.APT 软件工具 (Debian, Ubuntu 以及类似系统)</h1><pre><code>apt-get install package_name 安装/更新一个 deb 包
+apt-cdrom install package_name 从光盘安装/更新一个 deb 包
+apt-get update 升级列表中的软件包
+apt-get upgrade 升级所有已安装的软件
+apt-get remove package_name 从系统删除一个deb包
+apt-get check 确认依赖的软件仓库正确
+apt-get clean 从下载的软件包中清理缓存
+apt-cache search searched-package 返回包含所要搜索字符串的软件包名称</code></pre><h1 id="22-查看文件内容"><a href="#22-查看文件内容" class="headerlink" title="22.查看文件内容"></a>22.查看文件内容</h1><pre><code>cat file1 从第一个字节开始正向查看文件的内容
+tac file1 从最后一行开始反向查看一个文件的内容
+more file1 查看一个长文件的内容
+less file1 类似于 &apos;more&apos; 命令，但是它允许在文件中和正向操作一样的反向操作
+head -2 file1 查看一个文件的前两行
+tail -2 file1 查看一个文件的最后两行
+tail -f /var/log/messages 实时查看被添加到一个文件中的内容</code></pre><h1 id="23-文本处理"><a href="#23-文本处理" class="headerlink" title="23.文本处理"></a>23.文本处理</h1><pre><code>cat file1 file2 ... | command &lt;&gt; file1_in.txt_or_file1_out.txt general syntax for text manipulation using PIPE, STDIN and STDOUT
+cat file1 | command( sed, grep, awk, grep, etc...) &gt; result.txt 合并一个文件的详细说明文本，并将简介写入一个新文件中
+cat file1 | command( sed, grep, awk, grep, etc...) &gt;&gt; result.txt 合并一个文件的详细说明文本，并将简介写入一个已有的文件中
+grep Aug /var/log/messages 在文件 &apos;/var/log/messages&apos;中查找关键词&quot;Aug&quot;
+grep ^Aug /var/log/messages 在文件 &apos;/var/log/messages&apos;中查找以&quot;Aug&quot;开始的词汇
+grep [0-9] /var/log/messages 选择 &apos;/var/log/messages&apos; 文件中所有包含数字的行
+grep Aug -R /var/log/* 在目录 &apos;/var/log&apos; 及随后的目录中搜索字符串&quot;Aug&quot;
+sed &apos;s/stringa1/stringa2/g&apos; example.txt 将example.txt文件中的 &quot;string1&quot; 替换成 &quot;string2&quot;
+sed &apos;/^$/d&apos; example.txt 从example.txt文件中删除所有空白行
+sed &apos;/ *#/d; /^$/d&apos; example.txt 从example.txt文件中删除所有注释和空白行
+echo &apos;esempio&apos; | tr &apos;[:lower:]&apos; &apos;[:upper:]&apos; 合并上下单元格内容
+sed -e &apos;1d&apos; result.txt 从文件example.txt 中排除第一行
+sed -n &apos;/stringa1/p&apos; 查看只包含词汇 &quot;string1&quot;的行
+sed -e &apos;s/ *$//&apos; example.txt 删除每一行最后的空白字符
+sed -e &apos;s/stringa1//g&apos; example.txt 从文档中只删除词汇 &quot;string1&quot; 并保留剩余全部
+sed -n &apos;1,5p;5q&apos; example.txt 查看从第一行到第5行内容
+sed -n &apos;5p;5q&apos; example.txt 查看第5行
+sed -e &apos;s/00*/0/g&apos; example.txt 用单个零替换多个零
+cat -n file1 标示文件的行数
+cat example.txt | awk &apos;NR%2==1&apos; 删除example.txt文件中的所有偶数行
+echo a b c | awk &apos;{print $1}&apos; 查看一行第一栏
+echo a b c | awk &apos;{print $1,$3}&apos; 查看一行的第一和第三栏
+paste file1 file2 合并两个文件或两栏的内容
+paste -d &apos;+&apos; file1 file2 合并两个文件或两栏的内容，中间用&quot;+&quot;区分
+sort file1 file2 排序两个文件的内容
+sort file1 file2 | uniq 取出两个文件的并集(重复的行只保留一份)
+sort file1 file2 | uniq -u 删除交集，留下其他的行
+sort file1 file2 | uniq -d 取出两个文件的交集(只留下同时存在于两个文件中的文件)
+comm -1 file1 file2 比较两个文件的内容只删除 &apos;file1&apos; 所包含的内容
+comm -2 file1 file2 比较两个文件的内容只删除 &apos;file2&apos; 所包含的内容
+comm -3 file1 file2 比较两个文件的内容只删除两个文件共有的部分</code></pre><h1 id="24-字符设置和文件格式转换"><a href="#24-字符设置和文件格式转换" class="headerlink" title="24.字符设置和文件格式转换"></a>24.字符设置和文件格式转换</h1><pre><code>dos2unix filedos.txt fileunix.txt 将一个文本文件的格式从MSDOS转换成UNIX
+unix2dos fileunix.txt filedos.txt 将一个文本文件的格式从UNIX转换成MSDOS
+recode ..HTML &lt; page.txt &gt; page.html 将一个文本文件转换成html
+recode -l | more 显示所有允许的转换格式</code></pre><h1 id="25-文件系统分析"><a href="#25-文件系统分析" class="headerlink" title="25.文件系统分析"></a>25.文件系统分析</h1><pre><code>badblocks -v /dev/hda1 检查磁盘hda1上的坏磁块
+fsck /dev/hda1 修复/检查hda1磁盘上linux文件系统的完整性
+fsck.ext2 /dev/hda1 修复/检查hda1磁盘上ext2文件系统的完整性
+e2fsck /dev/hda1 修复/检查hda1磁盘上ext2文件系统的完整性
+e2fsck -j /dev/hda1 修复/检查hda1磁盘上ext3文件系统的完整性
+fsck.ext3 /dev/hda1 修复/检查hda1磁盘上ext3文件系统的完整性
+fsck.vfat /dev/hda1 修复/检查hda1磁盘上fat文件系统的完整性
+fsck.msdos /dev/hda1 修复/检查hda1磁盘上dos文件系统的完整性
+dosfsck /dev/hda1 修复/检查hda1磁盘上dos文件系统的完整性</code></pre><h1 id="26-初始化一个文件系统"><a href="#26-初始化一个文件系统" class="headerlink" title="26.初始化一个文件系统"></a>26.初始化一个文件系统</h1><pre><code>mkfs /dev/hda1 在hda1分区创建一个文件系统
+mke2fs /dev/hda1 在hda1分区创建一个linux ext2的文件系统
+mke2fs -j /dev/hda1 在hda1分区创建一个linux ext3(日志型)的文件系统
+mkfs -t vfat 32 -F /dev/hda1 创建一个 FAT32 文件系统
+fdformat -n /dev/fd0 格式化一个软盘
+mkswap /dev/hda3 创建一个swap文件系统</code></pre><h1 id="27-SWAP文件系统"><a href="#27-SWAP文件系统" class="headerlink" title="27.SWAP文件系统"></a>27.SWAP文件系统</h1><pre><code>mkswap /dev/hda3 创建一个swap文件系统
+swapon /dev/hda3 启用一个新的swap文件系统
+swapon /dev/hda2 /dev/hdb3 启用两个swap分区</code></pre><h1 id="28-备份"><a href="#28-备份" class="headerlink" title="28.备份"></a>28.备份</h1><pre><code>dump -0aj -f /tmp/home0.bak /home 制作一个 &apos;/home&apos; 目录的完整备份
+dump -1aj -f /tmp/home0.bak /home 制作一个 &apos;/home&apos; 目录的交互式备份
+restore -if /tmp/home0.bak 还原一个交互式备份
+rsync -rogpav --delete /home /tmp 同步两边的目录
+rsync -rogpav -e ssh --delete /home ip_address:/tmp 通过SSH通道rsync
+rsync -az -e ssh --delete ip_addr:/home/public /home/local 通过ssh和压缩将一个远程目录同步到本地目录
+rsync -az -e ssh --delete /home/local ip_addr:/home/public 通过ssh和压缩将本地目录同步到远程目录
+dd bs=1M if=/dev/hda | gzip | ssh user@ip_addr &apos;dd of=hda.gz&apos; 通过ssh在远程主机上执行一次备份本地磁盘的操作
+dd if=/dev/sda of=/tmp/file1 备份磁盘内容到一个文件
+tar -Puf backup.tar /home/user 执行一次对 &apos;/home/user&apos; 目录的交互式备份操作
+( cd /tmp/local/ &amp;&amp; tar c . ) | ssh -C user@ip_addr &apos;cd /home/share/ &amp;&amp; tar x -p&apos; 通过ssh在远程目录中复制一个目录内容
+( tar c /home ) | ssh -C user@ip_addr &apos;cd /home/backup-home &amp;&amp; tar x -p&apos; 通过ssh在远程目录中复制一个本地目录
+tar cf - . | (cd /tmp/backup ; tar xf - ) 本地将一个目录复制到另一个地方，保留原有权限及链接
+find /home/user1 -name &apos;*.txt&apos; | xargs cp -av --target-directory=/home/backup/ --parents 从一个目录查找并复制所有以 &apos;.txt&apos; 结尾的文件到另一个目录
+find /var/log -name &apos;*.log&apos; | tar cv --files-from=- | bzip2 &gt; log.tar.bz2 查找所有以 &apos;.log&apos; 结尾的文件并做成一个bzip包
+dd if=/dev/hda of=/dev/fd0 bs=512 count=1 做一个将 MBR (Master Boot Record)内容复制到软盘的动作
+dd if=/dev/fd0 of=/dev/hda bs=512 count=1 从已经保存到软盘的备份中恢复MBR内容</code></pre><h1 id="29-光盘"><a href="#29-光盘" class="headerlink" title="29.光盘"></a>29.光盘</h1><pre><code>cdrecord -v gracetime=2 dev=/dev/cdrom -eject blank=fast -force 清空一个可复写的光盘内容
+mkisofs /dev/cdrom &gt; cd.iso 在磁盘上创建一个光盘的iso镜像文件
+mkisofs /dev/cdrom | gzip &gt; cd_iso.gz 在磁盘上创建一个压缩了的光盘iso镜像文件
+mkisofs -J -allow-leading-dots -R -V &quot;Label CD&quot; -iso-level 4 -o ./cd.iso data_cd 创建一个目录的iso镜像文件
+cdrecord -v dev=/dev/cdrom cd.iso 刻录一个ISO镜像文件
+gzip -dc cd_iso.gz | cdrecord dev=/dev/cdrom - 刻录一个压缩了的ISO镜像文件
+mount -o loop cd.iso /mnt/iso 挂载一个ISO镜像文件
+cd-paranoia -B 从一个CD光盘转录音轨到 wav 文件中
+cd-paranoia -- &quot;-3&quot; 从一个CD光盘转录音轨到 wav 文件中（参数-3）
+cdrecord --scanbus 扫描总线以识别scsi通道
+dd if=/dev/hdc | md5sum 校验一个设备的md5sum编码，例如一张 CD</code></pre>
+      
+       
+    </div>
+</article>
+
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>linux高级命令</p>
+    <p><span class="copy-title">发布时间:</span>2019-11-15, 17:20:50</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-15, 17:20:51</p>
+</div>
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2019 chen wei</p>
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<!--
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+-->
+<a class="" id="rocket" href="javascript:void(0)" target="_blank" rel="noopener"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#熔断监控Hystrix-Dashboard','#Hystrix和Feign Hystrix','#Spring-Cloud-Sleuth','#Zipkin','#Spring-cloud和Spring-boot','#docker','#find命令','#分布式','#Java-IO','#JDK工具使用','#linux基本命令','#linux安装jre','#redis','#Springboot日志配置','#Springboot基础知识','#Springboot项目导可执行jar','#eureka原理介绍','#eureka 服务提供和调用','#配置中心git','#配置中心git服务化和高可用','#ps命令','#rabbitMQ','#mv命令','#Spring高级话题','#Spring常用配置','#Spring基础知识','#Spring cloud zuul (服务网关初级)','#linux高级命令','#SpringMVC基础','#SpringMVC配置','#Java-NIO','#Spring cloud zuul (服务网关高级)',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
