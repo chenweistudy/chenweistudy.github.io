@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Springboot项目导可执行jar | Hexo</title>
-  <meta name="keywords" content=" Springboot项目导可执行jar ">
-  <meta name="description" content="Springboot项目导可执行jar | Hexo">
+  <title>JDK工具使用 | Hexo</title>
+  <meta name="keywords" content=" JDK工具使用 ">
+  <meta name="description" content="JDK工具使用 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="参考网址 1．JDK工具简介 在JDK的bin目录下有很多命令行工具：  　        我们可以看到各个工具的体积基本上都稳定在27kb左右，这个不是JDK开发团队刻意为之的，而是因为这些工具大多数是jdk\lib\tools.jar类库的一层薄包装而已，他们的主要功能代码是在tools类库中实现的。命令行工具的好处是：当应用程序部署到生产环境后，无论是直接接触物理服务器还是远程telnet到">
 <meta name="keywords" content="JDK工具使用">
@@ -532,9 +532,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-springboot-jar" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-java-jvm" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Springboot项目导可执行jar</h1>
+        <h1 class="article-title">JDK工具使用</h1>
     
     <div class="article-meta">
         
@@ -542,21 +542,21 @@
         
         <span class="book">
             
-                <a href="javascript:" target="_blank" data-rel="springboot noopener">springboot</a>
+                <a href="javascript:" target="_blank" data-rel="java noopener">java</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot项目导可执行jar</a>
+            <a href="javascript:" target="_blank" rel="noopener" class="color3">JDK工具使用</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-11-14 15:26:12'>2019-11-14 15:26</time>
+        创建时间:<time class="date" title='更新时间: 2019-11-15 16:14:53'>2019-11-15 16:14</time>
         
     </div>
     <div class="article-meta">
@@ -578,7 +578,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-pom-xml配置："><span class="toc-text">1.pom.xml配置：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Run-AS-gt-Maven-clean"><span class="toc-text">2.Run AS -&gt;Maven clean</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Run-AS-gt-Maven-install"><span class="toc-text">3.Run AS -&gt;Maven install</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1．JDK工具简介"><span class="toc-text">1．JDK工具简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二．常用命令"><span class="toc-text">二．常用命令</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -594,107 +594,29 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1-pom-xml配置："><a href="#1-pom-xml配置：" class="headerlink" title="1.pom.xml配置："></a>1.pom.xml配置：</h1><pre><code>&lt;build&gt;
-    &lt;resources&gt;
-        &lt;!--指定src/main/resources资源要过滤--&gt;
-        &lt;resource&gt;
-            &lt;directory&gt;src/main/resources&lt;/directory&gt;
-            &lt;filtering&gt;true&lt;/filtering&gt;
-        &lt;/resource&gt;
-    &lt;/resources&gt;
-    &lt;plugins&gt;
-        &lt;!-- 可执行jar插件 --&gt;
-        &lt;plugin&gt;
-            &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-            &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt;
-            &lt;configuration&gt;
-                &lt;archive&gt;
-                    &lt;manifest&gt;
-                        &lt;addClasspath&gt;true&lt;/addClasspath&gt;
-                        &lt;classpathPrefix&gt;lib/&lt;/classpathPrefix&gt;
-                        &lt;mainClass&gt;cn.com.sinodata.AppRun&lt;/mainClass&gt;
-                    &lt;/manifest&gt;
-                    &lt;manifestEntries&gt;
-                        &lt;Class-Path&gt;.&lt;/Class-Path&gt;
-                    &lt;/manifestEntries&gt;
-                &lt;/archive&gt;
-                &lt;excludes&gt;
-                    &lt;!-- &lt;exclude&gt;**/*.xml&lt;/exclude&gt;
-                    &lt;exclude&gt;**/*.conf&lt;/exclude&gt;
-                    &lt;exclude&gt;**/*.properties&lt;/exclude&gt; --&gt;
-                    &lt;exclude&gt;**/*.yml&lt;/exclude&gt;
-                    &lt;exclude&gt;**/logback-spring.xml&lt;/exclude&gt;
-                    &lt;exclude&gt;**/*.sh&lt;/exclude&gt;
-                &lt;/excludes&gt;
+        <p><a href="https://blog.csdn.net/suixinsuoyu12519/article/details/84033859" target="_blank" rel="noopener">参考网址</a></p>
+<h2 id="1．JDK工具简介"><a href="#1．JDK工具简介" class="headerlink" title="1．JDK工具简介"></a>1．JDK工具简介</h2><blockquote>
+<p>在JDK的bin目录下有很多命令行工具：</p>
+</blockquote>
+<p>　        我们可以看到各个工具的体积基本上都稳定在27kb左右，这个不是JDK开发团队刻意为之的，而是因为这些工具大多数是jdk\lib\tools.jar类库的一层薄包装而已，他们的主要功能代码是在tools类库中实现的。命令行工具的好处是：当应用程序部署到生产环境后，无论是直接接触物理服务器还是远程telnet到服务器上都会受到限制。而借助tools.jar类库里面的接口，我们可以直接在应用程序中实现功能强大的监控分析功能。</p>
+<h2 id="二．常用命令"><a href="#二．常用命令" class="headerlink" title="二．常用命令"></a>二．常用命令</h2><p><strong>1、jps：查看本机java进程信息。</strong></p>
+<p>&emsp;&emsp;显示当前所有java进程pid的命令，我们可以通过这个命令来查看到底启动了几个java进程（因为每一个java程序都会独占一个java虚拟机实例），不过jps有个缺点是只能显示当前用户的进程id，要显示其他用户的还只能用linux的ps命令。</p>
+<pre><code>jps -v 输出传递给JVM的参数
 
-            &lt;/configuration&gt;
-        &lt;/plugin&gt;
-        &lt;!-- maven资源文件复制插件 --&gt;
-        &lt;plugin&gt;
-            &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-            &lt;artifactId&gt;maven-resources-plugin&lt;/artifactId&gt;
-            &lt;version&gt;2.7&lt;/version&gt;
-            &lt;executions&gt;
-                &lt;execution&gt;
-                    &lt;id&gt;copy-resources&lt;/id&gt;
-                    &lt;!-- here the phase you need --&gt;
-                    &lt;phase&gt;package&lt;/phase&gt;
-                    &lt;goals&gt;
-                        &lt;goal&gt;copy-resources&lt;/goal&gt;
-                    &lt;/goals&gt;
-                    &lt;configuration&gt;
-                        &lt;outputDirectory&gt;${project.build.directory}/LottSellNetManage&lt;/outputDirectory&gt;
-                        &lt;resources&gt;
-                            &lt;resource&gt;
-                                &lt;directory&gt;src/main/resources&lt;/directory&gt;
-                                &lt;includes&gt;
-                              &lt;!--       &lt;exclude&gt;**/*.xml&lt;/exclude&gt;
-                                    &lt;exclude&gt;**/*.conf&lt;/exclude&gt;
-                                    &lt;exclude&gt;**/*.properties&lt;/exclude&gt; --&gt;
-                                    &lt;exclude&gt;**/*.yml&lt;/exclude&gt;
-                                    &lt;exclude&gt;**/logback-spring.xml&lt;/exclude&gt;
-                                    &lt;exclude&gt;**/*.sh&lt;/exclude&gt;
-                                &lt;/includes&gt;
-                                &lt;filtering&gt;true&lt;/filtering&gt;
-                            &lt;/resource&gt;
-                        &lt;/resources&gt;
-                        &lt;encoding&gt;UTF-8&lt;/encoding&gt;
-                    &lt;/configuration&gt;
-                &lt;/execution&gt;
-            &lt;/executions&gt;
-        &lt;/plugin&gt;
-        &lt;!-- 依赖包插件 --&gt;
-        &lt;plugin&gt;
-            &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-            &lt;artifactId&gt;maven-dependency-plugin&lt;/artifactId&gt;
-            &lt;executions&gt;
-                &lt;execution&gt;
-                    &lt;id&gt;copy-dependencies&lt;/id&gt;
-                    &lt;phase&gt;package&lt;/phase&gt;
-                    &lt;goals&gt;
-                        &lt;goal&gt;copy-dependencies&lt;/goal&gt;
-                    &lt;/goals&gt;
-                    &lt;configuration&gt;
-                        &lt;outputDirectory&gt;${project.build.directory}/LottSellNetManage/lib&lt;/outputDirectory&gt;
-                        &lt;!-- 是否不包含间接依赖 --&gt;
-                        &lt;excludeTransitive&gt;false&lt;/excludeTransitive&gt;
-                        &lt;!-- 忽略版本 --&gt;
-                        &lt;stripVersion&gt;false&lt;/stripVersion&gt;
-                    &lt;/configuration&gt;
-                &lt;/execution&gt;
-            &lt;/executions&gt;
-        &lt;/plugin&gt;
+jps -l 输出应用程序main.class的完整package名或者应用程序jar文件完整路径名</code></pre><p><strong>2、jstack：打印线程的栈信息，制作线程dump文件。</strong></p>
+<p><strong>3、jmap：打印内存映射，制作堆dump文件</strong></p>
+<p><strong>4、jstat：性能监控工具</strong></p>
+<p><strong>5、jhat：内存分析工具</strong></p>
+<p><strong>6、jconsole：简易的可视化控制台</strong></p>
+<p><strong>7、jvisualvm：功能强大的控制台</strong></p>
+<p><strong>8.JAVA Dump：</strong></p>
+<blockquote>
+<p>(1) JAVA Dump:就是虚拟机运行时的快照，将虚拟机运行时的状态和信息保存到文件中：</p>
+<p>(2) 线程dump：包含所有线程的运行状态，纯文本格式</p>
+<p>(3) 堆dump：包含所有堆对象的状态，二进制格式</p>
+</blockquote>
+<p>java dump可以在任何java环境使用，信息量充足，针对非功能性性的bug，主要为多线程开发、内存泄漏。</p>
 
-        &lt;plugin&gt;
-            &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-            &lt;artifactId&gt;maven-surefire-plugin&lt;/artifactId&gt;
-            &lt;version&gt;2.18.1&lt;/version&gt;
-            &lt;configuration&gt;
-                &lt;skipTests&gt;true&lt;/skipTests&gt;
-            &lt;/configuration&gt;
-        &lt;/plugin&gt;
-    &lt;/plugins&gt;
-&lt;/build&gt;</code></pre><h1 id="2-Run-AS-gt-Maven-clean"><a href="#2-Run-AS-gt-Maven-clean" class="headerlink" title="2.Run AS -&gt;Maven clean"></a>2.Run AS -&gt;Maven clean</h1><h1 id="3-Run-AS-gt-Maven-install"><a href="#3-Run-AS-gt-Maven-install" class="headerlink" title="3.Run AS -&gt;Maven install"></a>3.Run AS -&gt;Maven install</h1>
       
        
     </div>
@@ -703,9 +625,9 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>Springboot项目导可执行jar</p>
-    <p><span class="copy-title">发布时间:</span>2019-11-14, 15:26:12</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-14, 15:26:12</p>
+    <p><span class="copy-title">文章标题:</span>JDK工具使用</p>
+    <p><span class="copy-title">发布时间:</span>2019-11-15, 16:14:52</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-15, 16:14:53</p>
 </div>
 
 
