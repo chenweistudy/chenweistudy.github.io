@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Spring-Cloud-Sleuth和Zipkin进行分布式链路跟踪 | Hexo</title>
-  <meta name="keywords" content=" Spring-Cloud-Sleuth , Zipkin ">
-  <meta name="description" content="Spring-Cloud-Sleuth和Zipkin进行分布式链路跟踪 | Hexo">
+  <title>redis取消只能本地访问的方式 | Hexo</title>
+  <meta name="keywords" content=" redis取消只能本地访问的方式 ">
+  <meta name="description" content="redis取消只能本地访问的方式 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="解决redis保护模式时只能本地连接服务器，外网访问不了1.找到redis.windows.conf文件#bind 127.0.0.1 注释本地访问地址  protected-mode no 取消保护模式2.重启redis服务器cmd 命令进入到redis安装目录  执行 redis-server redis.windows.conf">
 <meta name="keywords" content="redis取消只能本地访问的方式">
@@ -624,9 +624,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-Sleuth-ZipKin" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-redisconnnection" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Spring-Cloud-Sleuth和Zipkin进行分布式链路跟踪</h1>
+        <h1 class="article-title">redis取消只能本地访问的方式</h1>
     
     <div class="article-meta">
         
@@ -634,23 +634,21 @@
         
         <span class="book">
             
-                <a href="javascript:" target="_blank" data-rel="springcloud noopener">springcloud</a>
+                <a href="javascript:" target="_blank" data-rel="redis noopener">redis</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" target="_blank" rel="noopener" class="color5">Spring-Cloud-Sleuth</a>
-            
-            <a href="javascript:" target="_blank" rel="noopener" class="color2">Zipkin</a>
+            <a href="javascript:" target="_blank" rel="noopener" class="color2">redis取消只能本地访问的方式</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-11-14 15:03:36'>2019-11-14 15:03</time>
+        创建时间:<time class="date" title='更新时间: 2019-11-18 15:41:23'>2019-11-18 15:41</time>
         
     </div>
     <div class="article-meta">
@@ -672,7 +670,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-分布式链路跟踪使用场景"><span class="toc-text">1.分布式链路跟踪使用场景</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1spring-cloud-sleuth"><span class="toc-text">1.1spring cloud sleuth</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2ZipKin"><span class="toc-text">1.2ZipKin</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#解决redis保护模式时只能本地连接服务器，外网访问不了"><span class="toc-text">解决redis保护模式时只能本地连接服务器，外网访问不了</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-找到redis-windows-conf文件"><span class="toc-text">1.找到redis.windows.conf文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-重启redis服务器"><span class="toc-text">2.重启redis服务器</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -688,37 +686,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1-分布式链路跟踪使用场景"><a href="#1-分布式链路跟踪使用场景" class="headerlink" title="1.分布式链路跟踪使用场景"></a>1.分布式链路跟踪使用场景</h1><blockquote>
-<p>系统拆分导致系统调用链路愈发复杂一个前端请求可能最终需要调用很多次后端服务才能完成，当整个请求变慢或不可用时，我们是无法得知该请求是由某个或某些后端服务引起的，这时就需要解决如何快读定位服务故障点，以对症下药。于是就有了分布式系统调用跟踪的诞生。</p>
-<p>淘宝的“鹰眼”、京东的“Hydra”、大众点评的“CAT”、新浪的“Watchman”、唯品会的“Microscope”、窝窝网的“Tracing”都是这样的系统。</p>
-</blockquote>
-<h2 id="1-1spring-cloud-sleuth"><a href="#1-1spring-cloud-sleuth" class="headerlink" title="1.1spring cloud sleuth"></a>1.1spring cloud sleuth</h2><p>一个分布式服务跟踪系统，主要有三部分：数据收集、数据存储和数据展示。</p>
-<p>根据系统大小不同，每一部分的结构又有一定变化。</p>
-<p>（1）.对于大规模分布式系统，数据存储可分为实时数据和全量数据两部分，实时数据用于故障排查（troubleshooting），全量数据用于系统优化；</p>
-<p>(2).数据收集除了支持平台无关和开发语言无关系统的数据收集，还包括异步数据收集（需要跟踪队列中的消息，保证调用的连贯性），以及确保更小的侵入性；</p>
-<p>(3).数据展示又涉及到数据挖掘和分析。虽然每一部分都可能变得很复杂，但基本原理都类似。</p>
-<blockquote>
-<p>①.服务追踪的追踪单元是从客户发起请求（request）抵达被追踪系统的边界开始，到被追踪系统向客户返回响应（response）为止的过程，称为一个“trace”。</p>
-<p>②.每个 trace 中会调用若干个服务，为了记录调用了哪些服务，以及每次调用的消耗时间等信息，在每次调用服务时，埋入一个调用记录，称为一个“span”。</p>
-<p>③.若干个有序的 span 就组成了一个 trace。在系统向外界提供服务的过程中，会不断地有请求和响应发生，也就会不断生成 trace，把这些带有span 的 trace 记录下来，就可以描绘出一幅系统的服务拓扑图。</p>
-<p>④.附带上 span 中的响应时间，以及请求成功与否等信息，就可以在发生问题的时候，找到异常的服务；根据历史数据，还可以从系统整体层面分析出哪里性能差，定位性能优化的目标.</p>
-<p>⑤.Spring Cloud Sleuth为服务之间调用提供链路追踪。通过Sleuth可以很清楚的了解到一个服务请求经过了哪些服务，每个服务处理花费了多长。从而让我们可以很方便的理清各微服务间的调用关系。</p>
-</blockquote>
-<p><strong>此外Sleuth可以帮助我们：</strong></p>
-<blockquote>
-<p>耗时分析: 通过Sleuth可以很方便的了解到每个采样请求的耗时，从而分析出哪些服务                调用比较耗时;</p>
-<p>可视化错误: 对于程序未捕捉的异常，可以通过集成Zipkin服务界面上看到;</p>
-<p>链路优化: 对于调用比较频繁的服务，可以针对这些服务实施一些优化措施。</p>
-</blockquote>
-<p>spring cloud sleuth可以结合zipkin，将信息发送到zipkin，利用zipkin的存储来存储信息，利用zipkin ui来展示数据。</p>
-<h2 id="1-2ZipKin"><a href="#1-2ZipKin" class="headerlink" title="1.2ZipKin"></a>1.2ZipKin</h2><p>Zipkin 是一个开放源代码分布式的跟踪系统，由Twitter公司开源。</p>
-<pre><code>它致力于收集服务的定时数据，以解决微服务架构中的延迟问题，包括数据的收集、存储、查找和展现。</code></pre><p>每个服务向zipkin报告计时数据，zipkin会根据调用关系通过Zipkin UI生成依赖关系图，显示了多少跟踪请求通过每个服务，该系统让开发者可通过一个 Web 前端轻松的收集和分析数据，</p>
-<blockquote>
-<p>例如用户每次请求服务的处理时间等，可方便的监测系统中存在的瓶颈。</p>
-<p>Zipkin提供了可插拔数据存储方式：In-Memory、MySql、Cassandra以及Elasticsearch。</p>
-<p>接下来的测试为方便直接采用In-Memory方式进行存储，生产推荐Elasticsearch。</p>
-</blockquote>
+        <h1 id="解决redis保护模式时只能本地连接服务器，外网访问不了"><a href="#解决redis保护模式时只能本地连接服务器，外网访问不了" class="headerlink" title="解决redis保护模式时只能本地连接服务器，外网访问不了"></a>解决redis保护模式时只能本地连接服务器，外网访问不了</h1><h1 id="1-找到redis-windows-conf文件"><a href="#1-找到redis-windows-conf文件" class="headerlink" title="1.找到redis.windows.conf文件"></a>1.找到redis.windows.conf文件</h1><pre><code>#bind 127.0.0.1 注释本地访问地址
 
+protected-mode no 取消保护模式</code></pre><h1 id="2-重启redis服务器"><a href="#2-重启redis服务器" class="headerlink" title="2.重启redis服务器"></a>2.重启redis服务器</h1><pre><code>cmd 命令进入到redis安装目录
+
+执行 redis-server redis.windows.conf</code></pre>
       
        
     </div>
@@ -727,9 +699,9 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>Spring-Cloud-Sleuth和Zipkin进行分布式链路跟踪</p>
-    <p><span class="copy-title">发布时间:</span>2019-11-14, 15:03:35</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-14, 15:03:36</p>
+    <p><span class="copy-title">文章标题:</span>redis取消只能本地访问的方式</p>
+    <p><span class="copy-title">发布时间:</span>2019-11-18, 15:41:22</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-18, 15:41:23</p>
 </div>
 
 
