@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>熔断器（Hystrix） | Hexo</title>
-  <meta name="keywords" content=" Hystrix和Feign Hystrix ">
-  <meta name="description" content="熔断器（Hystrix） | Hexo">
+  <title>java实现手机发送短信 | Hexo</title>
+  <meta name="keywords" content=" java实现手机发送短信 ">
+  <meta name="description" content="java实现手机发送短信 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="1.前期准备注册网址：http:&#x2F;&#x2F;sms.webchinese.cn&#x2F;reg.shtml 2.pom.xml&amp;lt;!-- https:&#x2F;&#x2F;mvnrepository.com&#x2F;artifact&#x2F;commons-logging&#x2F;commons-logging --&amp;gt; &amp;lt;dependency&amp;gt;     &amp;lt;groupId&amp;gt;commons-logging&amp;lt;&#x2F;group">
 <meta name="keywords" content="java实现手机发送短信">
@@ -646,9 +646,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-Hystrix" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-sendMessage" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">熔断器（Hystrix）</h1>
+        <h1 class="article-title">java实现手机发送短信</h1>
     
     <div class="article-meta">
         
@@ -656,21 +656,21 @@
         
         <span class="book">
             
-                <a href="javascript:" target="_blank" data-rel="springcloud noopener">springcloud</a>
+                <a href="javascript:" target="_blank" data-rel="tools noopener">tools</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" target="_blank" rel="noopener" class="color2">Hystrix和Feign Hystrix</a>
+            <a href="javascript:" target="_blank" rel="noopener" class="color3">java实现手机发送短信</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-11-13 15:58:17'>2019-11-13 15:58</time>
+        创建时间:<time class="date" title='更新时间: 2019-11-19 09:41:38'>2019-11-19 09:41</time>
         
     </div>
     <div class="article-meta">
@@ -692,7 +692,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-雪崩效应"><span class="toc-text">1.雪崩效应</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-熔断器"><span class="toc-text">2.熔断器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Hystrix特性"><span class="toc-text">3.Hystrix特性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-断路器机制"><span class="toc-text">3.1 断路器机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-Fallback"><span class="toc-text">3.2 Fallback</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-资源隔离"><span class="toc-text">3.3 资源隔离</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Feign-Hystrix应用"><span class="toc-text">4.Feign Hystrix应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-application-yml"><span class="toc-text">4.1 application.yml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-HelloRemote"><span class="toc-text">4.2 HelloRemote</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-HelloRemoteHystrix"><span class="toc-text">4.3 HelloRemoteHystrix</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-调用说明"><span class="toc-text">4.4 调用说明</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-前期准备"><span class="toc-text">1.前期准备</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-pom-xml"><span class="toc-text">2.pom.xml</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-代码实现"><span class="toc-text">3.代码实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-温馨提示"><span class="toc-text">4.温馨提示</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -708,60 +708,60 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-雪崩效应"><a href="#1-雪崩效应" class="headerlink" title="1.雪崩效应"></a>1.雪崩效应</h2><p>&emsp;&emsp;在微服务架构中通常会有多个服务层调用，基础服务的故障可能会导致级联故障，进而造成整个系统不可用的情况，这种现象被称为服务雪崩效应。服务雪崩效应是一种因“服务提供者”的不可用导致“服务消费者”的不可用,并将不可用逐渐放大的过程。<br>如下图所示：A作为服务提供者，B为A的服务消费者，C和D是B的服务消费者。A不可用引起了B的不可用，并将不可用像滚雪球一样放大到C和D时，雪崩效应就形成了。</p>
-<p><img src="/2019/11/13/Hystrix/1.png" alt></p>
-<h2 id="2-熔断器"><a href="#2-熔断器" class="headerlink" title="2.熔断器"></a>2.熔断器</h2><p>&emsp;&emsp;熔断器的原理很简单，如同电力过载保护器。它可以实现快速失败，如果它在一段时间内侦测到许多类似的错误，会强迫其以后的多个调用快速失败，不再访问远程服务器，从而防止应用程序不断地尝试执行可能会失败的操作，使得应用程序继续执行而不用等待修正错误，或者浪费CPU时间去等到长时间的超时产生。熔断器也可以使应用程序能够诊断错误是否已经修正，如果已经修正，应用程序会再次尝试调用操作。</p>
-<p>&emsp;&emsp;熔断器模式就像是那些容易导致错误的操作的一种代理。这种代理能够记录最近调用发生错误的次数，然后决定使用允许操作继续，或者立即返回错误。<br>熔断器就是保护服务高可用的最后一道防线。<br>熔断器开关相互转换的逻辑如下图：</p>
-<p><img src="/2019/11/13/Hystrix/2.png" alt></p>
-<h2 id="3-Hystrix特性"><a href="#3-Hystrix特性" class="headerlink" title="3.Hystrix特性"></a>3.Hystrix特性</h2><h3 id="3-1-断路器机制"><a href="#3-1-断路器机制" class="headerlink" title="3.1 断路器机制"></a>3.1 断路器机制</h3><p>&emsp;&emsp;断路器很好理解, 当Hystrix Command请求后端服务失败数量超过一定比例(默认50%), 断路器会切换到开路状态(Open). 这时所有请求会直接失败而不会发送到后端服务. 断路器保持在开路状态一段时间后(默认5秒), 自动切换到半开路状态(HALF-OPEN). 这时会判断下一次请求的返回情况, 如果请求成功, 断路器切回闭路状态(CLOSED), 否则重新切换到开路状态(OPEN). Hystrix的断路器就像我们家庭电路中的保险丝, 一旦后端服务不可用, 断路器会直接切断请求链, 避免发送大量无效请求影响系统吞吐量, 并且断路器有自我检测并恢复的能力.</p>
-<h3 id="3-2-Fallback"><a href="#3-2-Fallback" class="headerlink" title="3.2 Fallback"></a>3.2 Fallback</h3><p>&emsp;&emsp;Fallback相当于是降级操作. 对于查询操作, 我们可以实现一个fallback方法, 当请求后端服务出现异常的时候, 可以使用fallback方法返回的值. fallback方法的返回值一般是设置的默认值或者来自缓存.</p>
-<h3 id="3-3-资源隔离"><a href="#3-3-资源隔离" class="headerlink" title="3.3 资源隔离"></a>3.3 资源隔离</h3><p>&emsp;&emsp;在Hystrix中, 主要通过线程池来实现资源隔离. 通常在使用的时候我们会根据调用的远程服务划分出多个线程池. 例如调用产品服务的Command放入A线程池, 调用账户服务的Command放入B线程池. 这样做的主要优点是运行环境被隔离开了. 这样就算调用服务的代码存在bug或者由于其他原因导致自己所在线程池被耗尽时, 不会对系统的其他服务造成影响. 但是带来的代价就是维护多个线程池会对系统带来额外的性能开销. 如果是对性能有严格要求而且确信自己调用服务的客户端代码不会出问题的话, 可以使用Hystrix的信号模式(Semaphores)来隔离资源</p>
-<h2 id="4-Feign-Hystrix应用"><a href="#4-Feign-Hystrix应用" class="headerlink" title="4.Feign Hystrix应用"></a>4.Feign Hystrix应用</h2><p>&emsp;&emsp;因为熔断只是作用在服务调用这一端，因此我们根据上一篇的示例代码只需要改动spring-cloud-consumer项目相关代码就可以。因为，Feign中已经依赖了Hystrix所以在maven配置上不用做任何改动。</p>
-<blockquote>
-<p>整个项目继承 （eureka服务提供和调用），修改如下：</p>
-</blockquote>
-<h3 id="4-1-application-yml"><a href="#4-1-application-yml" class="headerlink" title="4.1 application.yml"></a>4.1 application.yml</h3><pre><code>server:
-  port: 8002
+        <h1 id="1-前期准备"><a href="#1-前期准备" class="headerlink" title="1.前期准备"></a>1.前期准备</h1><pre><code>注册网址：http://sms.webchinese.cn/reg.shtml</code></pre><p><img src="/2019/11/19/sendMessage/1.png" alt></p>
+<h1 id="2-pom-xml"><a href="#2-pom-xml" class="headerlink" title="2.pom.xml"></a>2.pom.xml</h1><pre><code>&lt;!-- https://mvnrepository.com/artifact/commons-logging/commons-logging --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;commons-logging&lt;/groupId&gt;
+    &lt;artifactId&gt;commons-logging&lt;/artifactId&gt;
+    &lt;version&gt;1.1.1&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;!-- https://mvnrepository.com/artifact/commons-codec/commons-codec --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;commons-codec&lt;/groupId&gt;
+    &lt;artifactId&gt;commons-codec&lt;/artifactId&gt;
+    &lt;version&gt;1.4&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;!-- https://mvnrepository.com/artifact/commons-httpclient/commons-httpclient --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;commons-httpclient&lt;/groupId&gt;
+    &lt;artifactId&gt;commons-httpclient&lt;/artifactId&gt;
+    &lt;version&gt;3.1&lt;/version&gt;
+&lt;/dependency&gt;</code></pre><h1 id="3-代码实现"><a href="#3-代码实现" class="headerlink" title="3.代码实现"></a>3.代码实现</h1><pre><code>import java.io.IOException;    
+import org.apache.commons.httpclient.Header;
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.HttpException;
+import org.apache.commons.httpclient.NameValuePair;
+import org.apache.commons.httpclient.methods.PostMethod;
 
-spring:
-  application:
-    name: Consumer
+public class TestPhone {
+    public static void main(String[] args) throws HttpException, IOException {
+        HttpClient client = new HttpClient();
+        PostMethod post = new PostMethod(&quot;http://gbk.sms.webchinese.cn&quot;);
+        post.addRequestHeader(&quot;Content-Type&quot;, &quot;application/x-www-form-urlencoded;charset=gbk&quot;);
 
-eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://127.0.0.1:5555/eureka/    
+        NameValuePair[] data = {
+                new NameValuePair(&quot;Uid&quot;, &quot;wctest&quot;),//中国网建sms平台注册的用户名
+                new NameValuePair(&quot;Key&quot;, &quot;ad234dre67932jjskewvrsadi543219h&quot;),//中国网建sms平台注册用户密钥
+                new NameValuePair(&quot;smsMob&quot;, &quot;17362505924&quot;),//将要发送到的手机号码
+                new NameValuePair(&quot;smsText&quot;, &quot;验证码：123456&quot;),//要发送的短信内容
+        };
 
-feign:
-  hystrix:
-    enabled: true</code></pre><h3 id="4-2-HelloRemote"><a href="#4-2-HelloRemote" class="headerlink" title="4.2 HelloRemote"></a>4.2 HelloRemote</h3><pre><code>@Component
-@FeignClient(name=&quot;producer&quot;,fallback=HelloRemoteHystrix.class) //name:远程服务名，spring.application.name配置的名称
-public interface HelloRemote {
-    @RequestMapping(value=&quot;/hello&quot;)
-    public String testHello(@RequestParam(value=&quot;param&quot;) String param);
-    //注意：    此方法和远程服务的contoller中的方法名和参数需保持一致。
-}</code></pre><h3 id="4-3-HelloRemoteHystrix"><a href="#4-3-HelloRemoteHystrix" class="headerlink" title="4.3 HelloRemoteHystrix"></a>4.3 HelloRemoteHystrix</h3><pre><code>@Component
-public class HelloRemoteHystrix implements HelloRemote{
-    @Override
-    public String testHello(String param) {
-        // TODO Auto-generated method stub
-        return &quot;hello &quot;+param+&quot;, this message send failed&quot;;
-    }    
-}</code></pre><h3 id="4-4-调用说明"><a href="#4-4-调用说明" class="headerlink" title="4.4 调用说明"></a>4.4 调用说明</h3><blockquote>
-<p>1.依次启动Cloud-EurekaServer、Cloud-Producer、Cloud-Consumer三个项目</p>
-</blockquote>
-<blockquote>
-<p>2.先输入：<a href="http://127.0.0.1:5555/检查Cloud-EurekaServe注册服务是否正常" target="_blank" rel="noopener">http://127.0.0.1:5555/检查Cloud-EurekaServe注册服务是否正常</a><br>再输入：<a href="http://192.168.18.106:8001/hello?param=’test’" target="_blank" rel="noopener">http://192.168.18.106:8001/hello?param=’test’</a> 检查Cloud-Producer服务是否正常<br>返回：hello ‘test’ ,this is Producer message<br>说明Cloud-Producr正常启动，提供的服务也正常。</p>
-</blockquote>
-<blockquote>
-<p>3.浏览器中输入：<a href="http://192.168.18.106:8002/hello/param" target="_blank" rel="noopener">http://192.168.18.106:8002/hello/param</a><br>返回：hello param ,this is Producer2 message<br>说明客户端已经成功的通过feign调用了远程服务hello，并且将结果返回到了浏览器。<br>加入熔断相关信息后，不影响正常的访问。手动停止Cloud-Producer项目再次测试：</p>
-</blockquote>
-<blockquote>
-<p>4.浏览器中输入：<a href="http://192.168.18.106:8002/hello/param" target="_blank" rel="noopener">http://192.168.18.106:8002/hello/param</a><br>返回：hello param , this messge send failed<br>根据返回结果说明熔断成功。</p>
-</blockquote>
+        post.setRequestBody(data);
 
+        client.executeMethod(post);
+
+        Header[] headers = post.getResponseHeaders();
+        int statusCode = post.getStatusCode();
+        System.out.println(&quot;statuscode:=&quot;+statusCode);
+        for(Header h: headers){
+            System.out.println(h);
+        }
+        String message = new String(post.getResponseBody());
+        System.out.println(message);
+
+        post.releaseConnection();
+    }
+}</code></pre><h1 id="4-温馨提示"><a href="#4-温馨提示" class="headerlink" title="4.温馨提示"></a>4.温馨提示</h1><pre><code>此手机发送短信验证信息方式，仅免费使用5条。</code></pre>
       
        
     </div>
@@ -770,9 +770,9 @@ public class HelloRemoteHystrix implements HelloRemote{
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>熔断器（Hystrix）</p>
-    <p><span class="copy-title">发布时间:</span>2019-11-13, 15:58:16</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-13, 15:58:17</p>
+    <p><span class="copy-title">文章标题:</span>java实现手机发送短信</p>
+    <p><span class="copy-title">发布时间:</span>2019-11-19, 09:41:38</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-19, 09:41:38</p>
 </div>
 
 
