@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>vue项目搭建 | Hexo</title>
-  <meta name="keywords" content=" vue项目搭建 ">
-  <meta name="description" content="vue项目搭建 | Hexo">
+  <title>netty整合springboot | Hexo</title>
+  <meta name="keywords" content=" netty整合springboot ">
+  <meta name="description" content="netty整合springboot | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="1.原理说明 在网络编程领域，Netty是Java的一个优秀的框架，他将java的复杂和难以使用的关于NIO框架进行了封装，使其隐藏在易用的api后面。总之，编写高性能的网络服务，使用Netty就很方便。 Netty传输框架，接收传输信息，截取访问路径，并使用java反射原理，得到对应spingboot 的controller类的ReqestMapping方法上，以此使用高性能网络服务，进行数据传">
 <meta name="keywords" content="netty整合springboot">
@@ -756,9 +756,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-vueStudy" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-netty-springboot" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">vue项目搭建</h1>
+        <h1 class="article-title">netty整合springboot</h1>
     
     <div class="article-meta">
         
@@ -766,21 +766,21 @@
         
         <span class="book">
             
-                <a href="javascript:" target="_blank" data-rel="vue noopener">vue</a>
+                <a href="javascript:" target="_blank" data-rel="netty noopener">netty</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" target="_blank" rel="noopener" class="color3">vue项目搭建</a>
+            <a href="javascript:" target="_blank" rel="noopener" class="color3">netty整合springboot</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-11-21 15:26:24'>2019-11-21 15:26</time>
+        创建时间:<time class="date" title='更新时间: 2019-11-29 15:02:15'>2019-11-29 15:02</time>
         
     </div>
     <div class="article-meta">
@@ -802,7 +802,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-下载安装nodejs"><span class="toc-text">1.下载安装nodejs</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-windows打开cmd"><span class="toc-text">2.windows打开cmd</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-项目初始化"><span class="toc-text">3.项目初始化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-新建vue项目"><span class="toc-text">4.新建vue项目</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-原理说明"><span class="toc-text">1.原理说明</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-代码说明"><span class="toc-text">2.代码说明</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-建springboot项目"><span class="toc-text">2.1 建springboot项目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-pom-xml"><span class="toc-text">(1). pom.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-main方法"><span class="toc-text">(2).main方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-controller"><span class="toc-text">(3).controller</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-application-yml"><span class="toc-text">(4).application.yml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-测试说明"><span class="toc-text">(5).测试说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-创建netty项目"><span class="toc-text">2.2.创建netty项目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-main方法改造"><span class="toc-text">(1).main方法改造</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-java反射演示"><span class="toc-text">(2)java反射演示</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#java-bean"><span class="toc-text">java bean</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#反射获取方法"><span class="toc-text">反射获取方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-注解解析器"><span class="toc-text">(3).注解解析器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#反射需要的命令参数java-bean"><span class="toc-text">反射需要的命令参数java bean</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#注解解析类"><span class="toc-text">注解解析类</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-netty-服务器"><span class="toc-text">(4).netty 服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#nettyServer"><span class="toc-text">nettyServer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#nettyServerHandler"><span class="toc-text">nettyServerHandler</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-netty客户端连接测试"><span class="toc-text">(5).netty客户端连接测试</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#TestClient"><span class="toc-text">TestClient</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ClientHandler"><span class="toc-text">ClientHandler</span></a></li></ol></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -818,28 +818,388 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>  <a href="https://www.cnblogs.com/wang-sai-sai/p/10237192.html" target="_blank" rel="noopener">搭建参考网址</a></p>
-<h1 id="1-下载安装nodejs"><a href="#1-下载安装nodejs" class="headerlink" title="1.下载安装nodejs"></a>1.下载安装nodejs</h1><pre><code>官方：https://nodejs.org/
+        <h1 id="1-原理说明"><a href="#1-原理说明" class="headerlink" title="1.原理说明"></a>1.原理说明</h1><blockquote>
+<p>在网络编程领域，Netty是Java的一个优秀的框架，他将java的复杂和难以使用的关于NIO框架进行了封装，使其隐藏在易用的api后面。总之，编写高性能的网络服务，使用Netty就很方便。</p>
+<p>Netty传输框架，接收传输信息，截取访问路径，并使用java反射原理，得到对应spingboot 的controller类的ReqestMapping方法上，以此使用高性能网络服务，进行数据传输。</p>
+</blockquote>
+<h1 id="2-代码说明"><a href="#2-代码说明" class="headerlink" title="2.代码说明"></a>2.代码说明</h1><h2 id="2-1-建springboot项目"><a href="#2-1-建springboot项目" class="headerlink" title="2.1 建springboot项目"></a>2.1 建springboot项目</h2><h3 id="1-pom-xml"><a href="#1-pom-xml" class="headerlink" title="(1). pom.xml"></a>(1). pom.xml</h3><pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;io.netty&lt;/groupId&gt;
+    &lt;artifactId&gt;netty-all&lt;/artifactId&gt;
+    &lt;version&gt;4.1.25.Final&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-configuration-processor&lt;/artifactId&gt;
+    &lt;version&gt;2.0.3.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
 
-安装界面一直Next</code></pre><h1 id="2-windows打开cmd"><a href="#2-windows打开cmd" class="headerlink" title="2.windows打开cmd"></a>2.windows打开cmd</h1><pre><code>安装npm镜像
+&lt;dependency&gt;
+     &lt;groupId&gt;com.google.code.gson&lt;/groupId&gt;
+     &lt;artifactId&gt;gson&lt;/artifactId&gt;
+     &lt;version&gt;2.8.4&lt;/version&gt;
+ &lt;/dependency&gt;
+ &lt;dependency&gt;
+       &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+       &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+       &lt;version&gt;1.16.8&lt;/version&gt;
+       &lt;scope&gt;provided&lt;/scope&gt;
+   &lt;/dependency&gt;
 
-npm  install  -g  cnpm  --registry=https://registry.npm.taobao.org</code></pre><p><img src="/2019/11/21/vueStudy/11.png" alt></p>
-<h1 id="3-项目初始化"><a href="#3-项目初始化" class="headerlink" title="3.项目初始化"></a>3.项目初始化</h1><pre><code>cnpm install vue-cli -g      //全局安装 vue-cli
+   &lt;!-- springboot --&gt;
+   &lt;dependency&gt;
+   &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+   &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+   &lt;compile&gt;test&lt;/compile&gt;
+    &lt;version&gt;2.0.3.RELEASE&lt;/version&gt;
+&lt;/dependency&gt; 
+&lt;dependency&gt;
+   &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+   &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+   &lt;version&gt;2.0.3.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
 
-vue list //查看vue-cli是否成功</code></pre><h1 id="4-新建vue项目"><a href="#4-新建vue项目" class="headerlink" title="4.新建vue项目"></a>4.新建vue项目</h1><pre><code>vue init webpack  ”项目名称“</code></pre><p><img src="/2019/11/21/vueStudy/2.png" alt></p>
-<pre><code>安装依赖 
+&lt;!-- 日志 --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
+    &lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;
+    &lt;version&gt;1.7.25&lt;/version&gt;
+&lt;/dependency&gt;</code></pre><h3 id="2-main方法"><a href="#2-main方法" class="headerlink" title="(2).main方法"></a>(2).main方法</h3><pre><code>@SpringBootApplication
+public class AppRun {
+public static void main(String[] args) {
+    SpringApplication.run(AppRun.class, args);
+}
+}</code></pre><h3 id="3-controller"><a href="#3-controller" class="headerlink" title="(3).controller"></a>(3).controller</h3><pre><code>@RestController
+@RequestMapping(&quot;/hello&quot;)
+public class HelloController {
+    @RequestMapping(&quot;/hello&quot;)
+    public String testHello(String message){
+        System.out.println(&quot;####$$$$$$$$$$$########:&quot;+message);
+        return &quot;test&quot;;
+    }
+}</code></pre><h3 id="4-application-yml"><a href="#4-application-yml" class="headerlink" title="(4).application.yml"></a>(4).application.yml</h3><pre><code>server: 
+  port: 8889</code></pre><h3 id="5-测试说明"><a href="#5-测试说明" class="headerlink" title="(5).测试说明"></a>(5).测试说明</h3><pre><code>访问：http://192.168.18.106:8889/hello/hello?message=”ss”
+返回： test</code></pre><h2 id="2-2-创建netty项目"><a href="#2-2-创建netty项目" class="headerlink" title="2.2.创建netty项目"></a>2.2.创建netty项目</h2><h3 id="1-main方法改造"><a href="#1-main方法改造" class="headerlink" title="(1).main方法改造"></a>(1).main方法改造</h3><blockquote>
+<p>实现了CommandLineRunner接口，并重写了run方法，以便在springboot启动后就立即启动netty服务。</p>
+</blockquote>
+<pre><code>@SpringBootApplication
+public class AppRun implements CommandLineRunner{
 
-cnpm install</code></pre><p><img src="/2019/11/21/vueStudy/3.png" alt></p>
-<pre><code>运行项目    
+    @Autowired
+    NettyServer nettyServer; //netty服务器
 
-cnpm run dev</code></pre><p><img src="/2019/11/21/vueStudy/4.png" alt></p>
-<p><img src="/2019/11/21/vueStudy/5.png" alt></p>
-<pre><code>浏览器访问：
+    @Autowired
+    CommandBuilder commandBuilder;//注解解析器
 
-http://127.0.0.1:8080/#/
+    public static void main(String[] args) {
+        SpringApplication.run(AppRun.class, args);
+    }
+    public void run(String... args) throws Exception {
+        // TODO Auto-generated method stub
+        commandBuilder.setUp(); //注解解析启动
+        nettyServer.run();//netty服务器启动
+    }
+}</code></pre><h3 id="2-java反射演示"><a href="#2-java反射演示" class="headerlink" title="(2)java反射演示"></a>(2)java反射演示</h3><h4 id="java-bean"><a href="#java-bean" class="headerlink" title="java bean"></a>java bean</h4><pre><code>public class Command {
+    public void print(String ss){
+        System.out.println(&quot;string  &quot;+ss);
+    }
+    public void print(){
+        System.out.println(&quot;string null  &quot;);
+    }
+    public void print(int ss){
+        System.out.println(&quot;int   &quot;+ss);
+    }
+}</code></pre><h4 id="反射获取方法"><a href="#反射获取方法" class="headerlink" title="反射获取方法"></a>反射获取方法</h4><pre><code>public class TestCommand {
+    public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        //获取类
+        Class&lt;?&gt; forName = Command.class;
+        //类实例化对象
+        Object newInstance = forName.newInstance();
+        //方法  （方法名称，参数类型）
+        Method declaredMethod =              forName.getDeclaredMethod(&quot;print&quot;,int.class);
+        //java invoke使用
+        declaredMethod.invoke(newInstance, 2);
+    //返回  int   2
+    }
+}</code></pre><h3 id="3-注解解析器"><a href="#3-注解解析器" class="headerlink" title="(3).注解解析器"></a>(3).注解解析器</h3><h4 id="反射需要的命令参数java-bean"><a href="#反射需要的命令参数java-bean" class="headerlink" title="反射需要的命令参数java bean"></a>反射需要的命令参数java bean</h4><pre><code>@Data
+public class CommandAction {
+    private Object className;
+    private Method method;
+    private String path;
+    public CommandAction(){}
+    public CommandAction(String path,Object cmd,Method method){
+        this.path = path;
+        this.method = method;
+        this.className = cmd;
+    }
+}</code></pre><h4 id="注解解析类"><a href="#注解解析类" class="headerlink" title="注解解析类"></a>注解解析类</h4><pre><code>@Component
+public class CommandBuilder implements ApplicationContextAware{
+    private Logger logger = LoggerFactory.getLogger(CommandBuilder.class);
 
-到此结束！！！</code></pre><p><img src="/2019/11/21/vueStudy/6.png" alt></p>
+    private ApplicationContext applicationContext; //获取上下文
 
+    //封装反射需要的命令参数
+    private Map&lt;String, CommandAction&gt; map = new HashMap&lt;String, CommandAction&gt;();
+
+    public void setApplicationContext(ApplicationContext context) throws BeansException {
+        // TODO Auto-generated method stub
+        this.applicationContext = context;
+    }
+    public void setUp(){
+        //通过上下文获取项目的 所有注解@RestController
+        Map&lt;String, Object&gt; controllerBean = this.applicationContext.getBeansWithAnnotation(RestController.class);
+
+        for(String key: controllerBean.keySet()){
+            //获取类
+            Object cmd = controllerBean.get(key);
+//            @org.springframework.web.bind.annotation.RequestMapping
+//            (path=[], headers=[], method=[], name=, produces=[], params=[], value=[/hello], consumes=[])
+
+            //全路径变量
+            String route = &quot;&quot;;
+            //获取类上注解@RequestMapping
+            RequestMapping annotation = cmd.getClass().getAnnotation(RequestMapping.class);
+            if(annotation!=null){
+                //取前段路径
+                route = annotation.value()[0];
+            }
+
+            //获取当前类的所有方法
+            Method[] methods = cmd.getClass().getMethods();
+            for(Method m: methods){
+                try {
+                    //获取当前方法的注解@RequestMapping
+                    RequestMapping value = m.getAnnotation(RequestMapping.class);
+                    if(value!=null){
+                        //取方法路径
+                        route+=value.value()[0];
+                        logger.info(&quot;found routes: &quot;+route);
+
+                        //将路径 和 反射需要的命令参数封装到map
+                        map.put(route, new CommandAction(route, cmd, m));
+                    }
+
+                } catch (Exception e) {
+                    // TODO: handle exception
+                    e.printStackTrace();
+                    logger.error(e.getMessage());
+                }
+            }
+
+        }
+    }
+    /**
+     * 通过路径 获取 对应的controller
+     * @param path
+     * @return
+     */
+    public CommandAction getCommandAction(String path){
+        return map.get(path);
+    }
+}</code></pre><h3 id="4-netty-服务器"><a href="#4-netty-服务器" class="headerlink" title="(4).netty 服务器"></a>(4).netty 服务器</h3><h4 id="nettyServer"><a href="#nettyServer" class="headerlink" title="nettyServer"></a>nettyServer</h4><pre><code>@Component
+public class NettyServer {
+
+    private Logger logger = LoggerFactory.getLogger(NettyServer.class);
+
+    private EventLoopGroup bossgroup; //创建mainReactor
+
+    private EventLoopGroup workgroup; //创建subReactor
+
+    @Bean
+    public EventLoopGroup bossGroup(){
+        bossgroup = new NioEventLoopGroup();
+        return bossgroup;
+    }
+
+    @Bean
+    public EventLoopGroup workGroup(){
+        workgroup = new NioEventLoopGroup();
+        return workgroup;
+    }
+
+    //将对象  nettyServerHandler 交给spring容器管理
+    private NettyServerHandler nettyServerHandler;
+    @Bean
+    public NettyServerHandler nettyServerHandler(){
+        nettyServerHandler = new NettyServerHandler();
+        return nettyServerHandler;
+    }
+
+    //这样不会获取到 ApplicationContext 上下文对象 （则不能使用注解解析器）
+//    @Bean
+//    public NettyServerHandler nettyServerHandler(){
+//        return new NettyServerHandler();
+//    }
+//    
+
+    @PreDestroy
+    public void close(){
+        logger.info(&quot;服务器关闭...&quot;);
+        bossgroup.shutdownGracefully();
+        workgroup.shutdownGracefully();
+    }
+
+
+    public void run(){
+        try {
+            //服务启动引导
+            ServerBootstrap serverBootstrap = new ServerBootstrap();
+            //组装NioEventLoopGroup
+            serverBootstrap.group(bossGroup(), workGroup()) 
+            //设置通道类型
+            .channel(NioServerSocketChannel.class)
+            //设置连接参数
+            .option(ChannelOption.SO_BACKLOG, 1024)
+            .option(ChannelOption.SO_KEEPALIVE, true)
+            //设置日志
+            .handler(new LoggingHandler(LogLevel.INFO))
+            //配置入栈出栈handler
+            .childHandler(new ChannelInitializer&lt;SocketChannel&gt;() {
+
+                @Override
+                protected void initChannel(SocketChannel ch) throws Exception {
+                    // TODO Auto-generated method stub
+                    ChannelPipeline pipeline = ch.pipeline();
+                    pipeline.addLast(new StringDecoder(Charset.forName(&quot;UTF-8&quot;)));
+                    pipeline.addLast(new StringEncoder(Charset.forName(&quot;UTF-8&quot;)));
+                    pipeline.addLast(&quot;nettyhandler&quot;,nettyServerHandler);
+
+                }
+
+            });
+            //绑定端口号
+            ChannelFuture sync = serverBootstrap.bind(8888).sync()
+                    //添加监听
+                    .addListener(new ChannelFutureListener() {
+
+                        public void operationComplete(ChannelFuture future) throws Exception {
+                            // TODO Auto-generated method stub
+                            if(future.isSuccess()){
+                    logger.info(&quot;netty服务器在端口：&quot;+8888+&quot; 启动监听!&quot;);
+                            }else{
+            logger.info(TimeUtils.getNowTime()+&quot;端口：&quot;+8888+&quot; 绑定失败!&quot;);
+                            }
+                        }
+                    });
+            sync.channel().closeFuture().sync();
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            logger.error(&quot;服务器出现异常：&quot;+e.getCause()+&quot;&quot;);
+            bossgroup.shutdownGracefully();
+            workgroup.shutdownGracefully();
+        }finally {
+            //优雅关闭
+            bossgroup.shutdownGracefully();
+            workgroup.shutdownGracefully();
+        }
+    }
+}</code></pre><h4 id="nettyServerHandler"><a href="#nettyServerHandler" class="headerlink" title="nettyServerHandler"></a>nettyServerHandler</h4><pre><code>@Component
+public class NettyServerHandler extends ChannelInboundHandlerAdapter implements ApplicationContextAware{
+    private Logger logger = LoggerFactory.getLogger(NettyServerHandler.class);
+
+// 同(3)注解解析类
+    private CommandBuilder commandBuilder;
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        //通过上下文获取 已经注入的CommandBuilder对象（有且只有这一种方法）
+        this.commandBuilder = applicationContext.getBean(CommandBuilder.class);
+    }
+
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        // TODO Auto-generated method stub
+        logger.info(&quot;服务器连接客户端成功&quot;);
+    }
+
+    @Override
+    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+        // TODO Auto-generated method stub
+        logger.info(&quot;服务器收到的消息：&quot;+msg);
+        if(msg instanceof String){
+            String receive = (String)msg;
+            logger.info(&quot;receiveMessage: &quot;+receive);
+//                                &quot;/hello/hello|12&quot;;
+            String[] split = receive.split(&quot;[|]&quot;);
+            String cmd = split[0]; 
+            String sendMessage = split[1]; 
+            logger.info(&quot;cmd:&quot;+cmd);
+            logger.info(&quot;sendMessage:&quot;+sendMessage);
+            try {
+                CommandAction commandAction = this.commandBuilder.getCommandAction(cmd);
+                //使用反射原理 将消息发送给  controller
+                Method method = commandAction.getMethod();
+                Object invoke = method.invoke(commandAction.getClassName(), sendMessage);
+                logger.info(&quot;返回信息：&quot;+invoke.toString());
+
+            } catch (Exception e) {
+                // TODO: handle exception
+                e.printStackTrace();
+                logger.error(&quot;&quot;+e.getCause());
+            }
+        }
+    }
+
+
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+        // TODO Auto-generated method stub
+        logger.info(&quot;服务器异常：&quot;+cause.getMessage());
+        ctx.channel().close();
+    }    
+}</code></pre><h3 id="5-netty客户端连接测试"><a href="#5-netty客户端连接测试" class="headerlink" title="(5).netty客户端连接测试"></a>(5).netty客户端连接测试</h3><h4 id="TestClient"><a href="#TestClient" class="headerlink" title="TestClient"></a>TestClient</h4><pre><code>public class TestClient {
+    public static void main(String[] args) {
+        EventLoopGroup workgroup = new NioEventLoopGroup();
+        try {
+            Bootstrap bootstrap = new Bootstrap();
+            bootstrap.group(workgroup).channel(NioSocketChannel.class)
+            .handler(new ChannelInitializer&lt;SocketChannel&gt;() {
+                @Override
+                protected void initChannel(SocketChannel ch) throws Exception {
+                    // TODO Auto-generated method stub
+                    ChannelPipeline pipeline = ch.pipeline();
+                    pipeline.addLast(new StringEncoder(Charset.forName(&quot;UTF-8&quot;)));
+                    pipeline.addLast(new StringDecoder(Charset.forName(&quot;UTF-8&quot;)));
+                    pipeline.addLast(new ClientHandler());
+                }
+
+            });
+            ChannelFuture future = bootstrap.connect(&quot;192.168.18.106&quot;,8888).sync();
+            future.addListener(new ChannelFutureListener() {
+
+                public void operationComplete(ChannelFuture future) throws Exception {
+                    // TODO Auto-generated method stub
+                    if(future.isSuccess()){
+                        System.out.println(&quot;客户端连接成功&quot;);
+                    }else{
+                        System.out.println(&quot;客户端连接失败&quot;);                
+                    }
+                }
+            });
+            String message = &quot;/hello/hello|12&quot;;
+            System.out.println(&quot;客户端发送的消息：&quot;+message);
+            future.channel().writeAndFlush(message);
+
+            future.channel().closeFuture().sync();
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+    }
+}</code></pre><h4 id="ClientHandler"><a href="#ClientHandler" class="headerlink" title="ClientHandler"></a>ClientHandler</h4><pre><code>public class ClientHandler extends ChannelInboundHandlerAdapter{
+
+    @Override
+    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+        // TODO Auto-generated method stub
+        System.out.println(&quot;客户端收到的消息：&quot;+msg);
+    }
+
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+        // TODO Auto-generated method stub
+        super.exceptionCaught(ctx, cause);
+        System.out.println(&quot;客户端异常：&quot;+cause.getMessage());
+    }
+}</code></pre>
       
        
     </div>
@@ -848,9 +1208,9 @@ http://127.0.0.1:8080/#/
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>vue项目搭建</p>
-    <p><span class="copy-title">发布时间:</span>2019-11-21, 15:26:24</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-21, 15:26:24</p>
+    <p><span class="copy-title">文章标题:</span>netty整合springboot</p>
+    <p><span class="copy-title">发布时间:</span>2019-11-29, 15:02:14</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-29, 15:02:15</p>
 </div>
 
 
