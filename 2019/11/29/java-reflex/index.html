@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Java-reflax 反射 | Hexo</title>
+  <meta name="keywords" content=" Java-reflax ">
+  <meta name="description" content="Java-reflax 反射 | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="参考网址 概念 Java反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意一个方法和属性；这种动态获取的信息以&amp;gt;及动态调用对象的方法的功能称为Java语言的反射机制。  逐步分析1.Class (1).Class是一个类，一个描述类的类（也就是描述类本身），封装了描述方法的Method，描述字段的Filed，描述构造器的Constr">
+<meta name="keywords" content="Java-reflax">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java-reflax 反射">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;29&#x2F;java-reflex&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="参考网址 概念 Java反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意一个方法和属性；这种动态获取的信息以&amp;gt;及动态调用对象的方法的功能称为Java语言的反射机制。  逐步分析1.Class (1).Class是一个类，一个描述类的类（也就是描述类本身），封装了描述方法的Method，描述字段的Filed，描述构造器的Constr">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;29&#x2F;java-reflex&#x2F;1.png">
+<meta property="og:updated_time" content="2019-11-29T06:30:08.510Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;29&#x2F;java-reflex&#x2F;1.png">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>cwstudy</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="github" href="https://github.com/chenweistudy" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(42)</small></div></li>
+    
+        
+            
+            <li><div data-rel="springcloud">springcloud<small>(10)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="项目部署">项目部署<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="linux">linux<small>(6)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="java">java<small>(4)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="架构">架构<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="redis">redis<small>(4)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="tools">tools<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="springboot">springboot<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="vue">vue<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="swagger">swagger<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="消息队列">消息队列<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="spring">spring<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="spring-mvc">spring-mvc<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="netty">netty<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="42">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">熔断监控Hystrix-Dashboard</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Spring-Cloud-Sleuth</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Zipkin</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Hystrix和Feign Hystrix</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Spring-cloud和Spring-boot</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">docker</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">find命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">JDK工具使用</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">Java-IO</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">linux安装jre</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">分布式</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">redis</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">redis取消只能本地访问的方式</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">java实现发送邮件</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot日志配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot项目导可执行jar</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot基础知识</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">vue项目搭建</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">java实现手机发送短信</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">swagger使用</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">linux基本命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">eureka 服务提供和调用</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">eureka原理介绍</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">配置中心git服务化和高可用</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">配置中心git</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Java-reflax</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">mv命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">ps命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">rabbitMQ</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring基础知识</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring常用配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring高级话题</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Spring cloud zuul (服务网关初级)</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">SpringMVC基础</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">SpringMVC配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">linux高级命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">netty基本理论</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">Java-NIO</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Spring cloud zuul (服务网关高级)</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="springcloud "
+           href="/2019/11/13/Hystrix-Dashboard/"
+           data-tag="熔断监控Hystrix-Dashboard"
+           data-author="" >
+            <span class="post-title" title="熔断监控Hystrix-Dashboard">熔断监控Hystrix-Dashboard</span>
+            <span class="post-date" title="2019-11-13 15:58:13">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/14/Sleuth-ZipKin/"
+           data-tag="Spring-Cloud-Sleuth,Zipkin"
+           data-author="" >
+            <span class="post-title" title="Spring-Cloud-Sleuth和Zipkin进行分布式链路跟踪">Spring-Cloud-Sleuth和Zipkin进行分布式链路跟踪</span>
+            <span class="post-date" title="2019-11-14 15:03:35">2019/11/14</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/Hystrix/"
+           data-tag="Hystrix和Feign Hystrix"
+           data-author="" >
+            <span class="post-title" title="熔断器（Hystrix）">熔断器（Hystrix）</span>
+            <span class="post-date" title="2019-11-13 15:58:16">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/14/boot-cloud/"
+           data-tag="Spring-cloud和Spring-boot"
+           data-author="" >
+            <span class="post-title" title="Spring-cloud和Spring-boot区别">Spring-cloud和Spring-boot区别</span>
+            <span class="post-date" title="2019-11-14 14:52:22">2019/11/14</span>
+        </a>
+        
+        <a  class="项目部署 "
+           href="/2019/11/13/docker/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="docker">docker</span>
+            <span class="post-date" title="2019-11-13 14:11:55">2019/11/13</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/find/"
+           data-tag="find命令"
+           data-author="" >
+            <span class="post-title" title="find命令">find命令</span>
+            <span class="post-date" title="2019-11-15 17:20:49">2019/11/15</span>
+        </a>
+        
+        <a  class="java "
+           href="/2019/11/15/java-jvm/"
+           data-tag="JDK工具使用"
+           data-author="" >
+            <span class="post-title" title="JDK工具使用">JDK工具使用</span>
+            <span class="post-date" title="2019-11-15 16:14:52">2019/11/15</span>
+        </a>
+        
+        <a  class="java "
+           href="/2019/11/15/java-io/"
+           data-tag="Java-IO"
+           data-author="" >
+            <span class="post-title" title="Java-IO">Java-IO</span>
+            <span class="post-date" title="2019-11-15 15:43:15">2019/11/15</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/linux-jre/"
+           data-tag="linux安装jre"
+           data-author="" >
+            <span class="post-title" title="linux安装jre">linux安装jre</span>
+            <span class="post-date" title="2019-11-15 17:20:51">2019/11/15</span>
+        </a>
+        
+        <a  class="架构 "
+           href="/2019/11/11/indexs/"
+           data-tag="分布式"
+           data-author="" >
+            <span class="post-title" title="用【快餐店】理解分布式架构">用【快餐店】理解分布式架构</span>
+            <span class="post-date" title="2019-11-11 13:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/11/11/redisCache/"
+           data-tag="redis"
+           data-author="" >
+            <span class="post-title" title="redis缓存">redis缓存</span>
+            <span class="post-date" title="2019-11-11 17:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/11/18/redisconnnection/"
+           data-tag="redis取消只能本地访问的方式"
+           data-author="" >
+            <span class="post-title" title="redis取消只能本地访问的方式">redis取消只能本地访问的方式</span>
+            <span class="post-date" title="2019-11-18 15:41:22">2019/11/18</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/11/11/redisPersister/"
+           data-tag="redis"
+           data-author="" >
+            <span class="post-title" title="redis持久化">redis持久化</span>
+            <span class="post-date" title="2019-11-11 16:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="tools "
+           href="/2019/11/19/sendMail/"
+           data-tag="java实现发送邮件"
+           data-author="" >
+            <span class="post-title" title="java实现发送邮件">java实现发送邮件</span>
+            <span class="post-date" title="2019-11-19 10:33:39">2019/11/19</span>
+        </a>
+        
+        <a  class="springboot "
+           href="/2019/11/14/springboot-config/"
+           data-tag="Springboot日志配置"
+           data-author="" >
+            <span class="post-title" title="Springboot日志配置">Springboot日志配置</span>
+            <span class="post-date" title="2019-11-14 15:19:38">2019/11/14</span>
+        </a>
+        
+        <a  class="springboot "
+           href="/2019/11/14/springboot-jar/"
+           data-tag="Springboot项目导可执行jar"
+           data-author="" >
+            <span class="post-title" title="Springboot项目导可执行jar">Springboot项目导可执行jar</span>
+            <span class="post-date" title="2019-11-14 15:26:12">2019/11/14</span>
+        </a>
+        
+        <a  class="springboot "
+           href="/2019/11/14/springboot/"
+           data-tag="Springboot基础知识"
+           data-author="" >
+            <span class="post-title" title="Springboot基础知识">Springboot基础知识</span>
+            <span class="post-date" title="2019-11-14 15:37:49">2019/11/14</span>
+        </a>
+        
+        <a  class="vue "
+           href="/2019/11/29/vue-tool/"
+           data-tag="vue项目搭建"
+           data-author="" >
+            <span class="post-title" title="vue 文字跑马灯效果演示">vue 文字跑马灯效果演示</span>
+            <span class="post-date" title="2019-11-29 14:29:36">2019/11/29</span>
+        </a>
+        
+        <a  class="vue "
+           href="/2019/11/29/vue-tool2/"
+           data-tag="vue项目搭建"
+           data-author="" >
+            <span class="post-title" title="vue 文字 轮播演示">vue 文字 轮播演示</span>
+            <span class="post-date" title="2019-11-29 14:29:36">2019/11/29</span>
+        </a>
+        
+        <a  class="tools "
+           href="/2019/11/19/sendMessage/"
+           data-tag="java实现手机发送短信"
+           data-author="" >
+            <span class="post-title" title="java实现手机发送短信">java实现手机发送短信</span>
+            <span class="post-date" title="2019-11-19 09:41:38">2019/11/19</span>
+        </a>
+        
+        <a  class="vue "
+           href="/2019/11/21/vueStudy/"
+           data-tag="vue项目搭建"
+           data-author="" >
+            <span class="post-title" title="vue项目搭建">vue项目搭建</span>
+            <span class="post-date" title="2019-11-21 15:26:24">2019/11/21</span>
+        </a>
+        
+        <a  class="swagger "
+           href="/2019/11/22/swagger/"
+           data-tag="swagger使用"
+           data-author="" >
+            <span class="post-title" title="swagger使用">swagger使用</span>
+            <span class="post-date" title="2019-11-22 13:39:07">2019/11/22</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/linux-base/"
+           data-tag="linux基本命令"
+           data-author="" >
+            <span class="post-title" title="linux基本命令">linux基本命令</span>
+            <span class="post-date" title="2019-11-15 17:20:49">2019/11/15</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/eureka-Producer-Consumer/"
+           data-tag="eureka 服务提供和调用"
+           data-author="" >
+            <span class="post-title" title="eureka服务提供和调用">eureka服务提供和调用</span>
+            <span class="post-date" title="2019-11-13 15:11:06">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/eureka1/"
+           data-tag="eureka原理介绍"
+           data-author="" >
+            <span class="post-title" title="eureka原理介绍">eureka原理介绍</span>
+            <span class="post-date" title="2019-11-13 16:08:48">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/gitconfig-server-client/"
+           data-tag="配置中心git服务化和高可用"
+           data-author="" >
+            <span class="post-title" title="配置中心git服务化和高可用">配置中心git服务化和高可用</span>
+            <span class="post-date" title="2019-11-13 17:11:42">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/gitConfig/"
+           data-tag="配置中心git"
+           data-author="" >
+            <span class="post-title" title="配置中心git">配置中心git</span>
+            <span class="post-date" title="2019-11-13 16:58:00">2019/11/13</span>
+        </a>
+        
+        <a  class="java "
+           href="/2019/11/29/java-reflex/"
+           data-tag="Java-reflax"
+           data-author="" >
+            <span class="post-title" title="Java-reflax 反射">Java-reflax 反射</span>
+            <span class="post-date" title="2019-11-29 14:30:08">2019/11/29</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/linux-mv/"
+           data-tag="mv命令"
+           data-author="" >
+            <span class="post-title" title="mv命令">mv命令</span>
+            <span class="post-date" title="2019-11-15 17:20:51">2019/11/15</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/linux-ps/"
+           data-tag="ps命令"
+           data-author="" >
+            <span class="post-title" title="ps命令">ps命令</span>
+            <span class="post-date" title="2019-11-15 17:20:52">2019/11/15</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/11/11/redis1/"
+           data-tag="redis"
+           data-author="" >
+            <span class="post-title" title="Redis基本命令和java基本操作">Redis基本命令和java基本操作</span>
+            <span class="post-date" title="2019-11-11 10:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="消息队列 "
+           href="/2019/11/13/rabbitMQBase/"
+           data-tag="rabbitMQ"
+           data-author="" >
+            <span class="post-title" title="消息队列">消息队列</span>
+            <span class="post-date" title="2019-11-13 09:58:16">2019/11/13</span>
+        </a>
+        
+        <a  class="spring "
+           href="/2019/11/14/spring-base1/"
+           data-tag="Spring基础知识"
+           data-author="" >
+            <span class="post-title" title="Spring基础知识">Spring基础知识</span>
+            <span class="post-date" title="2019-11-14 16:19:44">2019/11/14</span>
+        </a>
+        
+        <a  class="spring "
+           href="/2019/11/14/spring-config/"
+           data-tag="Spring常用配置"
+           data-author="" >
+            <span class="post-title" title="Spring常用配置">Spring常用配置</span>
+            <span class="post-date" title="2019-11-14 16:44:14">2019/11/14</span>
+        </a>
+        
+        <a  class="spring "
+           href="/2019/11/14/spring-high/"
+           data-tag="Spring高级话题"
+           data-author="" >
+            <span class="post-title" title="Spring高级话题">Spring高级话题</span>
+            <span class="post-date" title="2019-11-14 17:04:21">2019/11/14</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/zuul/"
+           data-tag="Spring cloud zuul (服务网关初级)"
+           data-author="" >
+            <span class="post-title" title="Spring cloud zuul (初级)">Spring cloud zuul (初级)</span>
+            <span class="post-date" title="2019-11-13 17:35:48">2019/11/13</span>
+        </a>
+        
+        <a  class="spring-mvc "
+           href="/2019/11/15/Hystrix/springmvcbase/"
+           data-tag="SpringMVC基础"
+           data-author="" >
+            <span class="post-title" title="SpringMVC基础">SpringMVC基础</span>
+            <span class="post-date" title="2019-11-15 14:38:17">2019/11/15</span>
+        </a>
+        
+        <a  class="spring-mvc "
+           href="/2019/11/15/Hystrix/springmvcconfig/"
+           data-tag="SpringMVC配置"
+           data-author="" >
+            <span class="post-title" title="SpringMVC配置">SpringMVC配置</span>
+            <span class="post-date" title="2019-11-15 14:38:17">2019/11/15</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/linux-high/"
+           data-tag="linux高级命令"
+           data-author="" >
+            <span class="post-title" title="linux高级命令">linux高级命令</span>
+            <span class="post-date" title="2019-11-15 17:20:50">2019/11/15</span>
+        </a>
+        
+        <a  class="netty "
+           href="/2019/11/25/netty-base/"
+           data-tag="netty基本理论"
+           data-author="" >
+            <span class="post-title" title="netty基本理论">netty基本理论</span>
+            <span class="post-date" title="2019-11-25 16:00:35">2019/11/25</span>
+        </a>
+        
+        <a  class="java "
+           href="/2019/11/15/java-nio/"
+           data-tag="Java-NIO"
+           data-author="" >
+            <span class="post-title" title="Java-NIO">Java-NIO</span>
+            <span class="post-date" title="2019-11-15 15:43:16">2019/11/15</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/14/zuulhigh/"
+           data-tag="Spring cloud zuul (服务网关高级)"
+           data-author="" >
+            <span class="post-title" title="Spring cloud zuul (高级)">Spring cloud zuul (高级)</span>
+            <span class="post-date" title="2019-11-14 09:48:56">2019/11/14</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-java-reflex" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">Java-reflax 反射</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a href="javascript:" target="_blank" data-rel="java noopener">java</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" target="_blank" rel="noopener" class="color2">Java-reflax</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2019-11-29 14:30:08'>2019-11-29 14:30</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#概念"><span class="toc-text">概念</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#逐步分析"><span class="toc-text">逐步分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Class"><span class="toc-text">1.Class</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-反射获取类对象的三种方式-通过一个Junit测试来说明"><span class="toc-text">2.反射获取类对象的三种方式(通过一个Junit测试来说明)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-直接通过类名-Class的方式得到"><span class="toc-text">2.1 直接通过类名.Class的方式得到</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-通过对象的getClass-方法获取-这个使用的少"><span class="toc-text">2.2 通过对象的getClass()方法获取,这个使用的少</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-通过全类名获取，用的比较多，但可能抛出ClassNotFoundException异常"><span class="toc-text">2.3 通过全类名获取，用的比较多，但可能抛出ClassNotFoundException异常</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意："><span class="toc-text">注意：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-利用newInstance创建对象：调用的类必须有无参的构造器"><span class="toc-text">3.利用newInstance创建对象：调用的类必须有无参的构造器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-ClassLoader类加载器"><span class="toc-text">4.ClassLoader类加载器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-获取一个系统的类加载器"><span class="toc-text">4.1.获取一个系统的类加载器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-获取系统类加载器的父类加载器-扩展类加载器（extensions-classLoader）"><span class="toc-text">4.2.获取系统类加载器的父类加载器(扩展类加载器（extensions classLoader）)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3、获取扩展类加载器的父类加载器-输出为Null-无法被Java程序直接引用"><span class="toc-text">4.3、获取扩展类加载器的父类加载器,输出为Null,无法被Java程序直接引用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4、测试当前类由哪个类加载器进行加载-结果就是系统的类加载器"><span class="toc-text">4.4、测试当前类由哪个类加载器进行加载 ,结果就是系统的类加载器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5、测试JDK提供的Object类由哪个类加载器负责加载的-输出为Null-无法被Java程序直接引用"><span class="toc-text">4.5、测试JDK提供的Object类由哪个类加载器负责加载的,输出为Null,无法被Java程序直接引用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-反射机制通过加载器获取流对象：getResourceAsStream方法"><span class="toc-text">5.反射机制通过加载器获取流对象：getResourceAsStream方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-反射机制获取类中的方法：Method-对应类中的方法"><span class="toc-text">6.反射机制获取类中的方法：Method: 对应类中的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-反射机制获取类中的方法：获取本类方法"><span class="toc-text">(1)反射机制获取类中的方法：获取本类方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-获取方法：默认只能获取public修饰的方法"><span class="toc-text">6.1 获取方法：默认只能获取public修饰的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-获取方法：所有修饰权限的方法都可以获得"><span class="toc-text">6.2 获取方法：所有修饰权限的方法都可以获得</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3获取方法：获取指定的方法（所有修饰权限）"><span class="toc-text">6.3获取方法：获取指定的方法（所有修饰权限）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-4执行方法："><span class="toc-text">6.4执行方法：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-反射机制获取接口或者父类的方法："><span class="toc-text">(2)反射机制获取接口或者父类的方法：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#A-Method-对应基类或接口中的方法"><span class="toc-text">A  :  Method: 对应基类或接口中的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#B-通过当前反射对象，拿到父类反射对象"><span class="toc-text">B  :  通过当前反射对象，拿到父类反射对象</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-反射机制获取类中的字段属性：Field字段"><span class="toc-text">7.反射机制获取类中的字段属性：Field字段</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://www.cnblogs.com/newwind/p/9129453.html" target="_blank" rel="noopener">参考网址</a></p>
+<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><blockquote>
+<p>Java反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方<br>法；对于任意一个对象，都能够调用它的任意一个方法和属性；这种动态获取的信息以&gt;及动态调用对象的方法的功能称为Java语言的反射机制。</p>
+</blockquote>
+<h1 id="逐步分析"><a href="#逐步分析" class="headerlink" title="逐步分析"></a>逐步分析</h1><h2 id="1-Class"><a href="#1-Class" class="headerlink" title="1.Class"></a>1.Class</h2><blockquote>
+<p>(1).Class是一个类，一个描述类的类（也就是描述类本身），封装了描述方法的Method，描述字段的Filed，描述构造器的Constructor等属性</p>
+<p>(2).对象照镜子后（反射）可以得到的信息：某个类的数据成员名、方法和构造器、某个类到底实现了哪些接口。</p>
+<p>(3).对于每个类而言，JRE 都为其保留一个不变的 Class 类型的对象。 一个 Class 对象包含了特定某个类的有关信息。</p>
+<p>(4).Class 对象只能由系统建立对象</p>
+<p>(5).一个类在 JVM 中只会有一个Class实例</p>
+</blockquote>
+<h2 id="2-反射获取类对象的三种方式-通过一个Junit测试来说明"><a href="#2-反射获取类对象的三种方式-通过一个Junit测试来说明" class="headerlink" title="2.反射获取类对象的三种方式(通过一个Junit测试来说明)"></a>2.反射获取类对象的三种方式(通过一个Junit测试来说明)</h2><h3 id="2-1-直接通过类名-Class的方式得到"><a href="#2-1-直接通过类名-Class的方式得到" class="headerlink" title="2.1 直接通过类名.Class的方式得到"></a>2.1 直接通过类名.Class的方式得到</h3><pre><code>@Test
+public void getClassByClass(){
+    Class c = Demo.class;
+    System.out.println(&quot;通过类名获取 : &quot;+c);
+}</code></pre><h3 id="2-2-通过对象的getClass-方法获取-这个使用的少"><a href="#2-2-通过对象的getClass-方法获取-这个使用的少" class="headerlink" title="2.2 通过对象的getClass()方法获取,这个使用的少"></a>2.2 通过对象的getClass()方法获取,这个使用的少</h3><blockquote>
+<p>（一般是传的是Object，不知道是什么类型的时候才用）</p>
+</blockquote>
+<pre><code>@Test
+public void getClassByObject(){
+    Demo demo = new Demo();//此处会调用无参构造方法
+    Class&lt;? extends Demo&gt; class1 = demo.getClass();
+    System.out.println(&quot;通过对象获取 : &quot;+class1);
+}</code></pre><h3 id="2-3-通过全类名获取，用的比较多，但可能抛出ClassNotFoundException异常"><a href="#2-3-通过全类名获取，用的比较多，但可能抛出ClassNotFoundException异常" class="headerlink" title="2.3 通过全类名获取，用的比较多，但可能抛出ClassNotFoundException异常"></a>2.3 通过全类名获取，用的比较多，但可能抛出ClassNotFoundException异常</h3><pre><code>@Test
+public void getClassByAllClass() throws ClassNotFoundException{
+    Class&lt;?&gt; forName = Class.forName(&quot;reflax.Demo&quot;);
+    System.out.println(&quot;通过全类型获取 : &quot;+forName);
+}</code></pre><h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><blockquote>
+<p>1 直接通过类名.Class的方式得到  </p>
+</blockquote>
+<pre><code>Class c = Demo.class;</code></pre><blockquote>
+<p>3 通过全类名获取，用的比较多，但可能抛出ClassNotFoundException异常  </p>
+</blockquote>
+<pre><code>Class&lt;?&gt; forName = Class.forName(&quot;reflax.Demo&quot;);</code></pre><h2 id="3-利用newInstance创建对象：调用的类必须有无参的构造器"><a href="#3-利用newInstance创建对象：调用的类必须有无参的构造器" class="headerlink" title="3.利用newInstance创建对象：调用的类必须有无参的构造器"></a>3.利用newInstance创建对象：调用的类必须有无参的构造器</h2><pre><code>public void testNewInstance() throws ClassNotFoundException, InstantiationException, IllegalAccessException{
+        Class&lt;?&gt; forName = Class.forName(&quot;reflax.Demo&quot;);
+        Object newInstance = forName.newInstance();
+        System.out.println(newInstance);
+    }</code></pre><blockquote>
+<p>若删除了Demo的无参构造，会出错。</p>
+</blockquote>
+<h2 id="4-ClassLoader类加载器"><a href="#4-ClassLoader类加载器" class="headerlink" title="4.ClassLoader类加载器"></a>4.ClassLoader类加载器</h2><h3 id="4-1-获取一个系统的类加载器"><a href="#4-1-获取一个系统的类加载器" class="headerlink" title="4.1.获取一个系统的类加载器"></a>4.1.获取一个系统的类加载器</h3><pre><code>ClassLoader systemClassLoader = ClassLoader.getSystemClassLoader();
+System.out.println(&quot;系统类加载器&quot;+systemClassLoader);</code></pre><h3 id="4-2-获取系统类加载器的父类加载器-扩展类加载器（extensions-classLoader）"><a href="#4-2-获取系统类加载器的父类加载器-扩展类加载器（extensions-classLoader）" class="headerlink" title="4.2.获取系统类加载器的父类加载器(扩展类加载器（extensions classLoader）)"></a>4.2.获取系统类加载器的父类加载器(扩展类加载器（extensions classLoader）)</h3><pre><code>ClassLoader parent = ClassLoader.getSystemClassLoader().getParent();
+System.out.println(&quot;扩展类加载器&quot;+parent);</code></pre><h3 id="4-3、获取扩展类加载器的父类加载器-输出为Null-无法被Java程序直接引用"><a href="#4-3、获取扩展类加载器的父类加载器-输出为Null-无法被Java程序直接引用" class="headerlink" title="4.3、获取扩展类加载器的父类加载器,输出为Null,无法被Java程序直接引用"></a>4.3、获取扩展类加载器的父类加载器,输出为Null,无法被Java程序直接引用</h3><pre><code>ClassLoader parent2 = ClassLoader.getSystemClassLoader().getParent().getParent();
+System.out.println(&quot;启动类加载器&quot;+parent2);</code></pre><h3 id="4-4、测试当前类由哪个类加载器进行加载-结果就是系统的类加载器"><a href="#4-4、测试当前类由哪个类加载器进行加载-结果就是系统的类加载器" class="headerlink" title="4.4、测试当前类由哪个类加载器进行加载 ,结果就是系统的类加载器"></a>4.4、测试当前类由哪个类加载器进行加载 ,结果就是系统的类加载器</h3><pre><code>ClassLoader classLoader = Class.forName(&quot;reflax.Demo&quot;).getClassLoader();
+System.out.println(&quot;当前类由哪个类加载器进行加载--&gt;&quot;+classLoader);  </code></pre><h3 id="4-5、测试JDK提供的Object类由哪个类加载器负责加载的-输出为Null-无法被Java程序直接引用"><a href="#4-5、测试JDK提供的Object类由哪个类加载器负责加载的-输出为Null-无法被Java程序直接引用" class="headerlink" title="4.5、测试JDK提供的Object类由哪个类加载器负责加载的,输出为Null,无法被Java程序直接引用"></a>4.5、测试JDK提供的Object类由哪个类加载器负责加载的,输出为Null,无法被Java程序直接引用</h3><pre><code>ClassLoader classLoader2 = Class.forName(&quot;java.lang.Object&quot;).getClassLoader();
+System.out.println(&quot;JDK提供的Object类由哪个类加载器加载--&gt;&quot; + classLoader2);  </code></pre><p><img src="/2019/11/29/java-reflex/1.png" alt></p>
+<h2 id="5-反射机制通过加载器获取流对象：getResourceAsStream方法"><a href="#5-反射机制通过加载器获取流对象：getResourceAsStream方法" class="headerlink" title="5.反射机制通过加载器获取流对象：getResourceAsStream方法"></a>5.反射机制通过加载器获取流对象：getResourceAsStream方法</h2><blockquote>
+<p>//特别说明： getResourceAsStream(“path”)，path的路径和new Demo()的位置有关</p>
+</blockquote>
+<pre><code>//Demo  路径   reflax/Demo.java
+//test.properties  路径  reflax/test.properties
+
+    InputStream resourceAsStream = new Demo().getClass().getClassLoader().getResourceAsStream(&quot;reflax/test.properties&quot;);
+    System.out.println(resourceAsStream);
+    Properties properties = new Properties();
+    properties.load(resourceAsStream);
+        System.out.println(&quot;文件内容&quot;+resourceAsStream);
+        System.out.println(properties.get(&quot;name&quot;));        
+        System.out.println(properties.get(&quot;age&quot;));</code></pre><h1 id="6-反射机制获取类中的方法：Method-对应类中的方法"><a href="#6-反射机制获取类中的方法：Method-对应类中的方法" class="headerlink" title="6.反射机制获取类中的方法：Method: 对应类中的方法"></a>6.反射机制获取类中的方法：Method: 对应类中的方法</h1><h2 id="1-反射机制获取类中的方法：获取本类方法"><a href="#1-反射机制获取类中的方法：获取本类方法" class="headerlink" title="(1)反射机制获取类中的方法：获取本类方法"></a>(1)反射机制获取类中的方法：获取本类方法</h2><h3 id="6-1-获取方法：默认只能获取public修饰的方法"><a href="#6-1-获取方法：默认只能获取public修饰的方法" class="headerlink" title="6.1 获取方法：默认只能获取public修饰的方法"></a>6.1 获取方法：默认只能获取public修饰的方法</h3><pre><code>Class classzz = Class.forName(&quot;reflax.MethodDemo&quot;);
+Method[] methods = classzz.getMethods();</code></pre><h3 id="6-2-获取方法：所有修饰权限的方法都可以获得"><a href="#6-2-获取方法：所有修饰权限的方法都可以获得" class="headerlink" title="6.2 获取方法：所有修饰权限的方法都可以获得"></a>6.2 获取方法：所有修饰权限的方法都可以获得</h3><pre><code>Class classzz = Class.forName(&quot;reflax.MethodDemo&quot;);
+Method[] declaredMethods = classzz.getDeclaredMethods();</code></pre><h3 id="6-3获取方法：获取指定的方法（所有修饰权限）"><a href="#6-3获取方法：获取指定的方法（所有修饰权限）" class="headerlink" title="6.3获取方法：获取指定的方法（所有修饰权限）"></a>6.3获取方法：获取指定的方法（所有修饰权限）</h3><pre><code>Class classzz = Class.forName(&quot;reflax.MethodDemo&quot;);</code></pre><blockquote>
+<p>6.3.1 获取指定方法名的  无参方法</p>
+</blockquote>
+<pre><code>Method declaredMethod = classzz.getDeclaredMethod(&quot;method_public&quot;);</code></pre><blockquote>
+<p>6.3.2 获取指定方法名的  有参方法</p>
+</blockquote>
+<pre><code>Method declaredMethod2 = classzz.getDeclaredMethod(&quot;method_public_2&quot;, String.class,int.class,char.class);</code></pre><h3 id="6-4执行方法："><a href="#6-4执行方法：" class="headerlink" title="6.4执行方法："></a>6.4执行方法：</h3><pre><code>执行方法：invoke(方法对象，方法实际参数) 
+    Object newInstance = classzz.newInstance();</code></pre><blockquote>
+<p>6.4.1 执行  无参方法</p>
+</blockquote>
+<pre><code>declaredMethod.invoke(newInstance);</code></pre><blockquote>
+<p>6.4.2 执行  有参方法</p>
+</blockquote>
+<pre><code>declaredMethod2.invoke(newInstance, &quot;TEST&quot;,122,&apos;r&apos;);</code></pre><p>代码示例：</p>
+<pre><code>package reflax;
+
+public class MethodDemo {
+
+/**
+Java权限有四个，分别为public,protected,默认,private，其开放程度依次降低
+ *    public可供所有类访问
+ *    protected继承可见
+ *    private只能类本身内部的方法可以访问
+ */    
+
+public void method_public(){
+    System.out.println(&quot;method_public&quot;);
+}
+public void method_public_2(String name,int age,char sex){//public  带参数
+    System.out.println(&quot;method_public_2&quot;);
+    String info=&quot;Demo{&quot; +  
+    &quot;name=&apos;&quot; + name + &apos;\&apos;&apos; +  
+    &quot;, age=&quot; + age  +  
+    &quot;, sex=&apos;&quot; + sex + &apos;\&apos;&apos; +  
+    &apos;}&apos;;
+    System.out.println(info);
+}
+protected void method_protected(){
+    System.out.println(&quot;method_protected&quot;);
+}
+protected void method_protected_2(String info){//protected  带参数
+    System.out.println(&quot;method_protected_2:&quot;+info);
+}
+void method_default(){
+    System.out.println(&quot;method_default&quot;);
+}
+void method_default_2(String info){//默认修饰符   带参数
+ System.out.println(&quot;method_default_2:&quot;+info);
+}
+private void method_private(){
+    System.out.println(&quot;method_private&quot;);
+}
+private void method_private_2(String info){//private  带参数
+    System.out.println(&quot;method_private_2:&quot;+info);
+}
+
+}</code></pre><blockquote>
+<p>测试： </p>
+</blockquote>
+<pre><code>@Test
+public void testMethod() throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException{
+    Class classzz = Class.forName(&quot;reflax.MethodDemo&quot;);
+
+//1、得到clazz 对应的类中有哪些方法,不能获取private方法 
+    Method[] methods = classzz.getMethods();
+    for(Method method:methods){
+//            System.out.println(method.getName());
+    }
+
+//2、获取所有的方法(且只获取当前类声明的方法，包括private方法）
+    Method[] declaredMethods = classzz.getDeclaredMethods();
+    for(Method method :declaredMethods){
+        System.out.println(method);
+    }
+
+//3、获取指定的方法  
+ Class&lt;?&gt;... parameterTypes：一个或多个方法参数的类型，注意要一一对应。
+
+//3.1 获取指定方法名的  无参方法
+    Method declaredMethod = classzz.getDeclaredMethod(&quot;method_public&quot;);
+    System.out.println(declaredMethod);
+
+//3.2 获取指定方法名的  有参方法
+    Method declaredMethod2 = classzz.getDeclaredMethod(&quot;method_public_2&quot;, String.class,int.class,char.class);
+    System.out.println(declaredMethod2);
+
+//4、执行方法！  执行方法：invoke(方法对象，方法实际参数) 
+    Object newInstance = classzz.newInstance();
+    declaredMethod.invoke(newInstance);
+    declaredMethod2.invoke(newInstance, &quot;TEST&quot;,122,&apos;r&apos;);
+}</code></pre><h2 id="2-反射机制获取接口或者父类的方法："><a href="#2-反射机制获取接口或者父类的方法：" class="headerlink" title="(2)反射机制获取接口或者父类的方法："></a>(2)反射机制获取接口或者父类的方法：</h2><h3 id="A-Method-对应基类或接口中的方法"><a href="#A-Method-对应基类或接口中的方法" class="headerlink" title="A  :  Method: 对应基类或接口中的方法"></a>A  :  Method: 对应基类或接口中的方法</h3><pre><code>(只可以获取到接口或父类的public方法)
+//    反射机制获取类中的方法：Method: 对应基类或接口中的方法
+
+    Class forName = Class.forName(&quot;reflax.Demo&quot;);
+    Method[] methods = forName.getMethods();
+    for(Method method:methods){
+        System.out.println(method);    
+    }
+    //获取当前类实现的接口中的方法  
+    Method method = forName.getMethod(&quot;play_public_2&quot;, String.class);
+
+    //执行
+    Demo newInstance = Demo.class.newInstance();
+    method.invoke(newInstance, &quot;ddddd&quot;);</code></pre><h3 id="B-通过当前反射对象，拿到父类反射对象"><a href="#B-通过当前反射对象，拿到父类反射对象" class="headerlink" title="B  :  通过当前反射对象，拿到父类反射对象"></a>B  :  通过当前反射对象，拿到父类反射对象</h3><pre><code>(可以获取到接口或父类的所有方法)
+通过子类的反射对象和拿到的父类反射对象，也仅仅只能执行public方法，不能执行private，protected和default默认修饰的方法
+
+    Class classzz = Class.forName(&quot;reflax.Demo&quot;);
+
+    //获取父类的class
+    Class superclasszz = classzz.getSuperclass();
+
+    //获取父类方法的public权限方法
+    Method[] methods = superclasszz.getMethods();
+    for(Method method : methods){
+        System.out.println(method);
+    }
+
+    //仅仅获取父类声明的全部方法
+    Method[] declaredMethods = superclasszz.getDeclaredMethods();
+    for(Method method : declaredMethods){
+        System.out.println(method);
+    }</code></pre><h2 id="7-反射机制获取类中的字段属性：Field字段"><a href="#7-反射机制获取类中的字段属性：Field字段" class="headerlink" title="7.反射机制获取类中的字段属性：Field字段"></a>7.反射机制获取类中的字段属性：Field字段</h2><pre><code>Class classzz = Class.forName(&quot;reflax.Demo&quot;);
+
+//获取被public修饰的属性
+Field[] fields = classzz.getFields();
+for(Field field : fields){
+    System.out.println(field.getName());
+}
+
+// 获取Field的数组,私有字段也能获取
+Field[] declaredFields = classzz.getDeclaredFields();
+for(Field field : declaredFields){
+    System.out.println(field.getName()+&quot;类型&quot;+field.getType());
+}
+
+//获取指定对象的Field的值
+Field declaredField = classzz.getDeclaredField(&quot;sex&quot;);
+Demo demo = (Demo) classzz.newInstance();
+char object = (char) declaredField.get(demo);
+System.out.println(object);
+
+//设置指定对象的Field的值
+declaredField.set(demo, &apos;T&apos;);
+System.out.println(demo.getSex());
+
+//若该字段是私有的，需要调用setAccessible(true)方法
+Field privateField2 = classzz.getDeclaredField(&quot;age&quot;);
+privateField2.setAccessible(true);
+privateField2.set(demo, 14);
+System.out.println(demo.getAge());</code></pre>
+      
+       
+    </div>
+</article>
+
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>Java-reflax 反射</p>
+    <p><span class="copy-title">发布时间:</span>2019-11-29, 14:30:08</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-29, 14:30:08</p>
+</div>
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2019 chen wei</p>
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<!--
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+-->
+<a class="" id="rocket" href="javascript:void(0)" target="_blank" rel="noopener"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#熔断监控Hystrix-Dashboard','#Spring-Cloud-Sleuth','#Zipkin','#Hystrix和Feign Hystrix','#Spring-cloud和Spring-boot','#docker','#find命令','#JDK工具使用','#Java-IO','#linux安装jre','#分布式','#redis','#redis取消只能本地访问的方式','#java实现发送邮件','#Springboot日志配置','#Springboot项目导可执行jar','#Springboot基础知识','#vue项目搭建','#java实现手机发送短信','#swagger使用','#linux基本命令','#eureka 服务提供和调用','#eureka原理介绍','#配置中心git服务化和高可用','#配置中心git','#Java-reflax','#mv命令','#ps命令','#rabbitMQ','#Spring基础知识','#Spring常用配置','#Spring高级话题','#Spring cloud zuul (服务网关初级)','#SpringMVC基础','#SpringMVC配置','#linux高级命令','#netty基本理论','#Java-NIO','#Spring cloud zuul (服务网关高级)',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
