@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Spring常用配置 | Hexo</title>
-  <meta name="keywords" content=" Spring常用配置 ">
-  <meta name="description" content="Spring常用配置 | Hexo">
+  <title>redis连接springboot | Hexo</title>
+  <meta name="keywords" content=" redis连接springboot ">
+  <meta name="description" content="redis连接springboot | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="springboot整合redis1.pom.xml&amp;lt;!-- redis --&amp;gt; &amp;lt;dependency&amp;gt;     &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;&#x2F;groupId&amp;gt;     &amp;lt;artifactId&amp;gt;spring-boot-starter-data-redis&amp;lt;&#x2F;artifactId&amp;gt;">
 <meta name="keywords" content="redis连接springboot">
@@ -780,9 +780,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-spring-config" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-redis-springboot" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Spring常用配置</h1>
+        <h1 class="article-title">redis连接springboot</h1>
     
     <div class="article-meta">
         
@@ -790,21 +790,21 @@
         
         <span class="book">
             
-                <a href="javascript:" target="_blank" data-rel="spring noopener">spring</a>
+                <a href="javascript:" target="_blank" data-rel="redis noopener">redis</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring常用配置</a>
+            <a href="javascript:" target="_blank" rel="noopener" class="color3">redis连接springboot</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-11-14 16:44:14'>2019-11-14 16:44</time>
+        创建时间:<time class="date" title='更新时间: 2019-12-06 14:03:58'>2019-12-06 14:03</time>
         
     </div>
     <div class="article-meta">
@@ -826,7 +826,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#二．Spring常用配置"><span class="toc-text">二．Spring常用配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-bean的Scope"><span class="toc-text">1.bean的Scope</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Spring-El-和资源调用"><span class="toc-text">2.Spring El 和资源调用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-准备，增加commons-io可以简化文件相关操作。"><span class="toc-text">(1).准备，增加commons-io可以简化文件相关操作。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-需被注入的bean。"><span class="toc-text">(2)需被注入的bean。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-演示配置类。"><span class="toc-text">(3)演示配置类。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-运行"><span class="toc-text">(4)运行</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Bean的初始化和销毁"><span class="toc-text">3.Bean的初始化和销毁</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-Profile相关知识点"><span class="toc-text">4.Profile相关知识点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-事件（application-event）"><span class="toc-text">5.事件（application event）</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#springboot整合redis"><span class="toc-text">springboot整合redis</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-pom-xml"><span class="toc-text">1.pom.xml</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-application-yml"><span class="toc-text">2.application.yml</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-redisConfig-java"><span class="toc-text">3.redisConfig.java</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-测试"><span class="toc-text">4.测试</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -842,280 +842,56 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="二．Spring常用配置"><a href="#二．Spring常用配置" class="headerlink" title="二．Spring常用配置"></a>二．Spring常用配置</h1><h2 id="1-bean的Scope"><a href="#1-bean的Scope" class="headerlink" title="1.bean的Scope"></a>1.bean的Scope</h2><blockquote>
-<p>Scope描述的是spring容器如何新建bean的实例，通常用@Scope实现。</p>
-<p>（1）Singleton:一个spring容器中只有一个bean的实例，spring的默认配置，整个容器共享一个实例。</p>
-<p>（2）Prototype：每次调用新建一个bean实例。</p>
-<p>（3）Request：web项目中，给每一个HTTP request 新建一个bean实例。</p>
-<p>（4）Session：web项目中，给每一个HTTP session 新建一个bean实例。</p>
-</blockquote>
-<pre><code>@Service
-@Scope(&quot;prototype&quot;)
-public class ProtoTypeDemo {
-}
+        <h1 id="springboot整合redis"><a href="#springboot整合redis" class="headerlink" title="springboot整合redis"></a>springboot整合redis</h1><h2 id="1-pom-xml"><a href="#1-pom-xml" class="headerlink" title="1.pom.xml"></a>1.pom.xml</h2><pre><code>&lt;!-- redis --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-data-redis&lt;/artifactId&gt;
+    &lt;version&gt;2.0.3.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;</code></pre><h2 id="2-application-yml"><a href="#2-application-yml" class="headerlink" title="2.application.yml"></a>2.application.yml</h2><pre><code>spring: 
+  redis: 
+    host: 192.168.18.106
+    port: 6379
+    jedis: 
+      pool: 
+        max-active: 8
+        max-wait: -1
+        max-idle: 500
+        min-idle: 0
+      lettuce:
+        shutdown-timeout: 0   </code></pre><h2 id="3-redisConfig-java"><a href="#3-redisConfig-java" class="headerlink" title="3.redisConfig.java"></a>3.redisConfig.java</h2><pre><code>@Configuration
+public class RedisConfig {
 
-@Service
-//默认是singleton，单例
-public class SingletonDemo {
-}
-
-@Configuration
-@ComponentScan(&quot;cn.cw.study.scope&quot;)
-public class AppConfig {
-}
-
-public static void main(String[] args) {
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
-        ProtoTypeDemo protoTypeDemo = context.getBean(ProtoTypeDemo.class);
-        ProtoTypeDemo protoTypeDemo2 = context.getBean(ProtoTypeDemo.class);
-        System.out.println(protoTypeDemo==protoTypeDemo2);//false
-        SingletonDemo singletonDemo = context.getBean(SingletonDemo.class);
-        SingletonDemo singletonDemo1 = context.getBean(SingletonDemo.class);
-    System.out.println(singletonDemo==singletonDemo1);//true
-        context.close();
-    }</code></pre><h2 id="2-Spring-El-和资源调用"><a href="#2-Spring-El-和资源调用" class="headerlink" title="2.Spring El 和资源调用"></a>2.Spring El 和资源调用</h2><p>Spring El :   Spring表达式语言，支持在xml和注解中使用表达式，类似于jsp的El表达式语言。</p>
-<p>Spring开发中经常涉及调用各种资源的情况，包含普通文件、网址、配置文件、系统环境变量等。</p>
-<p>我们可以使用spring的表达式语言实现资源注入。Spring主要在注解@Value的参数中使用表达式。</p>
-<h3 id="1-准备，增加commons-io可以简化文件相关操作。"><a href="#1-准备，增加commons-io可以简化文件相关操作。" class="headerlink" title="(1).准备，增加commons-io可以简化文件相关操作。"></a>(1).准备，增加commons-io可以简化文件相关操作。</h3><pre><code>&lt;dependency&gt;
-          &lt;artifactId&gt;commons-io&lt;/artifactId&gt;
-          &lt;groupId&gt;commons-io&lt;/groupId&gt;
-          &lt;version&gt;2.3&lt;/version&gt;
-  &lt;/dependency&gt;</code></pre><blockquote>
-<p>test.txt</p>
-<p>生活</p>
-</blockquote>
-<blockquote>
-<p>test.properties</p>
-</blockquote>
-<pre><code>book.author=ss    
-book.name=spring boot</code></pre><h2 id="2-需被注入的bean。"><a href="#2-需被注入的bean。" class="headerlink" title="(2)需被注入的bean。"></a>(2)需被注入的bean。</h2><pre><code>public class DemoComponent {
-    @Value(&quot;其他类的属性&quot;)
-    private String name;
-        public String getName() {
-        return name;
+    @Bean
+    public RedisTemplate&lt;String, Object&gt; redisTemplate(RedisConnectionFactory factory){
+        RedisTemplate&lt;String, Object&gt; redisTemplate = new RedisTemplate&lt;String, Object&gt;();
+        //设置连接
+        redisTemplate.setConnectionFactory(factory);
+        //设置key序列化器
+        redisTemplate.setKeySerializer(new StringRedisSerializer(Charset.forName(&quot;UTF-8&quot;)));
+        //设置value序列化器
+        redisTemplate.setValueSerializer(new Jackson2JsonRedisSerializer&lt;Object&gt;(Object.class));
+        return redisTemplate;
     }
-    public void setName(String name) {
-        this.name = name;
-    }
-}</code></pre><h2 id="3-演示配置类。"><a href="#3-演示配置类。" class="headerlink" title="(3)演示配置类。"></a>(3)演示配置类。</h2><pre><code>@Configuration
-@ComponentScan(&quot;cn.cw.study.springel&quot;)
-@PropertySource(&quot;classpath:cn/cw/study/springel/test.properties&quot;)
-public class AppConfig {
-    @Value(&quot;I&quot;) //注入普通字符串
-    private String normal;
-    @Value(&quot;#{systemProperties[&apos;os.name&apos;]}&quot;) //注入操作系统属性
-    private String osName; 
-    @Value(&quot;#{ T(java.lang.Math).random()*100.0}&quot;) //注入表达式结果
-    private double randomNumber;
-    @Value(&quot;#{demoComponent.name}&quot;)//注入其他bean属性
-    private String fromAnother;
-    @Value(&quot;classpath:cn/cw/study/springel/test.txt&quot;)//注入文件资源
-    private Resource testFile;
-    @Value(&quot;http://www.baidu.com&quot;)//注入网址资源
-    private Resource testUrl;
-    @Value(&quot;${book.name}&quot;)  //注入配置文件
-    private String bookName;
-    @Bean   //注入配置文件
-    public static PropertySourcesPlaceholderConfigurer propertyConfigure(){
-        return new PropertySourcesPlaceholderConfigurer();
-    }
-    @Autowired  //注入配置文件
-    private Environment environment;
+}</code></pre><h2 id="4-测试"><a href="#4-测试" class="headerlink" title="4.测试"></a>4.测试</h2><pre><code>@RunWith(SpringRunner.class)
+@SpringBootTest
+public class TestRedis {
 
-    public void test(){
+    private static Logger logger = LoggerFactory.getLogger(TestRedis.class);
+    @Autowired
+    private RedisTemplate&lt;String, Object&gt; redisTemplate;
+
+    @Test
+    public void testSet(){
         try {
-            System.out.println(normal);
-            System.out.println(osName);
-            System.out.println(randomNumber);
-            System.out.println(fromAnother);
-        System.out.println(IOUtils.toString(testFile.getInputStream()));
-        System.out.println(IOUtils.toString(testUrl.getInputStream()));
-            System.out.println(bookName);
-            System.out.println(environment.getProperty(&quot;book.author&quot;));
+            logger.info(&quot;开始-------------------------------&quot;);
+            this.redisTemplate.opsForValue().set(&quot;ddd&quot;, &quot;testdddd&quot;);
+            logger.info(&quot;#############################################&quot;+this.redisTemplate.opsForValue().get(&quot;ddd&quot;));
+
         } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
         }
-    }
-}</code></pre><h2 id="4-运行"><a href="#4-运行" class="headerlink" title="(4)运行"></a>(4)运行</h2><pre><code>public static void main(String[] args) {
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
-        AppConfig bean = context.getBean(AppConfig.class);
-        bean.test();
-        context.close();
-    }</code></pre><h1 id="3-Bean的初始化和销毁"><a href="#3-Bean的初始化和销毁" class="headerlink" title="3.Bean的初始化和销毁"></a>3.Bean的初始化和销毁</h1><p>在实际开发中，经常遇到bean 在使用前或使用后做些必要的操作，spring对bean的生命周期的操作提供了支持:java配置和注解配置。</p>
-<p><strong>Java配置方式</strong>：使用@bean 的initMethod 和 destroyMethod (相当于xml配置的init-method 和 destroy-method)</p>
-<p><strong>注解方式</strong>：使用JSR-250的@PostConstruct 和 @PreDestory</p>
-<blockquote>
-<p>添加jsr-250支持</p>
-</blockquote>
-<pre><code>&lt;dependency&gt;
-      &lt;artifactId&gt;jsr250-api&lt;/artifactId&gt;
-      &lt;groupId&gt;javax.annotation&lt;/groupId&gt;
-      &lt;version&gt;1.0&lt;/version&gt;
-  &lt;/dependency&gt;
 
-public class BeanWayServiceDemo {
-    public void init(){
-        System.out.println(&quot;@Bean-init-method&quot;);
-    }
-    public BeanWayServiceDemo(){
-        super();
-        System.out.println(&quot;初始化构造函数-BeanWayServiceDemo&quot;);
-    }
-    public void destory(){
-        System.out.println(&quot;@Bean-destory-method&quot;);
-    }
-}
-
-public class JSR250WayServiceDemo {
-    @PostConstruct  //在构造函数执行完之后执行
-    public void init(){
-        System.out.println(&quot;@jsr250-init-method&quot;);
-    }
-    public JSR250WayServiceDemo(){
-        super();
-        System.out.println(&quot;初始化构造函数-JSR250WayServiceDemo&quot;);
-    }
-    @PreDestroy //在bean销毁之前执行
-    public void destory(){
-        System.out.println(&quot;@jsr250-destory-method&quot;);
-    }
-}
-
-@Configuration
-@ComponentScan(&quot;cn.cw.study.initAnddestroy&quot;)
-public class PrePostConfig {
-    @Bean(initMethod=&quot;init&quot;,destroyMethod=&quot;destory&quot;)//在构造函数后、bean销毁前执行
-    public BeanWayServiceDemo getBeanWayServiceDemo(){
-        return new BeanWayServiceDemo();
-    }
-    @Bean
-    public JSR250WayServiceDemo getJSR250WayServiceDemo(){
-        return new JSR250WayServiceDemo();
-    }
-}
-
-public static void main(String[] args) {
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(PrePostConfig.class);
-        PrePostConfig bean = context.getBean(PrePostConfig.class);
-        BeanWayServiceDemo beanWayServiceDemo = bean.getBeanWayServiceDemo();
-        JSR250WayServiceDemo jsr250WayServiceDemo = bean.getJSR250WayServiceDemo();
-        context.close();
-    }</code></pre><h1 id="4-Profile相关知识点"><a href="#4-Profile相关知识点" class="headerlink" title="4.Profile相关知识点"></a>4.Profile相关知识点</h1><p>Profile为在不同环境下使用不同的配置提供了支持（开发环境下的配置和生产环境下配置肯定是不同的，例如，数据库的配置）</p>
-<blockquote>
-<p>(1).通过设定Environment 的ActiveProfiles来设定当前context需要使用的配置环境。开发中使用@Profile注解类或者方法，达到在不同情况下选择实例化不同的bean。</p>
-<p>(2)通过设定jvm的spring.profiles.active参数来设置配置环境。</p>
-<p>(3)Web项目设置在servlet的context parameter中。</p>
-</blockquote>
-<p><strong>Servlet2.5及以下：</strong></p>
-<pre><code>&lt;servlet&gt;
-    &lt;servlet-name&gt;dispatcher&lt;/servlet-name&gt;
-  &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;
-    &lt;init-param&gt;
-        &lt;param-name&gt;spring.profiles.active&lt;/param-name&gt;
-        &lt;param-value&gt;production&lt;/param-value&gt;
-    &lt;/init-param&gt;
-&lt;/servlet&gt;</code></pre><p><strong>Servlet3.0及以上：</strong></p>
-<pre><code>public class WebInit implements WebApplicationInitializer{
-    @Override
-    public void onStartup(ServletContext container) throws ServletException{
-        container.setInitParameter(&quot;spring.profiles.default&quot;,&quot;dev&quot;);
-    }
-}</code></pre><blockquote>
-<p>profile代码示例：</p>
-</blockquote>
-<pre><code>@Configuration
-public class ProfileConfig {
-    @Bean
-    @Profile(&quot;dev&quot;) //实例化devDemoBean
-    public DemoBean devDemoBean(){
-        return new DemoBean(&quot;from development profile&quot;);
-    }
-    @Bean
-    @Profile(&quot;prod&quot;) //实例化prodDemoBean
-    public DemoBean prodDemoBean(){
-        return new DemoBean(&quot;from production profile&quot;);
-    }
-}
-public class DemoBean {
-    private String content;
-    public DemoBean(String content){
-        super();
-        this.content = content;
-    }
-    public String getContent() {
-        return content;
-    }
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-}
-public class AppMain {
-    public static void main(String[] args) {
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-
-        context.getEnvironment().setActiveProfiles(&quot;dev&quot;); //将活动的profile设置为prod
-        context.register(ProfileConfig.class); //后置注册bean配置类，不然会报bean未定义的错误
-        context.refresh();//刷新容器
-        DemoBean bean = context.getBean(DemoBean.class);
-        System.out.println(bean.getContent());
-        context.close();
-    }
-}</code></pre><h1 id="5-事件（application-event）"><a href="#5-事件（application-event）" class="headerlink" title="5.事件（application event）"></a>5.事件（application event）</h1><p>Spring的事件（application event）为bean与bean之间的消息通信提供了支持，当bean处理完一个任务之后，希望另外的一个bean知道并能做相应的处理，这时需要让另外一个bean监听当前bean所发送的事件。</p>
-<p><strong>Spring事件需要遵循如下流程：</strong></p>
-<blockquote>
-<p>（1）自定义事件，继承 applicationEvent。</p>
-<p>（2）定义事件监听器，实现applicationEvent。</p>
-<p>（3）使用容器发布事件。</p>
-</blockquote>
-<p><strong>代码示例：</strong></p>
-<pre><code>public class DemoEvent extends ApplicationEvent{
-    private String msg;
-    public DemoEvent(Object source,String msg) {
-        super(source);
-        this.msg = msg;
-    }
-    public String getMsg() {
-        return msg;
-    }
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-}
-
-@Component
-public class DemoListerner implements ApplicationListener&lt;DemoEvent&gt;{
-
-    @Override
-    public void onApplicationEvent(DemoEvent event) {
-        // TODO Auto-generated method stub
-        String msString = event.getMsg();
-        System.out.println(&quot;demolisterner 接收到了 bean--&gt; demopublish 发布的消息：&quot;+msString);
-    }
-}
-
-@Component
-public class DemoPublisher {
-    @Autowired
-    ApplicationContext context;
-
-    public void publishTest(String msg){
-        context.publishEvent(new DemoEvent(this, msg));
-    }
-}
-
-@Configuration
-@ComponentScan(&quot;cn.cw.study.applicationEvent&quot;)
-public class EventConfig {
-
-}
-public class AppMain {
-    public static void main(String[] args) {
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(EventConfig.class);
-        DemoPublisher bean = context.getBean(DemoPublisher.class);
-        bean.publishTest(&quot;test publish!&quot;);
-        context.close();
     }
 }</code></pre>
       
@@ -1126,9 +902,9 @@ public class AppMain {
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>Spring常用配置</p>
-    <p><span class="copy-title">发布时间:</span>2019-11-14, 16:44:14</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-14, 16:44:14</p>
+    <p><span class="copy-title">文章标题:</span>redis连接springboot</p>
+    <p><span class="copy-title">发布时间:</span>2019-12-06, 14:03:57</p>
+    <p><span class="copy-title">最后更新:</span>2019-12-06, 14:03:58</p>
 </div>
 
 
