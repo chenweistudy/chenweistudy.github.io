@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>redis集群的三种方式(linux系统) | Hexo</title>
+  <meta name="keywords" content=" redis集群的三种方式 ">
+  <meta name="description" content="redis集群的三种方式(linux系统) | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="1.集群相关知识点(1).集群概念通过添加服务器的数量，提供相同的服务，从而让服务器达到一个稳定、高效的状态。 (2).为什么使用redis集群？（1）单个redis存在不稳定性。当redis服务宕机了，就没有可用的服务了。 （2）单个redis的读写能力是有限的，redis集群是为了强化redis的读写能力。 (3).redis安装介绍安装参考 1. http:&#x2F;&#x2F;redis.io&#x2F;downlo">
+<meta name="keywords" content="redis集群的三种方式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis集群的三种方式(linux系统)">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;11&#x2F;redis-colony&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1.集群相关知识点(1).集群概念通过添加服务器的数量，提供相同的服务，从而让服务器达到一个稳定、高效的状态。 (2).为什么使用redis集群？（1）单个redis存在不稳定性。当redis服务宕机了，就没有可用的服务了。 （2）单个redis的读写能力是有限的，redis集群是为了强化redis的读写能力。 (3).redis安装介绍安装参考 1. http:&#x2F;&#x2F;redis.io&#x2F;downlo">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;11&#x2F;redis-colony&#x2F;1.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;11&#x2F;redis-colony&#x2F;2.png">
+<meta property="og:updated_time" content="2019-12-11T06:23:01.302Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;11&#x2F;redis-colony&#x2F;1.png">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>cwstudy</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="github" href="https://github.com/chenweistudy" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(47)</small></div></li>
+    
+        
+            
+            <li><div data-rel="springcloud">springcloud<small>(10)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="项目部署">项目部署<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="linux">linux<small>(6)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="java">java<small>(4)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="架构">架构<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="redis">redis<small>(7)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="tools">tools<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="springboot">springboot<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="vue">vue<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="swagger">swagger<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="消息队列">消息队列<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="netty">netty<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="spring">spring<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="spring-mvc">spring-mvc<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="47">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Spring-Cloud-Sleuth</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Zipkin</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Hystrix和Feign Hystrix</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Spring-cloud和Spring-boot</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">docker</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">熔断监控Hystrix-Dashboard</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">find命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">Java-IO</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">JDK工具使用</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">linux基本命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">分布式</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">linux安装jre</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">redis连接springboot</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">redis取消只能本地访问的方式</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">redis</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">java实现发送邮件</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot项目导可执行jar</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot日志配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">vue项目搭建</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">swagger使用</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot基础知识</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">java实现手机发送短信</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">配置中心git</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">eureka 服务提供和调用</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">配置中心git服务化和高可用</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">eureka原理介绍</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Java-reflax</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">mv命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">ps命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">主从复制和哨兵 （配置文件详解）</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">redis集群的三种方式</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">rabbitMQ</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">netty整合springboot</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring常用配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring基础知识</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring高级话题</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Spring cloud zuul (服务网关初级)</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">SpringMVC配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">SpringMVC基础</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">springboot整合mq</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">netty基本理论</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">linux高级命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">Java-NIO</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Spring cloud zuul (服务网关高级)</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="springcloud "
+           href="/2019/11/14/Sleuth-ZipKin/"
+           data-tag="Spring-Cloud-Sleuth,Zipkin"
+           data-author="" >
+            <span class="post-title" title="Spring-Cloud-Sleuth和Zipkin进行分布式链路跟踪">Spring-Cloud-Sleuth和Zipkin进行分布式链路跟踪</span>
+            <span class="post-date" title="2019-11-14 15:03:35">2019/11/14</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/Hystrix/"
+           data-tag="Hystrix和Feign Hystrix"
+           data-author="" >
+            <span class="post-title" title="熔断器（Hystrix）">熔断器（Hystrix）</span>
+            <span class="post-date" title="2019-11-13 15:58:16">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/14/boot-cloud/"
+           data-tag="Spring-cloud和Spring-boot"
+           data-author="" >
+            <span class="post-title" title="Spring-cloud和Spring-boot区别">Spring-cloud和Spring-boot区别</span>
+            <span class="post-date" title="2019-11-14 14:52:22">2019/11/14</span>
+        </a>
+        
+        <a  class="项目部署 "
+           href="/2019/11/13/docker/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="docker">docker</span>
+            <span class="post-date" title="2019-11-13 14:11:55">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/Hystrix-Dashboard/"
+           data-tag="熔断监控Hystrix-Dashboard"
+           data-author="" >
+            <span class="post-title" title="熔断监控Hystrix-Dashboard">熔断监控Hystrix-Dashboard</span>
+            <span class="post-date" title="2019-11-13 15:58:13">2019/11/13</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/find/"
+           data-tag="find命令"
+           data-author="" >
+            <span class="post-title" title="find命令">find命令</span>
+            <span class="post-date" title="2019-11-15 17:20:49">2019/11/15</span>
+        </a>
+        
+        <a  class="java "
+           href="/2019/11/15/java-io/"
+           data-tag="Java-IO"
+           data-author="" >
+            <span class="post-title" title="Java-IO">Java-IO</span>
+            <span class="post-date" title="2019-11-15 15:43:15">2019/11/15</span>
+        </a>
+        
+        <a  class="java "
+           href="/2019/11/15/java-jvm/"
+           data-tag="JDK工具使用"
+           data-author="" >
+            <span class="post-title" title="JDK工具使用">JDK工具使用</span>
+            <span class="post-date" title="2019-11-15 16:14:52">2019/11/15</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/linux-base/"
+           data-tag="linux基本命令"
+           data-author="" >
+            <span class="post-title" title="linux基本命令">linux基本命令</span>
+            <span class="post-date" title="2019-11-15 17:20:49">2019/11/15</span>
+        </a>
+        
+        <a  class="架构 "
+           href="/2019/11/11/indexs/"
+           data-tag="分布式"
+           data-author="" >
+            <span class="post-title" title="用【快餐店】理解分布式架构">用【快餐店】理解分布式架构</span>
+            <span class="post-date" title="2019-11-11 13:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/linux-jre/"
+           data-tag="linux安装jre"
+           data-author="" >
+            <span class="post-title" title="linux安装jre">linux安装jre</span>
+            <span class="post-date" title="2019-11-15 17:20:51">2019/11/15</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/12/06/redis-springboot/"
+           data-tag="redis连接springboot"
+           data-author="" >
+            <span class="post-title" title="redis连接springboot">redis连接springboot</span>
+            <span class="post-date" title="2019-12-06 14:03:57">2019/12/06</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/11/18/redisconnnection/"
+           data-tag="redis取消只能本地访问的方式"
+           data-author="" >
+            <span class="post-title" title="redis取消只能本地访问的方式">redis取消只能本地访问的方式</span>
+            <span class="post-date" title="2019-11-18 15:41:22">2019/11/18</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/11/11/redisCache/"
+           data-tag="redis"
+           data-author="" >
+            <span class="post-title" title="redis缓存">redis缓存</span>
+            <span class="post-date" title="2019-11-11 17:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/11/11/redisPersister/"
+           data-tag="redis"
+           data-author="" >
+            <span class="post-title" title="redis持久化">redis持久化</span>
+            <span class="post-date" title="2019-11-11 16:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="tools "
+           href="/2019/11/19/sendMail/"
+           data-tag="java实现发送邮件"
+           data-author="" >
+            <span class="post-title" title="java实现发送邮件">java实现发送邮件</span>
+            <span class="post-date" title="2019-11-19 10:33:39">2019/11/19</span>
+        </a>
+        
+        <a  class="springboot "
+           href="/2019/11/14/springboot-jar/"
+           data-tag="Springboot项目导可执行jar"
+           data-author="" >
+            <span class="post-title" title="Springboot项目导可执行jar">Springboot项目导可执行jar</span>
+            <span class="post-date" title="2019-11-14 15:26:12">2019/11/14</span>
+        </a>
+        
+        <a  class="springboot "
+           href="/2019/11/14/springboot-config/"
+           data-tag="Springboot日志配置"
+           data-author="" >
+            <span class="post-title" title="Springboot日志配置">Springboot日志配置</span>
+            <span class="post-date" title="2019-11-14 15:19:38">2019/11/14</span>
+        </a>
+        
+        <a  class="vue "
+           href="/2019/11/29/vue-tool/"
+           data-tag="vue项目搭建"
+           data-author="" >
+            <span class="post-title" title="vue 文字跑马灯效果演示">vue 文字跑马灯效果演示</span>
+            <span class="post-date" title="2019-11-29 14:29:36">2019/11/29</span>
+        </a>
+        
+        <a  class="vue "
+           href="/2019/11/29/vue-tool2/"
+           data-tag="vue项目搭建"
+           data-author="" >
+            <span class="post-title" title="vue 文字 轮播演示">vue 文字 轮播演示</span>
+            <span class="post-date" title="2019-11-29 14:29:36">2019/11/29</span>
+        </a>
+        
+        <a  class="swagger "
+           href="/2019/11/22/swagger/"
+           data-tag="swagger使用"
+           data-author="" >
+            <span class="post-title" title="swagger使用">swagger使用</span>
+            <span class="post-date" title="2019-11-22 13:39:07">2019/11/22</span>
+        </a>
+        
+        <a  class="vue "
+           href="/2019/11/21/vueStudy/"
+           data-tag="vue项目搭建"
+           data-author="" >
+            <span class="post-title" title="vue项目搭建">vue项目搭建</span>
+            <span class="post-date" title="2019-11-21 15:26:24">2019/11/21</span>
+        </a>
+        
+        <a  class="springboot "
+           href="/2019/11/14/springboot/"
+           data-tag="Springboot基础知识"
+           data-author="" >
+            <span class="post-title" title="Springboot基础知识">Springboot基础知识</span>
+            <span class="post-date" title="2019-11-14 15:37:49">2019/11/14</span>
+        </a>
+        
+        <a  class="tools "
+           href="/2019/11/19/sendMessage/"
+           data-tag="java实现手机发送短信"
+           data-author="" >
+            <span class="post-title" title="java实现手机发送短信">java实现手机发送短信</span>
+            <span class="post-date" title="2019-11-19 09:41:38">2019/11/19</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/gitConfig/"
+           data-tag="配置中心git"
+           data-author="" >
+            <span class="post-title" title="配置中心git">配置中心git</span>
+            <span class="post-date" title="2019-11-13 16:58:00">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/eureka-Producer-Consumer/"
+           data-tag="eureka 服务提供和调用"
+           data-author="" >
+            <span class="post-title" title="eureka服务提供和调用">eureka服务提供和调用</span>
+            <span class="post-date" title="2019-11-13 15:11:06">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/gitconfig-server-client/"
+           data-tag="配置中心git服务化和高可用"
+           data-author="" >
+            <span class="post-title" title="配置中心git服务化和高可用">配置中心git服务化和高可用</span>
+            <span class="post-date" title="2019-11-13 17:11:42">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/eureka1/"
+           data-tag="eureka原理介绍"
+           data-author="" >
+            <span class="post-title" title="eureka原理介绍">eureka原理介绍</span>
+            <span class="post-date" title="2019-11-13 16:08:48">2019/11/13</span>
+        </a>
+        
+        <a  class="java "
+           href="/2019/11/29/java-reflex/"
+           data-tag="Java-reflax"
+           data-author="" >
+            <span class="post-title" title="Java-reflax 反射">Java-reflax 反射</span>
+            <span class="post-date" title="2019-11-29 14:30:08">2019/11/29</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/linux-mv/"
+           data-tag="mv命令"
+           data-author="" >
+            <span class="post-title" title="mv命令">mv命令</span>
+            <span class="post-date" title="2019-11-15 17:20:51">2019/11/15</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/linux-ps/"
+           data-tag="ps命令"
+           data-author="" >
+            <span class="post-title" title="ps命令">ps命令</span>
+            <span class="post-date" title="2019-11-15 17:20:52">2019/11/15</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/12/11/redis-uses/"
+           data-tag="主从复制和哨兵 （配置文件详解）"
+           data-author="" >
+            <span class="post-title" title="主从复制和哨兵 （配置文件详解）">主从复制和哨兵 （配置文件详解）</span>
+            <span class="post-date" title="2019-12-11 14:22:59">2019/12/11</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/12/11/redis-colony/"
+           data-tag="redis集群的三种方式"
+           data-author="" >
+            <span class="post-title" title="redis集群的三种方式(linux系统)">redis集群的三种方式(linux系统)</span>
+            <span class="post-date" title="2019-12-11 14:23:00">2019/12/11</span>
+        </a>
+        
+        <a  class="消息队列 "
+           href="/2019/11/13/rabbitMQBase/"
+           data-tag="rabbitMQ"
+           data-author="" >
+            <span class="post-title" title="消息队列">消息队列</span>
+            <span class="post-date" title="2019-11-13 09:58:16">2019/11/13</span>
+        </a>
+        
+        <a  class="netty "
+           href="/2019/11/29/netty-springboot/"
+           data-tag="netty整合springboot"
+           data-author="" >
+            <span class="post-title" title="netty整合springboot">netty整合springboot</span>
+            <span class="post-date" title="2019-11-29 15:02:14">2019/11/29</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/11/11/redis1/"
+           data-tag="redis"
+           data-author="" >
+            <span class="post-title" title="Redis基本命令和java基本操作">Redis基本命令和java基本操作</span>
+            <span class="post-date" title="2019-11-11 10:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="spring "
+           href="/2019/11/14/spring-config/"
+           data-tag="Spring常用配置"
+           data-author="" >
+            <span class="post-title" title="Spring常用配置">Spring常用配置</span>
+            <span class="post-date" title="2019-11-14 16:44:14">2019/11/14</span>
+        </a>
+        
+        <a  class="spring "
+           href="/2019/11/14/spring-base1/"
+           data-tag="Spring基础知识"
+           data-author="" >
+            <span class="post-title" title="Spring基础知识">Spring基础知识</span>
+            <span class="post-date" title="2019-11-14 16:19:44">2019/11/14</span>
+        </a>
+        
+        <a  class="spring "
+           href="/2019/11/14/spring-high/"
+           data-tag="Spring高级话题"
+           data-author="" >
+            <span class="post-title" title="Spring高级话题">Spring高级话题</span>
+            <span class="post-date" title="2019-11-14 17:04:21">2019/11/14</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/zuul/"
+           data-tag="Spring cloud zuul (服务网关初级)"
+           data-author="" >
+            <span class="post-title" title="Spring cloud zuul (初级)">Spring cloud zuul (初级)</span>
+            <span class="post-date" title="2019-11-13 17:35:48">2019/11/13</span>
+        </a>
+        
+        <a  class="spring-mvc "
+           href="/2019/11/15/Hystrix/springmvcconfig/"
+           data-tag="SpringMVC配置"
+           data-author="" >
+            <span class="post-title" title="SpringMVC配置">SpringMVC配置</span>
+            <span class="post-date" title="2019-11-15 14:38:17">2019/11/15</span>
+        </a>
+        
+        <a  class="spring-mvc "
+           href="/2019/11/15/Hystrix/springmvcbase/"
+           data-tag="SpringMVC基础"
+           data-author="" >
+            <span class="post-title" title="SpringMVC基础">SpringMVC基础</span>
+            <span class="post-date" title="2019-11-15 14:38:17">2019/11/15</span>
+        </a>
+        
+        <a  class="消息队列 "
+           href="/2019/12/04/mq-springboot/"
+           data-tag="springboot整合mq"
+           data-author="" >
+            <span class="post-title" title="springboot整合mq">springboot整合mq</span>
+            <span class="post-date" title="2019-12-04 16:55:33">2019/12/04</span>
+        </a>
+        
+        <a  class="netty "
+           href="/2019/11/25/netty-base/"
+           data-tag="netty基本理论"
+           data-author="" >
+            <span class="post-title" title="netty基本理论">netty基本理论</span>
+            <span class="post-date" title="2019-11-25 16:00:35">2019/11/25</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/linux-high/"
+           data-tag="linux高级命令"
+           data-author="" >
+            <span class="post-title" title="linux高级命令">linux高级命令</span>
+            <span class="post-date" title="2019-11-15 17:20:50">2019/11/15</span>
+        </a>
+        
+        <a  class="java "
+           href="/2019/11/15/java-nio/"
+           data-tag="Java-NIO"
+           data-author="" >
+            <span class="post-title" title="Java-NIO">Java-NIO</span>
+            <span class="post-date" title="2019-11-15 15:43:16">2019/11/15</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/14/zuulhigh/"
+           data-tag="Spring cloud zuul (服务网关高级)"
+           data-author="" >
+            <span class="post-title" title="Spring cloud zuul (高级)">Spring cloud zuul (高级)</span>
+            <span class="post-date" title="2019-11-14 09:48:56">2019/11/14</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-redis-colony" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">redis集群的三种方式(linux系统)</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a href="javascript:" target="_blank" data-rel="redis noopener">redis</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" target="_blank" rel="noopener" class="color3">redis集群的三种方式</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2019-12-11 14:23:01'>2019-12-11 14:23</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-集群相关知识点"><span class="toc-text">1.集群相关知识点</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-集群概念"><span class="toc-text">(1).集群概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-为什么使用redis集群？"><span class="toc-text">(2).为什么使用redis集群？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-redis安装介绍"><span class="toc-text">(3).redis安装介绍</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-redis主从复制"><span class="toc-text">2.redis主从复制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-概念"><span class="toc-text">2.1 概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-特点"><span class="toc-text">2.2 特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-redis主从复制环境搭建"><span class="toc-text">2.3 redis主从复制环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-主从复制原理"><span class="toc-text">2.4 主从复制原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-主从复制模式缺陷"><span class="toc-text">2.5 主从复制模式缺陷</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Redis-Sentinel哨兵模式"><span class="toc-text">3.Redis Sentinel哨兵模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-概念"><span class="toc-text">3.1 概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-特点"><span class="toc-text">3.2 特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-哨兵网络"><span class="toc-text">3.3 哨兵网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-redis哨兵环境搭建"><span class="toc-text">3.4 redis哨兵环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-redis哨兵环境测试"><span class="toc-text">3.4 redis哨兵环境测试</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-redis注意事项："><span class="toc-text">4 redis注意事项：</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-集群相关知识点"><a href="#1-集群相关知识点" class="headerlink" title="1.集群相关知识点"></a>1.集群相关知识点</h1><h2 id="1-集群概念"><a href="#1-集群概念" class="headerlink" title="(1).集群概念"></a>(1).集群概念</h2><p>通过添加服务器的数量，提供相同的服务，从而让服务器达到一个稳定、高效的状态。</p>
+<h2 id="2-为什么使用redis集群？"><a href="#2-为什么使用redis集群？" class="headerlink" title="(2).为什么使用redis集群？"></a>(2).为什么使用redis集群？</h2><p>（1）单个redis存在不稳定性。当redis服务宕机了，就没有可用的服务了。</p>
+<p>（2）单个redis的读写能力是有限的，redis集群是为了强化redis的读写能力。</p>
+<h2 id="3-redis安装介绍"><a href="#3-redis安装介绍" class="headerlink" title="(3).redis安装介绍"></a>(3).redis安装介绍</h2><p><a href="https://blog.csdn.net/y_bccl27/article/details/87282181" target="_blank" rel="noopener">安装参考</a></p>
+<pre><code>1. http://redis.io/download下载Redis 压缩包(redis-5.0.3.tar.gz)
+
+2. xshell上传到 /usr/local/redis目录下
+
+3. tar xzf redis-5.0.3.tar.gz
+
+4. yum install gcc
+
+5. cd redis-5.0.3
+
+6. make (make命令进行编译，将.c文件编译为.o文件)
+
+7. make PREFIX=/usr/local/redis install (安装)
+
+安装完后，在/usr/local/redis/bin下有几个可执行文件
+redis-benchmark                    ----性能测试工具
+redis-check-aof                    ----AOF文件修复工具
+redis-check-rdb                    ----RDB文件检查工具（快照持久化文件）
+redis-cli                          ----命令行客户端
+redis-server                       ----redis服务器启动命令
+
+8.  cd  /usr/local/redis/redis-5.0.3
+
+9.  cp  redis.conf /usr/local/redis
+
+10. cd  /usr/local/redis/bin
+
+11.  执行 ./redis-server
+
+12.  ./bin/redis-server ./redis.conf   启动redis服务
+
+13.  使用命令ps -ef|grep redis    查看已经启动的redis服务
+
+14.  ./bin/redis-cli shutdown  停止redis服务
+
+15.  ./bin/redis-cli  进入到redis的客户端</code></pre><h1 id="2-redis主从复制"><a href="#2-redis主从复制" class="headerlink" title="2.redis主从复制"></a>2.redis主从复制</h1><h2 id="2-1-概念"><a href="#2-1-概念" class="headerlink" title="2.1 概念"></a>2.1 概念</h2><p>&emsp;&emsp;主从复制模型中，有多个redis节点，有且仅有一个为主节点Master。从节点Slave可以有多个。只要网络连接正常，Master会一直将自己的数据更新同步给Slaves，保持主从同步。</p>
+<h2 id="2-2-特点"><a href="#2-2-特点" class="headerlink" title="2.2 特点"></a>2.2 特点</h2><p>（1）主节点Master可读、可写.</p>
+<p>（2）从节点Slave只读。（read-only）</p>
+<p> (3) 主从模型可以提高读的能力，在一定程度上缓解写的能力。写仍然只有Master一个节点，可以将读的操作全部移交到从节点上，变相提高了写能力。</p>
+<h2 id="2-3-redis主从复制环境搭建"><a href="#2-3-redis主从复制环境搭建" class="headerlink" title="2.3 redis主从复制环境搭建"></a>2.3 redis主从复制环境搭建</h2><pre><code>redis-主服务器
+
+    mkdir /usr/local/redis/master
+
+    cp /usr/local/redis/bin/redis-server /usr/local/redis/master/
+
+    cp /usr/local/redis/bin/redis-cli /usr/local/redis/master/
+
+    cp /usr/local/redis/redis-5.0.7/redis.conf /usr/local/redis/master/
+
+    修改redis.conf
+
+        daemonize yes
+
+        port 6370
+
+        logfile &quot;./redis6370.log&quot;
+
+        requirepass testmaster123  （开启密码验证，密码：testmaster123）
+
+    启动 ./redis-server redis.conf 
+
+    连接 ./redis-cli -p 6370
+        redis-cli -p 6370 -a testmaster123（有密码时）
+
+redis-从服务器
+
+    mkdir /usr/local/redis/slave
+
+    cp /usr/local/redis/bin/redis-server /usr/local/redis/slave/
+
+    cp /usr/local/redis/bin/redis-cli /usr/local/redis/slave/
+
+    cp /usr/local/redis/redis-5.0.7/redis.conf /usr/local/redis/slave/
+
+    修改redis.conf
+
+        daemonize yes
+
+        port 6371
+
+        slaveof 127.0.0.1 6370   //这里很重要，连接redis主服务器配置的ip
+
+        slave-read-only no  //标记为只能读，不能写
+
+        logfile &quot;./redis6370.log&quot;
+
+        masterauth testmaster123 （    # 当master服务设置了密码保护时，slav服务连接master的密码）
+
+    启动 ./redis-server redis.conf 
+
+    连接 ./redis-cli -p 6371      （无密码）
+
+        redis-cli -p 6371 -a testmaster123（有密码时）
+
+当主-从服务器搭建好后：
+    查看主从状态
+    ./redis-cli -p 6370 -a testmaster123
+    127.0.0.1:6370&gt; info
+        # Replication
+        role:master
+        connected_slaves:1
+        slave0:ip=127.0.0.1,port=6371,state=online,offset=1427,lag=1
+        master_replid:4b0c21dc6eb99226dfa281112f0ad1abd6516c57
+        master_replid2:0000000000000000000000000000000000000000
+        master_repl_offset:1427
+        second_repl_offset:-1
+        repl_backlog_active:1
+        repl_backlog_size:1048576
+        repl_backlog_first_byte_offset:1
+        repl_backlog_histlen:1427</code></pre><h2 id="2-4-主从复制原理"><a href="#2-4-主从复制原理" class="headerlink" title="2.4 主从复制原理"></a>2.4 主从复制原理</h2><pre><code>1. 当从库和主库建立MS关系后,会向主数据库发送SYNC命令
+
+2. 主库接收到SYNC命令后会开始在后台保存快照(RDB持久化过程),并将期间接收到的写命令缓存起来
+
+3. 当快照完成后,主Redis会将快照文件和所有缓存的写命令发送给从Redis
+
+4. 从Redis接收到后,会载入快照文件并且执行收到的缓存的命令
+
+5. 之后,主Redis每当接收到写命令时就会将命令发送从Redis，从而保证数据的一致</code></pre><h2 id="2-5-主从复制模式缺陷"><a href="#2-5-主从复制模式缺陷" class="headerlink" title="2.5 主从复制模式缺陷"></a>2.5 主从复制模式缺陷</h2><p>当主节点宕机了，整个集群就没有可写的节点了。</p>
+<h1 id="3-Redis-Sentinel哨兵模式"><a href="#3-Redis-Sentinel哨兵模式" class="headerlink" title="3.Redis Sentinel哨兵模式"></a>3.Redis Sentinel哨兵模式</h1><h2 id="3-1-概念"><a href="#3-1-概念" class="headerlink" title="3.1 概念"></a>3.1 概念</h2><p>(1).Sentinel是Redis的高可用性（HA）解决方案</p>
+<p>(2).由一个或多个Sentinel实例组成的Sentinel系统可以监视任意多个主服务器，以及这些主服务器属下的所有从服务器.</p>
+<p>(3).被监视的主服务器进行下线状态时，自动将下线主服务器属下的某个从服务器升级为新的主服务器，然后由新的主服务器代替已下线的主服务器继续处理命令请求。</p>
+<p>(4).Redis提供的sentinel（哨兵）机制，通过sentinel模式启动redis后，自动监控master/slave的运行状态.</p>
+<p>(5).基本原理是：心跳机制+投票裁决（每个sentinel只有一次选举的机会，当主库出现故障，哨兵会投票从库中选出一个承担主库的任务，剩下的还是从库）</p>
+<h2 id="3-2-特点"><a href="#3-2-特点" class="headerlink" title="3.2 特点"></a>3.2 特点</h2><pre><code>1. 监控：监控主从是否正常
+2. 通知：出现问题时，可以通知相关人员
+3. 自动故障迁移：自动主从切换
+4. 统一的配置管理：连接者询问sentinel取得主从的地址</code></pre><h2 id="3-3-哨兵网络"><a href="#3-3-哨兵网络" class="headerlink" title="3.3 哨兵网络"></a>3.3 哨兵网络</h2><pre><code>(1).同一个哨兵下的、不同主从模型，彼此之间相互独立</code></pre><p><img src="/2019/12/11/redis-colony/1.png" alt></p>
+<pre><code>(2).监控同一个Master的Sentinel会自动连接，组成一个分布式的Sentinel网络，互相通信并交换彼此关于被监视服务器的信息</code></pre><p><img src="/2019/12/11/redis-colony/2.png" alt></p>
+<pre><code>(3).为什么要有哨兵网络
+
+1. 在sentinel网络中，只要还有一个sentinel活着，就可以实现故障切换。    
+
+2. 当只有一个sentinel的时候，这个sentinel挂掉了，就无法实现自动故障切换了</code></pre><h2 id="3-4-redis哨兵环境搭建"><a href="#3-4-redis哨兵环境搭建" class="headerlink" title="3.4 redis哨兵环境搭建"></a>3.4 redis哨兵环境搭建</h2><pre><code>哨兵一：
+    mkdir /usr/local/redis/sentinel
+
+    cp /usr/local/redis/bin/redis-server /usr/local/redis/sentinel/
+
+    cp /usr/local/redis/bin/redis-cli /usr/local/redis/sentinel/
+
+    cp /usr/local/redis/redis-5.0.7/sentinel.conf /usr/local/redis/sentinel/
+
+    cp /usr/local/redis/bin/redis-sentinel /usr/local/redis/sentinel/
+
+    sentinel.conf配置
+        port 8001
+        daemonize yes
+        logfile &quot;./sentinel1.log&quot;
+
+        注意： mymaster 与下文出现的 mymaster 是一 一对应关系
+        #哨兵监控这个master  
+        #  mymaster  : 主节点别名  
+        #  127.0.0.1 : 主节点IP 
+        #  6370      : 主节点端口
+        #    1       : 触发故障切换的最少哨兵 
+        sentinel monitor mymaster 127.0.0.1 6370 1
+
+        #设置master和slaves验证密码
+        sentinel auth-pass mymaster testmaster123
+        sentinel config-epoch mymaster 15
+
+        #除了当前哨兵, 还有哪些在监控这个master的哨兵
+        sentinel known-sentinel mymaster 127.0.0.1 8002 0aca3a57038e2907c8a07be2b3c0d15171e44da5
+        sentinel known-sentinel mymaster 127.0.0.1 8003 ac1ef015411583d4b9f3d81cee830060b2f29862
+
+    重新命名  sentinel.conf 为  sentinel1.conf
+
+哨兵二：
+    复制 sentinel1.conf 命名为  sentinel2.conf
+
+    sentinel.conf配置
+        port 8002
+        logfile &quot;./sentinel2.log&quot;
+
+        #除了当前哨兵, 还有哪些在监控这个master的哨兵
+        sentinel known-sentinel mymaster 127.0.0.1 8001 1aca3a57038e2907c8a07be2b3c0d15171e44da5
+        sentinel known-sentinel mymaster 127.0.0.1 8003 ac1ef015411583d4b9f3d81cee830060b2f29862
+
+哨兵三：
+    复制 sentinel1.conf 命名为  sentinel3.conf
+
+    sentinel.conf配置
+        port 8003
+        logfile &quot;./sentinel3.log&quot;
+
+        #除了当前哨兵, 还有哪些在监控这个master的哨兵
+        sentinel known-sentinel mymaster 127.0.0.1 8001 1aca3a57038e2907c8a07be2b3c0d15171e44da5
+        sentinel known-sentinel mymaster 127.0.0.1 8002 0aca3a57038e2907c8a07be2b3c0d15171e44da5            
+
+启动哨兵：
+    ./redis-server sentinel1.conf --sentinel
+    ./redis-server sentinel2.conf --sentinel
+    ./redis-server sentinel3.conf --sentinel
+
+连接哨兵：
+    ./redis-cli -p 8001</code></pre><h2 id="3-4-redis哨兵环境测试"><a href="#3-4-redis哨兵环境测试" class="headerlink" title="3.4 redis哨兵环境测试"></a>3.4 redis哨兵环境测试</h2><pre><code>1. 查看master:
+     127.0.0.1:8001&gt; sentinel masters
+        1) &quot;name&quot;
+        2) &quot;mymaster&quot;
+        3) &quot;ip&quot;
+        4) &quot;127.0.0.1&quot;
+        5) &quot;port&quot;
+        6) &quot;6370&quot;
+
+2. 查看当前mastrer 
+    127.0.0.1:8001&gt; sentinel get-master-addr-by-name mymaster
+
+3. 检查容灾切换情况
+
+    (1). 127.0.0.1:8001&gt; sentinel get-master-addr-by-name mymaster
+        1) &quot;127.0.0.1&quot;
+        2) &quot;6370&quot;
+    (2).杀掉当前master进程 ： kill -9 进程号
+        127.0.0.1:8001&gt; sentinel get-master-addr-by-name mymaster
+        1) &quot;127.0.0.1&quot;
+        2) &quot;6371&quot;
+    (3).启动原来的master,
+
+    (4).查询当前master
+            127.0.0.1:8001&gt; sentinel masters
+                1) &quot;name&quot;
+                2) &quot;mymaster&quot;
+                3) &quot;ip&quot;
+                4) &quot;127.0.0.1&quot;
+                5) &quot;port&quot;
+                6) &quot;6371&quot;
+
+    (5).查看当前slaves
+            127.0.0.1:8001&gt; sentinel slaves mymaster
+                1) &quot;name&quot;
+                2) &quot;127.0.0.1:6370&quot;
+                3) &quot;ip&quot;
+                4) &quot;127.0.0.1&quot;
+                5) &quot;port&quot;
+                6) &quot;6370&quot;</code></pre><h1 id="4-redis注意事项："><a href="#4-redis注意事项：" class="headerlink" title="4 redis注意事项："></a>4 redis注意事项：</h1><pre><code>1. 最大内存问题：要设置好最大内存，以防不停的申请内存，造成系统内存都被用完。
+
+2. Fork进程问题：&apos;vm.overcommit_memory = 1&apos;这一个选项要加到系统的配置中，防止fork因内存不足而失败。
+
+3. 密码问题：需要设置复杂一些，防止暴力破解
+
+4. 多个哨兵配置文件一样，正常情况下要配置奇数哨兵，避免切换时候票数相同，出现竞争，影响线上业务。</code></pre><p>　</p>
+
+      
+       
+    </div>
+</article>
+
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>redis集群的三种方式(linux系统)</p>
+    <p><span class="copy-title">发布时间:</span>2019-12-11, 14:23:00</p>
+    <p><span class="copy-title">最后更新:</span>2019-12-11, 14:23:01</p>
+</div>
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2019 chen wei</p>
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<!--
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+-->
+<a class="" id="rocket" href="javascript:void(0)" target="_blank" rel="noopener"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#Spring-Cloud-Sleuth','#Zipkin','#Hystrix和Feign Hystrix','#Spring-cloud和Spring-boot','#docker','#熔断监控Hystrix-Dashboard','#find命令','#Java-IO','#JDK工具使用','#linux基本命令','#分布式','#linux安装jre','#redis连接springboot','#redis取消只能本地访问的方式','#redis','#java实现发送邮件','#Springboot项目导可执行jar','#Springboot日志配置','#vue项目搭建','#swagger使用','#Springboot基础知识','#java实现手机发送短信','#配置中心git','#eureka 服务提供和调用','#配置中心git服务化和高可用','#eureka原理介绍','#Java-reflax','#mv命令','#ps命令','#主从复制和哨兵 （配置文件详解）','#redis集群的三种方式','#rabbitMQ','#netty整合springboot','#Spring常用配置','#Spring基础知识','#Spring高级话题','#Spring cloud zuul (服务网关初级)','#SpringMVC配置','#SpringMVC基础','#springboot整合mq','#netty基本理论','#linux高级命令','#Java-NIO','#Spring cloud zuul (服务网关高级)',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
