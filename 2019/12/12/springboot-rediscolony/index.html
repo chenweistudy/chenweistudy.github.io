@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Hexo</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="Hexo">
+  <title>springboot连接redis哨兵集群 | Hexo</title>
+  <meta name="keywords" content=" springboot连接redis哨兵集群 ">
+  <meta name="description" content="springboot连接redis哨兵集群 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="springboot整合redis哨兵集群1.pom.xml&amp;lt;dependency&amp;gt;     &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;&#x2F;groupId&amp;gt;     &amp;lt;artifactId&amp;gt;spring-boot-starter-data-redis&amp;lt;&#x2F;artifactId&amp;gt;     &amp;lt;version&amp;gt;">
 <meta name="keywords" content="springboot连接redis哨兵集群">
@@ -51,7 +51,7 @@
 </div>
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/" class="avatar_target">
     <img class="avatar" src="/img/avatar.jpg" />
@@ -814,12 +814,55 @@
         </div>
     </div>
 </aside>
-<div class="post index">
+<div class="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-springboot-rediscolony" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#用【快餐店】理解分布式架构"><span class="toc-text">用【快餐店】理解分布式架构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、初始化-快餐店"><span class="toc-text">1、初始化 快餐店</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、解耦后的快餐店"><span class="toc-text">2、解耦后的快餐店</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、使用消息队列后的快餐店"><span class="toc-text">3、使用消息队列后的快餐店</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、使用集群后的快餐厅"><span class="toc-text">4、使用集群后的快餐厅</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5、使用分布式后的快餐店"><span class="toc-text">5、使用分布式后的快餐店</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6、使用负载均衡后的快餐店"><span class="toc-text">6、使用负载均衡后的快餐店</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7、使用热数据缓存后的快餐店"><span class="toc-text">7、使用热数据缓存后的快餐店</span></a></li></ol></li></ol>
+        <h1 class="article-title">springboot连接redis哨兵集群</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a href="javascript:" target="_blank" data-rel="redis noopener">redis</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" target="_blank" rel="noopener" class="color2">springboot连接redis哨兵集群</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2019-12-12 17:23:05'>2019-12-12 17:23</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#springboot整合redis哨兵集群"><span class="toc-text">springboot整合redis哨兵集群</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-pom-xml"><span class="toc-text">1.pom.xml</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-application-yml"><span class="toc-text">2.application.yml</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-java相关类配置"><span class="toc-text">3.java相关类配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-测试"><span class="toc-text">4.测试</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -832,13 +875,110 @@
     }
 </style>
 </div>
-            <h1 id="用【快餐店】理解分布式架构"><a href="#用【快餐店】理解分布式架构" class="headerlink" title="用【快餐店】理解分布式架构"></a>用【快餐店】理解分布式架构</h1><h2 id="1、初始化-快餐店"><a href="#1、初始化-快餐店" class="headerlink" title="1、初始化 快餐店"></a>1、初始化 快餐店</h2><pre><code>小伙子开了一家快餐店叫开封菜，主营炸鸡汉堡薯条，快餐店刚开始营业，小伙子一个人收银、炸鸡，所有活自己干。</code></pre><h2 id="2、解耦后的快餐店"><a href="#2、解耦后的快餐店" class="headerlink" title="2、解耦后的快餐店"></a>2、解耦后的快餐店</h2><pre><code>假如有一天生病了，餐馆关门停业几天，什么活都干不了，所以这两项工作要解耦（耦：古代指的是两人并肩而耕地，一个不耕了，好家伙，这地就没法耕了）。解耦就是你炸鸡的工作不会影响到我收银的工作，怎么做呢，再招一个员工当收银员，原先那个员工专职做炸鸡师傅，这样就完成了系统解耦(即收银和炸鸡师傅那个工作互不干扰)。</code></pre><h2 id="3、使用消息队列后的快餐店"><a href="#3、使用消息队列后的快餐店" class="headerlink" title="3、使用消息队列后的快餐店"></a>3、使用消息队列后的快餐店</h2><pre><code>快餐店业务解耦后，业务很快又开始展开了，现在的消费流程是，收银员收款后告知后厨制作，但新问题又出现了，很多客人付款后在那里等，后面来的客人一看人多就走了，前面来的客人点了餐被后面的客人拿走，就很生气，发现这些问题后店铺引入了点餐排号器（这就是队列思想），点餐后客人知道自己是多少号，前面还有多少人，后厨根据点餐的序号进行餐点烹制，既解决了客人点餐的焦虑又解决了出餐和取餐不按顺序来做的困扰，这就是消息队列的作用：提高系统响应速度，顺序处理，削峰。</code></pre><h2 id="4、使用集群后的快餐厅"><a href="#4、使用集群后的快餐厅" class="headerlink" title="4、使用集群后的快餐厅"></a>4、使用集群后的快餐厅</h2><pre><code>客人能够有序地拿到自己点的餐，服务满意度提高了，生意也火爆了起来，但后厨仅有一个厨师在炸鸡，只能废寝忘食、加班加点的干活，但还是忙不过来，顾客又开始抱怨了，这个时候店铺一下子招了五个炸鸡师傅，一下子缓解了工作压力，组成了炸鸡集群(集群：同一个业务部署在多台机器上，提高系统可用性).
-服务又能正常进行了，可是收银的柜台只有一个，队伍总是排得很长，排在后面的顾客不停地抱怨，这个时候只能增加收银柜台，又增加了三个收银员工，形成了收银集群，服务质量得到了很好的保证，根据实际业务升级的两套集群服务形成了一个集群体系。</code></pre><h2 id="5、使用分布式后的快餐店"><a href="#5、使用分布式后的快餐店" class="headerlink" title="5、使用分布式后的快餐店"></a>5、使用分布式后的快餐店</h2><pre><code>随着后厨人数众多，一个厨师要炸鸡，不仅要自己分割鸡肉，还要进行原料的处理，在后厨不停地忙碌，但效率却不高，时间都浪费在去做餐品不同环节的路上和更换原材料、变更厨具上，店铺在请教其他专家后把后厨人员安排成专属环节厨师，这样就加快了餐品的输出，分割鸡肉，裹炸鸡粉，炸鸡分别由三个不同的厨师完成，这就是分布式的特点，加快了各个环节的输出。</code></pre><h2 id="6、使用负载均衡后的快餐店"><a href="#6、使用负载均衡后的快餐店" class="headerlink" title="6、使用负载均衡后的快餐店"></a>6、使用负载均衡后的快餐店</h2><pre><code>现在的生意越来越好，后厨效率也得到了提升，出餐速度非常快，可收银下单的地方人又开始堆积起来，店铺又开了五个收银通道，为了确保每个收银通道都能一起工作避免资源浪费，就在门口安排了一个引导员，将顾客按照顺序引导到每一个收银通道去排队，按照第一个、第二个、第三个，直到第八个后又从第一个开始，这样就确保了每个通道资源不浪费，这就是负载均衡轮询方式的典型应用；
-可问题又来了，新安排的收银员由于业务刚上手对操作不熟练，导致分给她的客人迟迟下不了单，而几个老收银员由于业务熟练则能很快完成收银操作，这个时候店铺安排门口的引导员给熟悉业务的收银员多分配一些客人，给业务不熟练的收银员少分配几个客人，这就确保客人能及时的下单，这就是负载均衡权重的方式。</code></pre><h2 id="7、使用热数据缓存后的快餐店"><a href="#7、使用热数据缓存后的快餐店" class="headerlink" title="7、使用热数据缓存后的快餐店"></a>7、使用热数据缓存后的快餐店</h2><pre><code>整个店铺目前的发展已经非常稳定，各个环节都能够及时处理客人的需要，还有一个问题是店铺无法避免的，那就是用餐高峰总集中在早中晚那几个小时，其他四五个小时店里却没有什么客人，在客人密集的那段时间，后厨操作再快有时也无法满足客人的需要，总有客人抱怨，这个时候店铺就想办法，引进了一个食品保温箱，能够将当天生产的炸鸡汉堡放在里面保持温度而品质又不变，对店里客人经常点的菜品在没有客人的时候提前制作出来放在里面，当有客人下单后直接拿走，这就是热数据缓存机制。
-通过以上的服务解耦，引入消息队列，进行集群化分布式改造，进行负载均衡，搭建缓存数据集，小小的快餐店已经从一个单一化服务的店铺晋升为集群分布式服务的店铺，下一步就是接入外卖和外部订单系统进行云服务化。</code></pre>
-        </article>
-        
-        
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="springboot整合redis哨兵集群"><a href="#springboot整合redis哨兵集群" class="headerlink" title="springboot整合redis哨兵集群"></a>springboot整合redis哨兵集群</h1><h2 id="1-pom-xml"><a href="#1-pom-xml" class="headerlink" title="1.pom.xml"></a>1.pom.xml</h2><pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-data-redis&lt;/artifactId&gt;
+    &lt;version&gt;2.0.3.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.commons&lt;/groupId&gt;
+    &lt;artifactId&gt;commons-pool2&lt;/artifactId&gt;
+    &lt;version&gt;2.5.0&lt;/version&gt;
+&lt;/dependency&gt;</code></pre><h2 id="2-application-yml"><a href="#2-application-yml" class="headerlink" title="2.application.yml"></a>2.application.yml</h2><pre><code>spring:
+  redis: 
+    #host: 172.16.0.109 #哨兵模式下不用配置
+    #port: 6380 #哨兵模式下不用配置
+    sentinel:
+      master: mymaster
+      nodes: 172.16.0.109:8001,172.16.0.109:8002,172.16.0.109:8003
+    jedis: 
+      pool: 
+        max-active: 8
+        max-wait: -1
+        max-idle: 500
+        min-idle: 0
+      lettuce:
+        shutdown-timeout: 0 </code></pre><h2 id="3-java相关类配置"><a href="#3-java相关类配置" class="headerlink" title="3.java相关类配置"></a>3.java相关类配置</h2><pre><code>(1). 哨兵配置：
+
+    @Configuration
+    public class RedisSentinelConfig {
+
+        @Value(&quot;${spring.redis.sentinel.nodes}&quot;)
+        private Set&lt;String&gt; nodes;
+
+        @Value(&quot;${spring.redis.sentinel.master}&quot;)
+        private String master;
+
+        @Bean
+        public RedisConnectionFactory lettuceConnectionFactory() {
+            RedisSentinelConfiguration redisSentinelConfiguration = new RedisSentinelConfiguration(master, nodes);
+            return new LettuceConnectionFactory(redisSentinelConfiguration);
+        }
+    }
+
+(2). redis实例配置：
+
+    @Configuration
+    public class RedisTempLateConfig {
+
+        @Bean
+        public RedisTemplate&lt;String, Object&gt; redisTemplate(RedisConnectionFactory factory){
+            RedisTemplate&lt;String, Object&gt; redisTemplate = new RedisTemplate&lt;String, Object&gt;();
+            //设置连接
+            redisTemplate.setConnectionFactory(factory);
+            //设置key序列化器
+            redisTemplate.setKeySerializer(new StringRedisSerializer(Charset.forName(&quot;UTF-8&quot;)));
+            //设置value序列化器
+            redisTemplate.setValueSerializer(new Jackson2JsonRedisSerializer&lt;Object&gt;(Object.class));
+            return redisTemplate;
+        }
+    }</code></pre><h2 id="4-测试"><a href="#4-测试" class="headerlink" title="4.测试"></a>4.测试</h2><pre><code>@RunWith(SpringRunner.class)
+@SpringBootTest
+public class TestRedis {
+
+    private static Logger logger = LoggerFactory.getLogger(TestRedis.class);
+    @Autowired
+    private RedisTemplate&lt;String, Object&gt; redisTemplate;
+
+    @Test
+    public void testSet(){
+        try {
+            logger.info(&quot;开始-------------------------------&quot;);
+            this.redisTemplate.opsForValue().set(&quot;ddd&quot;, &quot;testdddd&quot;);
+            logger.info(&quot;#############################################&quot;+this.redisTemplate.opsForValue().get(&quot;ddd&quot;));
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
+    }
+}</code></pre>
+      
+       
+    </div>
+</article>
+
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>springboot连接redis哨兵集群</p>
+    <p><span class="copy-title">发布时间:</span>2019-12-12, 17:23:05</p>
+    <p><span class="copy-title">最后更新:</span>2019-12-12, 17:23:05</p>
+</div>
+
+
+
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">©2019 chen wei</p>
