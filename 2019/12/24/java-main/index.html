@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>SpringMVC配置 | Hexo</title>
-  <meta name="keywords" content=" SpringMVC配置 ">
-  <meta name="description" content="SpringMVC配置 | Hexo">
+  <title>Java访问jar包（windows和linux） | Hexo</title>
+  <meta name="keywords" content=" Java访问jar包说明 ">
+  <meta name="description" content="Java访问jar包（windows和linux） | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="1.jar包目录结构一般LottWebSocketServer项目导出jar包时，需要将lib取消勾选，图中得lib需要从项目种拷贝出来，LottWebSocketServer.jar 和 lib目录需要处于同一目录下。  （1）Windows系统&amp;emsp;&amp;emsp;可执行文件是start.bat ，其中jar包之间是 ” ; ”,执行的main方法与类形成的jar包中间有空格。使用java">
 <meta name="keywords" content="Java访问jar包说明">
@@ -834,9 +834,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-Hystrix/springmvcconfig" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-java-main" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">SpringMVC配置</h1>
+        <h1 class="article-title">Java访问jar包（windows和linux）</h1>
     
     <div class="article-meta">
         
@@ -844,21 +844,21 @@
         
         <span class="book">
             
-                <a href="javascript:" target="_blank" data-rel="spring-mvc noopener">spring-mvc</a>
+                <a href="javascript:" target="_blank" data-rel="java noopener">java</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" target="_blank" rel="noopener" class="color2">SpringMVC配置</a>
+            <a href="javascript:" target="_blank" rel="noopener" class="color3">Java访问jar包说明</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-11-15 14:38:18'>2019-11-15 14:38</time>
+        创建时间:<time class="date" title='更新时间: 2019-12-24 10:06:55'>2019-12-24 10:06</time>
         
     </div>
     <div class="article-meta">
@@ -880,7 +880,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#springMVC基本配置"><span class="toc-text">springMVC基本配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-静态资源映射"><span class="toc-text">1.静态资源映射</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-文件基本部署位置图"><span class="toc-text">(1).文件基本部署位置图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-web配置类"><span class="toc-text">(2).web配置类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-View配置类"><span class="toc-text">(3).View配置类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-页面hello-jsp"><span class="toc-text">(4).页面hello.jsp</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-拦截器配置"><span class="toc-text">2.拦截器配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-ControllerAdvice-全局配置"><span class="toc-text">3.@ControllerAdvice 全局配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-ControllerAdvice"><span class="toc-text">(1).@ControllerAdvice</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-ExceptionHandler"><span class="toc-text">(2).@ExceptionHandler:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-InitBinder"><span class="toc-text">(3).@InitBinder:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-ModelAttribute："><span class="toc-text">(4).@ModelAttribute：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他配置（快捷的viewController）"><span class="toc-text">其他配置（快捷的viewController）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-更多配置"><span class="toc-text">5.更多配置</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-jar包目录结构"><span class="toc-text">1.jar包目录结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#（1）Windows系统"><span class="toc-text">（1）Windows系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（2）Linux系统"><span class="toc-text">（2）Linux系统</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-自启动配置"><span class="toc-text">2.自启动配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-测试启动"><span class="toc-text">(1).测试启动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-配置自启动时的代码："><span class="toc-text">(2).配置自启动时的代码：</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -896,179 +896,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="springMVC基本配置"><a href="#springMVC基本配置" class="headerlink" title="springMVC基本配置"></a>springMVC基本配置</h1><p>&emsp;&emsp;Spring mvc 的定制配置需要我们的配置类继承一个WebMvcConfigurerAdapter类，并在此类使用@EnableWebMvc注解，来开启对spring mvc 的配置支持，这样我们就可以重写这类的方法，完成我们的配置。</p>
-<h2 id="1-静态资源映射"><a href="#1-静态资源映射" class="headerlink" title="1.静态资源映射"></a>1.静态资源映射</h2><pre><code>@Controller
-public class HelloController {
-    @RequestMapping(&quot;/hello&quot;)
-    public String hello(){
-        System.out.println(&quot;hello&quot;);
-        return &quot;hello&quot;;
-    }
-}</code></pre><h3 id="1-文件基本部署位置图"><a href="#1-文件基本部署位置图" class="headerlink" title="(1).文件基本部署位置图"></a>(1).文件基本部署位置图</h3><p><img src="/2019/11/15/Hystrix/springmvcconfig/1.png" alt></p>
-<h3 id="2-web配置类"><a href="#2-web配置类" class="headerlink" title="(2).web配置类"></a>(2).web配置类</h3><pre><code>public class WebInitializer implements WebApplicationInitializer{
-//    WebApplicationInitializer 是spring 提供用来配置servlet3.0+配置的接口，从而实现了替代web.xml的位置。
-//  实现此接口将会自动被springServletContainerInitializer(用来启动servlet3.0容器)获取到
+        <h1 id="1-jar包目录结构"><a href="#1-jar包目录结构" class="headerlink" title="1.jar包目录结构"></a>1.jar包目录结构</h1><p>一般LottWebSocketServer项目导出jar包时，需要将lib取消勾选，图中得lib需要从项目种拷贝出来，LottWebSocketServer.jar 和 lib目录需要处于同一目录下。</p>
+<p><img src="/2019/12/24/java-main/1.png" alt></p>
+<h2 id="（1）Windows系统"><a href="#（1）Windows系统" class="headerlink" title="（1）Windows系统"></a>（1）Windows系统</h2><p>&emsp;&emsp;可执行文件是start.bat ，其中jar包之间是 ” ; ”,执行的main方法与类形成的jar包中间有空格。使用java -classpath命令执行,LottWebSocketServer.jar 和 lib目录需要处于同一目录下</p>
+<p><img src="/2019/12/24/java-main/2.png" alt></p>
+<h2 id="（2）Linux系统"><a href="#（2）Linux系统" class="headerlink" title="（2）Linux系统"></a>（2）Linux系统</h2><p>&emsp;&emsp;可执行文件是start.sh ，其中jar包之间是 ” : ”,执行的main方法与类形成的jar包中间有空格。使用java -classpath命令执行,LottWebSocketServer.jar 和 lib目录需要处于同一目录下</p>
+<p><img src="/2019/12/24/java-main/3.png" alt></p>
+<h1 id="2-自启动配置"><a href="#2-自启动配置" class="headerlink" title="2.自启动配置"></a>2.自启动配置</h1><h2 id="1-测试启动"><a href="#1-测试启动" class="headerlink" title="(1).测试启动"></a>(1).测试启动</h2><p>&emsp;&emsp;当在linux服务器端部署成功后，可以先测试start.sh程序是否可以运行。<br>可以运行时，参考下列图表，修改local.sh文件，达到终端服务器启动时即可调用。</p>
+<p><img src="/2019/12/24/java-main/4.png" alt></p>
+<pre><code>其中start.sh得路径与下图local.sh中的路径对应。</code></pre><h2 id="2-配置自启动时的代码："><a href="#2-配置自启动时的代码：" class="headerlink" title="(2).配置自启动时的代码："></a>(2).配置自启动时的代码：</h2><p><img src="/2019/12/24/java-main/5.png" alt></p>
 
-    @Override
-    public void onStartup(ServletContext servletContext) throws ServletException {
-        // TODO Auto-generated method stub
-        AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
-        context.register(MymvcConfig.class);
-        context.setServletContext(servletContext);
-
-        Dynamic servlet = servletContext.addServlet(&quot;dispatcher&quot;, new DispatcherServlet(context));
-
-        servlet.addMapping(&quot;/&quot;);
-        servlet.setLoadOnStartup(1);
-
-    }
-
-}</code></pre><h3 id="3-View配置类"><a href="#3-View配置类" class="headerlink" title="(3).View配置类"></a>(3).View配置类</h3><pre><code>@Configuration
-@EnableWebMvc //开启spring mvc支持，若无此句，重写WebMvcConfigurerAdapter方法无效
-@ComponentScan(&quot;cn.cw.study&quot;)
-public class MymvcConfig extends WebMvcConfigurerAdapter{
-
-    @Bean
-    public InternalResourceViewResolver viewResolver(){
-        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-//        E:\javaworkspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\MySpringMvc\WEB-INF\classes\assets
-            resolver.setPrefix(&quot;/WEB-INF/classes/assets/&quot;);//此路径需要找页面编译后的路径
-            //运行时代码会将页面自动编译到  &quot;/WEB-INF/classes/views/&quot;
-            resolver.setSuffix(&quot;.jsp&quot;);
-            resolver.setViewClass(JstlView.class);
-        return resolver;
-    }
-    //重写此方法可对spring mvc进行配置
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        // TODO Auto-generated method stub
-                    //addResourceHandler对外暴露的访问路径     //addResourceLocations配置文件放置的目录
-        registry.addResourceHandler(&quot;/assets/**&quot;).addResourceLocations(&quot;classpath:/assets/&quot;);
-    }
-}</code></pre><h3 id="4-页面hello-jsp"><a href="#4-页面hello-jsp" class="headerlink" title="(4).页面hello.jsp"></a>(4).页面hello.jsp</h3><pre><code>&lt;%@ page pageEncoding=&quot;utf-8&quot;%&gt;
-&lt;html&gt;
-    &lt;head&gt;&lt;/head&gt;
-    &lt;body&gt;
-        &lt;%--使用out.print(&quot;hello jsp&quot;);方式输出 --%&gt;
-        &lt;%
-            for(int i=0;i&lt;10;i++){
-                out.println(&quot;hello jsp&lt;br&gt;&quot;);
-            }
-        %&gt;
-        &lt;!--使用&lt;%=&quot;hello jsp&quot;%&gt;方式输出--%&gt;
-        &lt;%
-            for(int i=0;i&lt;10;i++){
-        %&gt;
-                &lt;%=&quot;no.&quot;+(i+1)+&quot;hello jssssp&quot;  %&gt;&lt;br&gt;
-        &lt;% }  %&gt;
-
-    &lt;/body&gt;
-&lt;/html&gt;</code></pre><h2 id="2-拦截器配置"><a href="#2-拦截器配置" class="headerlink" title="2.拦截器配置"></a>2.拦截器配置</h2><p>&emsp;&emsp;拦截器(interceptor)实现对每一个请求处理前后进行相关的业务处理，类似于servlet的filter,可让普通的Bean实现HandlerInterceptor接口或者继承HandlerInterceptorAdapter类来实现自定义拦截器。</p>
-<blockquote>
-<p>通过重写WebMVCConfigurerAdapter的addInterceptors方法来注册自定义的拦截器。</p>
-</blockquote>
-<pre><code>代码示例：
-//继承HandlerInterceptorAdapter来实现自定义拦截器
-public class DemoInterceptor extends HandlerInterceptorAdapter{
-
-    //请求发生前执行
-    @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-            throws Exception {
-        // TODO Auto-generated method stub
-        System.out.println(request.getRequestURL());
-        long startTime = System.currentTimeMillis();
-        request.setAttribute(&quot;startTime&quot;, startTime);
-        return true;
-    }
-
-    //请求完成后执行
-    @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-            ModelAndView modelAndView) throws Exception {
-        // TODO Auto-generated method stub
-        long attribute =(Long) request.getAttribute(&quot;startTime&quot;);
-        request.removeAttribute(&quot;startTime&quot;);
-        long endTime = System.currentTimeMillis();
-        System.out.println(&quot;本次请求处理时间为：&quot;+new Long(endTime-attribute)+&quot;ms&quot;);
-    }
-}
-@Repository  //使spring进行管理
-public class DemoConfigurerIntercepter extends WebMvcConfigurerAdapter{
-    @Bean   //使spring进行管理自定义拦截器
-    public DemoInterceptor demoInterceptor(){
-        return new DemoInterceptor();
-    }
-
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        // TODO Auto-generated method stub
-    registry.addInterceptor(demoInterceptor());
-        }
-}</code></pre><h2 id="3-ControllerAdvice-全局配置"><a href="#3-ControllerAdvice-全局配置" class="headerlink" title="3.@ControllerAdvice 全局配置"></a>3.@ControllerAdvice 全局配置</h2><h3 id="1-ControllerAdvice"><a href="#1-ControllerAdvice" class="headerlink" title="(1).@ControllerAdvice"></a>(1).@ControllerAdvice</h3><blockquote>
-<p>我们可以将对于控制器的全局配置放置在同一个位置，注解了@Controller的类的方法可使用</p>
-<p>@ExceptionHandler、@InitBinder、@ModelAttribute注解到方法上，这对所有注解了<br>@RequestMapping的控制器内的方法有效。</p>
-</blockquote>
-<h3 id="2-ExceptionHandler"><a href="#2-ExceptionHandler" class="headerlink" title="(2).@ExceptionHandler:"></a>(2).@ExceptionHandler:</h3><pre><code>用于全局处理控制器里的异常。</code></pre><h3 id="3-InitBinder"><a href="#3-InitBinder" class="headerlink" title="(3).@InitBinder:"></a>(3).@InitBinder:</h3><pre><code>用来设置webDataBinder, webDataBinder用来自动绑定前台请求参数到model中。</code></pre><h3 id="4-ModelAttribute："><a href="#4-ModelAttribute：" class="headerlink" title="(4).@ModelAttribute："></a>(4).@ModelAttribute：</h3><pre><code>作用是绑定键值对到model里，此处是让全局的@RequestMapping都能获得在此处设置的键值对。</code></pre><p><strong>代码示例：</strong></p>
-<pre><code>A.配置@ControllerAdvice 
-@ControllerAdvice 
-//声明一个 控制器建言，@ControllerAdvice组合了@Component注解，所以自动注册为spring的bean
-public class ExceptionHandlerAdvice {
-
-    @ExceptionHandler(value = Exception.class) //定义全局处理，拦截所有的Exception
-    public ModelAndView exception(Exception exception,WebRequest request){
-        ModelAndView view = new ModelAndView(&quot;error&quot;);
-        view.addObject(&quot;errorMessage&quot;, exception.getMessage());
-        return view;
-    }
-    @ModelAttribute
-    //使用@ModelAttribute注解将键值对添加到全局，所有注解了@RequestMapping的方法可获得此键值对
-    public void addAttributes(Model model){
-        model.addAttribute(&quot;msg&quot;, &quot;额外信息&quot;);
-    }
-    @InitBinder //注解定制webDataBinder 更多的关于webDataBinder的配置，可参考webDataBinder的API文档
-    public void initBinder(WebDataBinder webDataBinder){
-        //演示忽略request参数的Id
-        webDataBinder.setDisallowedFields(&quot;id&quot;);
-        }
-}
-
-
-B.测试controller
-@Controller
-public class AdviceController {
-        @RequestMapping(&quot;/advice&quot;)
-        public String getSomething(@ModelAttribute(&quot;msg&quot;) String     msg,RequestBean bean) throws IllegalAccessException{
-        System.out.println(&quot;id=&quot;+bean.getId());//0 ，说明id已经被过滤了
-        System.out.println(&quot;name=&quot;+bean.getName());//cc
-    throw new IllegalAccessException(&quot;参数有误,来自@ModelAttribute:&quot;+msg);
-        }
-}
-
-
-C.Error.jsp 
-&lt;%@ page pageEncoding=&quot;utf-8&quot;%&gt;
-&lt;html&gt;
-    &lt;head&gt;&lt;/head&gt;
-    &lt;body&gt;
-        ${errorMessage}
-    &lt;/body&gt;
-&lt;/html&gt;</code></pre><h2 id="其他配置（快捷的viewController）"><a href="#其他配置（快捷的viewController）" class="headerlink" title="其他配置（快捷的viewController）"></a>其他配置（快捷的viewController）</h2><pre><code>@Controller
-public class WebMvcController {
-    @RequestMapping(&quot;/index&quot;)
-    public String hello(){
-        return &quot;hello&quot;;
-    }
-}</code></pre><blockquote>
-<p>另一种写法：</p>
-</blockquote>
-<pre><code>@Component
-public class WebMvC extends WebMvcConfigurerAdapter{
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController(&quot;/index&quot;).setViewName(&quot;/hello&quot;);
-    }
-}</code></pre><h2 id="5-更多配置"><a href="#5-更多配置" class="headerlink" title="5.更多配置"></a>5.更多配置</h2><pre><code>请查看WebMvcConfigurerAdapter类的API,WebMvcConfigurer的Api也可以来配置MVC.</code></pre>
       
        
     </div>
@@ -1077,9 +914,9 @@ public class WebMvC extends WebMvcConfigurerAdapter{
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>SpringMVC配置</p>
-    <p><span class="copy-title">发布时间:</span>2019-11-15, 14:38:17</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-15, 14:38:18</p>
+    <p><span class="copy-title">文章标题:</span>Java访问jar包（windows和linux）</p>
+    <p><span class="copy-title">发布时间:</span>2019-12-24, 10:06:54</p>
+    <p><span class="copy-title">最后更新:</span>2019-12-24, 10:06:55</p>
 </div>
 
 
