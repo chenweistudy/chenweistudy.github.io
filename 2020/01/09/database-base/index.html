@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Redis基本命令和java基本操作 | Hexo</title>
-  <meta name="keywords" content=" redis ">
-  <meta name="description" content="Redis基本命令和java基本操作 | Hexo">
+  <title>MySql数据库基础语法 | Hexo</title>
+  <meta name="keywords" content=" MySql数据库基础语法 ">
+  <meta name="description" content="MySql数据库基础语法 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="一.数据库操作1.显示所有数据库：Show databases；2.创建数据库：Create database 数据库名；3.删除数据库：Drop database 数据库名；二.表操作1.建表语句CREATE TABLE 表名( 属性名 数据类型 [完整性约束条件],                           属性名 数据类型 [完整性约束条件],">
 <meta name="keywords" content="MySql数据库基础语法">
@@ -880,9 +880,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-redis1" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-database-base" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Redis基本命令和java基本操作</h1>
+        <h1 class="article-title">MySql数据库基础语法</h1>
     
     <div class="article-meta">
         
@@ -890,21 +890,21 @@
         
         <span class="book">
             
-                <a href="javascript:" target="_blank" data-rel="redis noopener">redis</a>
+                <a href="javascript:" target="_blank" data-rel="database noopener">database</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" target="_blank" rel="noopener" class="color1">redis</a>
+            <a href="javascript:" target="_blank" rel="noopener" class="color3">MySql数据库基础语法</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-11-13 15:16:09'>2019-11-11 10:01</time>
+        创建时间:<time class="date" title='更新时间: 2020-01-09 15:53:28'>2020-01-09 15:53</time>
         
     </div>
     <div class="article-meta">
@@ -926,7 +926,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis基础篇"><span class="toc-text">Redis基础篇</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-redis的基本命令"><span class="toc-text">1.redis的基本命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-连接操作命令"><span class="toc-text">(1)连接操作命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-持久化"><span class="toc-text">(2)持久化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-远程服务控制"><span class="toc-text">(3)远程服务控制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-对value操作的命令"><span class="toc-text">(4)对value操作的命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-String"><span class="toc-text">(5)String</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-List"><span class="toc-text">(6)List</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-Set"><span class="toc-text">(7)Set</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-Hash"><span class="toc-text">(8)Hash</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-java对redis的基本操作"><span class="toc-text">2.java对redis的基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-pom-xml"><span class="toc-text">2.1 pom.xml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2redisClient"><span class="toc-text">2.2redisClient</span></a></li></ol></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一-数据库操作"><span class="toc-text">一.数据库操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-显示所有数据库："><span class="toc-text">1.显示所有数据库：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-创建数据库："><span class="toc-text">2.创建数据库：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-删除数据库："><span class="toc-text">3.删除数据库：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二-表操作"><span class="toc-text">二.表操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-建表语句"><span class="toc-text">1.建表语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-添加唯一约束"><span class="toc-text">2.添加唯一约束</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-删除唯一约束"><span class="toc-text">3.删除唯一约束</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-建表时创建外键"><span class="toc-text">4.建表时创建外键</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-查看表结构："><span class="toc-text">5.查看表结构：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-删除-清空-表："><span class="toc-text">6.删除/清空 表：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-修改表："><span class="toc-text">7.修改表：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三-单表查询"><span class="toc-text">三.单表查询</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-条件查询-WHERE："><span class="toc-text">1.条件查询 WHERE：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-范围查询-BETWEEN-AND："><span class="toc-text">2.范围查询 BETWEEN AND：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-模糊查询-LIKE："><span class="toc-text">3.模糊查询 LIKE：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-空值查询-NOT-NULL："><span class="toc-text">4.空值查询 NOT NULL：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-去重复查询-DISTINCT-："><span class="toc-text">5.去重复查询 DISTINCT ：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-排序-ORDER-BY"><span class="toc-text">6.排序 ORDER BY</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-分组查询-GROUP-BY"><span class="toc-text">7.分组查询 GROUP BY</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-单独使用-毫无意义-；"><span class="toc-text">(1).单独使用(毫无意义)；</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-与-GROUP-CONCAT-函数一起使用；"><span class="toc-text">(2).与 GROUP_CONCAT()函数一起使用；</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-与聚合函数一起使用-与-HAVING-一起使用-限制输出的结果-；"><span class="toc-text">(3).与聚合函数一起使用,与 HAVING 一起使用(限制输出的结果)；</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-与-WITH-ROLLUP-一起使用-最后加入一个总和行-；"><span class="toc-text">(4).与 WITH ROLLUP 一起使用(最后加入一个总和行)；</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-分页查询-limit："><span class="toc-text">8.分页查询 limit：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-CONCAT函数"><span class="toc-text">9.CONCAT函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-去重操作（distinct）"><span class="toc-text">10.去重操作（distinct）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-更名操作（as）"><span class="toc-text">11.更名操作（as）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四-多表查询"><span class="toc-text">四.多表查询</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-连接查询"><span class="toc-text">1.连接查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-子查询"><span class="toc-text">2.子查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-合并查询"><span class="toc-text">3.合并查询</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#五-索引"><span class="toc-text">五.索引</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-索引分类"><span class="toc-text">1.索引分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-创建索引"><span class="toc-text">2.创建索引</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-创建表的时候创建索引"><span class="toc-text">(1)创建表的时候创建索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-已经存在的表上创建索引"><span class="toc-text">(2)已经存在的表上创建索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-用-ALTER-TABLE-语句来创建索引"><span class="toc-text">(3)用 ALTER TABLE 语句来创建索引</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-删除索引"><span class="toc-text">3.删除索引</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#六-视图"><span class="toc-text">六.视图</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-创建视图"><span class="toc-text">1.创建视图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-查看视图"><span class="toc-text">2.查看视图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-修改视图"><span class="toc-text">3.修改视图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-CREATE-OR-REPLACE-VIEW-语句修改视图"><span class="toc-text">(1).CREATE  OR  REPLACE  VIEW 语句修改视图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-ALTER-语句修改视图"><span class="toc-text">(2).ALTER 语句修改视图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-更新视图"><span class="toc-text">4.更新视图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-插入-INSERT"><span class="toc-text">(1).插入(INSERT)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-更新-UPDATE"><span class="toc-text">(2).更新(UPDATE)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-删除-DELETE"><span class="toc-text">(3).删除(DELETE)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-删除视图"><span class="toc-text">5.删除视图</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#六-触发器"><span class="toc-text">六.触发器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-触发器的引入"><span class="toc-text">(1).触发器的引入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-创建与使用触发器"><span class="toc-text">(2).创建与使用触发器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#创建只有一个执行语句的触发器"><span class="toc-text">创建只有一个执行语句的触发器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建有多个执行语句的触发器"><span class="toc-text">创建有多个执行语句的触发器</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-查看触发器"><span class="toc-text">(3).查看触发器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-删除触发器"><span class="toc-text">(4).删除触发器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#七-mysql常用函数（部分举例）"><span class="toc-text">七.mysql常用函数（部分举例）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-日期和时间函数"><span class="toc-text">1.日期和时间函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-字符串函数"><span class="toc-text">2.字符串函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-数学函数"><span class="toc-text">3.数学函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-加密函数"><span class="toc-text">4.加密函数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#八-数据备份与还原"><span class="toc-text">八.数据备份与还原</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-数据备份"><span class="toc-text">(1).数据备份</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-数据还原"><span class="toc-text">(2).数据还原</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -942,260 +942,233 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Redis基础篇"><a href="#Redis基础篇" class="headerlink" title="Redis基础篇"></a>Redis基础篇</h1><h2 id="1-redis的基本命令"><a href="#1-redis的基本命令" class="headerlink" title="1.redis的基本命令"></a>1.redis的基本命令</h2><h4 id="1-连接操作命令"><a href="#1-连接操作命令" class="headerlink" title="(1)连接操作命令"></a>(1)连接操作命令</h4><pre><code>quit：关闭连接（connection）
+        <h1 id="一-数据库操作"><a href="#一-数据库操作" class="headerlink" title="一.数据库操作"></a>一.数据库操作</h1><h2 id="1-显示所有数据库："><a href="#1-显示所有数据库：" class="headerlink" title="1.显示所有数据库："></a>1.显示所有数据库：</h2><pre><code>Show databases；</code></pre><h2 id="2-创建数据库："><a href="#2-创建数据库：" class="headerlink" title="2.创建数据库："></a>2.创建数据库：</h2><pre><code>Create database 数据库名；</code></pre><h2 id="3-删除数据库："><a href="#3-删除数据库：" class="headerlink" title="3.删除数据库："></a>3.删除数据库：</h2><pre><code>Drop database 数据库名；</code></pre><h1 id="二-表操作"><a href="#二-表操作" class="headerlink" title="二.表操作"></a>二.表操作</h1><h2 id="1-建表语句"><a href="#1-建表语句" class="headerlink" title="1.建表语句"></a>1.建表语句</h2><pre><code>CREATE TABLE 表名( 属性名 数据类型 [完整性约束条件],
+                          属性名 数据类型 [完整性约束条件],
+                          .
+                          .
+                          属性名 数据表格 [完整性约束条件]);
 
-auth：简单密码认证
+PRIMARY KEY            标识该属性为该表的主键，可以唯一的标识对应的记录
+FOREIGN KEY            标识该属性为该表的外键，与某表的主键关联
+NOT NULL            标识该属性不能为空
+UNIQUE                标识该属性的值是唯一的
+AUTO_INCREMENT        标识该属性的值自动增加
+DEFAULT                为该属性设置默认值    </code></pre><blockquote>
+<p>UNIQUE 和 PRIMARY KEY 约束均为列或列集合提供了唯一性的保证。简单来说：unique=primary key+not null</p>
+<p>区别： </p>
+<p>   1、primary key只能有一个，unique可以有多个同时存在；</p>
+<pre><code>2、primary key不能为空，而unique可以为空；</code></pre><p>primary key一般在设计逻辑中用作记录标识，而unique只是用来保证唯一性</p>
+<p>UNIQUE (bookId)//新建表时将bookId设为唯一</p>
+</blockquote>
+<h2 id="2-添加唯一约束"><a href="#2-添加唯一约束" class="headerlink" title="2.添加唯一约束"></a>2.添加唯一约束</h2><pre><code>ALTER TABLE Persons ADD UNIQUE (Id_P)
 
-help cmd： 查看cmd帮助，例如：help quit</code></pre><h4 id="2-持久化"><a href="#2-持久化" class="headerlink" title="(2)持久化"></a>(2)持久化</h4><pre><code>save：将数据同步保存到磁盘
+CONSTRAINT uc_PersonID UNIQUE (Id_P,LastName)//设置Id_P和LastName都为唯一并命名为uc_PersonID</code></pre><h2 id="3-删除唯一约束"><a href="#3-删除唯一约束" class="headerlink" title="3.删除唯一约束"></a>3.删除唯一约束</h2><pre><code>ALTER TABLE Persons DROP INDEX uc_PersonID</code></pre><h2 id="4-建表时创建外键"><a href="#4-建表时创建外键" class="headerlink" title="4.建表时创建外键"></a>4.建表时创建外键</h2><pre><code>FOREIGN KEY (Id_P) REFERENCES Persons(Id_P)//设置本表Id_p字段和Persons表的Id_p主键关联</code></pre><h2 id="5-查看表结构："><a href="#5-查看表结构：" class="headerlink" title="5.查看表结构："></a>5.查看表结构：</h2><pre><code>查看基本表结构： DESCRIBE(或DESC） 表名；//返回表字段及其详细信息表格
+查看表详细结构： SHOW CREATE TABLE 表名；//返回结果是创建表的sql</code></pre><h2 id="6-删除-清空-表："><a href="#6-删除-清空-表：" class="headerlink" title="6.删除/清空 表："></a>6.删除/清空 表：</h2><pre><code>drop table  表名； //彻底删除表格，删除字段数据，释放内存空间
 
-bgsave：将数据异步保存到磁盘
+truncate 表名；  //删除表格数据，不删除字段，释放内存空间
 
-lastsave：返回上次成功将数据保存到磁盘的Unix时戳
+delete from 表名；或delete * from 表名;// 删除内容不删除定义，不释放空间,系统一行一行地删,效率较truncate低</code></pre><h2 id="7-修改表："><a href="#7-修改表：" class="headerlink" title="7.修改表："></a>7.修改表：</h2><pre><code>修改表名  ALTER TABLE  旧表名  RENMAE 新表名 ；
 
-shundown：将数据同步保存到磁盘，然后关闭服务</code></pre><h4 id="3-远程服务控制"><a href="#3-远程服务控制" class="headerlink" title="(3)远程服务控制"></a>(3)远程服务控制</h4><pre><code>info：提供服务器的信息和统计
+修改字段  ALTER TABLE 表名  CHANGE  旧属性名  新属性名  新数据类型
 
-monitor：实时转储收到的请求
+增加字段  ALTER TABLE  表名 ADD 属性名  数据类型 [完整性约束条件] [FIRST | AFTER 属性名 2]
 
-slaveof：改变复制策略设置
+删除字段  ALTER TABLE  表名  DROP 属性名</code></pre><h1 id="三-单表查询"><a href="#三-单表查询" class="headerlink" title="三.单表查询"></a>三.单表查询</h1><h1 id="1-条件查询-WHERE："><a href="#1-条件查询-WHERE：" class="headerlink" title="1.条件查询 WHERE："></a>1.条件查询 WHERE：</h1><pre><code>SELECT 字段 1，字段 2，字段 3...FROM 表名 WHERE 字段 [NOT] IN (元素 1，元素 2，元素 3)；//查找属性（不为）为元素1、元素2和元素3的结果
 
-config：在运行时配置Redis服务器</code></pre><h4 id="4-对value操作的命令"><a href="#4-对value操作的命令" class="headerlink" title="(4)对value操作的命令"></a>(4)对value操作的命令</h4><pre><code>exists(key)：确认一个key是否存在
+SELECT 字段 1，字段 2...FROM 表名 WHERE 条件表达式 1 AND 条件表达式 2 [...AND 条件表达式 n] //and多条件查询
 
-del(key)：删除一个key
+SELECT 字段 1，字段 2...FROM 表名 WHERE 条件表达式 1 OR 条件表达式 2 [...OR 条件表达式 n] //or多条件查询</code></pre><h2 id="2-范围查询-BETWEEN-AND："><a href="#2-范围查询-BETWEEN-AND：" class="headerlink" title="2.范围查询 BETWEEN AND："></a>2.范围查询 BETWEEN AND：</h2><pre><code>SELECT 字段 1，字段 2，字段 3...FROM 表名 WHERE 字段 [NOT] BETWEEN 取值 1 &gt; 指定值；//大于小于等符号
 
-type(key)：返回值的类型
+SELECT 字段 1，字段 2，字段 3...FROM 表名 WHERE 字段 [NOT] BETWEEN 取值 1 AND 取值 2；//两端都包含</code></pre><h2 id="3-模糊查询-LIKE："><a href="#3-模糊查询-LIKE：" class="headerlink" title="3.模糊查询 LIKE："></a>3.模糊查询 LIKE：</h2><pre><code>SELECT 字段 1，字段 2，字段 3...FROM 表名 WHERE 字段 [NOT] LIKE ‘字符串’；
 
-keys(pattern)：返回满足给定pattern的所有key
+“%”代表任意字符；
+“_” 代表单个字符；</code></pre><h2 id="4-空值查询-NOT-NULL："><a href="#4-空值查询-NOT-NULL：" class="headerlink" title="4.空值查询 NOT NULL："></a>4.空值查询 NOT NULL：</h2><pre><code>SELECT 字段 1，字段 2，字段 3...FROM 表名 WHERE 字段 IS [NOT] NULL；</code></pre><h2 id="5-去重复查询-DISTINCT-："><a href="#5-去重复查询-DISTINCT-：" class="headerlink" title="5.去重复查询 DISTINCT ："></a>5.去重复查询 DISTINCT ：</h2><pre><code>SELECT DISTINCT 字段名 FROM 表名；</code></pre><h2 id="6-排序-ORDER-BY"><a href="#6-排序-ORDER-BY" class="headerlink" title="6.排序 ORDER BY"></a>6.排序 ORDER BY</h2><pre><code>SELECT 字段 1，字段 2...FROM 表名 ORDER BY 属性名 [ASC|DESC] //ASC升序（默认） DESC降序</code></pre><h2 id="7-分组查询-GROUP-BY"><a href="#7-分组查询-GROUP-BY" class="headerlink" title="7.分组查询 GROUP BY"></a>7.分组查询 GROUP BY</h2><pre><code>GROUP BY 属性名 [HAVING 条件表达式][WITH ROLLUP]</code></pre><h3 id="1-单独使用-毫无意义-；"><a href="#1-单独使用-毫无意义-；" class="headerlink" title="(1).单独使用(毫无意义)；"></a>(1).单独使用(毫无意义)；</h3><h3 id="2-与-GROUP-CONCAT-函数一起使用；"><a href="#2-与-GROUP-CONCAT-函数一起使用；" class="headerlink" title="(2).与 GROUP_CONCAT()函数一起使用；"></a>(2).与 GROUP_CONCAT()函数一起使用；</h3><pre><code>SELECT locus,GROUP_CONCAT(id) FROM info WHERE locus IN(&apos;AB086827&apos;,&apos;AF040764&apos;) GROUP BY locus; 的返回结果为
 
-randomkey：随机返回key空间的一个
+| locus    | GROUP_CONCAT(id) |
+| AB086827 | 1,2              |
+| AF040764 | 23,24            |
 
-keyrename(oldname, newname)：重命名key
+即将查询到的括号内字段的结果合并到一起并用逗号隔开可以将逗号更换成其他符号，如：
 
-dbsize：返回当前数据库中key的数目
+SELECT locus,GROUP_CONCAT(distinct id ORDER BY id DESC SEPARATOR &apos;_&apos;) FROM info WHERE locus IN(&apos;AB086827&apos;,&apos;AF040764&apos;) GROUP BY locus
 
-expire：设定一个key的活动时间（s）
+| locus    | GROUP_CONCAT(distinct id ORDER BY id DESC SEPARATOR &apos;_&apos;) |
+| AB086827 | 2_1                                                      |
+| AF040764 | 24_23                                                    |</code></pre><h3 id="3-与聚合函数一起使用-与-HAVING-一起使用-限制输出的结果-；"><a href="#3-与聚合函数一起使用-与-HAVING-一起使用-限制输出的结果-；" class="headerlink" title="(3).与聚合函数一起使用,与 HAVING 一起使用(限制输出的结果)；"></a>(3).与聚合函数一起使用,与 HAVING 一起使用(限制输出的结果)；</h3><pre><code>聚集函数：平均值（avg）、最小值（min）、最大值（max）、总和（sum）、计数（count）
 
-ttl：获得一个key的活动时间
+注：出现在select语句中但没有被聚集的属性只能是出现在group by子句中的属性。
+    任何出现在having子句中，但没有被聚集的属性必须出现在group by子句中。
 
-select(index)：按索引查询
+select dept_name,avg(salary) as avg_salary from instructor2 group by dept_name having avg(salary)&gt;3000</code></pre><h3 id="4-与-WITH-ROLLUP-一起使用-最后加入一个总和行-；"><a href="#4-与-WITH-ROLLUP-一起使用-最后加入一个总和行-；" class="headerlink" title="(4).与 WITH ROLLUP 一起使用(最后加入一个总和行)；"></a>(4).与 WITH ROLLUP 一起使用(最后加入一个总和行)；</h3><pre><code>WITH ROLLUP会在返回结果的最后加上一行将查询出的
 
-move(key, dbindex)：移动当前数据库中的key到dbindex数据库
+    如果是数字结果则将所有结果数字相加
+    如果是字符结果则将所有字符合并
 
-flushdb：删除当前选择数据库中的所有key
+SELECT gradeName,GROUP_CONCAT(stuName) FROM t_student GROUP BY gradeName WITH ROLLUP;</code></pre><h2 id="8-分页查询-limit："><a href="#8-分页查询-limit：" class="headerlink" title="8.分页查询 limit："></a>8.分页查询 limit：</h2><pre><code>SELECT 字段 1，字段 2...FROM 表名 LIMIT 初始位置，记录数；</code></pre><h2 id="9-CONCAT函数"><a href="#9-CONCAT函数" class="headerlink" title="9.CONCAT函数"></a>9.CONCAT函数</h2><pre><code>将查询结果连成一个字符串，但是查询的字段中有null时则整个结果为null</code></pre><h2 id="10-去重操作（distinct）"><a href="#10-去重操作（distinct）" class="headerlink" title="10.去重操作（distinct）"></a>10.去重操作（distinct）</h2><pre><code>select distinct 属性名 from 关系名 where 条件</code></pre><h2 id="11-更名操作（as）"><a href="#11-更名操作（as）" class="headerlink" title="11.更名操作（as）"></a>11.更名操作（as）</h2><pre><code>属性别名：    select 属性 as 属性别名 from 关系名 where 条件
+关系别名：   select 属性 from 关系名 as 关系别名 where 条件</code></pre><h1 id="四-多表查询"><a href="#四-多表查询" class="headerlink" title="四.多表查询"></a>四.多表查询</h1><h2 id="1-连接查询"><a href="#1-连接查询" class="headerlink" title="1.连接查询"></a>1.连接查询</h2><pre><code>(1).内连接查询：内连接查询可以查询两个或者两个以上的表；
 
-flushall：删除所有数据库中的所有key</code></pre><h4 id="5-String"><a href="#5-String" class="headerlink" title="(5)String"></a>(5)String</h4><pre><code>set(key, value)：给数据库中名称为key的string赋予值value
+    SELECT * from t_book b,t_booktype t where t.id=b.id;
+    或SELECT * from t_book,t_booktype where t_book.id=t_booktype.id;
 
-get(key)：返回数据库中名称为key的string的value
+(2).外连接查询:外连接可以查出某一张表的所有信息；(左连接查询,右连接查询)
 
-getset(key, value)：给名称为key的string赋予上一次的value
+    SELECT 属性名列表 FROM  表名 1 LEFT|RIGHT JOIN 表名 2 ON 表名 1.属性名 1=表名 2.属性名 2；</code></pre><h2 id="2-子查询"><a href="#2-子查询" class="headerlink" title="2.子查询"></a>2.子查询</h2><pre><code>(1).带 In 关键字的子查询
 
-mget(key1, key2,…, key N)：返回库中多个string的value
+    一个查询语句的条件可能落在另一个 SELECT 语句的查询结果中。
 
-setnx(key, value)：添加string，名称为key，值为value
+(2).带比较运算符的子查询
 
-setex(key, time, value)：向库中添加string，设定过期时间time
+    子查询可以使用比较运算符。
 
-mset(key N, value N)：批量设置多个string的值
+(3).带 （not）Exists 关键字的子查询
 
-msetnx(key N, value N)：如果所有名称为key i的string都不存在
+    假如子查询查询到记录，则进行外层查询，否则，不执行外层查询；not exists表示内层没有内容时才查询外层
 
-incr(key)：名称为key的string增1操作
+    如：SELECT * from t_book where EXISTS(select * from t_booktype);//表示t_booktype中返回的有内容时才执行外层t_book的查询
 
-incrby(key, integer)：名称为key的string增加integer
+(4).带 Any 关键字的子查询,ANY 关键字表示满足其中任一条件；
 
-decr(key)：名称为key的string减1操作
+    如：SELECT * FROM t_book WHERE price&gt;= ANY (SELECT price FROM t_pricelevel);//表示筛选价格大于任意t_pricelevel表中选出的价格的结果，即比最小的大的价格就满足条件
 
-decrby(key, integer)：名称为key的string减少integer
+(5).带 All 关键字的子查询,ALL 关键字表示满足所有条件；
 
-append(key, value)：名称为key的string的值附加value
+    如：SELECT * FROM t_book WHERE price&gt;= ALL (SELECT price FROM t_pricelevel);//表示筛选价格大于所有t_pricelevel表中选出的价格的结果，即比最大的价格大的才满足条件</code></pre><h2 id="3-合并查询"><a href="#3-合并查询" class="headerlink" title="3.合并查询"></a>3.合并查询</h2><pre><code>(1).UNION
 
-substr(key, start, end)：返回名称为key的string的value的子串</code></pre><h4 id="6-List"><a href="#6-List" class="headerlink" title="(6)List"></a>(6)List</h4><pre><code>rpush(key, value)：在名称为key的list尾添加一个值为value的元素
+     使用 UNION 关键字是，数据库系统会将所有的查询结果合并到一起，然后去除掉相同的记录；
 
-lpush(key, value)：在名称为key的list头添加一个值为value的 元素
+(2).UNION ALL
 
-llen(key)：返回名称为key的list的长度
+     使用 UNION ALL，不会去除掉相同的记录；</code></pre><h1 id="五-索引"><a href="#五-索引" class="headerlink" title="五.索引"></a>五.索引</h1><h2 id="1-索引分类"><a href="#1-索引分类" class="headerlink" title="1.索引分类"></a>1.索引分类</h2><pre><code>(1).普通索引 : 这类索引可以创建在任何数据类型中；
 
-lrange(key, start, end)：返回名称为key的list中start至end之间的元素
+(2).唯一性索引 : 使用 UNIQUE 参数可以设置，在创建唯一性索引时，限制该索引的值必须是唯一的；
 
-ltrim(key, start, end)：截取名称为key的list
-
-lindex(key, index)：返回名称为key的list中index位置的元素
-
-lset(key, index, value)：给名称为key的list中index位置的元素赋值
-
-lrem(key, count, value)：删除count个key的list中值为value的元素
-
-lpop(key)：返回并删除名称为key的list中的首元素
-
-rpop(key)：返回并删除名称为key的list中的尾元素
-
-blpop(key1, key2,… key N, timeout)：lpop命令的block版本。
-
-brpop(key1, key2,… key N, timeout)：rpop的block版本。
-
-rpoplpush(srckey, dstkey)：返回并删除名称为srckey的list的尾元素，并将该元素添加到名称为dstkey的list的头部</code></pre><h4 id="7-Set"><a href="#7-Set" class="headerlink" title="(7)Set"></a>(7)Set</h4><pre><code>sadd(key, member)：向名称为key的set中添加元素member
-
-srem(key, member) ：删除名称为key的set中的元素member
-
-spop(key) ：随机返回并删除名称为key的set中一个元素
-
-smove(srckey, dstkey, member) ：移到集合元素
-
-scard(key) ：返回名称为key的set的基数
-
-sismember(key, member) ：member是否是名称为key的set的元素
-
-sinter(key1, key2,…key N) ：求交集
-
-sinterstore(dstkey, (keys)) ：求交集并将交集保存到dstkey的集合
-
-sunion(key1, (keys)) ：求并集
-
-sunionstore(dstkey, (keys)) ：求并集并将并集保存到dstkey的集合
-
-sdiff(key1, (keys)) ：求差集
-
-sdiffstore(dstkey, (keys)) ：求差集并将差集保存到dstkey的集合
-
-smembers(key) ：返回名称为key的set的所有元素
-
-srandmember(key) ：随机返回名称为key的set的一个元素</code></pre><h4 id="8-Hash"><a href="#8-Hash" class="headerlink" title="(8)Hash"></a>(8)Hash</h4><pre><code>hset(key, field, value)：向名称为key的hash中添加元素field
-
-hget(key, field)：返回名称为key的hash中field对应的value
-
-hmget(key, (fields))：返回名称为key的hash中field i对应的value
-
-hmset(key, (fields))：向名称为key的hash中添加元素field 
-
-hincrby(key, field, integer)：将名称为key的hash中field的value增加integer
-
-hexists(key, field)：名称为key的hash中是否存在键为field的域
-
-hdel(key, field)：删除名称为key的hash中键为field的域
-
-hlen(key)：返回名称为key的hash中元素个数
-
-hkeys(key)：返回名称为key的hash中所有键
-
-hvals(key)：返回名称为key的hash中所有键对应的value
-
-hgetall(key)：返回名称为key的hash中所有的键（field）及其对应的value</code></pre><h2 id="2-java对redis的基本操作"><a href="#2-java对redis的基本操作" class="headerlink" title="2.java对redis的基本操作"></a>2.java对redis的基本操作</h2><h4 id="2-1-pom-xml"><a href="#2-1-pom-xml" class="headerlink" title="2.1 pom.xml"></a>2.1 pom.xml</h4><pre><code>&lt;dependency&gt;
-    &lt;groupId&gt;redis.clients&lt;/groupId&gt;
-    &lt;artifactId&gt;jedis&lt;/artifactId&gt;
-    &lt;version&gt;2.1.0&lt;/version&gt;
-&lt;/dependency&gt;
-  &lt;!-- https://mvnrepository.com/artifact/commons-pool/commons-pool --&gt;
-&lt;dependency&gt;
-    &lt;groupId&gt;commons-pool&lt;/groupId&gt;
-    &lt;artifactId&gt;commons-pool&lt;/artifactId&gt;
-    &lt;version&gt;1.5.6&lt;/version&gt;
-&lt;/dependency&gt;</code></pre><h4 id="2-2redisClient"><a href="#2-2redisClient" class="headerlink" title="2.2redisClient"></a>2.2redisClient</h4><pre><code>public class RedisClient {
-
-/**
- * 所谓的切片,就是客户端可以同时连到多个服务器,如果其中一个服务器挂掉,客户端可以切换到另一服务器,
- * 例如nginx做http转发,转发的目标机器有两台.其中一台为主机,另一台为备用机,如果主机挂掉,nginx可以自动转往备用机;
- */
-private Jedis jedis;//非切片额客户度连接
-private JedisPool jedisPool;//非切片连接池
-private ShardedJedis shardedJedis;//切片额客户端连接
-private ShardedJedisPool shardedJedisPool;//切片额客户端连接池
-
-public RedisClient(){
-    InitJedisPool();
-    InitShardedJedisPool();
-    jedis = jedisPool.getResource();
-    shardedJedis = shardedJedisPool.getResource();
-}
-/**
- * 初始化非切片额连接池
- * maxIdle，最大空闲数，数据库连接的最大空闲时间。超过空闲时间，数据库连接将被标记为不可用，然后被释放。设为0表示无限制。
- * MaxActive，连接池的最大数据库连接数。设为0表示无限制。
- * maxWait ，最大建立连接等待时间。如果超过此时间将接到异常。设为-1表示无限制。
- */
-public void InitJedisPool(){
-    JedisPoolConfig config = new JedisPoolConfig();
-    config.setMaxActive(20);
-    config.setMaxIdle(2);
-    config.setMaxWait(10001);
-    config.setTestOnBorrow(false);
-    jedisPool = new JedisPool(config, &quot;127.0.0.1&quot;, 6379);
-}
-
-/**
- * 初始化切片池
- */
-public void InitShardedJedisPool(){
-    JedisPoolConfig config = new JedisPoolConfig();
-    config.setMaxActive(20);
-    config.setMaxIdle(2);
-    config.setMaxWait(10001);
-    config.setTestOnBorrow(false);
-
-    List&lt;JedisShardInfo&gt; list = new ArrayList&lt;JedisShardInfo&gt;();
-    list.add(new JedisShardInfo(&quot;127.0.0.1&quot;, 6379, &quot;master&quot;));
-
-    shardedJedisPool = new ShardedJedisPool(config, list);
-
-}
-
-public void show(){
-    KeyOperate();
-
-    jedisPool.returnResource(jedis);
-    shardedJedisPool.returnResource(shardedJedis);
-
-}
-/**
- * 对value操作的命令
- */
-private void KeyOperate(){
-    System.out.println(&quot;------------key----------------&quot;);
-    System.out.println(&quot;清空所有数据：&quot;+jedis.flushDB());
-    //判断k99是否存在：
-    Boolean exists = jedis.exists(&quot;k99&quot;);
-    System.out.println(&quot;k99是否存在：&quot;+exists);
-    jedis.set(&quot;k001&quot;, &quot;value001&quot;);
-    String string = jedis.get(&quot;k001&quot;);
-    System.out.println(&quot;k001 value = &quot;+string);
-    System.out.println(jedis.type(&quot;k001&quot;));
-
-    shardedJedis.set(&quot;k002&quot;, &quot;value002&quot;);
-    System.out.println(shardedJedis.get(&quot;k002&quot;));
-
-    //系统中所有的键，使用“*”
-    Set&lt;String&gt; keys = jedis.keys(&quot;*&quot;);
-    Iterator&lt;String&gt; iterator = keys.iterator();
-    while(iterator.hasNext()){
-        String next = iterator.next();
-        String value = jedis.get(next);
-        System.out.println(next+&quot;:&quot;+value);    
-    }
-
-    //删除一个key
-    jedis.del(&quot;k001&quot;);
-    String k001 = jedis.get(&quot;k001&quot;);
-    System.out.println(k001);
-
-    //设置key002的过期时间
-    Long expire = jedis.expire(&quot;k002&quot;, 10);
-
-    try {
-        Thread.sleep(2000);
-    } catch (InterruptedException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
-    }
-    System.out.println(&quot;k002剩余存活时间：&quot;+jedis.ttl(&quot;k002&quot;));
-
-    //移除k002生存时间
-    jedis.persist(&quot;k002&quot;);
-    //永久生存或者不存在的都返回-1
-    System.out.println(&quot;k002剩余存活时间：&quot;+jedis.ttl(&quot;k002&quot;));
-
-}
-public static void main(String[] args) {
-    new RedisClient().show();
-    }
-}</code></pre>
+(3).单列索引 : 在表中可以给单个字段创建索引，单列索引可以是普通索引，也可以是唯一性索引，还可以是全文索引；
+
+(4).多列索引 : 多列索引是在表的多个字段上创建一个索引；</code></pre><h2 id="2-创建索引"><a href="#2-创建索引" class="headerlink" title="2.创建索引"></a>2.创建索引</h2><h3 id="1-创建表的时候创建索引"><a href="#1-创建表的时候创建索引" class="headerlink" title="(1)创建表的时候创建索引"></a>(1)创建表的时候创建索引</h3><pre><code>CREATE TABLE 表名 (属性名 数据类型 [完整性约束条件],
+                              属性名 数据类型 [完整性约束条件],
+                              ....
+                              属性名 数据类型
+                              [UNIQUE | FULLTEXT | SPATIAL ]  INDEX| KEY
+                              [别名] (属性名 1 [(长度)] [ASC | DESC])
+);
+
+CREATE TABLE mytable(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    bookId INT,
+    bookName VARCHAR(20) NOT NULL,
+    price DECIMAL(6,2),
+    INDEX(bookId)   //创建普通索引
+    //UNIQUE INDEX (bookId)   //创建唯一性索引
+    //UNIQUE INDEX bokId(bookId)   //创建唯一性索引并起别名为bokId
+    //UNIQUE INDEX bokId(bookId，id)   //创建多列索引并起别名为bokId
+);</code></pre><h3 id="2-已经存在的表上创建索引"><a href="#2-已经存在的表上创建索引" class="headerlink" title="(2)已经存在的表上创建索引"></a>(2)已经存在的表上创建索引</h3><pre><code>CREATE [ UNIQUE | FULLTEXT | SPATIAL ] INDEX 索引名  ON 表名  (属性名 [(长度)] [ ASC | DESC])；
+
+如：CREATE INDEX bookId ON mytable(bookId); //创建普通索引
+   CREATE UNIQUE INDEX bookId ON mytable(bookId); //创建唯一索引
+   CREATE UNIQUE INDEX bookId_price ON mytable(bookId,price); //创建多列索引</code></pre><h3 id="3-用-ALTER-TABLE-语句来创建索引"><a href="#3-用-ALTER-TABLE-语句来创建索引" class="headerlink" title="(3)用 ALTER TABLE 语句来创建索引"></a>(3)用 ALTER TABLE 语句来创建索引</h3><pre><code>ALTER TABLE 表名 ADD [ UNIQUE | FULLTEXT | SPATIAL ] INDEX 索引名 (属性名 [(长度)] [ ASC | DESC])；
+
+如：ALTER TABLE mytable ADD INDEX index_bookId(bookId); //创建普通索引
+   ALTER TABLE mytable ADD UNIQUE INDEX index_bookId(bookId); //创建唯一索引
+   ALTER TABLE mytable ADD UNIQUE INDEX index_bookId_price(bookId,price); //创建多列索引</code></pre><h2 id="3-删除索引"><a href="#3-删除索引" class="headerlink" title="3.删除索引"></a>3.删除索引</h2><pre><code>DROP INDEX 索引名 ON 表名 ； 
+
+如：drop index index_bookId_price on mytable;</code></pre><h1 id="六-视图"><a href="#六-视图" class="headerlink" title="六.视图"></a>六.视图</h1><h2 id="1-创建视图"><a href="#1-创建视图" class="headerlink" title="1.创建视图"></a>1.创建视图</h2><pre><code>CREATE [ ALGORITHM ={ UNDEFIEND | MERGE | TEMPTABLE }]
+               VIEW 视图名 [ ( 属性清单) ]
+               AS SELECT 语句  [ WITH [  CASCADED | LOCAL ] CHECK OPTION ]；
+
+注：
+（1）.ALGORITHM 是可选参数，表示视图选择的算法；
+
+        UNDEFINED 选项表示 MySQL 将 自动选择所要使用的算法；
+
+        MERGE 选项表示将使用视图的语句与视图定义合并起来，使得视图定义的某一部分 取代语句的对应部分；
+
+        TEMPTABLE 选项表示将视图的结果存入临时表，然后使用临时表执行语句；
+
+(2).“视图名”参数表示要创建的视图的名称；
+
+(3).“属性清单”是可选参数，其指定了视图中各种属性的名词，默认情况下与 SELECT 语句中查询的属性相同；
+
+(4)SELECT 语句参数是一个完整的查询语句，标识从某个表查出某些满足条件的记录，将这些记录导入视图中；
+
+(5).WITH CHECK OPTION 是可选参数，表似乎更新视图时要保证在该视图的权限范围之内；
+
+    CASCADED 是可选参数，表示更新视图时要满足所有相关视图和表的条件，该参数为默认值；
+    LOCAL 表示更新视图时，要 满足该视图本身的定义条件即可；</code></pre><h2 id="2-查看视图"><a href="#2-查看视图" class="headerlink" title="2.查看视图"></a>2.查看视图</h2><pre><code>(1).DESCRIBE 视图名称； //查看视图字段属性信息
+
+(2).SHOW TABLE STATUS LIKE ‘视图名称’；// 查看视图基本信息，因为视图是虚表，故查询结果字段都为空；此sql也可以查询普通表的基本信息；后面没有like指定视图时表示查询库中所有表和视图的基本信息
+
+(3).SHOW CREATE VIEW 视图名称；//查看视图详细信息</code></pre><h2 id="3-修改视图"><a href="#3-修改视图" class="headerlink" title="3.修改视图"></a>3.修改视图</h2><h3 id="1-CREATE-OR-REPLACE-VIEW-语句修改视图"><a href="#1-CREATE-OR-REPLACE-VIEW-语句修改视图" class="headerlink" title="(1).CREATE  OR  REPLACE  VIEW 语句修改视图"></a>(1).CREATE  OR  REPLACE  VIEW 语句修改视图</h3><pre><code>CREATE  OR  REPLACE  [ ALGORITHM ={ UNDEFINED | MERGE | TEMPTABLE }]
+                                         VIEW 视图名 [( 属性清单 )]
+                                         AS SELECT 语句  [ WITH [ CASCADED | LOCAL ] CHECK OPTION ]；
+如：create or replace  view v1 as select * from mytable where bookId &lt; 30;</code></pre><h3 id="2-ALTER-语句修改视图"><a href="#2-ALTER-语句修改视图" class="headerlink" title="(2).ALTER 语句修改视图"></a>(2).ALTER 语句修改视图</h3><pre><code>ALTER  [ ALGORITHM ={ UNDEFINED | MERGE | TEMPTABLE }]
+             VIEW 视图名 [( 属性清单 )]
+             AS SELECT 语句
+             [ WITH [ CASCADED | LOCAL ] CHECK OPTION ]；
+如：alter view v1 as select * from mytable;</code></pre><h2 id="4-更新视图"><a href="#4-更新视图" class="headerlink" title="4.更新视图"></a>4.更新视图</h2><p>&emsp;&emsp;更新视图是指通过视图来插入（INSERT）、更新（UPDATE）和删除（DELETE）表中的数据。因为视图是一个虚拟的表，其中没有数据。</p>
+<p>&emsp;&emsp;通过视图更新时，都是转换基本表来更新。更新视图时，只能更新权限范围内的数据。<br>超出了范围，就不能更新。</p>
+<h3 id="1-插入-INSERT"><a href="#1-插入-INSERT" class="headerlink" title="(1).插入(INSERT)"></a>(1).插入(INSERT)</h3><pre><code> CREATE VIEW v1(b,p) AS select bookId,bookName from mytable;
+ INSERT into v1 values(44,&apos;think in java&apos;);
+
+插入视图，再次查看视图v1时会看到插入的数据，视图操作实际是对表的操作，可以看到mytable表中增加了一条数据，
+但是其他没有插入的字段则是显示默认值</code></pre><h3 id="2-更新-UPDATE"><a href="#2-更新-UPDATE" class="headerlink" title="(2).更新(UPDATE)"></a>(2).更新(UPDATE)</h3><pre><code>update v1 set b=8,p=&apos;设计模式&apos; where b=44</code></pre><h3 id="3-删除-DELETE"><a href="#3-删除-DELETE" class="headerlink" title="(3).删除(DELETE)"></a>(3).删除(DELETE)</h3><pre><code>delete from v1 where b=44;</code></pre><h2 id="5-删除视图"><a href="#5-删除视图" class="headerlink" title="5.删除视图"></a>5.删除视图</h2><p>&emsp;&emsp;删除视图是指删除数据库中已存在的视图。删除视图时，只能删除视图的定义，不会删除数据；</p>
+<pre><code>DROP VIEW [ IF EXISTS ] 视图名列表 [ RESTRICT | CASCADE ]
+如： DROP VIEW  IF EXISTS  v1;</code></pre><h1 id="六-触发器"><a href="#六-触发器" class="headerlink" title="六.触发器"></a>六.触发器</h1><h2 id="1-触发器的引入"><a href="#1-触发器的引入" class="headerlink" title="(1).触发器的引入"></a>(1).触发器的引入</h2><blockquote>
+<p>触发器（TRIGGER）是由事件来触发某个操作。</p>
+<p>这些事件包括 INSERT 语句、UPDATE 语句和 DELETE 语句。</p>
+<p>当数据库系统执行这些事件时，就会激活触发器执行相应的操作。</p>
+</blockquote>
+<h2 id="2-创建与使用触发器"><a href="#2-创建与使用触发器" class="headerlink" title="(2).创建与使用触发器"></a>(2).创建与使用触发器</h2><h4 id="创建只有一个执行语句的触发器"><a href="#创建只有一个执行语句的触发器" class="headerlink" title="创建只有一个执行语句的触发器"></a>创建只有一个执行语句的触发器</h4><pre><code>CREATE TRIGGER 触发器名  BEFORE | AFTER 触发事件
+                              ON 表名  FOR EACH ROW 事件发生时要执行的语句
+
+如：CREATE TRIGGER trig_book AFTER INSERT
+             ON t_book FOR EACH ROW
+             UPDATE t_bookType SET bookNum=bookNum+1 WHERE new.bookTypeId=t_booktype.id;
+表示t_book表中国执行插入操作时触发t_bookType的更新操作，将bookNum加1
+
+注：new是中间量，表示插入（更新）时的那条数据，如果是删除时用old，表示删除的那条数据</code></pre><h4 id="创建有多个执行语句的触发器"><a href="#创建有多个执行语句的触发器" class="headerlink" title="创建有多个执行语句的触发器"></a>创建有多个执行语句的触发器</h4><pre><code>CREATE TRIGGER 触发器名  BEFORE | AFTER 触发事件
+                              ON 表名  FOR  EACH  ROW  
+                              BEGIN  
+                                   执行语句列表  
+                              END
+
+如：
+DELIMITER |
+CREATE TRIGGER trig_book2 AFTER DELETE
+    ON t_book FOR EACH ROW
+    BEGIN
+       UPDATE t_bookType SET bookNum=bookNum-1 WHERE old.bookTypeId=t_booktype.id;
+       INSERT INTO t_log VALUES(NULL,NOW(),&apos;在book表里删除了一条数据&apos;);
+       DELETE FROM t_test WHERE old.bookTypeId=t_test.id;
+    END
+|
+DELIMITER ;
+
+注：DELIMITER | 包裹起来避免触发多条sql时遇到分号中断执行的情况</code></pre><h2 id="3-查看触发器"><a href="#3-查看触发器" class="headerlink" title="(3).查看触发器"></a>(3).查看触发器</h2><pre><code>SHOW TRIGGERS; 语句查看触发器信息
+
+在 triggers 表中查看触发器信息</code></pre><h2 id="4-删除触发器"><a href="#4-删除触发器" class="headerlink" title="(4).删除触发器"></a>(4).删除触发器</h2><pre><code>DROP TRIGGER 触发器名；</code></pre><h1 id="七-mysql常用函数（部分举例）"><a href="#七-mysql常用函数（部分举例）" class="headerlink" title="七.mysql常用函数（部分举例）"></a>七.mysql常用函数（部分举例）</h1><h2 id="1-日期和时间函数"><a href="#1-日期和时间函数" class="headerlink" title="1.日期和时间函数"></a>1.日期和时间函数</h2><pre><code>(1).CURDATE()  返回当前系统日期； 如：select CURDATE() ,CURTIME(),MONTH(created_at) from theme13；
+(2).CURTIME()  返回当前系统时间；
+
+(4).Year(time)  返回日期time中的 年份值 ，
+(3).MONTH(time)  返回日期 time 中的月份值，范围是 1~12
+(4).DAY(time)  返回日期time中的 天值 ，</code></pre><h2 id="2-字符串函数"><a href="#2-字符串函数" class="headerlink" title="2.字符串函数"></a>2.字符串函数</h2><pre><code>(1).CHAR_LENGTH(s)   计算字符串 s 的字符数；
+(2).UPPER(s)  把所有字母变成大写字母；
+(3).LOWER(s)   把所有字母变成小写字母；</code></pre><h2 id="3-数学函数"><a href="#3-数学函数" class="headerlink" title="3.数学函数"></a>3.数学函数</h2><pre><code>(1).A BS(x)   求绝对值
+(2).SQRT(x)   求平方根
+(3).MOD(x,y)   求余</code></pre><h2 id="4-加密函数"><a href="#4-加密函数" class="headerlink" title="4.加密函数"></a>4.加密函数</h2><pre><code>(1).PASSWORD(str)     一般对用户的密码加密 不可逆
+(2).MD5(str)    普通加密 不可逆
+(3).ENCODE(str，pswd_str)     加密函数，结果是一个二进制数，必须使用 BLOB 类型的字段来保存它；
+(4).DECODE(crypt_str，pswd_str)     解密函数；</code></pre><h1 id="八-数据备份与还原"><a href="#八-数据备份与还原" class="headerlink" title="八.数据备份与还原"></a>八.数据备份与还原</h1><h2 id="1-数据备份"><a href="#1-数据备份" class="headerlink" title="(1).数据备份"></a>(1).数据备份</h2><p>备份数据可以保证数据库中数据的安全，数据库管理员需要定期的进行数据库备份；</p>
+<pre><code>mysqldump -u username -p dbname table1 table2 ... &gt; BackupName.sql
+
+dbname 参数表示数据库的名称；table1 和 table2 参数表示表的名称，没有该参数时将备份整个数据库；
+BackupName.sql 参数表示备份文件的名称，文件名前面可以加上一个绝对路径。通常以 sql 作为后缀。
+
+如：
+mysqldump -u root -p db_book &gt; c:\db_book.sql     //将整个db_book数据库备份到c盘db_book.sql文件中</code></pre><h2 id="2-数据还原"><a href="#2-数据还原" class="headerlink" title="(2).数据还原"></a>(2).数据还原</h2><pre><code>Mysql -u root -p [dbname] &lt; backup.sql
+
+dbname 参数表示数据库名称。该参数是可选参数，可以指定数据库名，也可以不指定。
+指定数据库名时，表示还原该数据库下的表。
+不指定数据库名时，表示还原特定的一个数据库。而备份文件中有创建数据库的语句。</code></pre>
       
        
     </div>
@@ -1204,9 +1177,9 @@ public static void main(String[] args) {
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>Redis基本命令和java基本操作</p>
-    <p><span class="copy-title">发布时间:</span>2019-11-11, 10:01:24</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-13, 15:16:09</p>
+    <p><span class="copy-title">文章标题:</span>MySql数据库基础语法</p>
+    <p><span class="copy-title">发布时间:</span>2020-01-09, 15:53:28</p>
+    <p><span class="copy-title">最后更新:</span>2020-01-09, 15:53:28</p>
 </div>
 
 
