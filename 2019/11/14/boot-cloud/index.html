@@ -6,18 +6,30 @@
   <meta name="keywords" content=" Spring-cloud和Spring-boot ">
   <meta name="description" content="Spring-cloud和Spring-boot区别 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="一.Java线程学习基础知识1.进程和线程 (1).进程：每个进程都有独立的代码和数据空间（进程上下文），进程间的切换会有较大的开销，一个进程包含1–n个线程。（进程是资源分配的最小单位） (2).线程：同一类线程共享代码和数据空间，每个线程有独立的运行栈和程序计数器(PC)，线程切换开销小。（线程是cpu调度的最小单位） (3).线程和进程一样分为五个阶段：创建、就绪、运行、阻塞、终止。 (4)">
-<meta name="keywords" content="java多线程和线程池">
+<meta name="keywords" content="java内存模型">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java多线程和线程池">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;15&#x2F;java-dxc&#x2F;index.html">
+<meta property="og:title" content="java内存模型">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;15&#x2F;java-mode&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="一.Java线程学习基础知识1.进程和线程 (1).进程：每个进程都有独立的代码和数据空间（进程上下文），进程间的切换会有较大的开销，一个进程包含1–n个线程。（进程是资源分配的最小单位） (2).线程：同一类线程共享代码和数据空间，每个线程有独立的运行栈和程序计数器(PC)，线程切换开销小。（线程是cpu调度的最小单位） (3).线程和进程一样分为五个阶段：创建、就绪、运行、阻塞、终止。 (4)">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;15&#x2F;java-dxc&#x2F;1.png">
-<meta property="og:updated_time" content="2020-01-15T09:13:19.596Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;15&#x2F;java-mode&#x2F;3.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;15&#x2F;java-mode&#x2F;4.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;15&#x2F;java-mode&#x2F;5.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;15&#x2F;java-mode&#x2F;6.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;15&#x2F;java-mode&#x2F;7.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;15&#x2F;java-mode&#x2F;8.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;15&#x2F;java-mode&#x2F;9.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;15&#x2F;java-mode&#x2F;10.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;15&#x2F;java-mode&#x2F;12.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;15&#x2F;java-mode&#x2F;13.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;15&#x2F;java-mode&#x2F;14.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;15&#x2F;java-mode&#x2F;15.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;15&#x2F;java-mode&#x2F;16.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;15&#x2F;java-mode&#x2F;17.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;15&#x2F;java-mode&#x2F;18.png">
+<meta property="og:updated_time" content="2020-01-15T10:49:54.573Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;15&#x2F;java-dxc&#x2F;1.png">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;15&#x2F;java-mode&#x2F;3.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -80,7 +92,7 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(55)</small></div></li>
+    <li><div class="all active">全部文章<small>(56)</small></div></li>
     
         
             
@@ -116,7 +128,7 @@
     
         
             
-            <li><div data-rel="java">java<small>(8)</small></div>
+            <li><div data-rel="java">java<small>(9)</small></div>
                 
             </li>
             
@@ -172,7 +184,7 @@
     
         
             
-            <li><div data-rel="netty">netty<small>(2)</small></div>
+            <li><div data-rel="消息队列">消息队列<small>(2)</small></div>
                 
             </li>
             
@@ -180,7 +192,7 @@
     
         
             
-            <li><div data-rel="消息队列">消息队列<small>(2)</small></div>
+            <li><div data-rel="netty">netty<small>(2)</small></div>
                 
             </li>
             
@@ -228,7 +240,7 @@
     </div>
     <div></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="55">
+<input type="hidden" id="yelog_site_posts_number" value="56">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -261,11 +273,11 @@
     <div class="tags-list">
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color2">Hystrix和Feign Hystrix</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">熔断监控Hystrix-Dashboard</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color2">熔断监控Hystrix-Dashboard</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Hystrix和Feign Hystrix</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -302,6 +314,10 @@
     
     <li class="article-tag-list-item">
         <a href="javascript:" target="_blank" rel="noopener" class="color3">Java访问jar包说明</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">java内存模型</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -357,11 +373,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color1">eureka原理介绍</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">eureka 服务提供和调用</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color5">eureka 服务提供和调用</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">eureka原理介绍</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -385,11 +401,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color5">ps命令</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">mv命令</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color5">mv命令</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">ps命令</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -397,11 +413,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color3">netty整合springboot</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">rabbitMQ</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color4">rabbitMQ</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">netty整合springboot</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -413,15 +429,15 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring基础知识</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring高级话题</a>
     </li>
     
     <li class="article-tag-list-item">
         <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring常用配置</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring基础知识</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -433,15 +449,15 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color5">netty基本理论</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" target="_blank" rel="noopener" class="color5">linux高级命令</a>
     </li>
     
     <li class="article-tag-list-item">
         <a href="javascript:" target="_blank" rel="noopener" class="color5">springboot整合mq</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">netty基本理论</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -475,19 +491,19 @@
     <nav id="title-list-nav">
         
         <a  class="springcloud "
-           href="/2019/11/13/Hystrix/"
-           data-tag="Hystrix和Feign Hystrix"
-           data-author="" >
-            <span class="post-title" title="熔断器（Hystrix）">熔断器（Hystrix）</span>
-            <span class="post-date" title="2019-11-13 15:58:16">2019/11/13</span>
-        </a>
-        
-        <a  class="springcloud "
            href="/2019/11/13/Hystrix-Dashboard/"
            data-tag="熔断监控Hystrix-Dashboard"
            data-author="" >
             <span class="post-title" title="熔断监控Hystrix-Dashboard">熔断监控Hystrix-Dashboard</span>
             <span class="post-date" title="2019-11-13 15:58:13">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/Hystrix/"
+           data-tag="Hystrix和Feign Hystrix"
+           data-author="" >
+            <span class="post-title" title="熔断器（Hystrix）">熔断器（Hystrix）</span>
+            <span class="post-date" title="2019-11-13 15:58:16">2019/11/13</span>
         </a>
         
         <a  class="springcloud "
@@ -552,6 +568,14 @@
            data-author="" >
             <span class="post-title" title="Java访问jar包（windows和linux）">Java访问jar包（windows和linux）</span>
             <span class="post-date" title="2019-12-24 10:06:54">2019/12/24</span>
+        </a>
+        
+        <a  class="java "
+           href="/2020/01/15/java-mode/"
+           data-tag="java内存模型"
+           data-author="" >
+            <span class="post-title" title="java内存模型">java内存模型</span>
+            <span class="post-date" title="2020-01-15 18:49:54">2020/01/15</span>
         </a>
         
         <a  class="linux "
@@ -683,19 +707,19 @@
         </a>
         
         <a  class="springcloud "
-           href="/2019/11/13/eureka1/"
-           data-tag="eureka原理介绍"
-           data-author="" >
-            <span class="post-title" title="eureka原理介绍">eureka原理介绍</span>
-            <span class="post-date" title="2019-11-13 16:08:48">2019/11/13</span>
-        </a>
-        
-        <a  class="springcloud "
            href="/2019/11/13/eureka-Producer-Consumer/"
            data-tag="eureka 服务提供和调用"
            data-author="" >
             <span class="post-title" title="eureka服务提供和调用">eureka服务提供和调用</span>
             <span class="post-date" title="2019-11-13 15:11:06">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/eureka1/"
+           data-tag="eureka原理介绍"
+           data-author="" >
+            <span class="post-title" title="eureka原理介绍">eureka原理介绍</span>
+            <span class="post-date" title="2019-11-13 16:08:48">2019/11/13</span>
         </a>
         
         <a  class="springcloud "
@@ -739,19 +763,19 @@
         </a>
         
         <a  class="linux "
-           href="/2019/11/15/linux-ps/"
-           data-tag="ps命令"
-           data-author="" >
-            <span class="post-title" title="ps命令">ps命令</span>
-            <span class="post-date" title="2019-11-15 17:20:52">2019/11/15</span>
-        </a>
-        
-        <a  class="linux "
            href="/2019/11/15/linux-mv/"
            data-tag="mv命令"
            data-author="" >
             <span class="post-title" title="mv命令">mv命令</span>
             <span class="post-date" title="2019-11-15 17:20:51">2019/11/15</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/linux-ps/"
+           data-tag="ps命令"
+           data-author="" >
+            <span class="post-title" title="ps命令">ps命令</span>
+            <span class="post-date" title="2019-11-15 17:20:52">2019/11/15</span>
         </a>
         
         <a  class="nginx "
@@ -762,20 +786,20 @@
             <span class="post-date" title="2020-01-06 18:08:19">2020/01/06</span>
         </a>
         
-        <a  class="netty "
-           href="/2019/11/29/netty-springboot/"
-           data-tag="netty整合springboot"
-           data-author="" >
-            <span class="post-title" title="netty整合springboot">netty整合springboot</span>
-            <span class="post-date" title="2019-11-29 15:02:14">2019/11/29</span>
-        </a>
-        
         <a  class="消息队列 "
            href="/2019/11/13/rabbitMQBase/"
            data-tag="rabbitMQ"
            data-author="" >
             <span class="post-title" title="消息队列">消息队列</span>
             <span class="post-date" title="2019-11-13 09:58:16">2019/11/13</span>
+        </a>
+        
+        <a  class="netty "
+           href="/2019/11/29/netty-springboot/"
+           data-tag="netty整合springboot"
+           data-author="" >
+            <span class="post-title" title="netty整合springboot">netty整合springboot</span>
+            <span class="post-date" title="2019-11-29 15:02:14">2019/11/29</span>
         </a>
         
         <a  class="redis "
@@ -803,6 +827,14 @@
         </a>
         
         <a  class="spring "
+           href="/2019/11/14/spring-base1/"
+           data-tag="Spring基础知识"
+           data-author="" >
+            <span class="post-title" title="Spring基础知识">Spring基础知识</span>
+            <span class="post-date" title="2019-11-14 16:19:44">2019/11/14</span>
+        </a>
+        
+        <a  class="spring "
            href="/2019/11/14/spring-high/"
            data-tag="Spring高级话题"
            data-author="" >
@@ -816,14 +848,6 @@
            data-author="" >
             <span class="post-title" title="Spring常用配置">Spring常用配置</span>
             <span class="post-date" title="2019-11-14 16:44:14">2019/11/14</span>
-        </a>
-        
-        <a  class="spring "
-           href="/2019/11/14/spring-base1/"
-           data-tag="Spring基础知识"
-           data-author="" >
-            <span class="post-title" title="Spring基础知识">Spring基础知识</span>
-            <span class="post-date" title="2019-11-14 16:19:44">2019/11/14</span>
         </a>
         
         <a  class="springcloud "
@@ -842,14 +866,6 @@
             <span class="post-date" title="2020-01-09 15:53:28">2020/01/09</span>
         </a>
         
-        <a  class="netty "
-           href="/2019/11/25/netty-base/"
-           data-tag="netty基本理论"
-           data-author="" >
-            <span class="post-title" title="netty基本理论">netty基本理论</span>
-            <span class="post-date" title="2019-11-25 16:00:35">2019/11/25</span>
-        </a>
-        
         <a  class="linux "
            href="/2019/11/15/linux-high/"
            data-tag="linux高级命令"
@@ -864,6 +880,14 @@
            data-author="" >
             <span class="post-title" title="springboot整合mq">springboot整合mq</span>
             <span class="post-date" title="2019-12-04 16:55:33">2019/12/04</span>
+        </a>
+        
+        <a  class="netty "
+           href="/2019/11/25/netty-base/"
+           data-tag="netty基本理论"
+           data-author="" >
+            <span class="post-title" title="netty基本理论">netty基本理论</span>
+            <span class="post-date" title="2019-11-25 16:00:35">2019/11/25</span>
         </a>
         
         <a  class="spring-mvc "
@@ -1064,7 +1088,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#Hystrix和Feign Hystrix','#熔断监控Hystrix-Dashboard','#Spring-Cloud-Sleuth','#Zipkin','#Spring-cloud和Spring-boot','#docker','#find命令','#分布式','#Java-IO','#JDK工具使用','#Java访问jar包说明','#linux基本命令','#linux安装jre','#redis连接springboot','#redis','#redis取消只能本地访问的方式','#java实现发送邮件','#java实现手机发送短信','#Springboot日志配置','#Springboot项目导可执行jar','#springboot连接redis哨兵集群','#Springboot基础知识','#swagger使用','#vue项目搭建','#eureka原理介绍','#eureka 服务提供和调用','#配置中心git','#配置中心git服务化和高可用','#java变量','#java数据结构和算法','#Java-reflax','#ps命令','#mv命令','#nginx学习','#netty整合springboot','#rabbitMQ','#redis集群的三种方式','#主从复制和哨兵 （配置文件详解）','#Spring高级话题','#Spring常用配置','#Spring基础知识','#Spring cloud zuul (服务网关初级)','#MySql数据库基础语法','#netty基本理论','#linux高级命令','#springboot整合mq','#SpringMVC基础','#SpringMVC配置','#Java-NIO','#Spring cloud zuul (服务网关高级)','#java多线程和线程池','#java 知识框架',],
+            'data': ['#熔断监控Hystrix-Dashboard','#Hystrix和Feign Hystrix','#Spring-Cloud-Sleuth','#Zipkin','#Spring-cloud和Spring-boot','#docker','#find命令','#分布式','#Java-IO','#JDK工具使用','#Java访问jar包说明','#java内存模型','#linux基本命令','#linux安装jre','#redis连接springboot','#redis','#redis取消只能本地访问的方式','#java实现发送邮件','#java实现手机发送短信','#Springboot日志配置','#Springboot项目导可执行jar','#springboot连接redis哨兵集群','#Springboot基础知识','#swagger使用','#vue项目搭建','#eureka 服务提供和调用','#eureka原理介绍','#配置中心git','#配置中心git服务化和高可用','#java变量','#java数据结构和算法','#Java-reflax','#mv命令','#ps命令','#nginx学习','#rabbitMQ','#netty整合springboot','#redis集群的三种方式','#主从复制和哨兵 （配置文件详解）','#Spring基础知识','#Spring高级话题','#Spring常用配置','#Spring cloud zuul (服务网关初级)','#MySql数据库基础语法','#linux高级命令','#springboot整合mq','#netty基本理论','#SpringMVC基础','#SpringMVC配置','#Java-NIO','#Spring cloud zuul (服务网关高级)','#java多线程和线程池','#java 知识框架',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
