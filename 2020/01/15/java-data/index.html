@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>MySql数据库基础语法 | Hexo</title>
-  <meta name="keywords" content=" MySql数据库基础语法 ">
-  <meta name="description" content="MySql数据库基础语法 | Hexo">
+  <title>java数据结构和算法 | Hexo</title>
+  <meta name="keywords" content=" java数据结构和算法 ">
+  <meta name="description" content="java数据结构和算法 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="一.Java线程学习基础知识1.进程和线程 (1).进程：每个进程都有独立的代码和数据空间（进程上下文），进程间的切换会有较大的开销，一个进程包含1–n个线程。（进程是资源分配的最小单位） (2).线程：同一类线程共享代码和数据空间，每个线程有独立的运行栈和程序计数器(PC)，线程切换开销小。（线程是cpu调度的最小单位） (3).线程和进程一样分为五个阶段：创建、就绪、运行、阻塞、终止。 (4)">
 <meta name="keywords" content="java多线程和线程池">
@@ -926,9 +926,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-database-base" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-java-data" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">MySql数据库基础语法</h1>
+        <h1 class="article-title">java数据结构和算法</h1>
     
     <div class="article-meta">
         
@@ -936,21 +936,21 @@
         
         <span class="book">
             
-                <a href="javascript:" target="_blank" data-rel="database noopener">database</a>
+                <a href="javascript:" target="_blank" data-rel="java noopener">java</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" target="_blank" rel="noopener" class="color3">MySql数据库基础语法</a>
+            <a href="javascript:" target="_blank" rel="noopener" class="color2">java数据结构和算法</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2020-01-09 15:53:28'>2020-01-09 15:53</time>
+        创建时间:<time class="date" title='更新时间: 2020-01-15 17:13:19'>2020-01-15 17:13</time>
         
     </div>
     <div class="article-meta">
@@ -972,7 +972,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一-数据库操作"><span class="toc-text">一.数据库操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-显示所有数据库："><span class="toc-text">1.显示所有数据库：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-创建数据库："><span class="toc-text">2.创建数据库：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-删除数据库："><span class="toc-text">3.删除数据库：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二-表操作"><span class="toc-text">二.表操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-建表语句"><span class="toc-text">1.建表语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-添加唯一约束"><span class="toc-text">2.添加唯一约束</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-删除唯一约束"><span class="toc-text">3.删除唯一约束</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-建表时创建外键"><span class="toc-text">4.建表时创建外键</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-查看表结构："><span class="toc-text">5.查看表结构：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-删除-清空-表："><span class="toc-text">6.删除/清空 表：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-修改表："><span class="toc-text">7.修改表：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三-单表查询"><span class="toc-text">三.单表查询</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-条件查询-WHERE："><span class="toc-text">1.条件查询 WHERE：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-范围查询-BETWEEN-AND："><span class="toc-text">2.范围查询 BETWEEN AND：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-模糊查询-LIKE："><span class="toc-text">3.模糊查询 LIKE：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-空值查询-NOT-NULL："><span class="toc-text">4.空值查询 NOT NULL：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-去重复查询-DISTINCT-："><span class="toc-text">5.去重复查询 DISTINCT ：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-排序-ORDER-BY"><span class="toc-text">6.排序 ORDER BY</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-分组查询-GROUP-BY"><span class="toc-text">7.分组查询 GROUP BY</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-单独使用-毫无意义-；"><span class="toc-text">(1).单独使用(毫无意义)；</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-与-GROUP-CONCAT-函数一起使用；"><span class="toc-text">(2).与 GROUP_CONCAT()函数一起使用；</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-与聚合函数一起使用-与-HAVING-一起使用-限制输出的结果-；"><span class="toc-text">(3).与聚合函数一起使用,与 HAVING 一起使用(限制输出的结果)；</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-与-WITH-ROLLUP-一起使用-最后加入一个总和行-；"><span class="toc-text">(4).与 WITH ROLLUP 一起使用(最后加入一个总和行)；</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-分页查询-limit："><span class="toc-text">8.分页查询 limit：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-CONCAT函数"><span class="toc-text">9.CONCAT函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-去重操作（distinct）"><span class="toc-text">10.去重操作（distinct）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-更名操作（as）"><span class="toc-text">11.更名操作（as）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四-多表查询"><span class="toc-text">四.多表查询</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-连接查询"><span class="toc-text">1.连接查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-子查询"><span class="toc-text">2.子查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-合并查询"><span class="toc-text">3.合并查询</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#五-索引"><span class="toc-text">五.索引</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-索引分类"><span class="toc-text">1.索引分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-创建索引"><span class="toc-text">2.创建索引</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-创建表的时候创建索引"><span class="toc-text">(1)创建表的时候创建索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-已经存在的表上创建索引"><span class="toc-text">(2)已经存在的表上创建索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-用-ALTER-TABLE-语句来创建索引"><span class="toc-text">(3)用 ALTER TABLE 语句来创建索引</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-删除索引"><span class="toc-text">3.删除索引</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#六-视图"><span class="toc-text">六.视图</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-创建视图"><span class="toc-text">1.创建视图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-查看视图"><span class="toc-text">2.查看视图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-修改视图"><span class="toc-text">3.修改视图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-CREATE-OR-REPLACE-VIEW-语句修改视图"><span class="toc-text">(1).CREATE  OR  REPLACE  VIEW 语句修改视图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-ALTER-语句修改视图"><span class="toc-text">(2).ALTER 语句修改视图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-更新视图"><span class="toc-text">4.更新视图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-插入-INSERT"><span class="toc-text">(1).插入(INSERT)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-更新-UPDATE"><span class="toc-text">(2).更新(UPDATE)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-删除-DELETE"><span class="toc-text">(3).删除(DELETE)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-删除视图"><span class="toc-text">5.删除视图</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#六-触发器"><span class="toc-text">六.触发器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-触发器的引入"><span class="toc-text">(1).触发器的引入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-创建与使用触发器"><span class="toc-text">(2).创建与使用触发器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#创建只有一个执行语句的触发器"><span class="toc-text">创建只有一个执行语句的触发器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建有多个执行语句的触发器"><span class="toc-text">创建有多个执行语句的触发器</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-查看触发器"><span class="toc-text">(3).查看触发器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-删除触发器"><span class="toc-text">(4).删除触发器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#七-mysql常用函数（部分举例）"><span class="toc-text">七.mysql常用函数（部分举例）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-日期和时间函数"><span class="toc-text">1.日期和时间函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-字符串函数"><span class="toc-text">2.字符串函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-数学函数"><span class="toc-text">3.数学函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-加密函数"><span class="toc-text">4.加密函数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#八-数据备份与还原"><span class="toc-text">八.数据备份与还原</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-数据备份"><span class="toc-text">(1).数据备份</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-数据还原"><span class="toc-text">(2).数据还原</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一-冒泡算法"><span class="toc-text">一 .冒泡算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-核心思想"><span class="toc-text">1.核心思想</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-原理理解"><span class="toc-text">2.原理理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-代码实现"><span class="toc-text">3.代码实现</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二-选择排序算法"><span class="toc-text">二.选择排序算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-核心思想-1"><span class="toc-text">1.核心思想</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-原理理解-1"><span class="toc-text">2.原理理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-代码实现-1"><span class="toc-text">3.代码实现</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三-插入排序算法"><span class="toc-text">三.插入排序算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-核心思想-2"><span class="toc-text">1.核心思想</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-原理理解-2"><span class="toc-text">2.原理理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-代码实现-2"><span class="toc-text">3.代码实现</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四-对象排序算法"><span class="toc-text">四.对象排序算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-新建一个对象类"><span class="toc-text">1.新建一个对象类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-添加比较方法"><span class="toc-text">2.添加比较方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-测试比较方法"><span class="toc-text">3.测试比较方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#五-栈"><span class="toc-text">五.栈</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-核心思想-3"><span class="toc-text">1.核心思想</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-原理理解-3"><span class="toc-text">2.原理理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-代码实现-3"><span class="toc-text">3.代码实现</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -988,233 +988,323 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="一-数据库操作"><a href="#一-数据库操作" class="headerlink" title="一.数据库操作"></a>一.数据库操作</h1><h2 id="1-显示所有数据库："><a href="#1-显示所有数据库：" class="headerlink" title="1.显示所有数据库："></a>1.显示所有数据库：</h2><pre><code>Show databases；</code></pre><h2 id="2-创建数据库："><a href="#2-创建数据库：" class="headerlink" title="2.创建数据库："></a>2.创建数据库：</h2><pre><code>Create database 数据库名；</code></pre><h2 id="3-删除数据库："><a href="#3-删除数据库：" class="headerlink" title="3.删除数据库："></a>3.删除数据库：</h2><pre><code>Drop database 数据库名；</code></pre><h1 id="二-表操作"><a href="#二-表操作" class="headerlink" title="二.表操作"></a>二.表操作</h1><h2 id="1-建表语句"><a href="#1-建表语句" class="headerlink" title="1.建表语句"></a>1.建表语句</h2><pre><code>CREATE TABLE 表名( 属性名 数据类型 [完整性约束条件],
-                          属性名 数据类型 [完整性约束条件],
-                          .
-                          .
-                          属性名 数据表格 [完整性约束条件]);
-
-PRIMARY KEY            标识该属性为该表的主键，可以唯一的标识对应的记录
-FOREIGN KEY            标识该属性为该表的外键，与某表的主键关联
-NOT NULL            标识该属性不能为空
-UNIQUE                标识该属性的值是唯一的
-AUTO_INCREMENT        标识该属性的值自动增加
-DEFAULT                为该属性设置默认值    </code></pre><blockquote>
-<p>UNIQUE 和 PRIMARY KEY 约束均为列或列集合提供了唯一性的保证。简单来说：unique=primary key+not null</p>
-<p>区别： </p>
-<p>   1、primary key只能有一个，unique可以有多个同时存在；</p>
-<pre><code>2、primary key不能为空，而unique可以为空；</code></pre><p>primary key一般在设计逻辑中用作记录标识，而unique只是用来保证唯一性</p>
-<p>UNIQUE (bookId)//新建表时将bookId设为唯一</p>
+        <h1 id="一-冒泡算法"><a href="#一-冒泡算法" class="headerlink" title="一 .冒泡算法"></a>一 .冒泡算法</h1><h2 id="1-核心思想"><a href="#1-核心思想" class="headerlink" title="1.核心思想"></a>1.核心思想</h2><blockquote>
+<p>比较两个元素，如果前一个比后一个大则进行交换，经过对每个元素的比较，最后将最大的元素设置成最后一个元素，重复该操作，最后形成一个从小到大的排序。</p>
 </blockquote>
-<h2 id="2-添加唯一约束"><a href="#2-添加唯一约束" class="headerlink" title="2.添加唯一约束"></a>2.添加唯一约束</h2><pre><code>ALTER TABLE Persons ADD UNIQUE (Id_P)
-
-CONSTRAINT uc_PersonID UNIQUE (Id_P,LastName)//设置Id_P和LastName都为唯一并命名为uc_PersonID</code></pre><h2 id="3-删除唯一约束"><a href="#3-删除唯一约束" class="headerlink" title="3.删除唯一约束"></a>3.删除唯一约束</h2><pre><code>ALTER TABLE Persons DROP INDEX uc_PersonID</code></pre><h2 id="4-建表时创建外键"><a href="#4-建表时创建外键" class="headerlink" title="4.建表时创建外键"></a>4.建表时创建外键</h2><pre><code>FOREIGN KEY (Id_P) REFERENCES Persons(Id_P)//设置本表Id_p字段和Persons表的Id_p主键关联</code></pre><h2 id="5-查看表结构："><a href="#5-查看表结构：" class="headerlink" title="5.查看表结构："></a>5.查看表结构：</h2><pre><code>查看基本表结构： DESCRIBE(或DESC） 表名；//返回表字段及其详细信息表格
-查看表详细结构： SHOW CREATE TABLE 表名；//返回结果是创建表的sql</code></pre><h2 id="6-删除-清空-表："><a href="#6-删除-清空-表：" class="headerlink" title="6.删除/清空 表："></a>6.删除/清空 表：</h2><pre><code>drop table  表名； //彻底删除表格，删除字段数据，释放内存空间
-
-truncate 表名；  //删除表格数据，不删除字段，释放内存空间
-
-delete from 表名；或delete * from 表名;// 删除内容不删除定义，不释放空间,系统一行一行地删,效率较truncate低</code></pre><h2 id="7-修改表："><a href="#7-修改表：" class="headerlink" title="7.修改表："></a>7.修改表：</h2><pre><code>修改表名  ALTER TABLE  旧表名  RENMAE 新表名 ；
-
-修改字段  ALTER TABLE 表名  CHANGE  旧属性名  新属性名  新数据类型
-
-增加字段  ALTER TABLE  表名 ADD 属性名  数据类型 [完整性约束条件] [FIRST | AFTER 属性名 2]
-
-删除字段  ALTER TABLE  表名  DROP 属性名</code></pre><h1 id="三-单表查询"><a href="#三-单表查询" class="headerlink" title="三.单表查询"></a>三.单表查询</h1><h1 id="1-条件查询-WHERE："><a href="#1-条件查询-WHERE：" class="headerlink" title="1.条件查询 WHERE："></a>1.条件查询 WHERE：</h1><pre><code>SELECT 字段 1，字段 2，字段 3...FROM 表名 WHERE 字段 [NOT] IN (元素 1，元素 2，元素 3)；//查找属性（不为）为元素1、元素2和元素3的结果
-
-SELECT 字段 1，字段 2...FROM 表名 WHERE 条件表达式 1 AND 条件表达式 2 [...AND 条件表达式 n] //and多条件查询
-
-SELECT 字段 1，字段 2...FROM 表名 WHERE 条件表达式 1 OR 条件表达式 2 [...OR 条件表达式 n] //or多条件查询</code></pre><h2 id="2-范围查询-BETWEEN-AND："><a href="#2-范围查询-BETWEEN-AND：" class="headerlink" title="2.范围查询 BETWEEN AND："></a>2.范围查询 BETWEEN AND：</h2><pre><code>SELECT 字段 1，字段 2，字段 3...FROM 表名 WHERE 字段 [NOT] BETWEEN 取值 1 &gt; 指定值；//大于小于等符号
-
-SELECT 字段 1，字段 2，字段 3...FROM 表名 WHERE 字段 [NOT] BETWEEN 取值 1 AND 取值 2；//两端都包含</code></pre><h2 id="3-模糊查询-LIKE："><a href="#3-模糊查询-LIKE：" class="headerlink" title="3.模糊查询 LIKE："></a>3.模糊查询 LIKE：</h2><pre><code>SELECT 字段 1，字段 2，字段 3...FROM 表名 WHERE 字段 [NOT] LIKE ‘字符串’；
-
-“%”代表任意字符；
-“_” 代表单个字符；</code></pre><h2 id="4-空值查询-NOT-NULL："><a href="#4-空值查询-NOT-NULL：" class="headerlink" title="4.空值查询 NOT NULL："></a>4.空值查询 NOT NULL：</h2><pre><code>SELECT 字段 1，字段 2，字段 3...FROM 表名 WHERE 字段 IS [NOT] NULL；</code></pre><h2 id="5-去重复查询-DISTINCT-："><a href="#5-去重复查询-DISTINCT-：" class="headerlink" title="5.去重复查询 DISTINCT ："></a>5.去重复查询 DISTINCT ：</h2><pre><code>SELECT DISTINCT 字段名 FROM 表名；</code></pre><h2 id="6-排序-ORDER-BY"><a href="#6-排序-ORDER-BY" class="headerlink" title="6.排序 ORDER BY"></a>6.排序 ORDER BY</h2><pre><code>SELECT 字段 1，字段 2...FROM 表名 ORDER BY 属性名 [ASC|DESC] //ASC升序（默认） DESC降序</code></pre><h2 id="7-分组查询-GROUP-BY"><a href="#7-分组查询-GROUP-BY" class="headerlink" title="7.分组查询 GROUP BY"></a>7.分组查询 GROUP BY</h2><pre><code>GROUP BY 属性名 [HAVING 条件表达式][WITH ROLLUP]</code></pre><h3 id="1-单独使用-毫无意义-；"><a href="#1-单独使用-毫无意义-；" class="headerlink" title="(1).单独使用(毫无意义)；"></a>(1).单独使用(毫无意义)；</h3><h3 id="2-与-GROUP-CONCAT-函数一起使用；"><a href="#2-与-GROUP-CONCAT-函数一起使用；" class="headerlink" title="(2).与 GROUP_CONCAT()函数一起使用；"></a>(2).与 GROUP_CONCAT()函数一起使用；</h3><pre><code>SELECT locus,GROUP_CONCAT(id) FROM info WHERE locus IN(&apos;AB086827&apos;,&apos;AF040764&apos;) GROUP BY locus; 的返回结果为
-
-| locus    | GROUP_CONCAT(id) |
-| AB086827 | 1,2              |
-| AF040764 | 23,24            |
-
-即将查询到的括号内字段的结果合并到一起并用逗号隔开可以将逗号更换成其他符号，如：
-
-SELECT locus,GROUP_CONCAT(distinct id ORDER BY id DESC SEPARATOR &apos;_&apos;) FROM info WHERE locus IN(&apos;AB086827&apos;,&apos;AF040764&apos;) GROUP BY locus
-
-| locus    | GROUP_CONCAT(distinct id ORDER BY id DESC SEPARATOR &apos;_&apos;) |
-| AB086827 | 2_1                                                      |
-| AF040764 | 24_23                                                    |</code></pre><h3 id="3-与聚合函数一起使用-与-HAVING-一起使用-限制输出的结果-；"><a href="#3-与聚合函数一起使用-与-HAVING-一起使用-限制输出的结果-；" class="headerlink" title="(3).与聚合函数一起使用,与 HAVING 一起使用(限制输出的结果)；"></a>(3).与聚合函数一起使用,与 HAVING 一起使用(限制输出的结果)；</h3><pre><code>聚集函数：平均值（avg）、最小值（min）、最大值（max）、总和（sum）、计数（count）
-
-注：出现在select语句中但没有被聚集的属性只能是出现在group by子句中的属性。
-    任何出现在having子句中，但没有被聚集的属性必须出现在group by子句中。
-
-select dept_name,avg(salary) as avg_salary from instructor2 group by dept_name having avg(salary)&gt;3000</code></pre><h3 id="4-与-WITH-ROLLUP-一起使用-最后加入一个总和行-；"><a href="#4-与-WITH-ROLLUP-一起使用-最后加入一个总和行-；" class="headerlink" title="(4).与 WITH ROLLUP 一起使用(最后加入一个总和行)；"></a>(4).与 WITH ROLLUP 一起使用(最后加入一个总和行)；</h3><pre><code>WITH ROLLUP会在返回结果的最后加上一行将查询出的
-
-    如果是数字结果则将所有结果数字相加
-    如果是字符结果则将所有字符合并
-
-SELECT gradeName,GROUP_CONCAT(stuName) FROM t_student GROUP BY gradeName WITH ROLLUP;</code></pre><h2 id="8-分页查询-limit："><a href="#8-分页查询-limit：" class="headerlink" title="8.分页查询 limit："></a>8.分页查询 limit：</h2><pre><code>SELECT 字段 1，字段 2...FROM 表名 LIMIT 初始位置，记录数；</code></pre><h2 id="9-CONCAT函数"><a href="#9-CONCAT函数" class="headerlink" title="9.CONCAT函数"></a>9.CONCAT函数</h2><pre><code>将查询结果连成一个字符串，但是查询的字段中有null时则整个结果为null</code></pre><h2 id="10-去重操作（distinct）"><a href="#10-去重操作（distinct）" class="headerlink" title="10.去重操作（distinct）"></a>10.去重操作（distinct）</h2><pre><code>select distinct 属性名 from 关系名 where 条件</code></pre><h2 id="11-更名操作（as）"><a href="#11-更名操作（as）" class="headerlink" title="11.更名操作（as）"></a>11.更名操作（as）</h2><pre><code>属性别名：    select 属性 as 属性别名 from 关系名 where 条件
-关系别名：   select 属性 from 关系名 as 关系别名 where 条件</code></pre><h1 id="四-多表查询"><a href="#四-多表查询" class="headerlink" title="四.多表查询"></a>四.多表查询</h1><h2 id="1-连接查询"><a href="#1-连接查询" class="headerlink" title="1.连接查询"></a>1.连接查询</h2><pre><code>(1).内连接查询：内连接查询可以查询两个或者两个以上的表；
-
-    SELECT * from t_book b,t_booktype t where t.id=b.id;
-    或SELECT * from t_book,t_booktype where t_book.id=t_booktype.id;
-
-(2).外连接查询:外连接可以查出某一张表的所有信息；(左连接查询,右连接查询)
-
-    SELECT 属性名列表 FROM  表名 1 LEFT|RIGHT JOIN 表名 2 ON 表名 1.属性名 1=表名 2.属性名 2；</code></pre><h2 id="2-子查询"><a href="#2-子查询" class="headerlink" title="2.子查询"></a>2.子查询</h2><pre><code>(1).带 In 关键字的子查询
-
-    一个查询语句的条件可能落在另一个 SELECT 语句的查询结果中。
-
-(2).带比较运算符的子查询
-
-    子查询可以使用比较运算符。
-
-(3).带 （not）Exists 关键字的子查询
-
-    假如子查询查询到记录，则进行外层查询，否则，不执行外层查询；not exists表示内层没有内容时才查询外层
-
-    如：SELECT * from t_book where EXISTS(select * from t_booktype);//表示t_booktype中返回的有内容时才执行外层t_book的查询
-
-(4).带 Any 关键字的子查询,ANY 关键字表示满足其中任一条件；
-
-    如：SELECT * FROM t_book WHERE price&gt;= ANY (SELECT price FROM t_pricelevel);//表示筛选价格大于任意t_pricelevel表中选出的价格的结果，即比最小的大的价格就满足条件
-
-(5).带 All 关键字的子查询,ALL 关键字表示满足所有条件；
-
-    如：SELECT * FROM t_book WHERE price&gt;= ALL (SELECT price FROM t_pricelevel);//表示筛选价格大于所有t_pricelevel表中选出的价格的结果，即比最大的价格大的才满足条件</code></pre><h2 id="3-合并查询"><a href="#3-合并查询" class="headerlink" title="3.合并查询"></a>3.合并查询</h2><pre><code>(1).UNION
-
-     使用 UNION 关键字是，数据库系统会将所有的查询结果合并到一起，然后去除掉相同的记录；
-
-(2).UNION ALL
-
-     使用 UNION ALL，不会去除掉相同的记录；</code></pre><h1 id="五-索引"><a href="#五-索引" class="headerlink" title="五.索引"></a>五.索引</h1><h2 id="1-索引分类"><a href="#1-索引分类" class="headerlink" title="1.索引分类"></a>1.索引分类</h2><pre><code>(1).普通索引 : 这类索引可以创建在任何数据类型中；
-
-(2).唯一性索引 : 使用 UNIQUE 参数可以设置，在创建唯一性索引时，限制该索引的值必须是唯一的；
-
-(3).单列索引 : 在表中可以给单个字段创建索引，单列索引可以是普通索引，也可以是唯一性索引，还可以是全文索引；
-
-(4).多列索引 : 多列索引是在表的多个字段上创建一个索引；</code></pre><h2 id="2-创建索引"><a href="#2-创建索引" class="headerlink" title="2.创建索引"></a>2.创建索引</h2><h3 id="1-创建表的时候创建索引"><a href="#1-创建表的时候创建索引" class="headerlink" title="(1)创建表的时候创建索引"></a>(1)创建表的时候创建索引</h3><pre><code>CREATE TABLE 表名 (属性名 数据类型 [完整性约束条件],
-                              属性名 数据类型 [完整性约束条件],
-                              ....
-                              属性名 数据类型
-                              [UNIQUE | FULLTEXT | SPATIAL ]  INDEX| KEY
-                              [别名] (属性名 1 [(长度)] [ASC | DESC])
-);
-
-CREATE TABLE mytable(
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    bookId INT,
-    bookName VARCHAR(20) NOT NULL,
-    price DECIMAL(6,2),
-    INDEX(bookId)   //创建普通索引
-    //UNIQUE INDEX (bookId)   //创建唯一性索引
-    //UNIQUE INDEX bokId(bookId)   //创建唯一性索引并起别名为bokId
-    //UNIQUE INDEX bokId(bookId，id)   //创建多列索引并起别名为bokId
-);</code></pre><h3 id="2-已经存在的表上创建索引"><a href="#2-已经存在的表上创建索引" class="headerlink" title="(2)已经存在的表上创建索引"></a>(2)已经存在的表上创建索引</h3><pre><code>CREATE [ UNIQUE | FULLTEXT | SPATIAL ] INDEX 索引名  ON 表名  (属性名 [(长度)] [ ASC | DESC])；
-
-如：CREATE INDEX bookId ON mytable(bookId); //创建普通索引
-   CREATE UNIQUE INDEX bookId ON mytable(bookId); //创建唯一索引
-   CREATE UNIQUE INDEX bookId_price ON mytable(bookId,price); //创建多列索引</code></pre><h3 id="3-用-ALTER-TABLE-语句来创建索引"><a href="#3-用-ALTER-TABLE-语句来创建索引" class="headerlink" title="(3)用 ALTER TABLE 语句来创建索引"></a>(3)用 ALTER TABLE 语句来创建索引</h3><pre><code>ALTER TABLE 表名 ADD [ UNIQUE | FULLTEXT | SPATIAL ] INDEX 索引名 (属性名 [(长度)] [ ASC | DESC])；
-
-如：ALTER TABLE mytable ADD INDEX index_bookId(bookId); //创建普通索引
-   ALTER TABLE mytable ADD UNIQUE INDEX index_bookId(bookId); //创建唯一索引
-   ALTER TABLE mytable ADD UNIQUE INDEX index_bookId_price(bookId,price); //创建多列索引</code></pre><h2 id="3-删除索引"><a href="#3-删除索引" class="headerlink" title="3.删除索引"></a>3.删除索引</h2><pre><code>DROP INDEX 索引名 ON 表名 ； 
-
-如：drop index index_bookId_price on mytable;</code></pre><h1 id="六-视图"><a href="#六-视图" class="headerlink" title="六.视图"></a>六.视图</h1><h2 id="1-创建视图"><a href="#1-创建视图" class="headerlink" title="1.创建视图"></a>1.创建视图</h2><pre><code>CREATE [ ALGORITHM ={ UNDEFIEND | MERGE | TEMPTABLE }]
-               VIEW 视图名 [ ( 属性清单) ]
-               AS SELECT 语句  [ WITH [  CASCADED | LOCAL ] CHECK OPTION ]；
-
-注：
-（1）.ALGORITHM 是可选参数，表示视图选择的算法；
-
-        UNDEFINED 选项表示 MySQL 将 自动选择所要使用的算法；
-
-        MERGE 选项表示将使用视图的语句与视图定义合并起来，使得视图定义的某一部分 取代语句的对应部分；
-
-        TEMPTABLE 选项表示将视图的结果存入临时表，然后使用临时表执行语句；
-
-(2).“视图名”参数表示要创建的视图的名称；
-
-(3).“属性清单”是可选参数，其指定了视图中各种属性的名词，默认情况下与 SELECT 语句中查询的属性相同；
-
-(4)SELECT 语句参数是一个完整的查询语句，标识从某个表查出某些满足条件的记录，将这些记录导入视图中；
-
-(5).WITH CHECK OPTION 是可选参数，表似乎更新视图时要保证在该视图的权限范围之内；
-
-    CASCADED 是可选参数，表示更新视图时要满足所有相关视图和表的条件，该参数为默认值；
-    LOCAL 表示更新视图时，要 满足该视图本身的定义条件即可；</code></pre><h2 id="2-查看视图"><a href="#2-查看视图" class="headerlink" title="2.查看视图"></a>2.查看视图</h2><pre><code>(1).DESCRIBE 视图名称； //查看视图字段属性信息
-
-(2).SHOW TABLE STATUS LIKE ‘视图名称’；// 查看视图基本信息，因为视图是虚表，故查询结果字段都为空；此sql也可以查询普通表的基本信息；后面没有like指定视图时表示查询库中所有表和视图的基本信息
-
-(3).SHOW CREATE VIEW 视图名称；//查看视图详细信息</code></pre><h2 id="3-修改视图"><a href="#3-修改视图" class="headerlink" title="3.修改视图"></a>3.修改视图</h2><h3 id="1-CREATE-OR-REPLACE-VIEW-语句修改视图"><a href="#1-CREATE-OR-REPLACE-VIEW-语句修改视图" class="headerlink" title="(1).CREATE  OR  REPLACE  VIEW 语句修改视图"></a>(1).CREATE  OR  REPLACE  VIEW 语句修改视图</h3><pre><code>CREATE  OR  REPLACE  [ ALGORITHM ={ UNDEFINED | MERGE | TEMPTABLE }]
-                                         VIEW 视图名 [( 属性清单 )]
-                                         AS SELECT 语句  [ WITH [ CASCADED | LOCAL ] CHECK OPTION ]；
-如：create or replace  view v1 as select * from mytable where bookId &lt; 30;</code></pre><h3 id="2-ALTER-语句修改视图"><a href="#2-ALTER-语句修改视图" class="headerlink" title="(2).ALTER 语句修改视图"></a>(2).ALTER 语句修改视图</h3><pre><code>ALTER  [ ALGORITHM ={ UNDEFINED | MERGE | TEMPTABLE }]
-             VIEW 视图名 [( 属性清单 )]
-             AS SELECT 语句
-             [ WITH [ CASCADED | LOCAL ] CHECK OPTION ]；
-如：alter view v1 as select * from mytable;</code></pre><h2 id="4-更新视图"><a href="#4-更新视图" class="headerlink" title="4.更新视图"></a>4.更新视图</h2><p>&emsp;&emsp;更新视图是指通过视图来插入（INSERT）、更新（UPDATE）和删除（DELETE）表中的数据。因为视图是一个虚拟的表，其中没有数据。</p>
-<p>&emsp;&emsp;通过视图更新时，都是转换基本表来更新。更新视图时，只能更新权限范围内的数据。<br>超出了范围，就不能更新。</p>
-<h3 id="1-插入-INSERT"><a href="#1-插入-INSERT" class="headerlink" title="(1).插入(INSERT)"></a>(1).插入(INSERT)</h3><pre><code> CREATE VIEW v1(b,p) AS select bookId,bookName from mytable;
- INSERT into v1 values(44,&apos;think in java&apos;);
-
-插入视图，再次查看视图v1时会看到插入的数据，视图操作实际是对表的操作，可以看到mytable表中增加了一条数据，
-但是其他没有插入的字段则是显示默认值</code></pre><h3 id="2-更新-UPDATE"><a href="#2-更新-UPDATE" class="headerlink" title="(2).更新(UPDATE)"></a>(2).更新(UPDATE)</h3><pre><code>update v1 set b=8,p=&apos;设计模式&apos; where b=44</code></pre><h3 id="3-删除-DELETE"><a href="#3-删除-DELETE" class="headerlink" title="(3).删除(DELETE)"></a>(3).删除(DELETE)</h3><pre><code>delete from v1 where b=44;</code></pre><h2 id="5-删除视图"><a href="#5-删除视图" class="headerlink" title="5.删除视图"></a>5.删除视图</h2><p>&emsp;&emsp;删除视图是指删除数据库中已存在的视图。删除视图时，只能删除视图的定义，不会删除数据；</p>
-<pre><code>DROP VIEW [ IF EXISTS ] 视图名列表 [ RESTRICT | CASCADE ]
-如： DROP VIEW  IF EXISTS  v1;</code></pre><h1 id="六-触发器"><a href="#六-触发器" class="headerlink" title="六.触发器"></a>六.触发器</h1><h2 id="1-触发器的引入"><a href="#1-触发器的引入" class="headerlink" title="(1).触发器的引入"></a>(1).触发器的引入</h2><blockquote>
-<p>触发器（TRIGGER）是由事件来触发某个操作。</p>
-<p>这些事件包括 INSERT 语句、UPDATE 语句和 DELETE 语句。</p>
-<p>当数据库系统执行这些事件时，就会激活触发器执行相应的操作。</p>
+<h2 id="2-原理理解"><a href="#2-原理理解" class="headerlink" title="2.原理理解"></a>2.原理理解</h2><pre><code>例如：
+有数组里面有4个数，则冒 3轮就可以实现排序。 
+第一轮      数据比较 3次
+第二轮        数据比较 2次
+第三轮       数据比较 1次</code></pre><h2 id="3-代码实现"><a href="#3-代码实现" class="headerlink" title="3.代码实现"></a>3.代码实现</h2><pre><code>public class BubblingTest {
+    private int index = 0;
+    private long[] arr = null;
+    public BubblingTest(){
+        if(arr==null){
+            arr = new long[50];
+        }
+    }
+    public void insert(int value){
+        arr[index] = value;
+        index++;
+    }
+    public void display(){
+        for(int i=0;i&lt;index;i++){
+            System.out.print(arr[i]+&quot;,&quot;);
+        }
+        System.out.println(arr.toString());
+    }
+    public void bubblingSort(){
+        long temp = 0L;
+        for(int i=0;i&lt;index-1;i++){    // 轮数
+            for(int j=0;j&lt;index-i-1;j++){     //比较次数
+                if(arr[j]&gt;arr[j+1]){
+                     temp = arr[j];
+                    arr[j]=arr[j+1];
+                    arr[j+1] = temp;
+                }
+            }
+        }
+    }
+    public static void main(String[] args) {
+        BubblingTest test = new BubblingTest();
+        test.insert(10);
+        test.insert(12);
+        test.insert(1);
+        test.insert(20);
+        test.bubblingSort();
+        test.display();
+    }
+}</code></pre><h1 id="二-选择排序算法"><a href="#二-选择排序算法" class="headerlink" title="二.选择排序算法"></a>二.选择排序算法</h1><h2 id="1-核心思想-1"><a href="#1-核心思想-1" class="headerlink" title="1.核心思想"></a>1.核心思想</h2><blockquote>
+<p>扫描所有的元素，得到最小的元素，并将最小的元素与左边第一个元素进行交换，再次扫描出第一位置的所有元素，得到最小的元素，与左边第二个元素进行交换，一次类推。</p>
 </blockquote>
-<h2 id="2-创建与使用触发器"><a href="#2-创建与使用触发器" class="headerlink" title="(2).创建与使用触发器"></a>(2).创建与使用触发器</h2><h4 id="创建只有一个执行语句的触发器"><a href="#创建只有一个执行语句的触发器" class="headerlink" title="创建只有一个执行语句的触发器"></a>创建只有一个执行语句的触发器</h4><pre><code>CREATE TRIGGER 触发器名  BEFORE | AFTER 触发事件
-                              ON 表名  FOR EACH ROW 事件发生时要执行的语句
+<h2 id="2-原理理解-1"><a href="#2-原理理解-1" class="headerlink" title="2.原理理解"></a>2.原理理解</h2><pre><code>例如：
+有数组里面有4个数，则选择 3轮就可以实现排序。 
+轮数    首位数下标    比较数首位下标    数据总数
+第一轮    0    1    4
+第二轮    1    2    3
+第三轮    2    3    2</code></pre><h2 id="3-代码实现-1"><a href="#3-代码实现-1" class="headerlink" title="3.代码实现"></a>3.代码实现</h2><pre><code>public class SelectTest {
+    private long[] arr = null;
+    private int index = 0;
+    public SelectTest(){
+        if(arr == null){
+            arr = new long[20];
+        }
+    }
+    public void insert(int value){
+        arr[index] = value;
+        index++;
+    }
+    public void display(){
+        for(int i=0;i&lt;index;i++){
+            System.out.print(arr[i]+&quot;  &quot;);
+        }
+        System.out.println();
+    }
+    public void selectSort(){
 
-如：CREATE TRIGGER trig_book AFTER INSERT
-             ON t_book FOR EACH ROW
-             UPDATE t_bookType SET bookNum=bookNum+1 WHERE new.bookTypeId=t_booktype.id;
-表示t_book表中国执行插入操作时触发t_bookType的更新操作，将bookNum加1
+        for(int i=0;i&lt;index-1;i++){//选择几轮
+            int k = i;//记录下标
+            for(int j=i+1;j&lt;index;j++){ // 选最小的记录
+                if(arr[k]&gt;arr[j]){
+                    k = j;//记下目前找到的最小值所在的位置
+                }
+            }
+            //在内层循环结束，也就是找到本轮循环的最小的数以后，再进行交换
+            if(k!=i){ //交换a[i]和a[k]
+                long temp = arr[i];
+                arr[i] = arr[k];
+                arr[k] = temp;
+            }
+        }
+    }
+    public static void main(String[] args) {
+        SelectTest test = new SelectTest();
+        test.insert(12);
+        test.insert(2);
+        test.insert(32);
+        test.insert(17);
+        test.insert(52);
+        test.display();
+        test.selectSort();
+        test.display();
+    }
+}</code></pre><h1 id="三-插入排序算法"><a href="#三-插入排序算法" class="headerlink" title="三.插入排序算法"></a>三.插入排序算法</h1><h2 id="1-核心思想-2"><a href="#1-核心思想-2" class="headerlink" title="1.核心思想"></a>1.核心思想</h2><blockquote>
+<p>抽出一个元素，在其前面的元素中找到合适的位置进行插入。</p>
+</blockquote>
+<h2 id="2-原理理解-2"><a href="#2-原理理解-2" class="headerlink" title="2.原理理解"></a>2.原理理解</h2><pre><code>例如：
+有数组里面有4个数，则插入 3轮就可以实现排序。 
+轮数    选择数下标    待比较首位数下标    待比较数据总数
+第一轮    1    0    1
+第二轮    2    1    2
+第三轮    3    2    3</code></pre><h2 id="3-代码实现-2"><a href="#3-代码实现-2" class="headerlink" title="3.代码实现"></a>3.代码实现</h2><pre><code>public class InsertTest {
+    private static long[] arr = null;
+    private int index;
+    public void insert(int value){
+        arr[index] = value;
+        index++;
+    }
+    public void display(){
+        for(int i=0;i&lt;arr.length;i++){
+            System.out.print(arr[i]+&quot; &quot;);
+        }
+        System.out.println();
+    }
+    public void insertSort(){
+        for(int i=1;i&lt;arr.length;i++){ //插入几轮
 
-注：new是中间量，表示插入（更新）时的那条数据，如果是删除时用old，表示删除的那条数据</code></pre><h4 id="创建有多个执行语句的触发器"><a href="#创建有多个执行语句的触发器" class="headerlink" title="创建有多个执行语句的触发器"></a>创建有多个执行语句的触发器</h4><pre><code>CREATE TRIGGER 触发器名  BEFORE | AFTER 触发事件
-                              ON 表名  FOR  EACH  ROW  
-                              BEGIN  
-                                   执行语句列表  
-                              END
+            long temp = arr[i];
+            for(int j=i-1;j&gt;=0 ;j--){//待比较数据个数，和首位数据下标
+                if(arr[j]&gt;temp){
+                    arr[j+1] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+        }
+    }
+    public static void main(String[] args) {
+        arr = new long[4];   //4位数比较
+        InsertTest test = new InsertTest();
+        test.insert(10);
+        test.insert(12);
+        test.insert(1);
+        test.insert(20);
+        test.display();
+        test.insertSort();
+        test.display();
+    }
+}</code></pre><h1 id="四-对象排序算法"><a href="#四-对象排序算法" class="headerlink" title="四.对象排序算法"></a>四.对象排序算法</h1><h2 id="1-新建一个对象类"><a href="#1-新建一个对象类" class="headerlink" title="1.新建一个对象类"></a>1.新建一个对象类</h2><pre><code>public class Student {
+    private String name;
+    private String sex;
+    private int age;
+    private String stuNumber;
+    public Student(String name, String sex, int age, String stuNumber) {
+        super();
+        this.name = name;
+        this.sex = sex;
+        this.age = age;
+        this.stuNumber = stuNumber;
+    }
+    public String getStuNumber() {
+        return stuNumber;
+    }
+    public void setStuNumber(String stuNumber) {
+        this.stuNumber = stuNumber;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getSex() {
+        return sex;
+    }
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+    public int getAge() {
+        return age;
+    }
+    public void setAge(int age) {
+        this.age = age;
+    }
+    @Override
+    public String toString() {
+        return &quot;ObjectTest [name=&quot; + name + &quot;, sex=&quot; + sex + &quot;, age=&quot; + age + &quot;, stuNumber=&quot; + stuNumber + &quot;]&quot;;
+    }
 
-如：
-DELIMITER |
-CREATE TRIGGER trig_book2 AFTER DELETE
-    ON t_book FOR EACH ROW
-    BEGIN
-       UPDATE t_bookType SET bookNum=bookNum-1 WHERE old.bookTypeId=t_booktype.id;
-       INSERT INTO t_log VALUES(NULL,NOW(),&apos;在book表里删除了一条数据&apos;);
-       DELETE FROM t_test WHERE old.bookTypeId=t_test.id;
-    END
-|
-DELIMITER ;
+}</code></pre><h2 id="2-添加比较方法"><a href="#2-添加比较方法" class="headerlink" title="2.添加比较方法"></a>2.添加比较方法</h2><pre><code>public class StudentSort {
+    private Student[] students = null;
+    private int index;
+    public StudentSort(int value){
+        students = new Student[value];
+    }
+    public void insert(Student stu){
+        students[index] = stu;
+        index++;
+    }
+    public void display(){
+        for(int i=0;i&lt;index;i++){
+            System.out.println(students[i].toString());
+        }
+    }
+    /**
+     * name冒泡排序
+     */
+    public void bubblingSortByName(){
+        for(int i=0;i&lt;students.length-1;i++){
+            Student stemp = null;
+            for(int j=0;j&lt;students.length-1-i;j++){
+                if(students[j].getName().compareTo(students[j+1].getName())&gt;0){
+                    stemp = students[j];
+                    students[j] = students[j+1];
+                    students[j+1] = stemp;
+                }
+            }
+        }
+    }
+    /**
+     * name插入排序
+     */
+    public void insertSortByName(){
+        for(int i=1;i&lt;students.length;i++){
+            Student insertTemp = students[i];
+            for(int j=i-1;j&gt;=0;j--){
+                if(students[j].getName().compareTo(insertTemp.getName())&gt;0){
+                    students[j+1]=students[j];
+                    students[j] = insertTemp;
+                }
+            }
+        }
+    }
+    /**
+     * name 选择排序
+     */
+    public void selectSortByName(){
+        for(int i=0;i&lt;students.length-1;i++){
+            int tempIndex = i;
+            for(int j=i;j&lt;students.length-1;j++){
+                if(students[j].getName().compareTo(students[j+1].getName())&gt;0){
+                    tempIndex = j+1;
+                }
+            }
+            if(tempIndex!=i){
+                Student min = students[tempIndex];
+                students[tempIndex] = students[i];
+                students[i] = min;
+            }
+        }
+    }
+}</code></pre><h2 id="3-测试比较方法"><a href="#3-测试比较方法" class="headerlink" title="3.测试比较方法"></a>3.测试比较方法</h2><pre><code>public class ObjectTest {
+    public static void main(String[] args) {
+        Student stu = new Student(&quot;zhansan&quot;, &quot;man&quot;, 12, &quot;122201&quot;);
+        Student stu1 = new Student(&quot;lisi&quot;, &quot;man&quot;, 14, &quot;122203&quot;);
+        Student stu2 = new Student(&quot;wangwu&quot;, &quot;woman&quot;, 18, &quot;122205&quot;);
+        Student stu3 = new Student(&quot;zhaoliu&quot;, &quot;woman&quot;, 13, &quot;122202&quot;);
+        StudentSort sort = new StudentSort(4);
+        sort.insert(stu);
+        sort.insert(stu1);
+        sort.insert(stu2);
+        sort.insert(stu3);
+        sort.display();
+//        sort.bubblingSortByName();
+//        sort.insertSortByName();
+        sort.selectSortByName();
+        System.out.println(&quot;排序后&quot;);
+        sort.display();
+    }
+}</code></pre><h1 id="五-栈"><a href="#五-栈" class="headerlink" title="五.栈"></a>五.栈</h1><h2 id="1-核心思想-3"><a href="#1-核心思想-3" class="headerlink" title="1.核心思想"></a>1.核心思想</h2><blockquote>
+<p>栈只允许访问一个数据项，也就是最后插入的数据项。只有移除了这个数据项，才能访问倒数第二个插入的数据项。</p>
+</blockquote>
+<h2 id="2-原理理解-3"><a href="#2-原理理解-3" class="headerlink" title="2.原理理解"></a>2.原理理解</h2><blockquote>
+<p>栈里面的数据可以看成是一个数组，栈里能存元素的最大个数用maxSize表示，栈顶位置用top表示。</p>
+</blockquote>
+<h2 id="3-代码实现-3"><a href="#3-代码实现-3" class="headerlink" title="3.代码实现"></a>3.代码实现</h2><pre><code>public class MyStack {
+    private int maxSize;
+    private long[] arr;
+    private int top;
+    public MyStack(int value){
+        maxSize = value;
+        arr = new long[maxSize];
+        top = -1;
+    }
+    //压入数据
+    public void push(long value){
+        top++;
+        arr[top] = value;
+    }
+    //弹出数据
+    public long pop(){
+        return arr[top--]; 
+    }
+    //访问栈顶数据
+    public long peek(){
+        return arr[top];
+    }
+    //栈是否为空
+    public boolean isEmpty(){
+        return (top==-1);
+    }
+    //栈是否满了
+    public boolean isFull(){
+        return (top==maxSize-1);
+    }
 
-注：DELIMITER | 包裹起来避免触发多条sql时遇到分号中断执行的情况</code></pre><h2 id="3-查看触发器"><a href="#3-查看触发器" class="headerlink" title="(3).查看触发器"></a>(3).查看触发器</h2><pre><code>SHOW TRIGGERS; 语句查看触发器信息
-
-在 triggers 表中查看触发器信息</code></pre><h2 id="4-删除触发器"><a href="#4-删除触发器" class="headerlink" title="(4).删除触发器"></a>(4).删除触发器</h2><pre><code>DROP TRIGGER 触发器名；</code></pre><h1 id="七-mysql常用函数（部分举例）"><a href="#七-mysql常用函数（部分举例）" class="headerlink" title="七.mysql常用函数（部分举例）"></a>七.mysql常用函数（部分举例）</h1><h2 id="1-日期和时间函数"><a href="#1-日期和时间函数" class="headerlink" title="1.日期和时间函数"></a>1.日期和时间函数</h2><pre><code>(1).CURDATE()  返回当前系统日期； 如：select CURDATE() ,CURTIME(),MONTH(created_at) from theme13；
-(2).CURTIME()  返回当前系统时间；
-
-(4).Year(time)  返回日期time中的 年份值 ，
-(3).MONTH(time)  返回日期 time 中的月份值，范围是 1~12
-(4).DAY(time)  返回日期time中的 天值 ，</code></pre><h2 id="2-字符串函数"><a href="#2-字符串函数" class="headerlink" title="2.字符串函数"></a>2.字符串函数</h2><pre><code>(1).CHAR_LENGTH(s)   计算字符串 s 的字符数；
-(2).UPPER(s)  把所有字母变成大写字母；
-(3).LOWER(s)   把所有字母变成小写字母；</code></pre><h2 id="3-数学函数"><a href="#3-数学函数" class="headerlink" title="3.数学函数"></a>3.数学函数</h2><pre><code>(1).A BS(x)   求绝对值
-(2).SQRT(x)   求平方根
-(3).MOD(x,y)   求余</code></pre><h2 id="4-加密函数"><a href="#4-加密函数" class="headerlink" title="4.加密函数"></a>4.加密函数</h2><pre><code>(1).PASSWORD(str)     一般对用户的密码加密 不可逆
-(2).MD5(str)    普通加密 不可逆
-(3).ENCODE(str，pswd_str)     加密函数，结果是一个二进制数，必须使用 BLOB 类型的字段来保存它；
-(4).DECODE(crypt_str，pswd_str)     解密函数；</code></pre><h1 id="八-数据备份与还原"><a href="#八-数据备份与还原" class="headerlink" title="八.数据备份与还原"></a>八.数据备份与还原</h1><h2 id="1-数据备份"><a href="#1-数据备份" class="headerlink" title="(1).数据备份"></a>(1).数据备份</h2><p>备份数据可以保证数据库中数据的安全，数据库管理员需要定期的进行数据库备份；</p>
-<pre><code>mysqldump -u username -p dbname table1 table2 ... &gt; BackupName.sql
-
-dbname 参数表示数据库的名称；table1 和 table2 参数表示表的名称，没有该参数时将备份整个数据库；
-BackupName.sql 参数表示备份文件的名称，文件名前面可以加上一个绝对路径。通常以 sql 作为后缀。
-
-如：
-mysqldump -u root -p db_book &gt; c:\db_book.sql     //将整个db_book数据库备份到c盘db_book.sql文件中</code></pre><h2 id="2-数据还原"><a href="#2-数据还原" class="headerlink" title="(2).数据还原"></a>(2).数据还原</h2><pre><code>Mysql -u root -p [dbname] &lt; backup.sql
-
-dbname 参数表示数据库名称。该参数是可选参数，可以指定数据库名，也可以不指定。
-指定数据库名时，表示还原该数据库下的表。
-不指定数据库名时，表示还原特定的一个数据库。而备份文件中有创建数据库的语句。</code></pre>
+}
+public class StackTest {
+    public static void main(String[] args) {
+        MyStack stack = new MyStack(10);
+        stack.push(12);
+        stack.push(22);
+        stack.push(52);
+        stack.push(16);
+        stack.push(13);
+        while(!stack.isEmpty()){
+            System.out.println(&quot;栈顶数据&quot;+stack.peek());
+            System.out.println(stack.pop());
+        }
+    }
+}</code></pre>
       
        
     </div>
@@ -1223,9 +1313,9 @@ dbname 参数表示数据库名称。该参数是可选参数，可以指定数�
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>MySql数据库基础语法</p>
-    <p><span class="copy-title">发布时间:</span>2020-01-09, 15:53:28</p>
-    <p><span class="copy-title">最后更新:</span>2020-01-09, 15:53:28</p>
+    <p><span class="copy-title">文章标题:</span>java数据结构和算法</p>
+    <p><span class="copy-title">发布时间:</span>2020-01-15, 17:13:18</p>
+    <p><span class="copy-title">最后更新:</span>2020-01-15, 17:13:19</p>
 </div>
 
 

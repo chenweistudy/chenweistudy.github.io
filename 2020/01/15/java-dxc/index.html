@@ -1,0 +1,2116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>java多线程和线程池 | Hexo</title>
+  <meta name="keywords" content=" java多线程和线程池 ">
+  <meta name="description" content="java多线程和线程池 | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="一.Java线程学习基础知识1.进程和线程 (1).进程：每个进程都有独立的代码和数据空间（进程上下文），进程间的切换会有较大的开销，一个进程包含1–n个线程。（进程是资源分配的最小单位） (2).线程：同一类线程共享代码和数据空间，每个线程有独立的运行栈和程序计数器(PC)，线程切换开销小。（线程是cpu调度的最小单位） (3).线程和进程一样分为五个阶段：创建、就绪、运行、阻塞、终止。 (4)">
+<meta name="keywords" content="java多线程和线程池">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java多线程和线程池">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;15&#x2F;java-dxc&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一.Java线程学习基础知识1.进程和线程 (1).进程：每个进程都有独立的代码和数据空间（进程上下文），进程间的切换会有较大的开销，一个进程包含1–n个线程。（进程是资源分配的最小单位） (2).线程：同一类线程共享代码和数据空间，每个线程有独立的运行栈和程序计数器(PC)，线程切换开销小。（线程是cpu调度的最小单位） (3).线程和进程一样分为五个阶段：创建、就绪、运行、阻塞、终止。 (4)">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;15&#x2F;java-dxc&#x2F;1.png">
+<meta property="og:updated_time" content="2020-01-15T09:13:19.596Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;15&#x2F;java-dxc&#x2F;1.png">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>cwstudy</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="github" href="https://github.com/chenweistudy" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(55)</small></div></li>
+    
+        
+            
+            <li><div data-rel="springcloud">springcloud<small>(10)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="docker">docker<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="linux">linux<small>(6)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="架构">架构<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="java">java<small>(8)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="redis">redis<small>(8)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="tools">tools<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="springboot">springboot<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="swagger">swagger<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="vue">vue<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="nginx">nginx<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="netty">netty<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="消息队列">消息队列<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="spring">spring<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="database">database<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="spring-mvc">spring-mvc<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="job">job<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="55">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Hystrix和Feign Hystrix</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">熔断监控Hystrix-Dashboard</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Spring-Cloud-Sleuth</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Zipkin</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Spring-cloud和Spring-boot</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">docker</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">find命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">分布式</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">Java-IO</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">JDK工具使用</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">Java访问jar包说明</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">linux基本命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">linux安装jre</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">redis连接springboot</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">redis</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">redis取消只能本地访问的方式</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">java实现发送邮件</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">java实现手机发送短信</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot日志配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot项目导可执行jar</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">springboot连接redis哨兵集群</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot基础知识</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">swagger使用</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">vue项目搭建</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">eureka原理介绍</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">eureka 服务提供和调用</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">配置中心git</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">配置中心git服务化和高可用</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">java变量</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">java数据结构和算法</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Java-reflax</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">ps命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">mv命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">nginx学习</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">netty整合springboot</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">rabbitMQ</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">redis集群的三种方式</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">主从复制和哨兵 （配置文件详解）</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring高级话题</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring常用配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring基础知识</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Spring cloud zuul (服务网关初级)</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">MySql数据库基础语法</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">netty基本理论</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">linux高级命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">springboot整合mq</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">SpringMVC基础</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">SpringMVC配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">Java-NIO</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Spring cloud zuul (服务网关高级)</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">java多线程和线程池</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">java 知识框架</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="springcloud "
+           href="/2019/11/13/Hystrix/"
+           data-tag="Hystrix和Feign Hystrix"
+           data-author="" >
+            <span class="post-title" title="熔断器（Hystrix）">熔断器（Hystrix）</span>
+            <span class="post-date" title="2019-11-13 15:58:16">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/Hystrix-Dashboard/"
+           data-tag="熔断监控Hystrix-Dashboard"
+           data-author="" >
+            <span class="post-title" title="熔断监控Hystrix-Dashboard">熔断监控Hystrix-Dashboard</span>
+            <span class="post-date" title="2019-11-13 15:58:13">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/14/Sleuth-ZipKin/"
+           data-tag="Spring-Cloud-Sleuth,Zipkin"
+           data-author="" >
+            <span class="post-title" title="Spring-Cloud-Sleuth和Zipkin进行分布式链路跟踪">Spring-Cloud-Sleuth和Zipkin进行分布式链路跟踪</span>
+            <span class="post-date" title="2019-11-14 15:03:35">2019/11/14</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/14/boot-cloud/"
+           data-tag="Spring-cloud和Spring-boot"
+           data-author="" >
+            <span class="post-title" title="Spring-cloud和Spring-boot区别">Spring-cloud和Spring-boot区别</span>
+            <span class="post-date" title="2019-11-14 14:52:22">2019/11/14</span>
+        </a>
+        
+        <a  class="docker "
+           href="/2020/01/10/docker-centerOS/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="CenterOS 7 安装docker">CenterOS 7 安装docker</span>
+            <span class="post-date" title="2020-01-10 14:00:30">2020/01/10</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/find/"
+           data-tag="find命令"
+           data-author="" >
+            <span class="post-title" title="find命令">find命令</span>
+            <span class="post-date" title="2019-11-15 17:20:49">2019/11/15</span>
+        </a>
+        
+        <a  class="架构 "
+           href="/2019/11/11/indexs/"
+           data-tag="分布式"
+           data-author="" >
+            <span class="post-title" title="用【快餐店】理解分布式架构">用【快餐店】理解分布式架构</span>
+            <span class="post-date" title="2019-11-11 13:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="java "
+           href="/2019/11/15/java-io/"
+           data-tag="Java-IO"
+           data-author="" >
+            <span class="post-title" title="Java-IO">Java-IO</span>
+            <span class="post-date" title="2019-11-15 15:43:15">2019/11/15</span>
+        </a>
+        
+        <a  class="java "
+           href="/2019/11/15/java-jvm/"
+           data-tag="JDK工具使用"
+           data-author="" >
+            <span class="post-title" title="JDK工具使用">JDK工具使用</span>
+            <span class="post-date" title="2019-11-15 16:14:52">2019/11/15</span>
+        </a>
+        
+        <a  class="java "
+           href="/2019/12/24/java-main/"
+           data-tag="Java访问jar包说明"
+           data-author="" >
+            <span class="post-title" title="Java访问jar包（windows和linux）">Java访问jar包（windows和linux）</span>
+            <span class="post-date" title="2019-12-24 10:06:54">2019/12/24</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/linux-base/"
+           data-tag="linux基本命令"
+           data-author="" >
+            <span class="post-title" title="linux基本命令">linux基本命令</span>
+            <span class="post-date" title="2019-11-15 17:20:49">2019/11/15</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/linux-jre/"
+           data-tag="linux安装jre"
+           data-author="" >
+            <span class="post-title" title="linux安装jre">linux安装jre</span>
+            <span class="post-date" title="2019-11-15 17:20:51">2019/11/15</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/12/06/redis-springboot/"
+           data-tag="redis连接springboot"
+           data-author="" >
+            <span class="post-title" title="redis连接springboot">redis连接springboot</span>
+            <span class="post-date" title="2019-12-06 14:03:57">2019/12/06</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/11/11/redisCache/"
+           data-tag="redis"
+           data-author="" >
+            <span class="post-title" title="redis缓存">redis缓存</span>
+            <span class="post-date" title="2019-11-11 17:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/11/11/redisPersister/"
+           data-tag="redis"
+           data-author="" >
+            <span class="post-title" title="redis持久化">redis持久化</span>
+            <span class="post-date" title="2019-11-11 16:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/11/18/redisconnnection/"
+           data-tag="redis取消只能本地访问的方式"
+           data-author="" >
+            <span class="post-title" title="redis取消只能本地访问的方式">redis取消只能本地访问的方式</span>
+            <span class="post-date" title="2019-11-18 15:41:22">2019/11/18</span>
+        </a>
+        
+        <a  class="tools "
+           href="/2019/11/19/sendMail/"
+           data-tag="java实现发送邮件"
+           data-author="" >
+            <span class="post-title" title="java实现发送邮件">java实现发送邮件</span>
+            <span class="post-date" title="2019-11-19 10:33:39">2019/11/19</span>
+        </a>
+        
+        <a  class="tools "
+           href="/2019/11/19/sendMessage/"
+           data-tag="java实现手机发送短信"
+           data-author="" >
+            <span class="post-title" title="java实现手机发送短信">java实现手机发送短信</span>
+            <span class="post-date" title="2019-11-19 09:41:38">2019/11/19</span>
+        </a>
+        
+        <a  class="springboot "
+           href="/2019/11/14/springboot-config/"
+           data-tag="Springboot日志配置"
+           data-author="" >
+            <span class="post-title" title="Springboot日志配置">Springboot日志配置</span>
+            <span class="post-date" title="2019-11-14 15:19:38">2019/11/14</span>
+        </a>
+        
+        <a  class="springboot "
+           href="/2019/11/14/springboot-jar/"
+           data-tag="Springboot项目导可执行jar"
+           data-author="" >
+            <span class="post-title" title="Springboot项目导可执行jar">Springboot项目导可执行jar</span>
+            <span class="post-date" title="2019-11-14 15:26:12">2019/11/14</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/12/12/springboot-rediscolony/"
+           data-tag="springboot连接redis哨兵集群"
+           data-author="" >
+            <span class="post-title" title="springboot连接redis哨兵集群">springboot连接redis哨兵集群</span>
+            <span class="post-date" title="2019-12-12 17:23:05">2019/12/12</span>
+        </a>
+        
+        <a  class="springboot "
+           href="/2019/11/14/springboot/"
+           data-tag="Springboot基础知识"
+           data-author="" >
+            <span class="post-title" title="Springboot基础知识">Springboot基础知识</span>
+            <span class="post-date" title="2019-11-14 15:37:49">2019/11/14</span>
+        </a>
+        
+        <a  class="swagger "
+           href="/2019/11/22/swagger/"
+           data-tag="swagger使用"
+           data-author="" >
+            <span class="post-title" title="swagger使用">swagger使用</span>
+            <span class="post-date" title="2019-11-22 13:39:07">2019/11/22</span>
+        </a>
+        
+        <a  class="vue "
+           href="/2019/11/29/vue-tool/"
+           data-tag="vue项目搭建"
+           data-author="" >
+            <span class="post-title" title="vue 文字跑马灯效果演示">vue 文字跑马灯效果演示</span>
+            <span class="post-date" title="2019-11-29 14:29:36">2019/11/29</span>
+        </a>
+        
+        <a  class="vue "
+           href="/2019/11/29/vue-tool2/"
+           data-tag="vue项目搭建"
+           data-author="" >
+            <span class="post-title" title="vue 文字 轮播演示">vue 文字 轮播演示</span>
+            <span class="post-date" title="2019-11-29 14:29:36">2019/11/29</span>
+        </a>
+        
+        <a  class="vue "
+           href="/2019/11/21/vueStudy/"
+           data-tag="vue项目搭建"
+           data-author="" >
+            <span class="post-title" title="vue项目搭建">vue项目搭建</span>
+            <span class="post-date" title="2019-11-21 15:26:24">2019/11/21</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/eureka1/"
+           data-tag="eureka原理介绍"
+           data-author="" >
+            <span class="post-title" title="eureka原理介绍">eureka原理介绍</span>
+            <span class="post-date" title="2019-11-13 16:08:48">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/eureka-Producer-Consumer/"
+           data-tag="eureka 服务提供和调用"
+           data-author="" >
+            <span class="post-title" title="eureka服务提供和调用">eureka服务提供和调用</span>
+            <span class="post-date" title="2019-11-13 15:11:06">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/gitConfig/"
+           data-tag="配置中心git"
+           data-author="" >
+            <span class="post-title" title="配置中心git">配置中心git</span>
+            <span class="post-date" title="2019-11-13 16:58:00">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/gitconfig-server-client/"
+           data-tag="配置中心git服务化和高可用"
+           data-author="" >
+            <span class="post-title" title="配置中心git服务化和高可用">配置中心git服务化和高可用</span>
+            <span class="post-date" title="2019-11-13 17:11:42">2019/11/13</span>
+        </a>
+        
+        <a  class="java "
+           href="/2019/12/24/java-bianliang/"
+           data-tag="java变量"
+           data-author="" >
+            <span class="post-title" title="java变量">java变量</span>
+            <span class="post-date" title="2019-12-24 15:12:36">2019/12/24</span>
+        </a>
+        
+        <a  class="java "
+           href="/2020/01/15/java-data/"
+           data-tag="java数据结构和算法"
+           data-author="" >
+            <span class="post-title" title="java数据结构和算法">java数据结构和算法</span>
+            <span class="post-date" title="2020-01-15 17:13:18">2020/01/15</span>
+        </a>
+        
+        <a  class="java "
+           href="/2019/11/29/java-reflex/"
+           data-tag="Java-reflax"
+           data-author="" >
+            <span class="post-title" title="Java-reflax 反射">Java-reflax 反射</span>
+            <span class="post-date" title="2019-11-29 14:30:08">2019/11/29</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/linux-ps/"
+           data-tag="ps命令"
+           data-author="" >
+            <span class="post-title" title="ps命令">ps命令</span>
+            <span class="post-date" title="2019-11-15 17:20:52">2019/11/15</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/linux-mv/"
+           data-tag="mv命令"
+           data-author="" >
+            <span class="post-title" title="mv命令">mv命令</span>
+            <span class="post-date" title="2019-11-15 17:20:51">2019/11/15</span>
+        </a>
+        
+        <a  class="nginx "
+           href="/2020/01/06/nginx/"
+           data-tag="nginx学习"
+           data-author="" >
+            <span class="post-title" title="nginx学习">nginx学习</span>
+            <span class="post-date" title="2020-01-06 18:08:19">2020/01/06</span>
+        </a>
+        
+        <a  class="netty "
+           href="/2019/11/29/netty-springboot/"
+           data-tag="netty整合springboot"
+           data-author="" >
+            <span class="post-title" title="netty整合springboot">netty整合springboot</span>
+            <span class="post-date" title="2019-11-29 15:02:14">2019/11/29</span>
+        </a>
+        
+        <a  class="消息队列 "
+           href="/2019/11/13/rabbitMQBase/"
+           data-tag="rabbitMQ"
+           data-author="" >
+            <span class="post-title" title="消息队列">消息队列</span>
+            <span class="post-date" title="2019-11-13 09:58:16">2019/11/13</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/12/11/redis-colony/"
+           data-tag="redis集群的三种方式"
+           data-author="" >
+            <span class="post-title" title="redis集群的三种方式(linux系统)">redis集群的三种方式(linux系统)</span>
+            <span class="post-date" title="2019-12-11 14:23:00">2019/12/11</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/12/11/redis-uses/"
+           data-tag="主从复制和哨兵 （配置文件详解）"
+           data-author="" >
+            <span class="post-title" title="主从复制和哨兵 （配置文件详解）">主从复制和哨兵 （配置文件详解）</span>
+            <span class="post-date" title="2019-12-11 14:22:59">2019/12/11</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/11/11/redis1/"
+           data-tag="redis"
+           data-author="" >
+            <span class="post-title" title="Redis基本命令和java基本操作">Redis基本命令和java基本操作</span>
+            <span class="post-date" title="2019-11-11 10:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="spring "
+           href="/2019/11/14/spring-high/"
+           data-tag="Spring高级话题"
+           data-author="" >
+            <span class="post-title" title="Spring高级话题">Spring高级话题</span>
+            <span class="post-date" title="2019-11-14 17:04:21">2019/11/14</span>
+        </a>
+        
+        <a  class="spring "
+           href="/2019/11/14/spring-config/"
+           data-tag="Spring常用配置"
+           data-author="" >
+            <span class="post-title" title="Spring常用配置">Spring常用配置</span>
+            <span class="post-date" title="2019-11-14 16:44:14">2019/11/14</span>
+        </a>
+        
+        <a  class="spring "
+           href="/2019/11/14/spring-base1/"
+           data-tag="Spring基础知识"
+           data-author="" >
+            <span class="post-title" title="Spring基础知识">Spring基础知识</span>
+            <span class="post-date" title="2019-11-14 16:19:44">2019/11/14</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/zuul/"
+           data-tag="Spring cloud zuul (服务网关初级)"
+           data-author="" >
+            <span class="post-title" title="Spring cloud zuul (初级)">Spring cloud zuul (初级)</span>
+            <span class="post-date" title="2019-11-13 17:35:48">2019/11/13</span>
+        </a>
+        
+        <a  class="database "
+           href="/2020/01/09/database-base/"
+           data-tag="MySql数据库基础语法"
+           data-author="" >
+            <span class="post-title" title="MySql数据库基础语法">MySql数据库基础语法</span>
+            <span class="post-date" title="2020-01-09 15:53:28">2020/01/09</span>
+        </a>
+        
+        <a  class="netty "
+           href="/2019/11/25/netty-base/"
+           data-tag="netty基本理论"
+           data-author="" >
+            <span class="post-title" title="netty基本理论">netty基本理论</span>
+            <span class="post-date" title="2019-11-25 16:00:35">2019/11/25</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/linux-high/"
+           data-tag="linux高级命令"
+           data-author="" >
+            <span class="post-title" title="linux高级命令">linux高级命令</span>
+            <span class="post-date" title="2019-11-15 17:20:50">2019/11/15</span>
+        </a>
+        
+        <a  class="消息队列 "
+           href="/2019/12/04/mq-springboot/"
+           data-tag="springboot整合mq"
+           data-author="" >
+            <span class="post-title" title="springboot整合mq">springboot整合mq</span>
+            <span class="post-date" title="2019-12-04 16:55:33">2019/12/04</span>
+        </a>
+        
+        <a  class="spring-mvc "
+           href="/2019/11/15/Hystrix/springmvcbase/"
+           data-tag="SpringMVC基础"
+           data-author="" >
+            <span class="post-title" title="SpringMVC基础">SpringMVC基础</span>
+            <span class="post-date" title="2019-11-15 14:38:17">2019/11/15</span>
+        </a>
+        
+        <a  class="spring-mvc "
+           href="/2019/11/15/Hystrix/springmvcconfig/"
+           data-tag="SpringMVC配置"
+           data-author="" >
+            <span class="post-title" title="SpringMVC配置">SpringMVC配置</span>
+            <span class="post-date" title="2019-11-15 14:38:17">2019/11/15</span>
+        </a>
+        
+        <a  class="java "
+           href="/2019/11/15/java-nio/"
+           data-tag="Java-NIO"
+           data-author="" >
+            <span class="post-title" title="Java-NIO">Java-NIO</span>
+            <span class="post-date" title="2019-11-15 15:43:16">2019/11/15</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/14/zuulhigh/"
+           data-tag="Spring cloud zuul (服务网关高级)"
+           data-author="" >
+            <span class="post-title" title="Spring cloud zuul (高级)">Spring cloud zuul (高级)</span>
+            <span class="post-date" title="2019-11-14 09:48:56">2019/11/14</span>
+        </a>
+        
+        <a  class="java "
+           href="/2020/01/15/java-dxc/"
+           data-tag="java多线程和线程池"
+           data-author="" >
+            <span class="post-title" title="java多线程和线程池">java多线程和线程池</span>
+            <span class="post-date" title="2020-01-15 17:13:19">2020/01/15</span>
+        </a>
+        
+        <a  class="job "
+           href="/2020/01/15/java-job/"
+           data-tag="java 知识框架"
+           data-author="" >
+            <span class="post-title" title="java 知识框架">java 知识框架</span>
+            <span class="post-date" title="2020-01-15 10:21:28">2020/01/15</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-java-dxc" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">java多线程和线程池</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a href="javascript:" target="_blank" data-rel="java noopener">java</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" target="_blank" rel="noopener" class="color2">java多线程和线程池</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2020-01-15 17:13:19'>2020-01-15 17:13</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一-Java线程学习基础知识"><span class="toc-text">一.Java线程学习基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-进程和线程"><span class="toc-text">1.进程和线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-扩展Thread类"><span class="toc-text">2.扩展Thread类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-实现runnable接口"><span class="toc-text">3.实现runnable接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Thread-和Runnable-区别和联系"><span class="toc-text">4.Thread 和Runnable 区别和联系</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Thread和Runnable使用场景："><span class="toc-text">(1).Thread和Runnable使用场景：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-实现Runnable接口比继承Thread类所具有的优势："><span class="toc-text">(2).实现Runnable接口比继承Thread类所具有的优势：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-线程状态切换"><span class="toc-text">5.线程状态切换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-线程调度"><span class="toc-text">6.线程调度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-Sleep-和yield-区别"><span class="toc-text">7.Sleep()和yield()区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-wait-和sleep-区别"><span class="toc-text">8.wait()和sleep()区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-常用函数说明"><span class="toc-text">9.常用函数说明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-sleep-long-millis"><span class="toc-text">(1).sleep(long millis):</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-join"><span class="toc-text">(2).join():</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-yield"><span class="toc-text">(3).yield():</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-setPriority"><span class="toc-text">(4).setPriority():</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-interrupt"><span class="toc-text">(5).interrupt():</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-wait"><span class="toc-text">(6).wait()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#面试题："><span class="toc-text">面试题：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-常见线程名词"><span class="toc-text">10.常见线程名词</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-线程同步"><span class="toc-text">11.线程同步</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-线程数据传递"><span class="toc-text">12.线程数据传递</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二-java并发编程和技术内幕：线程池深入理解"><span class="toc-text">二.java并发编程和技术内幕：线程池深入理解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-为什么要使用线程池？"><span class="toc-text">1.为什么要使用线程池？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Java类库提供了许多静态方法来创建一个线程池"><span class="toc-text">2.Java类库提供了许多静态方法来创建一个线程池</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-创建线程池基本方法"><span class="toc-text">3.创建线程池基本方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-ThreadPool-应用实例"><span class="toc-text">4.ThreadPool 应用实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-CachedThreadPool"><span class="toc-text">4.1 CachedThreadPool</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-FixedThreadPool"><span class="toc-text">4.2 FixedThreadPool</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-newSingleThreadExecutor"><span class="toc-text">4.3 newSingleThreadExecutor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-newScheduledThreadPool"><span class="toc-text">4.4 newScheduledThreadPool</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-scheduleAtFixedRate-按指定频率周期执行某个任务"><span class="toc-text">1.scheduleAtFixedRate 按指定频率周期执行某个任务</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-scheduleWithFixedDelay-周期定时执行某个任务-按指定频率间隔执行某个任务-注意"><span class="toc-text">2.scheduleWithFixedDelay 周期定时执行某个任务/按指定频率间隔执行某个任务(注意)</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-submit-和-execute-的区别和联系"><span class="toc-text">5.submit() 和 execute() 的区别和联系</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-Execute-："><span class="toc-text">5.1 Execute()：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-submit-："><span class="toc-text">5.2 submit()：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-shutdown"><span class="toc-text">5.3 shutdown()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-4-shutdownNow"><span class="toc-text">5.4 shutdownNow()</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-整个线程池启动一条线程的整体过程。"><span class="toc-text">6.整个线程池启动一条线程的整体过程。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-多线程练习题"><span class="toc-text">7.多线程练习题</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一-Java线程学习基础知识"><a href="#一-Java线程学习基础知识" class="headerlink" title="一.Java线程学习基础知识"></a>一.Java线程学习基础知识</h1><h2 id="1-进程和线程"><a href="#1-进程和线程" class="headerlink" title="1.进程和线程"></a>1.进程和线程</h2><blockquote>
+<p>(1).进程：每个进程都有独立的代码和数据空间（进程上下文），进程间的切换会有较大的开销，一个进程包含1–n个线程。（进程是资源分配的最小单位）</p>
+<p>(2).线程：同一类线程共享代码和数据空间，每个线程有独立的运行栈和程序计数器(PC)，线程切换开销小。（线程是cpu调度的最小单位）</p>
+<p>(3).线程和进程一样分为五个阶段：创建、就绪、运行、阻塞、终止。</p>
+<p>(4).多进程是指操作系统能同时运行多个任务（程序）。</p>
+<p>(5).多线程是指在同一程序中有多个顺序流在执行。</p>
+<p>(6).在java中要想实现多线程，有两种手段，一种是继承Thread类，另外一种是实现Runable接口.(其实准确来讲，应该有三种，还有一种是实现Callable接口，并与Future、线程池结合使用）。</p>
+</blockquote>
+<h2 id="2-扩展Thread类"><a href="#2-扩展Thread类" class="headerlink" title="2.扩展Thread类"></a>2.扩展Thread类</h2><pre><code>public class ThreadRun extends Thread{
+    private String name;
+    public ThreadRun(String name){
+        this.name = name;
+    }
+    public void run(){
+        for(int i=0;i&lt;5;i++){
+            System.out.println(name+&quot;运行&quot;+i);
+            try {
+                sleep((int)Math.random()*10);
+            } catch (Exception e) {
+                // TODO: handle exception
+                e.printStackTrace();
+            }
+        }
+    }
+    public static void main(String[] args) {
+        ThreadRun c1 = new ThreadRun(&quot;c1&quot;);
+        ThreadRun c2 = new ThreadRun(&quot;c2&quot;);
+        c1.start();
+        c2.start();  
+    }
+}</code></pre><blockquote>
+<p>运行描述：</p>
+<p>&emsp;&emsp;程序启动运行main时候，java虚拟机启动一个进程，主线程main在main()调用时候被创建。接着调用两个对象的start方法，另外两个线程也启动了，这样，整个应用就在多线程下运行。</p>
+<p>&emsp;&emsp;start()方法的调用后并不是立即执行多线程代码，而是使得该线程变为可运行态（Runnable），什么时候运行是由操作系统决定的。<br>从程序运行的结果可以发现，多线程程序是乱序执行。因此，只有乱序执行的代码才有必要设计为多线程。</p>
+<p>&emsp;&emsp;Thread.sleep()方法调用目的是不让当前线程独自霸占该进程所获取的CPU资源，以留出一定时间给其他线程执行的机会。</p>
+<p>&emsp;&emsp;实际上所有的多线程代码执行顺序都是不确定的，每次执行的结果都是随机的。</p>
+</blockquote>
+<h2 id="3-实现runnable接口"><a href="#3-实现runnable接口" class="headerlink" title="3.实现runnable接口"></a>3.实现runnable接口</h2><pre><code>public class RunnableRun implements Runnable{
+    private String name;
+    public RunnableRun(String name){
+        this.name = name;
+    }
+    public void run() {
+        for(int i=0;i&lt;5;i++){
+            System.out.println(name+&quot;运行&quot;+i);
+            try {
+                Thread.sleep((int)Math.random()*10);
+            } catch (Exception e) {
+                // TODO: handle exception
+                e.printStackTrace();
+            }
+        }
+    }
+    public static void main(String[] args) {
+        RunnableRun c1 = new RunnableRun(&quot;c1&quot;);
+        RunnableRun c2 = new RunnableRun(&quot;c2&quot;);
+        new Thread(c1).start();
+        new Thread(c2).start();
+    }
+}</code></pre><blockquote>
+<p>运行描述：</p>
+<p>&emsp;&emsp;RunnableRun 类通过实现Runnable接口，使得该类有了多线程类的特征。run（）方法是多线程程序的一个约定。所有的多线程代码都在run方法里面。Thread类实际上也是实现了Runnable接口的类。</p>
+<p>&emsp;&emsp;在启动的多线程的时候，需要先通过Thread类的构造方法Thread(Runnable target) 构造出对象，然后调用Thread对象的start()方法来运行多线程代码。</p>
+<p>&emsp;&emsp;实际上所有的多线程代码都是通过运行Thread的start()方法来运行的。因此，不管是扩展Thread类还是实现Runnable接口来实现多线程，最终还是通过Thread的对象的API来控制线程的，熟悉Thread类的API是进行多线程编程的基础。</p>
+</blockquote>
+<h2 id="4-Thread-和Runnable-区别和联系"><a href="#4-Thread-和Runnable-区别和联系" class="headerlink" title="4.Thread 和Runnable 区别和联系"></a>4.Thread 和Runnable 区别和联系</h2><p>&emsp;&emsp;java对线程的支持主要体现在Thread类以及Runable接口上，他们都位于java.lang包下，无论是Thread类还是Runable接口，它们都有public void run()方法，这个run方法为我们提供了线程实际工作时的代码，换句话说，我们的逻辑代码就可以写在run方法体中。</p>
+<h4 id="1-Thread和Runnable使用场景："><a href="#1-Thread和Runnable使用场景：" class="headerlink" title="(1).Thread和Runnable使用场景："></a>(1).Thread和Runnable使用场景：</h4><blockquote>
+<p>a:继承Thread实现的模式是 定义多个线程,各自完成各自的任务. </p>
+<p>b:实现Runnable实现的模式是 定义多个线程,实现一个任务.</p>
+</blockquote>
+<p>&emsp;&emsp;实现一个任务用多个线程来做也可以用继承Thread类来实现只是比较麻烦，一般我们用实现Runnable接口来实现，简洁明了。大多数情况下，如果只想重写 run() 方法，而不重写其他 Thread 方法，那么应使用 Runnable 接口。</p>
+<h4 id="2-实现Runnable接口比继承Thread类所具有的优势："><a href="#2-实现Runnable接口比继承Thread类所具有的优势：" class="headerlink" title="(2).实现Runnable接口比继承Thread类所具有的优势："></a>(2).实现Runnable接口比继承Thread类所具有的优势：</h4><pre><code>1）：适合多个相同的程序代码的线程去处理同一个资源
+
+2）：可以避免java中的单继承的限制
+
+3）：增加程序的健壮性，代码可以被多个线程共享，代码和数据独立
+
+4）：线程池只能放入实现Runable或callable类线程，不能直接放入继承Thread的类</code></pre><blockquote>
+<p>说明：</p>
+<p>(1).main方法其实也是一个线程。</p>
+<p>(2).在java中所以的线程都是同时启动的，至于什么时候，哪个先执行，完全看谁先得到CPU的资源。</p>
+<p>(3).在java中，每次程序运行至少启动2个线程。一个是main线程，一个是垃圾收集线程。因为每当使用java命令执行一个类的时候，实际上都会启动一个JVM，每一个 JVM 在操作系统中启动了一个进程。</p>
+</blockquote>
+<h2 id="5-线程状态切换"><a href="#5-线程状态切换" class="headerlink" title="5.线程状态切换"></a>5.线程状态切换</h2><p><img src="/2020/01/15/java-dxc/1.png" alt></p>
+<blockquote>
+<p>(1)、新建状态（New）：新创建了一个线程对象。</p>
+<p>(2)、就绪状态（Runnable）：线程对象创建后，其他线程调用了该对象的start()方法。该状态的线程位于可运行线程池中，变得可运行，等待获取CPU的使用权。</p>
+<p>(3)、运行状态（Running）：就绪状态的线程获取了CPU，执行程序代码。</p>
+<p>(4)、阻塞状态（Blocked）：阻塞状态是线程因为某种原因放弃CPU使用权，暂时停止运行。    直到线程进入就绪状态，才有机会转到运行状态。阻塞的情况分三种：</p>
+<blockquote>
+<p>（一）、等待阻塞：运行的线程执行wait()方法，JVM会把该线程放入等待池中。(wait会释放持有的锁)</p>
+</blockquote>
+<blockquote>
+<p>（二）、同步阻塞：运行的线程在获取对象的同步锁时，若该同步锁被别的线程占用，    则JVM会把该线程放入锁池中。</p>
+</blockquote>
+<blockquote>
+<p>（三）、其他阻塞：运行的线程执行sleep()或join()方法，或者发出了I/O请求时，JVM会把该线程置为阻塞状态。当sleep()状态超时、join()等待线程终止或者超时、或者I/O    处理完毕时，线程重新转入就绪状态。（注意,sleep是不会释放持有的锁）</p>
+</blockquote>
+<p>(5)、死亡状态（Dead）：线程执行完了或者因异常退出了run()方法，该线程结束生命周期。</p>
+</blockquote>
+<h2 id="6-线程调度"><a href="#6-线程调度" class="headerlink" title="6.线程调度"></a>6.线程调度</h2><blockquote>
+<p>(1)、调整线程优先级：Java线程有优先级，优先级高的线程会获得较多的运行机会。</p>
+<blockquote>
+<p>Java线程的优先级用整数表示，取值范围是1~10，Thread类有以下三个静态常量：</p>
+</blockquote>
+<blockquote>
+<p>static int MAX_PRIORITY 线程可以具有的最高优先级，取值为10。</p>
+</blockquote>
+<blockquote>
+<p>static int MIN_PRIORITY 线程可以具有的最低优先级，取值为1。</p>
+</blockquote>
+<blockquote>
+<p>static int NORM_PRIORITY分配给线程的默认优先级，取值为5。</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>Thread类的setPriority()和getPriority()方法分别用来设置和获取线程的优先级。</p>
+<p>&emsp;&emsp;每个线程都有默认的优先级。主线程的默认优先级为Thread.NORM_PRIORITY。<br>线程的优先级有继承关系，比如A线程中创建了B线程，那么B将和A具有相同的优先级。</p>
+<p>&emsp;&emsp;JVM提供了10个线程优先级，但与常见的操作系统都不能很好的映射。如果希望程序能移植到各个操作系统中，应该仅仅使用Thread类有以下三个静态常量作为优先级，这样能保证同样的优先级采用了同样的调度方式。</p>
+<p>(2)、线程睡眠：Thread.sleep(long millis)方法，使线程转到阻塞状态。millis参数设定睡眠的时间，以毫秒为单位。</p>
+<p>&emsp;&emsp;当睡眠结束后，就转为就绪（Runnable）状态。sleep()平台移植性好。</p>
+<p>(3)、线程等待：Object类中的wait()方法，导致当前的线程等待，直到其他线程调用此对象的 notify() 方法或 notifyAll() 唤醒方法。</p>
+<p>&emsp;&emsp;这个两个唤醒方法也是Object类中的方法，行为等价于调用 wait(0) 一样。</p>
+<p>(4)、线程让步：Thread.yield() 方法，暂停当前正在执行的线程对象，把执行机会让给相同或者更高优先级的线程。</p>
+<p>(5)、线程加入：join()方法，等待其他线程终止。在当前线程中调用另一个线程的join()方法，则当前线程转入阻塞状态，直到另一个进程运行结束，当前线程再由阻塞转为就绪状态。</p>
+<p>(6)、线程唤醒：Object类中的notify()方法，唤醒在此对象监视器上等待的单个线程。</p>
+<p>&emsp;&emsp;如果所有线程都在此对象上等待，则会选择唤醒其中一个线程。选择是任意性的，并在对实现做出决定时发生。</p>
+<p>&emsp;&emsp;线程通过调用其中一个 wait 方法，在对象的监视器上等待。直到当前的线程放弃此对象上的锁定，才能继续执行被唤醒的线程。被唤醒的线程将以常规方式与在该对象上主动同步的其他所有线程进行竞争；</p>
+<blockquote>
+<p>例如，唤醒的线程在作为锁定此对象的下一个线程方面没有可靠的特权或劣势。</p>
+</blockquote>
+<p>类似的方法还有一个notifyAll()，唤醒在此对象监视器上等待的所有线程。</p>
+<blockquote>
+<p>注意：Thread中suspend()和resume()两个方法在JDK1.5中已经废除，不再介绍。因为有死锁倾向。</p>
+</blockquote>
+</blockquote>
+<h2 id="7-Sleep-和yield-区别"><a href="#7-Sleep-和yield-区别" class="headerlink" title="7.Sleep()和yield()区别"></a>7.Sleep()和yield()区别</h2><pre><code>区别：</code></pre><blockquote>
+<p>Sleep():</p>
+<blockquote>
+<p>(1)sleep()使当前线程进入停滞状态，所以执行sleep()的线程在指定的时间内肯定不会被执行；</p>
+</blockquote>
+<blockquote>
+<p>(2)sleep()使当前运行中的线程睡眠一段时间，进入不可运行状态，这段时间的长短是由程序设定的;</p>
+</blockquote>
+<blockquote>
+<p>(3)sleep()允许较低优先级的线程获得运行机会，</p>
+</blockquote>
+<p>Yield():</p>
+<blockquote>
+<p>(1) yield()只是使当前线程重新回到可执行状态，所以执行yield()的线程有可能在进入到可执行状态后马上又被执行。</p>
+</blockquote>
+<blockquote>
+<p>(2) yield()使当前线程让出 CPU 占有权，但让出的时间是不可设定的。</p>
+</blockquote>
+<blockquote>
+<p>(3) yield()执行时，当前线程仍处在可运行状态，所以，不可能让出较低优先级的线程些时获得 CPU 占有权。使用yield()的目的是让相同优先级的线程之间能适当的轮转执行。</p>
+</blockquote>
+</blockquote>
+<pre><code>联系：</code></pre><blockquote>
+<p>(1)实际上，yield()方法对应了如下操作：</p>
+<blockquote>
+<p>先检测当前是否有相同优先级的线程处于同可运行状态，如有，则把 CPU 的占有权交给此线程，否则，继续运行原来的线程。    </p>
+</blockquote>
+<blockquote>
+<p>所以yield()方法称为“退让”，它把运行机会让给了同等优先级的其他线程</p>
+</blockquote>
+<p>(2)在一个运行系统中，如果较高优先级的线程没有调用 sleep 方法，又没有受到 I\O 阻    塞，较低优先级线程只能等待所有较高优先级的线程运行结束，才有机会运行。</p>
+</blockquote>
+<h2 id="8-wait-和sleep-区别"><a href="#8-wait-和sleep-区别" class="headerlink" title="8.wait()和sleep()区别"></a>8.wait()和sleep()区别</h2><pre><code>共同点：</code></pre><blockquote>
+<p>(1).他们都是在多线程的环境下，都可以在程序的调用处阻塞指定的毫秒数，并返回。</p>
+<p>(2).wait()和sleep()都可以通过interrupt()方法打断线程的暂停状态，从而使线程立刻抛出InterruptedException。 </p>
+<blockquote>
+<p>如果线程A希望立即结束线程B，则可以对线程B对应的Thread实例调用interrupt方法。如果此刻线程B正在wait/sleep /join，则线程B会立刻抛出InterruptedException，在catch() {} 中直接return即可安全地结束线程。</p>
+</blockquote>
+<blockquote>
+<p>需要注意的是，InterruptedException是线程自己从内部抛出的，并不是interrupt()方法抛出的。</p>
+</blockquote>
+<blockquote>
+<p>对某一线程调用 interrupt()时，如果该线程正在执行普通的代码，那么该线程根本就不会抛出InterruptedException。但是，一旦该线程进入到 wait()/sleep()/join()后，就会立刻抛出InterruptedException 。 </p>
+</blockquote>
+</blockquote>
+<pre><code>不同点：</code></pre><blockquote>
+<p>(1).Thread类的方法：sleep(),yield()等 </p>
+<p>&emsp;&emsp;Object的方法：wait()和notify()等</p>
+<p>(2).每个对象都有一个锁来控制同步访问。Synchronized关键字可以和对象的锁交互，来实现线程的同步。</p>
+<p>&emsp;&emsp;sleep方法没有释放锁，而wait方法释放了锁，使得其他线程可以使用同步控制块或者方法。</p>
+<p>(3).wait，notify和notifyAll只能在同步控制方法或者同步控制块里面使用，而sleep可以在任何地方使用</p>
+<p>sleep()和wait()方法的最大区别是：</p>
+<blockquote>
+<p>a.sleep()睡眠时，保持对象锁，仍然占有该锁；</p>
+</blockquote>
+<blockquote>
+<p>b.wait()睡眠时，释放对象锁。</p>
+</blockquote>
+<blockquote>
+<p>c.wait()和sleep()都可以通过interrupt()方法打断线程的暂停状态，从而使线程立刻抛出InterruptedException（但不建议使用该方法）。</p>
+</blockquote>
+</blockquote>
+<pre><code>sleep（）方法</code></pre><blockquote>
+<p>(1)sleep()使当前线程进入停滞状态（阻塞当前线程），让出CUP的使用、目的是不让当前线程独自霸占该进程所获的CPU资源，留一定时间给其他线程执行的机会;</p>
+<p>(2)sleep()是Thread类的static(静态)的方法；因此他不能改变对象的机锁，所以当在一个Synchronized块中调用Sleep()方法时，线程虽然休眠了，但是对象的机锁并没有被释放，其他线程无法访问这个对象（即使睡着也持有对象锁）。</p>
+<p>(3) 在sleep()休眠时间期满后，该线程不一定会立即执行，这是因为其它线程可能正在运行而且没有被调度为放弃执行，除非此线程具有更高的优先级。</p>
+</blockquote>
+<pre><code>wait（）方法</code></pre><blockquote>
+<p>(1)wait()方法是Object类里的方法；当一个线程执行到wait()方法时，它就进入到一个和该对象相关的等待池中，同时失去（释放）了对象的机锁（暂时失去机锁，wait(long timeout)超时时间到后还需要返还对象锁）；其他线程可以访问；</p>
+<p>(2)wait()使用notify或者notifyAll或者指定睡眠时间来唤醒当前等待池中的线程。</p>
+<p>(3)wait()必须放在synchronized block中，否则会在program runtime时扔出”            java.lang.IllegalMonitorStateException“异常。</p>
+</blockquote>
+<h2 id="9-常用函数说明"><a href="#9-常用函数说明" class="headerlink" title="9.常用函数说明"></a>9.常用函数说明</h2><h4 id="1-sleep-long-millis"><a href="#1-sleep-long-millis" class="headerlink" title="(1).sleep(long millis):"></a>(1).sleep(long millis):</h4><p>&emsp;&emsp;在指定的毫秒数内让当前正在执行的线程休眠（暂停执行）</p>
+<h4 id="2-join"><a href="#2-join" class="headerlink" title="(2).join():"></a>(2).join():</h4><blockquote>
+<p>a.指等待t线程终止。</p>
+<p>b.使用方式：join是Thread类的一个方法，启动线程后直接调用，即join()的作用是：“等待该线程终止”，这里需要理解的就是该线程是指的主线程等待子线程的终止。也就是在子线程调用了join()方法后面的代码，只有等到子线程结束了才能执行。</p>
+<p>c.为什么要用join()方法?</p>
+<p>&emsp;&emsp;在很多情况下，主线程生成并起动了子线程，如果子线程里要进行大量的耗时的运算，主线程往往将于子线程之前结束，但是如果主线程处理完其他的事务后，需要用到子线程的处理结果，也就是主线程需要等待子线程执行完成之后再结束，这个时候就要用到join()方法了。</p>
+</blockquote>
+<blockquote>
+<p>代码演示：</p>
+</blockquote>
+<pre><code>public class JoinThreadRun extends Thread{
+    private String name;
+    public JoinThreadRun(String name){
+        this.name = name;
+    }
+    public void run(){
+        System.out.println(Thread.currentThread().getName()+&quot;线程正在运行&quot;);
+        for(int i=0;i&lt;3;i++){
+            System.out.println(&quot;子线程&quot;+name+&quot;运行&quot;+i);
+            try {
+                sleep((int)Math.random()*10);
+            } catch (Exception e) {
+                // TODO: handle exception
+                e.printStackTrace();
+            }
+        }
+        System.out.println(Thread.currentThread().getName()+&quot;线程运行结束&quot;);
+    }
+
+(1)未加入 join()方法 （发现主线程比子线程早结束）
+
+    public static void main(String[] args) {
+        System.out.println(Thread.currentThread().getName()+&quot;主线程正在运行&quot;);
+        JoinThreadRun c1 = new JoinThreadRun(&quot;c1&quot;);
+        JoinThreadRun c2 = new JoinThreadRun(&quot;c2&quot;);
+        c1.setName(&quot;c1&quot;);
+        c2.setName(&quot;c2&quot;);
+        c1.start();
+        c2.start();
+        System.out.println(Thread.currentThread().getName()+&quot;主线程运行结束&quot;);
+    }
+}
+
+运行结果：
+    main主线程正在运行
+    main主线程运行结束
+    c1线程正在运行
+    子线程c1运行0
+    c2线程正在运行
+    子线程c2运行0
+    子线程c1运行1
+    子线程c1运行2
+    子线程c2运行1
+    子线程c2运行2
+    c1线程运行结束
+    c2线程运行结束
+
+(2).加入 join()方法（主线程一定会等子线程都结束了才结束）
+
+public static void main(String[] args) {
+        System.out.println(Thread.currentThread().getName()+&quot;主线程正在运行&quot;);
+        JoinThreadRun c1 = new JoinThreadRun(&quot;c1&quot;);
+        JoinThreadRun c2 = new JoinThreadRun(&quot;c2&quot;);
+        c1.setName(&quot;c1&quot;);
+        c2.setName(&quot;c2&quot;);
+        c1.start();
+        c2.start();
+        try {
+            c1.join();
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        try {
+            c2.join();
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        System.out.println(Thread.currentThread().getName()+&quot;主线程运行结束&quot;);
+    }
+
+
+    运行结果：
+        main主线程正在运行
+        c1线程正在运行
+        子线程c1运行0
+        c2线程正在运行
+        子线程c2运行0
+        子线程c2运行1
+        子线程c1运行1
+        子线程c2运行2
+        c2线程运行结束
+        子线程c1运行2
+        c1线程运行结束
+        main主线程运行结束</code></pre><h4 id="3-yield"><a href="#3-yield" class="headerlink" title="(3).yield():"></a>(3).yield():</h4><p>Thread.yield()方法作用是?</p>
+<blockquote>
+<p>(1).暂停当前正在执行的线程对象，并执行其他线程。</p>
+<p>(2).yield()让当前运行线程回到可运行状态，以允许具有相同优先级的其他线程获得运行机会。</p>
+<p>(3).使用yield()的目的是让相同优先级的线程之间能适当的轮转执行。</p>
+<p>(4).实际中无法保证yield()达到让步目的，因为让步的线程还有可能被线程调度程序再次选中。</p>
+</blockquote>
+<h4 id="4-setPriority"><a href="#4-setPriority" class="headerlink" title="(4).setPriority():"></a>(4).setPriority():</h4><blockquote>
+<p>更改线程的优先级。</p>
+</blockquote>
+<pre><code>Thread4 t1 = new Thread4(&quot;t1&quot;);
+t1.setPriority(Thread.MAX_PRIORITY);</code></pre><h4 id="5-interrupt"><a href="#5-interrupt" class="headerlink" title="(5).interrupt():"></a>(5).interrupt():</h4><blockquote>
+<p>不要以为它是中断某个线程！它只是线程发送一个中断信号，让线程在无限等待时（如死锁时）能抛出异常，从而结束线程，但是如果你吃掉了这个异常，那么这个线程还是不会中断的！</p>
+</blockquote>
+<h4 id="6-wait"><a href="#6-wait" class="headerlink" title="(6).wait()"></a>(6).wait()</h4><blockquote>
+<p>Obj.wait()，与Obj.notify()必须要与synchronized(Obj)一起使用，也就是wait,与notify是针对已经获取了Obj锁进行操作，</p>
+<p>(1).从语法角度来说就是Obj.wait(),Obj.notify必须在synchronized(Obj){…}语句块内。</p>
+<p>(2).从功能上来说wait就是说线程在获取对象锁后，主动释放对象锁，同时本线程休眠。直到有其它线程调用对象的notify()唤醒该线程，才能继续获取对象锁，并继续执行。</p>
+<p>(3).相应的notify()就是对对象锁的唤醒操作。但有一点需要注意的是notify()调用后，并不是马上就获取对象锁的，而是在相应的synchronized(){}语句块执行结束，自动释放锁后，JVM会在wait()对象锁的线程中随机选取一线程，赋予其对象锁，唤醒线程，继续执行。这样就提供了在线程间同步、唤醒的操作。</p>
+<p>(4)Thread.sleep()与Object.wait()二者都可以暂停当前线程，释放CPU控制权，主要的区别在于Object.wait()在释放CPU同时，释放了对象锁的控制。sleep是不会释放持有的锁.</p>
+</blockquote>
+<h4 id="面试题："><a href="#面试题：" class="headerlink" title="面试题："></a>面试题：</h4><blockquote>
+<p>建立三个线程，A线程打印3次A，B线程打印10次B,C线程打印10次C，要求线程同时运行，交替打印10次ABC。</p>
+</blockquote>
+<pre><code>public class WaitThreadRun implements Runnable{
+    private String name;
+    private Object pre;
+    private Object self;
+    public WaitThreadRun(String name,Object pre,Object self){
+        this.name = name;
+        this.pre = pre;
+        this.self = self;
+    }
+    public void run() {
+        int count = 3;
+        while(count&gt;0){
+            synchronized (pre) {
+                synchronized (self) {
+                    System.out.println(name);
+                    count--;
+                    self.notify();
+                }
+                try {
+                    pre.wait();
+                } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+    public static void main(String[] args) {
+        Object a = new Object();
+        Object b = new Object();
+        Object c = new Object();
+
+        Thread c1 = new Thread(new WaitThreadRun(&quot;A&quot;, a, c));
+        Thread c2 = new Thread(new WaitThreadRun(&quot;B&quot;, b, a));
+        Thread c3 = new Thread(new WaitThreadRun(&quot;C&quot;, c, b));
+
+        c1.start();
+        c2.start();
+        c3.start();
+        }
+}</code></pre><blockquote>
+<p>理解：</p>
+<p>wait就是说线程在获取对象锁后，主动释放对象锁，同时本线程休眠。直到有其它线程调用对象的notify()唤醒该线程，才能继续获取对象锁，并继续执行。<br>wait()和notify()相关规定。</p>
+</blockquote>
+<h2 id="10-常见线程名词"><a href="#10-常见线程名词" class="headerlink" title="10.常见线程名词"></a>10.常见线程名词</h2><blockquote>
+<p>(1).主线程：JVM调用程序main()所产生的线程。</p>
+<p>(2).当前线程：这个是容易混淆的概念。一般指通过Thread.currentThread()来获取的进程。</p>
+<p>(3).后台线程：指为其他线程提供服务的线程，也称为守护线程。JVM的垃圾回收线程就是一个后台线程。</p>
+<p>&emsp;&emsp;用户线程和守护线程的区别在于，是否等待主线程依赖于主线程结束而结束</p>
+<p>(4).前台线程：是指接受后台线程服务的线程，其实前台后台线程是联系在一起，就像傀儡和    幕后操纵者一样的关系。傀儡是前台线程、幕后操纵者是后台线程。由前台线程创建的线程默认也是前台线程。可以通过isDaemon()和setDaemon()方法来判断和设置一个线程是否为后台线程。</p>
+<p>线程类的一些常用方法： </p>
+</blockquote>
+<pre><code>　　sleep(): 强迫一个线程睡眠Ｎ毫秒。 
+　　isAlive(): 判断一个线程是否存活。 
+　　join(): 等待线程终止。 
+　　activeCount(): 程序中活跃的线程数。 
+　　enumerate(): 枚举程序中的线程。 
+currentThread(): 得到当前线程。 
+　　isDaemon(): 一个线程是否为守护线程。 
+　　setDaemon(): 设置一个线程为守护线程。(用户线程和守护线程的区别在于，是否等待                主线程依赖于主线程结束而结束) 
+　　setName(): 为线程设置一个名称。 
+　　wait(): 强迫一个线程等待。 
+　　notify(): 通知一个线程继续运行。 
+setPriority(): 设置一个线程的优先级。</code></pre><h2 id="11-线程同步"><a href="#11-线程同步" class="headerlink" title="11.线程同步"></a>11.线程同步</h2><pre><code>synchronized关键字</code></pre><blockquote>
+<p>(1) synchronized关键字的作用域有二种： </p>
+<blockquote>
+<p>1）是某个对象实例内，synchronized aMethod(){}可以防止多个线程同时访问这个对象的synchronized方法（如果一个对象有多个synchronized方法，只要一个线程访问了其中的一个synchronized方法，其它线程不能同时访问这个对象中任何一个synchronized方法）。这时，不同的对象实例的synchronized方法是不相干扰的。也就是说，其它线程照样可以同时访问相同类的另一个对象实例中的synchronized    方法；</p>
+</blockquote>
+<blockquote>
+<p>2）是某个类的范围，synchronized static aStaticMethod{}防止多个线程同时访问这个类中的synchronized static 方法。它可以对类的所有对象实例起作用。 </p>
+</blockquote>
+<p>(2)除了方法前用synchronized关键字，synchronized关键字还可以用于方法中的某个区块中，表示只对这个区块的资源实行互斥访问。</p>
+<p>&emsp;用法是: synchronized(this){/*    区块*/}，它的作用域是当前对象；</p>
+<p>(3)synchronized关键字是不能继承的，也就是说，基类的方法synchronized f(){} 在继承类中并不自动是synchronized f(){}，而是变成了f(){}。继承类需要你显式的指定它的某个方法为synchronized方法；</p>
+</blockquote>
+<pre><code>Synchronized对象锁</code></pre><blockquote>
+<p>synchronized关键字</p>
+<p>(1).可以作为函数的修饰符，也就是同步方法.</p>
+<p>(2).可作为函数内的语句，也就是同步语句块。</p>
+<p>如果再细的分类，synchronized可作用于instance变量、object reference（对象引用）、static函数和class literals(类名称字面常量)身上。</p>
+<p>A．无论synchronized关键字加在方法上还是对象上，它取得的锁都是对象，而不是把一段代码或函数当作锁――而且同步方法很可能还会被其他线程的对象访问。</p>
+<p>B．每个对象只有一个锁（lock）与之相关联。</p>
+<p>C．实现同步是要很大的系统开销作为代价的，甚至可能造成死锁，所以尽量避免无谓的同步控制。</p>
+</blockquote>
+<pre><code>总结：</code></pre><blockquote>
+<p>1、线程同步的目的是为了保护多个线程访问一个资源时对资源的破坏。</p>
+<p>2、线程同步方法是通过锁来实现，每个对象都有且仅有一个锁，这个锁与一个特定的对象关联，线程一旦获取了对象锁，其他访问该对象的线程就无法再访问该对象的其他非同步方法</p>
+<p>3、对于静态同步方法，锁是针对这个类的，锁对象是该类的Class对象。静态和非静态方法的锁互不干预。一个线程获得锁，当在一个同步方法中访问另外对象上的同步方法时，会获取这两个对象锁。</p>
+<p>4、对于同步，要时刻清醒在哪个对象上同步，这是关键。</p>
+<p>5、编写线程安全的类，需要时刻注意对多个线程竞争访问资源的逻辑和安全做出正确的判断，对“原子”操作做出分析，并保证原子操作期间别的线程无法访问竞争资源。</p>
+<p>6、当多个线程等待一个对象锁时，没有获取到锁的线程将发生阻塞。</p>
+<p>7、死锁是线程间相互等待锁造成的，在实际中发生的概率非常的小。真让你写个死锁程序，不一定好使，呵呵。但是，一旦程序发生死锁，程序将死掉。</p>
+</blockquote>
+<h2 id="12-线程数据传递"><a href="#12-线程数据传递" class="headerlink" title="12.线程数据传递"></a>12.线程数据传递</h2><blockquote>
+<p>应用场景：</p>
+<p>在传统的同步开发模式下，当我们调用一个函数时，通过这个函数的参数将数据传入，并通过这个函数的返回值来返回最终的计算结果。但在多线程的异步开发模式下，数据的传递和返回和同步开发模式有很大的区别。由于线程的运行和结束是不可预料的，因此，在传递和返回数据时就无法象函数一样通过函数参数和return语句来返回数据.</p>
+</blockquote>
+<pre><code>(1).通过构造方法传递数据</code></pre><blockquote>
+<p>在创建线程时，必须要建立一个Thread类的或其子类的实例。因此，我们不难想到在调用start方法之前通过线程类的构造方法将数据传入线程。并将传入的数据使用类变量保存起来，以便线程使用(其实就是在run方法中使用)。</p>
+</blockquote>
+<pre><code>public class DataThreadRun implements Runnable{
+    private String name;
+    public DataThreadRun(String name){
+        this.name = name;
+    }
+    public void run() {
+        // TODO Auto-generated method stub
+        System.out.println(name);
+    }
+    public static void main(String[] args) {
+        DataThreadRun dataThreadRun = new DataThreadRun(&quot;c1&quot;);
+        new Thread(dataThreadRun).start();
+    }    
+}</code></pre><blockquote>
+<p>&emsp;&emsp;由于这种方法是在创建线程对象的同时传递数据的，因此，在线程运行之前这些数据就已经到位了，这样就不会造成数据在线程运行后才传入的现象。</p>
+<p>&emsp;&emsp;如果要传递更复杂的数据，可以使用集合、类等数据结构。</p>
+<p>&emsp;&emsp;使用构造方法来传递数据虽然比较安全，但如果要传递的数据比较多时，就会造成很多不便。</p>
+<p>&emsp;&emsp;由于Java没有默认参数，要想实现类似默认参数的效果，就得使用重载，这样不但使构造方法本身过于复杂，又会使构造方法在数量上大增。因此，要想避免这种情况，就得通过类方法或类变量来传递数据。</p>
+</blockquote>
+<pre><code>(2).通过变量和方法传递数据 </code></pre><blockquote>
+<p>向对象中传入数据一般有两次机会，第一次机会是在建立对象时通过构造方法将数据传入，另外一次机会就是在类中定义一系列的public的方法或变量（也可称之为字段）。然后在建立完对象后，通过对象实例逐个赋值。</p>
+</blockquote>
+<pre><code>public class DataThreadRun implements Runnable{
+    private String name;
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public void run() {
+        // TODO Auto-generated method stub
+        System.out.println(name);
+    }
+    public static void main(String[] args) {
+        DataThreadRun dataThreadRun = new DataThreadRun();
+        dataThreadRun.setName(&quot;c1&quot;);
+        new Thread(dataThreadRun).start();
+    }    
+}</code></pre><blockquote>
+</blockquote>
+<pre><code>(3).通过回调函数传递数据</code></pre><blockquote>
+<p>上面讨论的两种向线程中传递数据的方法是最常用的。</p>
+<p>这两种方法都是main方法中主动将数据传入线程类的。这对于线程来说，是被动接收这些数据的。然而，在有些应用中需要在线程运行的过程中动态地获取数据，</p>
+<p>如在下面代码的run方法中产生了3个随机数，然后通过Work类的process方法求这三个随机数的和，并通过Data类的value将结果返回。从这个例子可以看出，在返回value之前，必须要得到三个随机数。也就是说，这个 value是无法事先就传入线程类的。</p>
+</blockquote>
+<pre><code>class DataTest{
+     int value = 0;
+}
+class WorkReturn{
+    public void process(DataTest dataTest,Integer[] number){
+        for(int n : number){
+            dataTest.value+=n;
+        }
+    }
+}
+public class DataThreadRun1 implements Runnable{
+    private WorkReturn workReturn;
+
+    public DataThreadRun1(WorkReturn workReturn){
+        this.workReturn = workReturn;
+    }
+    public void run() {
+        // TODO Auto-generated method stub
+        Random random = new Random();
+        Integer[] numbers = new Integer[3];
+        numbers[0] = random.nextInt(1000);
+        numbers[1] = random.nextInt(2000);
+        numbers[2] = random.nextInt(3000);
+        DataTest dataTest = new DataTest();
+        workReturn.process(dataTest, numbers);//使用回调函数
+        System.out.println(numbers[0]+&quot;+&quot;+numbers[1]+&quot;+&quot;+numbers[2]+&quot;=&quot;+dataTest.value);
+    }
+    public static void main(String[] args) {
+        new Thread(new DataThreadRun1(new WorkReturn())).start();
+    }
+}</code></pre><h1 id="二-java并发编程和技术内幕：线程池深入理解"><a href="#二-java并发编程和技术内幕：线程池深入理解" class="headerlink" title="二.java并发编程和技术内幕：线程池深入理解"></a>二.java并发编程和技术内幕：线程池深入理解</h1><p>线程池：是一组线程实时处理休眠状态，等待唤醒执行。</p>
+<h2 id="1-为什么要使用线程池？"><a href="#1-为什么要使用线程池？" class="headerlink" title="1.为什么要使用线程池？"></a>1.为什么要使用线程池？</h2><blockquote>
+<p>(1).减少在创建和销毁线程上所花的时间以及系统资源的开销 。</p>
+<p>(2).将当前任务与主线程隔离，能实现和主线程的异步执行，特别是很多可以分开重复执行的任务。</p>
+<p>(3).一味的开线程也不一定能带来性能上的，线池休眠也是要占用一定的内存空间，所以合理的选择线程池的大小也是有一定的依据。</p>
+<p>(4).在线程池中执行任务比为每个任务分配一个线程优势更多，通过重用现有的线程而不是创建新线程，可以在处理多个请求时分摊线程创建和销毁产生的巨大的开销。</p>
+<p>(5).当请求到达时，通常工作线程已经存在，提高了响应性；</p>
+<p>(6).通过配置线程池的大小，可以创建足够多的线程使CPU达到忙碌状态，还可以防止线程太多耗尽计算机的资源。</p>
+</blockquote>
+<h2 id="2-Java类库提供了许多静态方法来创建一个线程池"><a href="#2-Java类库提供了许多静态方法来创建一个线程池" class="headerlink" title="2.Java类库提供了许多静态方法来创建一个线程池"></a>2.Java类库提供了许多静态方法来创建一个线程池</h2><blockquote>
+<p>a、newFixedThreadPool 创建一个固定长度的线程池，当到达线程最大数量时，线程池    的规模将不再变化。</p>
+<p>b、newCachedThreadPool 创建一个可缓存的线程池，如果当前线程池的规模超出了处理需求，将回收空的线程；当需求增加时，会增加线程数量；线程池规模无限制。</p>
+<p>c、newSingleThreadPoolExecutor 创建一个单线程的Executor，确保任务对了，串行执行</p>
+<p>d、newScheduledThreadPool 创建一个固定长度的线程池，而且以延迟或者定时的方式来执行，类似Timer；</p>
+<p>详细解析：</p>
+<p>1.newCachedThreadPool()</p>
+<blockquote>
+<p>(1).缓存型池子，先查看池中有没有以前建立的线程，如果有，就reuse.如果没有，就建一个新的线程加入池中.</p>
+</blockquote>
+<blockquote>
+<p>(2).缓存型池子通常用于执行一些生存期很短的异步型任务,因此在一些面向连接的daemon型SERVER中用得不多。</p>
+</blockquote>
+<blockquote>
+<p>(3).能reuse的线程，必须是timeout IDLE内的池中线程，缺省timeout是60s,超过这个IDLE时长，线程实例将被终止及移出池。</p>
+</blockquote>
+<p>注意，放入CachedThreadPool的线程不必担心其结束，超过TIMEOUT不活动，其会自动被终止。</p>
+<p>2.newFixedThreadPool    </p>
+<blockquote>
+<p>(1).newFixedThreadPool与cacheThreadPool差不多，也是能reuse就用，但不能随时建新的线程<br>-其独特之处:任意时间点，最多只能有固定数目的活动线程存在，此时如果有新的线程要建立，只能放在另外的队列中等待，直到当前的线程中某个线程终止直接被移出池子</p>
+</blockquote>
+<blockquote>
+<p>(2).和cacheThreadPool不同，FixedThreadPool没有IDLE机制（可能也有，但既然文档没提，肯定非常长，类似依赖上层的TCP或UDP IDLE机制之类的），所以FixedThreadPool多数针对一些很稳定很固定的正规并发线程，多用于服务器</p>
+</blockquote>
+<blockquote>
+<p>(3).从方法的源代码看，cache池和fixed 池调用的是同一个底层池，只不过参数不同:</p>
+</blockquote>
+<blockquote>
+<p>&emsp;&emsp;fixed池线程数固定，并且是0秒IDLE（无IDLE）</p>
+</blockquote>
+<blockquote>
+<p>&emsp;&emsp;cache池线程数支持0-Integer.MAX_VALUE(显然完全没考虑主机的资源承受能力），60秒IDLE  </p>
+</blockquote>
+<p>3.ScheduledThreadPool    </p>
+<blockquote>
+<p>(1).调度型线程池</p>
+</blockquote>
+<blockquote>
+<p>(2).这个池子里的线程可以按schedule依次delay执行，或周期执行</p>
+</blockquote>
+<p>4.SingleThreadExecutor    </p>
+<blockquote>
+<p>(1).单例线程，任意时间池中只能有一个线程.</p>
+</blockquote>
+<blockquote>
+<p>(2).用的是和cache池和fixed池相同的底层池，但线程数目是1-1,0秒IDLE（无IDLE）</p>
+</blockquote>
+</blockquote>
+<h2 id="3-创建线程池基本方法"><a href="#3-创建线程池基本方法" class="headerlink" title="3.创建线程池基本方法"></a>3.创建线程池基本方法</h2><pre><code>//1 定义线程类
+public class Handler implements Runnable {
+
+    public void run() {
+        // TODO Auto-generated method stub
+        System.out.println(&quot;nnn&quot;);
+    }
+
+    public static void main(String[] args) {
+//        ExecutorService newCachedThreadPool = Executors.newCachedThreadPool();
+//        while(true){
+            //newCachedThreadPool.execute(new Handler());
+//        }
+
+        //2 建立ExecutorService连接池
+        int availableProcessors = Runtime.getRuntime().availableProcessors();//获取当前可用的cpu数据
+        ExecutorService newFixedThreadPool = Executors.newFixedThreadPool(availableProcessors*2);
+        while(true){
+       //3 调用线程池操作 （循环操作，成为daemon,把新实例放入Executor池中）
+            newFixedThreadPool.execute(new Handler(socket));//将新的连接放到线程池中
+        }
+    }
+}</code></pre><blockquote>
+<p>execute(Runnable对象)方法其实就是对Runnable对象调用start()方法（当然还有一些其他后台动作，比如队列，优先级，IDLE timeout，active激活等）</p>
+</blockquote>
+<h2 id="4-ThreadPool-应用实例"><a href="#4-ThreadPool-应用实例" class="headerlink" title="4.ThreadPool 应用实例"></a>4.ThreadPool 应用实例</h2><blockquote>
+<p>线程处理类：</p>
+</blockquote>
+<pre><code>public class ThreadHandler implements Runnable{
+    private String name;
+    public ThreadHandler(String name){
+        this.name = &quot;thread_&quot;+name;
+    }
+    public void run() {
+        // TODO Auto-generated method stub
+System.out.println(&quot;[ 线程number :]&quot;+Thread.currentThread().getName());
+        System.out.println(name+&quot; start.time &quot;+new Date());
+        process();
+        System.out.println(name+&quot; end.time &quot;+new Date());
+    }
+    public void process(){
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+}</code></pre><h3 id="4-1-CachedThreadPool"><a href="#4-1-CachedThreadPool" class="headerlink" title="4.1 CachedThreadPool"></a>4.1 CachedThreadPool</h3><blockquote>
+<p>&emsp;&emsp;CachedThreadPool首先会按照需要创建足够多的线程来执行任务(Task)。随着程序执行的过程，有的线程执行完了任务，可以被重新循环使用时，才不再创建新的线程来执行任务。</p>
+<p>&emsp;&emsp;当程序要关闭时，你需要注意两件事情：入队的这些任务的情况怎么样了以及正在运行的这个任务执行得如 何了。令人惊讶的是很多开发人员并没能正确地或者有意识地去关闭线程池。</p>
+<p>&emsp;&emsp;正确的方法有两种：</p>
+<p>&emsp;&emsp;(1).让所有的入队任务都执行完毕（shutdown()），</p>
+<p>&emsp;&emsp;(2).舍弃这些任务（shutdownNow())——这完全取决于你。</p>
+<p>比如说如果我们提交了N多任务并且希望等它们都执行完后才返回的话，那么就使用 shutdown()：</p>
+</blockquote>
+<pre><code>    代码演示：
+    public class CachedThreadPoolTest {
+        public static void main(String[] args) {
+            System.out.println(&quot;main_thread start time &quot;+new Date());
+            ExecutorService newCachedThreadPool = Executors.newCachedThreadPool();
+            for(int i=0;i&lt;6;i++){
+                newCachedThreadPool.execute(new ThreadHandler(String.valueOf(i)));
+            }
+            newCachedThreadPool.shutdown();
+    //        newCachedThreadPool.shutdownNow();
+            System.out.println(&quot;main_thread end time &quot;+new Date());
+        }
+    }
+
+    运行结果：
+        main_thread start time Wed Oct 23 10:15:15 CST 2019
+        [ 线程number :]pool-1-thread-1
+        thread_0 start.time Wed Oct 23 10:15:15 CST 2019
+        [ 线程number :]pool-1-thread-2
+        [ 线程number :]pool-1-thread-4
+        [ 线程number :]pool-1-thread-3
+        thread_2 start.time Wed Oct 23 10:15:15 CST 2019
+        thread_3 start.time Wed Oct 23 10:15:15 CST 2019
+        thread_1 start.time Wed Oct 23 10:15:15 CST 2019
+        [ 线程number :]pool-1-thread-6
+        [ 线程number :]pool-1-thread-5
+        thread_4 start.time Wed Oct 23 10:15:15 CST 2019
+        thread_5 start.time Wed Oct 23 10:15:15 CST 2019
+        main_thread end time Wed Oct 23 10:15:15 CST 2019
+        thread_0 end.time Wed Oct 23 10:15:16 CST 2019
+        thread_3 end.time Wed Oct 23 10:15:16 CST 2019
+        thread_2 end.time Wed Oct 23 10:15:16 CST 2019
+        thread_1 end.time Wed Oct 23 10:15:16 CST 2019
+        thread_4 end.time Wed Oct 23 10:15:16 CST 2019
+        thread_5 end.time Wed Oct 23 10:15:16 CST 2019
+
+1、主线程的执行与线程池里的线程分开，有可能主线程结束了，但是线程池还在运行
+2、放入线程池的线程并不一定会按其放入的先后而顺序执行</code></pre><h3 id="4-2-FixedThreadPool"><a href="#4-2-FixedThreadPool" class="headerlink" title="4.2 FixedThreadPool"></a>4.2 FixedThreadPool</h3><blockquote>
+<p>&emsp;&emsp;FixedThreadPool模式会使用一个优先固定数目的线程来处理若干数目的任务。规定数目的线程处理所有任务，一旦有线程处理完了任务就会被用来处理新的任务(如果有的话)。    </p>
+</blockquote>
+<p>&emsp;&emsp;这种模式与上面的CachedThreadPool是不同的，CachedThreadPool模式下处理一定数量的任务的线程数目是不确定的。而FixedThreadPool模式下最多 的线程数目是一定的。</p>
+<pre><code>public class FixedThreadPoolTest {
+    public static void main(String[] args) {
+        System.out.println(&quot;main.thread start time &quot;+new Date());
+        ExecutorService newFixedThreadPool = Executors.newFixedThreadPool(3);
+        for(int i=0;i&lt;6;i++){
+            newFixedThreadPool.execute(new ThreadHandler(String.valueOf(i)));
+        }
+        System.out.println(&quot;main.thread end time &quot;+new Date());        
+    }
+}
+
+运行结果：
+main.thread start time Wed Oct 23 10:11:02 CST 2019
+[ $$$$$　Thread Pool number : $$$$$]pool-1-thread-1
+thread_0 start.time Wed Oct 23 10:11:02 CST 2019
+main.thread end time Wed Oct 23 10:11:02 CST 2019
+[ $$$$$　Thread Pool number : $$$$$]pool-1-thread-3
+thread_2 start.time Wed Oct 23 10:11:02 CST 2019
+[ $$$$$　Thread Pool number : $$$$$]pool-1-thread-2
+thread_1 start.time Wed Oct 23 10:11:02 CST 2019
+thread_2 end.time Wed Oct 23 10:11:03 CST 2019
+thread_0 end.time Wed Oct 23 10:11:03 CST 2019
+[ $$$$$　Thread Pool number : $$$$$]pool-1-thread-3
+[ $$$$$　Thread Pool number : $$$$$]pool-1-thread-1
+thread_3 start.time Wed Oct 23 10:11:03 CST 2019
+thread_4 start.time Wed Oct 23 10:11:03 CST 2019
+thread_1 end.time Wed Oct 23 10:11:03 CST 2019
+[ $$$$$　Thread Pool number : $$$$$]pool-1-thread-2
+thread_5 start.time Wed Oct 23 10:11:03 CST 2019
+thread_5 end.time Wed Oct 23 10:11:04 CST 2019
+thread_4 end.time Wed Oct 23 10:11:04 CST 2019
+thread_3 end.time Wed Oct 23 10:11:04 CST 2019
+
+创建了一个固定大小的线程池，大小为3.也就说同一时刻最多只有5个线程能运行。
+
+并且线程执行完成后就从线程池中移出。它也不能保证放入的线程能按顺序执行。这要看在等待运行的线程的竞争状态了。</code></pre><h3 id="4-3-newSingleThreadExecutor"><a href="#4-3-newSingleThreadExecutor" class="headerlink" title="4.3 newSingleThreadExecutor"></a>4.3 newSingleThreadExecutor</h3><blockquote>
+<p>&emsp;&emsp;其实这个就是创建只能运行一条线程的线程池。它能保证线程的先后顺序执行，并且能保证一条线程执行完成后才开启另一条新的线程</p>
+<p>&emsp;&emsp;等价于 ExecutorService exec = Executors.newFixedThreadPool(1); </p>
+</blockquote>
+<pre><code>public class SingleThreadPool {
+    public static void main(String[] args) {
+        System.out.println(&quot;main.thread start time &quot;+new Date());
+        ExecutorService newSingleThreadExecutor = Executors.newSingleThreadExecutor();//创建大小为1的固定线程池
+        for(int i=0;i&lt;3;i++){
+            newSingleThreadExecutor.execute(new ThreadHandler(String.valueOf(i)));
+        }
+        System.out.println(&quot;main.thread end time &quot;+new Date());
+    }
+}
+
+运行结果：
+
+    main.thread start time Wed Oct 23 10:25:55 CST 2019
+    main.thread end time Wed Oct 23 10:25:55 CST 2019
+    [ 线程number :]pool-1-thread-1
+    thread_0 start.time Wed Oct 23 10:25:55 CST 2019
+    thread_0 end.time Wed Oct 23 10:25:56 CST 2019
+    [ 线程number :]pool-1-thread-1
+    thread_1 start.time Wed Oct 23 10:25:56 CST 2019
+    thread_1 end.time Wed Oct 23 10:25:57 CST 2019
+    [ 线程number :]pool-1-thread-1
+    thread_2 start.time Wed Oct 23 10:25:57 CST 2019
+    thread_2 end.time Wed Oct 23 10:25:58 CST 2019</code></pre><h3 id="4-4-newScheduledThreadPool"><a href="#4-4-newScheduledThreadPool" class="headerlink" title="4.4 newScheduledThreadPool"></a>4.4 newScheduledThreadPool</h3><blockquote>
+<p>这是一个计划线程池类，它能设置线程执行的先后间隔及执行时间等，功能比上面的三个强大了一些。</p>
+</blockquote>
+<pre><code>public class ScheduledThreadPool {
+    public static void main(String[] args) {
+        System.out.println(&quot;main_thread start time &quot;+new Date());
+        ScheduledExecutorService newScheduledThreadPool = Executors.newScheduledThreadPool(3);
+        for(int i=0;i&lt;6;i++){
+            newScheduledThreadPool.schedule(new ThreadHandler(String.valueOf(i)), 5, TimeUnit.SECONDS);//延时10秒执行
+        }
+        newScheduledThreadPool.shutdown();
+        while(!newScheduledThreadPool.isTerminated()){
+            //等待所有任务结束
+        }
+        System.out.println(&quot;main_thread end time &quot;+new Date());
+    }
+}
+实现每个放入的线程延迟10秒执行
+
+运行结果：
+    main_thread start time Wed Oct 23 10:44:34 CST 2019
+    [ 线程number :]pool-1-thread-1
+    thread_0 start.time Wed Oct 23 10:44:39 CST 2019
+    [ 线程number :]pool-1-thread-3
+    thread_1 start.time Wed Oct 23 10:44:39 CST 2019
+    [ 线程number :]pool-1-thread-2
+    thread_2 start.time Wed Oct 23 10:44:39 CST 2019
+    thread_0 end.time Wed Oct 23 10:44:40 CST 2019
+    [ 线程number :]pool-1-thread-1
+    thread_3 start.time Wed Oct 23 10:44:40 CST 2019
+    thread_1 end.time Wed Oct 23 10:44:40 CST 2019
+    thread_2 end.time Wed Oct 23 10:44:40 CST 2019
+    [ 线程number :]pool-1-thread-2
+    thread_5 start.time Wed Oct 23 10:44:40 CST 2019
+    [ 线程number :]pool-1-thread-3
+    thread_4 start.time Wed Oct 23 10:44:40 CST 2019
+    thread_3 end.time Wed Oct 23 10:44:41 CST 2019
+    thread_5 end.time Wed Oct 23 10:44:41 CST 2019
+    thread_4 end.time Wed Oct 23 10:44:41 CST 2019
+    main_thread end time Wed Oct 23 10:44:41 CST 2019</code></pre><blockquote>
+</blockquote>
+<pre><code>ScheduledThreadPoolExecutor的定时方法：</code></pre><h5 id="1-scheduleAtFixedRate-按指定频率周期执行某个任务"><a href="#1-scheduleAtFixedRate-按指定频率周期执行某个任务" class="headerlink" title="1.scheduleAtFixedRate 按指定频率周期执行某个任务"></a>1.scheduleAtFixedRate 按指定频率周期执行某个任务</h5><pre><code>public ScheduledFuture&lt;?&gt; scheduleAtFixedRate(Runnable command,long initialDelay,long period,TimeUnit unit);</code></pre><blockquote>
+<p>command：执行线程</p>
+<p>initialDelay：初始化延时</p>
+<p>period：两次开始执行最小间隔时间</p>
+<p>unit：计时单位</p>
+<p>下面实现每隔2秒执行一次，注意，如果上次的线程还没有执行完成，那么会阻塞下一个线程的执行。即使线程池设置得足够大。</p>
+</blockquote>
+<pre><code>public class ScheduledWithFixedRate {
+    public static void main(String[] args) {
+        System.out.println(&quot;main_thread start time &quot;+new Date());
+        ScheduledExecutorService newScheduledThreadPool = Executors.newScheduledThreadPool(3);
+        for(int i=0;i&lt;5;i++){
+            newScheduledThreadPool.scheduleAtFixedRate(new ThreadHandler(String.valueOf(i)), 0, 3000, TimeUnit.MILLISECONDS);
+        }
+        System.out.println(&quot;main_thread end time &quot;+new Date());
+    }
+}</code></pre><blockquote>
+<p>间隔指的是连续两次任务开始执行的间隔。</p>
+<p>对于scheduleAtFixedRate方法，当执行任务的时间大于我们指定的间隔时间时，它并不会在指定间隔时开辟一个新的线程并发执行这个任务。而是等待该线程执行完毕。</p>
+</blockquote>
+<h5 id="2-scheduleWithFixedDelay-周期定时执行某个任务-按指定频率间隔执行某个任务-注意"><a href="#2-scheduleWithFixedDelay-周期定时执行某个任务-按指定频率间隔执行某个任务-注意" class="headerlink" title="2.scheduleWithFixedDelay 周期定时执行某个任务/按指定频率间隔执行某个任务(注意)"></a>2.scheduleWithFixedDelay 周期定时执行某个任务/按指定频率间隔执行某个任务(注意)</h5><pre><code>public ScheduledFuture&lt;?&gt; scheduleWithFixedDelay(Runnable command,long initialDelay,long delay,TimeUnit unit);</code></pre><blockquote>
+<p>command：执行线程</p>
+<p>initialDelay：初始化延时</p>
+<p>period：前一次执行结束到下一次执行开始的间隔时间（间隔执行延迟时间）</p>
+<p>unit：计时单位</p>
+</blockquote>
+<pre><code>public class ScheduledWithFixedDelay {
+    public static void main(String[] args) {
+        System.out.println(&quot;main_thread start time &quot;+new Date());
+        ScheduledExecutorService newScheduledThreadPool = Executors.newScheduledThreadPool(3);
+        for(int i=0;i&lt;5;i++){
+            newScheduledThreadPool.scheduleWithFixedDelay(new ThreadHandler(String.valueOf(i)), 0, 2000, TimeUnit.MICROSECONDS);
+        }
+        System.out.println(&quot;main_thread start time &quot;+new Date());
+    }
+}</code></pre><blockquote>
+<p>间隔指的是连续上次执行完成和下次开始执行之间的间隔。</p>
+</blockquote>
+<h2 id="5-submit-和-execute-的区别和联系"><a href="#5-submit-和-execute-的区别和联系" class="headerlink" title="5.submit() 和 execute() 的区别和联系"></a>5.submit() 和 execute() 的区别和联系</h2><h4 id="5-1-Execute-："><a href="#5-1-Execute-：" class="headerlink" title="5.1 Execute()："></a>5.1 Execute()：</h4><blockquote>
+<p>(1).无返回值,</p>
+<p>(2).向线程池添加线程，有可能会立即运行，也有可能不会。无法预知线程何时开始，何时线束.</p>
+</blockquote>
+<h4 id="5-2-submit-："><a href="#5-2-submit-：" class="headerlink" title="5.2 submit()："></a>5.2 submit()：</h4><blockquote>
+<p>(1).有返回值。</p>
+<p>(2).submit的方法很适应于生产者-消费者模式，通过和Future结合一起使用，可以起到如果线程没有返回结果，就阻塞当前线程等待线程 池结果返回。</p>
+</blockquote>
+<pre><code>public class ThreadHandler implements Callable&lt;String&gt;{
+    private int id;
+    public ThreadHandler(int id){
+        this.id = id;
+    }
+    public String call() throws Exception {
+        // TODO Auto-generated method stub
+        System.out.println(&quot;call方法被调用：&quot;+Thread.currentThread().getName());
+        for(int i=0;i&lt;10000;i++){  }
+        return &quot;调用结果：&quot;+id+Thread.currentThread().getName();
+    }
+}
+public class SubmitTest {
+    public static void main(String[] args) throws InterruptedException, ExecutionException {
+        System.out.println(&quot;main start time &quot;+new Date());
+        ExecutorService newCachedThreadPool = Executors.newCachedThreadPool();
+        List&lt;Future&lt;String&gt;&gt; list = new ArrayList&lt;Future&lt;String&gt;&gt;();
+        for(int i=0;i&lt;5;i++){
+            Future&lt;String&gt; submit = newCachedThreadPool.submit(new ThreadHandler(i));
+            list.add(submit);
+        }
+        newCachedThreadPool.shutdown();
+        System.out.println(&quot;main end time &quot;+new Date());
+        for(Future&lt;String&gt; future: list){
+            System.out.println(future.get());
+        }
+    }
+}</code></pre><blockquote>
+</blockquote>
+<pre><code>运行结果：
+    main start time Wed Oct 23 15:02:11 CST 2019
+    call方法被调用：pool-1-thread-2
+    call方法被调用：pool-1-thread-1
+    main end time Wed Oct 23 15:02:11 CST 2019
+    call方法被调用：pool-1-thread-3
+    call方法被调用：pool-1-thread-4
+    调用结果：0pool-1-thread-1
+    call方法被调用：pool-1-thread-5
+    调用结果：1pool-1-thread-2
+    调用结果：2pool-1-thread-3
+    调用结果：3pool-1-thread-4
+    调用结果：4pool-1-thread-5
+    输出结果的依次的。说明每次get都 阻塞了的。它的源码，其实它最终还是调用 了execute方法</code></pre><h4 id="5-3-shutdown"><a href="#5-3-shutdown" class="headerlink" title="5.3 shutdown()"></a>5.3 shutdown()</h4><blockquote>
+<p>通常放在execute后面。如果调用了这个方法，</p>
+<p>一方面，表明当前线程池已不再接收新添加的线程，新添加的线程会被拒绝执行。</p>
+<p>另一方面，表明当所有线程执行完毕时，回收线程池的资源。注意，它不会马上关闭线程池！</p>
+</blockquote>
+<h4 id="5-4-shutdownNow"><a href="#5-4-shutdownNow" class="headerlink" title="5.4 shutdownNow()"></a>5.4 shutdownNow()</h4><blockquote>
+<p>不管当前有没有线程在执行，马上关闭线程池！这个方法要小心使用，要不可能会引起系统数据异常！</p>
+</blockquote>
+<h2 id="6-整个线程池启动一条线程的整体过程。"><a href="#6-整个线程池启动一条线程的整体过程。" class="headerlink" title="6.整个线程池启动一条线程的整体过程。"></a>6.整个线程池启动一条线程的整体过程。</h2><p>总结：</p>
+<blockquote>
+<p>(1).ThreadPoolExecutor中，包含了一个任务缓存队列和若干个执行线程，任务缓存队列是一个大小固定的缓冲区队列，用来缓存待执行的任务，执行线程用来处理待执行的任务。每个待执行的任务，都必须实现Runnable接口，执行线程调用其run()方法，完成相应任务。</p>
+<p>(2).ThreadPoolExecutor对象初始化时，不创建任何执行线程，当有新任务进来时，才会创建执行线程。</p>
+<p>(3).构造ThreadPoolExecutor对象时，需要配置该对象的核心线程池大小和最大线程池大小：</p>
+<p>&emsp;&emsp;当目前执行线程的总数小于核心线程大小时，所有新加入的任务，都在新线程中处理;</p>
+<p>&emsp;&emsp;当目前执行线程的总数大于或等于核心线程时，所有新加入的任务，都放入任务缓存队列中;</p>
+<p>&emsp;&emsp;当目前执行线程的总数大于或等于核心线程，并且缓存队列已满，同时此时线程总数小于线程池的最大大小，那么创建新线程，加入线程池中，协助处理新的任务;</p>
+<p>&emsp;&emsp;当所有线程都在执行，线程池大小已经达到上限，并且缓存队列已满时，就rejectHandler拒绝新的任务;</p>
+</blockquote>
+<h2 id="7-多线程练习题"><a href="#7-多线程练习题" class="headerlink" title="7.多线程练习题"></a>7.多线程练习题</h2><p><a href="https://www.cnblogs.com/aikf/p/10204937.html" target="_blank" rel="noopener">网址参考</a></p>
+
+      
+       
+    </div>
+</article>
+
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>java多线程和线程池</p>
+    <p><span class="copy-title">发布时间:</span>2020-01-15, 17:13:19</p>
+    <p><span class="copy-title">最后更新:</span>2020-01-15, 17:13:19</p>
+</div>
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2019 chen wei</p>
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<!--
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+-->
+<a class="" id="rocket" href="javascript:void(0)" target="_blank" rel="noopener"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#Hystrix和Feign Hystrix','#熔断监控Hystrix-Dashboard','#Spring-Cloud-Sleuth','#Zipkin','#Spring-cloud和Spring-boot','#docker','#find命令','#分布式','#Java-IO','#JDK工具使用','#Java访问jar包说明','#linux基本命令','#linux安装jre','#redis连接springboot','#redis','#redis取消只能本地访问的方式','#java实现发送邮件','#java实现手机发送短信','#Springboot日志配置','#Springboot项目导可执行jar','#springboot连接redis哨兵集群','#Springboot基础知识','#swagger使用','#vue项目搭建','#eureka原理介绍','#eureka 服务提供和调用','#配置中心git','#配置中心git服务化和高可用','#java变量','#java数据结构和算法','#Java-reflax','#ps命令','#mv命令','#nginx学习','#netty整合springboot','#rabbitMQ','#redis集群的三种方式','#主从复制和哨兵 （配置文件详解）','#Spring高级话题','#Spring常用配置','#Spring基础知识','#Spring cloud zuul (服务网关初级)','#MySql数据库基础语法','#netty基本理论','#linux高级命令','#springboot整合mq','#SpringMVC基础','#SpringMVC配置','#Java-NIO','#Spring cloud zuul (服务网关高级)','#java多线程和线程池','#java 知识框架',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
