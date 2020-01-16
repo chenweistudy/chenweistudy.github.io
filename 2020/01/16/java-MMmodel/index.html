@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>find命令 | Hexo</title>
-  <meta name="keywords" content=" find命令 ">
-  <meta name="description" content="find命令 | Hexo">
+  <title>java内存模型起源 | Hexo</title>
+  <meta name="keywords" content=" java内存模型起源 ">
+  <meta name="description" content="java内存模型起源 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="java-MMmodel 一.java内存模型起源1.单线程 —&amp;gt; 程序执行过程发展 2.分析单线程、多线程在单核cpu、多核cpu中的影响 &amp;emsp;&amp;emsp;单线程 : CPU 核心缓存只被一个线程访问。缓存独占，不会出现访问冲突等问题。 &amp;emsp;&amp;emsp;单核 CPU，多线程 :：进程中的多个线程同时访问进程中的共享数据，CPU 将某块内存加载到缓存后，不同线程在访问相同的物">
 <meta name="keywords" content="java内存模型起源">
@@ -951,9 +951,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-find" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-java-MMmodel" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">find命令</h1>
+        <h1 class="article-title">java内存模型起源</h1>
     
     <div class="article-meta">
         
@@ -961,21 +961,21 @@
         
         <span class="book">
             
-                <a href="javascript:" target="_blank" data-rel="linux noopener">linux</a>
+                <a href="javascript:" target="_blank" data-rel="java noopener">java</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" target="_blank" rel="noopener" class="color2">find命令</a>
+            <a href="javascript:" target="_blank" rel="noopener" class="color1">java内存模型起源</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-11-15 17:20:49'>2019-11-15 17:20</time>
+        创建时间:<time class="date" title='更新时间: 2020-01-16 16:53:04'>2020-01-16 16:53</time>
         
     </div>
     <div class="article-meta">
@@ -997,7 +997,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-在某目录下查找名为“elm-cc”的文件"><span class="toc-text">1.在某目录下查找名为“elm.cc”的文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-查找文件名中包含某字符（如”elm”）的文件"><span class="toc-text">2.查找文件名中包含某字符（如”elm”）的文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-根据文件的特征进行查询"><span class="toc-text">3.根据文件的特征进行查询</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-使用混合查找方式查找文件"><span class="toc-text">4.使用混合查找方式查找文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-查找并显示文件"><span class="toc-text">5.查找并显示文件</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一-java内存模型起源"><span class="toc-text">一.java内存模型起源</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-单线程-—-gt-程序执行过程发展"><span class="toc-text">1.单线程 —&gt; 程序执行过程发展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-分析单线程、多线程在单核cpu、多核cpu中的影响"><span class="toc-text">2.分析单线程、多线程在单核cpu、多核cpu中的影响</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-硬件导致的数据问题"><span class="toc-text">3.硬件导致的数据问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-并发编程，为了保证数据的安全，需要满足三个特性"><span class="toc-text">4.并发编程，为了保证数据的安全，需要满足三个特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-什么是java内存模型"><span class="toc-text">5.什么是java内存模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-java内存模型如何解决数据问题"><span class="toc-text">6.java内存模型如何解决数据问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-内存模型解决并发问题主要采用两种方式：-重点"><span class="toc-text">7.内存模型解决并发问题主要采用两种方式：(重点)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考：https-chenweistudy-github-io-2020-01-15-java-mode"><span class="toc-text">参考：https://chenweistudy.github.io/2020/01/15/java-mode/</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1013,32 +1013,29 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1-在某目录下查找名为“elm-cc”的文件"><a href="#1-在某目录下查找名为“elm-cc”的文件" class="headerlink" title="1.在某目录下查找名为“elm.cc”的文件"></a>1.在某目录下查找名为“elm.cc”的文件</h1><pre><code>find /home/lijiajia/ -name elm.cc</code></pre><h1 id="2-查找文件名中包含某字符（如”elm”）的文件"><a href="#2-查找文件名中包含某字符（如”elm”）的文件" class="headerlink" title="2.查找文件名中包含某字符（如”elm”）的文件"></a>2.查找文件名中包含某字符（如”elm”）的文件</h1><pre><code>find /home/lijiajia/ -name &apos;*elm*&apos;
-
-find /home/lijiajia/ -name &apos;elm*&apos;
-
-find /home/lijiajia/ -name &apos;*elm&apos;</code></pre><h1 id="3-根据文件的特征进行查询"><a href="#3-根据文件的特征进行查询" class="headerlink" title="3.根据文件的特征进行查询"></a>3.根据文件的特征进行查询</h1><pre><code>find /home/lijiajia/ -amin -10        #查找在系统中最后10分钟访问的文件
-
-find /home/lijiajia/ -atime -2        #查找在系统中最后48小时访问的文件
-
-find /home/lijiajia/ -empty           #查找在系统中为空的文件或者文件夹
-
-find /home/lijiajia/ -group cat       # 查找在系统中属于groupcat 的文件（试了，命令不对。）
-
-find /home/lijiajia/ -mmin -5         # 查找在系统中最后5 分钟里修改过的文件
-
-find /home/lijiajia/ -mtime -1        #查找在系统中最后24 小时里修改过的文件
-
-find /home/lijiajia/ -nouser          #查找在系统中属于作废用户的文件（不明白是什么意思）
-
-find /home/lijiajia/ -amin 10         #查找在系统中最后10分钟访问的文件
-
-find /home/ftp/pub -user lijiajia     #查找在系统中属于lijiajia这个用户的文件</code></pre><p><strong>(说明:以上都是在 /home/lijiajia/文件夹下进行的操作)</strong></p>
-<h1 id="4-使用混合查找方式查找文件"><a href="#4-使用混合查找方式查找文件" class="headerlink" title="4.使用混合查找方式查找文件"></a>4.使用混合查找方式查找文件</h1><pre><code>find /tmp -size +10000000c -and -mtime +2      #查找/tmp目录中大于10000000字节并且在48小时内修改的某个文件
-
-find /tmp -user tom -or -user george           #查找/tmp目录中属于tom或者george这两个用户的文件
-
-find /tmp ! -usr fred                          #查找/tmp目录中不属于fred的文件 </code></pre><h1 id="5-查找并显示文件"><a href="#5-查找并显示文件" class="headerlink" title="5.查找并显示文件"></a>5.查找并显示文件</h1><pre><code>find /home/lijiajia/ -name &apos;elm.cc&apos; -ls        #在目录下查找名为“elm.cc”的文件,并显示这些文件的信息</code></pre>
+        <p>java-MMmodel</p>
+<h1 id="一-java内存模型起源"><a href="#一-java内存模型起源" class="headerlink" title="一.java内存模型起源"></a>一.java内存模型起源</h1><h2 id="1-单线程-—-gt-程序执行过程发展"><a href="#1-单线程-—-gt-程序执行过程发展" class="headerlink" title="1.单线程 —&gt; 程序执行过程发展"></a>1.单线程 —&gt; 程序执行过程发展</h2><p><img src="/2020/01/16/java-MMmodel/1.png" alt></p>
+<h2 id="2-分析单线程、多线程在单核cpu、多核cpu中的影响"><a href="#2-分析单线程、多线程在单核cpu、多核cpu中的影响" class="headerlink" title="2.分析单线程、多线程在单核cpu、多核cpu中的影响"></a>2.分析单线程、多线程在单核cpu、多核cpu中的影响</h2><p><img src="/2020/01/16/java-MMmodel/2.png" alt></p>
+<p>&emsp;&emsp;<font color="green">单线程</font> : CPU 核心缓存只被一个线程访问。缓存独占，<font color="red">不会出现访问冲突等问题。</font></p>
+<p>&emsp;&emsp;<font color="green">单核 CPU，多线程</font> :<br>：进程中的多个线程同时访问进程中的共享数据，CPU 将某块内存加载到缓存后，不同线程在访问相同的物理地址的时候，都会映射到相同的缓存位置，这样即使发生线程的切换，缓存仍然不会失效。<font color="red">由于任何时刻只能有一个线程在执行，故不会出现缓存访问冲突</font></p>
+<p>&emsp;&emsp;<font color="green">多核 CPU，多线程</font> :<br>：每个核都至少有一个 L1  缓存。多个线程访问进程中的某个共享内存，且这多个线程分别在不同的核心上执行，则每个核心都会在各自的 Cache 中保留一份共享内存的缓冲。由于多核是可以并行的，可能会出现多个线程同时写各自的缓存的情况，而各自的 Cache 之间的数据就有可能不同。<font color="red">在 CPU 和主存之间增加缓存，在多线程场景下就可能存在缓存一致性问题</font>。</p>
+<h2 id="3-硬件导致的数据问题"><a href="#3-硬件导致的数据问题" class="headerlink" title="3.硬件导致的数据问题"></a>3.硬件导致的数据问题</h2><p>&emsp;&emsp;<font color="green">处理器优化</font>：为了使处理器内部的运算单元能够被充分利用，处理器可能会对输入代码进行乱序执行处理。</p>
+<p>&emsp;&emsp;<font color="green">指令重排</font>：很多编程语言的编译器也有类似的优化，如 Java 虚拟机的即时编译器（JIT）也会做指令重排。</p>
+<h2 id="4-并发编程，为了保证数据的安全，需要满足三个特性"><a href="#4-并发编程，为了保证数据的安全，需要满足三个特性" class="headerlink" title="4.并发编程，为了保证数据的安全，需要满足三个特性"></a>4.并发编程，为了保证数据的安全，需要满足三个特性</h2><p>&emsp;&emsp;<font color="green">原子性（<font color="red">处理器优化</font>）</font>：在一个操作中，CPU 不可以中途暂停然后再调度，即不被中断操作，要么执行完成，要么就不执行。</p>
+<p>&emsp;&emsp;<font color="green">可见性（<font color="red">缓存一致性</font>）</font>：当多个线程访问同一个变量时，一个线程修改这个变量的值，其他线程能够立即看得到修改的值。</p>
+<p>&emsp;&emsp;<font color="green">有序性（<font color="red">指令重排</font>）</font>：即程序执行的顺序按照代码的先后顺序执行。</p>
+<h2 id="5-什么是java内存模型"><a href="#5-什么是java内存模型" class="headerlink" title="5.什么是java内存模型"></a>5.什么是java内存模型</h2><p>&emsp;&emsp;Java 内存模型（Java Memory Model，JMM）就是一种符合内存模型规范的，屏蔽了各种硬件和操作系统的访问差异的，保证了 Java 程序在各种平台下对内存的访问都能保证效果一致的机制及规范。</p>
+<h2 id="6-java内存模型如何解决数据问题"><a href="#6-java内存模型如何解决数据问题" class="headerlink" title="6.java内存模型如何解决数据问题"></a>6.java内存模型如何解决数据问题</h2><p>&emsp;&emsp;<font color="green">(1)原子性</font>:使用 Synchronized 来保证方法和代码块内的操作是原子性的，底层实现（两个高级的字节码指令 Monitorenter 和 Monitorexit）</p>
+<p>&emsp;&emsp;<font color="green">(2)可见性</font>：被Volatile 关键字修饰的变量，在被修改后立即同步到主内存，每次使用前从主内存刷新。Synchronized 和 Final 两个关键字也可以实现可见性，只是实现方式不同。</p>
+<p>&emsp;&emsp;<font color="green">(3)有序性</font>：Volatile 关键字会禁止指令重排，Synchronized 关键字保证同一时刻只允许一条线程操作。</p>
+<h2 id="7-内存模型解决并发问题主要采用两种方式：-重点"><a href="#7-内存模型解决并发问题主要采用两种方式：-重点" class="headerlink" title="7.内存模型解决并发问题主要采用两种方式：(重点)"></a>7.内存模型解决并发问题主要采用两种方式：(重点)</h2><p>&emsp;&emsp;<font color="green">(1).限制处理器优化</font></p>
+<p>&emsp;&emsp;<font color="green">(2).使用内存屏障</font>：Java 内存模型规定所有的变量都存储在主内存中，<font color="red">每条线程都有自己独享的工作内存</font></p>
+<blockquote>
+<p>&emsp;&emsp;A:线程的工作内存中保存了该线程中用到的变量的主内存副本拷贝，线程对变量的所有操作都必须在工作内存中进行，而不能直接读写主内存。</p>
+<p>&emsp;&emsp;B:不同的线程之间无法直接访问对方工作内存中的变量，线程间变量的传递均需要自己的工作内存和主存之间进行数据同步进行。</p>
+<p>&emsp;&emsp;C:java内存模型(Java Memory Model)作用于工作内存和主存之间数据同步过程，它规定了如何做数据同步以及什么时候做数据同步。</p>
+</blockquote>
+<h2 id="参考：https-chenweistudy-github-io-2020-01-15-java-mode"><a href="#参考：https-chenweistudy-github-io-2020-01-15-java-mode" class="headerlink" title="参考：https://chenweistudy.github.io/2020/01/15/java-mode/"></a>参考：<a href="https://chenweistudy.github.io/2020/01/15/java-mode/" target="_blank" rel="noopener">https://chenweistudy.github.io/2020/01/15/java-mode/</a></h2>
       
        
     </div>
@@ -1047,9 +1044,9 @@ find /tmp ! -usr fred                          #查找/tmp目录中不属于fred
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>find命令</p>
-    <p><span class="copy-title">发布时间:</span>2019-11-15, 17:20:49</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-15, 17:20:49</p>
+    <p><span class="copy-title">文章标题:</span>java内存模型起源</p>
+    <p><span class="copy-title">发布时间:</span>2020-01-16, 16:53:04</p>
+    <p><span class="copy-title">最后更新:</span>2020-01-16, 16:53:04</p>
 </div>
 
 
