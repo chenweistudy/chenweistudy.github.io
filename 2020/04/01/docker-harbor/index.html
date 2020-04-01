@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Spring cloud zuul (初级) | Hexo</title>
-  <meta name="keywords" content=" Spring cloud zuul (服务网关初级) ">
-  <meta name="description" content="Spring cloud zuul (初级) | Hexo">
+  <title>docker 配置企业级镜像仓库 harbor | Hexo</title>
+  <meta name="keywords" content=" docker ">
+  <meta name="description" content="docker 配置企业级镜像仓库 harbor | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="Harbor私有仓库支持web图形化管理，相比于Registry私有仓库功能更强大 harbor安装参考网址一 harbor安装参考网址二 1.安装依赖包yum -y install yum-utils device-mapper-persistent-data lvm22.下载安装docker-compose(1).安装curl依赖包 （CentOS系统安装curl依赖包）     yum up">
 <meta name="keywords" content="docker">
@@ -1144,9 +1144,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-zuul" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-docker-harbor" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Spring cloud zuul (初级)</h1>
+        <h1 class="article-title">docker 配置企业级镜像仓库 harbor</h1>
     
     <div class="article-meta">
         
@@ -1154,21 +1154,21 @@
         
         <span class="book">
             
-                <a href="javascript:" target="_blank" data-rel="springcloud noopener">springcloud</a>
+                <a href="javascript:" target="_blank" data-rel="docker noopener">docker</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" target="_blank" rel="noopener" class="color2">Spring cloud zuul (服务网关初级)</a>
+            <a href="javascript:" target="_blank" rel="noopener" class="color2">docker</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-11-13 17:35:49'>2019-11-13 17:35</time>
+        创建时间:<time class="date" title='更新时间: 2020-04-01 14:55:18'>2020-04-01 14:55</time>
         
     </div>
     <div class="article-meta">
@@ -1190,7 +1190,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-简介"><span class="toc-text">1.简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-为什么需要api-gateway"><span class="toc-text">2.为什么需要api gateway</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1简化客户端调用复杂度"><span class="toc-text">2.1简化客户端调用复杂度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2数据裁剪及聚合"><span class="toc-text">2.2数据裁剪及聚合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3多渠道支持"><span class="toc-text">2.3多渠道支持</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-遗留系统的微服务化改造"><span class="toc-text">2.4 遗留系统的微服务化改造</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1简单的应用"><span class="toc-text">3.1简单的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-1pom-xml"><span class="toc-text">3.1.1pom.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-2application-yml"><span class="toc-text">3.1.2application.yml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-3main方法启动"><span class="toc-text">3.1.3main方法启动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-4测试访问"><span class="toc-text">3.1.4测试访问</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2服务化"><span class="toc-text">3.2服务化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-1-1pom-xml"><span class="toc-text">3.2.1.1pom.xml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-1-2-application-yml"><span class="toc-text">3.2.1.2 application.yml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-1-3-main方法启动"><span class="toc-text">3.2.1.3 main方法启动</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-2producer生产者"><span class="toc-text">3.2.2producer生产者</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-2-1pom-xml"><span class="toc-text">3.2.2.1pom.xml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-2-2application-yml"><span class="toc-text">3.2.2.2application.yml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-2-3main方法启动"><span class="toc-text">3.2.2.3main方法启动</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-2-4Controller"><span class="toc-text">3.2.2.4Controller</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-3gataway-网关调用"><span class="toc-text">3.2.3gataway 网关调用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-3-1pom-xml"><span class="toc-text">3.2.3.1pom.xml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-3-2-application-yml"><span class="toc-text">3.2.3.2 application.yml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-3-3main方法启动"><span class="toc-text">3.2.3.3main方法启动</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-4调试说明"><span class="toc-text">3.2.4调试说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-5网关的默认路由规则"><span class="toc-text">3.2.5网关的默认路由规则</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#routes"><span class="toc-text">routes:</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#api-a"><span class="toc-text">api-a:</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#path-producer"><span class="toc-text">path: /producer/**</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#serviceId-zuul-producer"><span class="toc-text">serviceId: zuul-producer</span></a>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-安装依赖包"><span class="toc-text">1.安装依赖包</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-下载安装docker-compose"><span class="toc-text">2.下载安装docker-compose</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-下载安装harbor"><span class="toc-text">3.下载安装harbor</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-拉取镜像到harbor库"><span class="toc-text">4.拉取镜像到harbor库</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1206,312 +1206,76 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>&emsp;&emsp;(1)Eureka用于服务的注册于发现，Feign支持服务的调用以及均衡负载，Hystrix处理服务的熔断防止故障扩散，Spring Cloud Config服务集群配置中心，似乎一个微服务框架已经完成了。</p>
-<blockquote>
-<p>还是少考虑了一个问题，外部的应用如何来访问内部各种各样的微服务呢？</p>
-<p>在微服务架构中，后端服务往往不直接开放给调用端，而是通过一个API网关根据请求的url，路由到相应的服务。当添加API网关后，在第三方调用端和服务提供方之间就创建了一面墙，这面墙直接与调用方通信进行权限控制，后将请求均衡分发给后台服务端。</p>
-</blockquote>
-<p>&emsp;&emsp;(2)在Spring Cloud体系中， Spring Cloud Zuul就是提供负载均衡、反向代理、权限认证的一个API gateway。</p>
-<p>&emsp;&emsp;(3)Zuul网关使用模式，以及自动转发机制，但其实Zuul还有更多的应用场景，比如：鉴权、流量转发、请求统计等等，这些功能都可以使用Zuul来实现。</p>
-<h2 id="2-为什么需要api-gateway"><a href="#2-为什么需要api-gateway" class="headerlink" title="2.为什么需要api gateway"></a>2.为什么需要api gateway</h2><h3 id="2-1简化客户端调用复杂度"><a href="#2-1简化客户端调用复杂度" class="headerlink" title="2.1简化客户端调用复杂度"></a>2.1简化客户端调用复杂度</h3><p>&emsp;&emsp;在微服务架构模式下后端服务的实例数一般是动态的，对于客户端而言很难发现动态改变的服务实例的访问地址信息。因此在基于微服务的项目中为了简化前端的调用逻辑，通常会引入API Gateway作为轻量级网关，同时API Gateway中也会实现相关的认证逻辑从而简化内部服务之间相互调用的复杂度。</p>
-<h3 id="2-2数据裁剪及聚合"><a href="#2-2数据裁剪及聚合" class="headerlink" title="2.2数据裁剪及聚合"></a>2.2数据裁剪及聚合</h3><p>&emsp;&emsp;通常而言不同的客户端对于显示时对于数据的需求是不一致的，比如手机端或者Web端又或者在低延迟的网络环境或者高延迟的网络环境。<br>因此为了优化客户端的使用体验，API Gateway可以对通用性的响应数据进行裁剪以适应不同客户端的使用需求。同时还可以将多个API调用逻辑进行聚合，从而减少客户端的请求数，优化客户端用户体验</p>
-<h3 id="2-3多渠道支持"><a href="#2-3多渠道支持" class="headerlink" title="2.3多渠道支持"></a>2.3多渠道支持</h3><p>&emsp;&emsp;当然我们还可以针对不同的渠道和客户端提供不同的API Gateway,对于该模式的使用由另外一个大家熟知的方式叫Backend for front-end, 在Backend for front-end模式当中，我们可以针对不同的客户端分别创建其BFF，进一步了解BFF可以参考这篇文章：Pattern: Backends For Frontends</p>
-<h2 id="2-4-遗留系统的微服务化改造"><a href="#2-4-遗留系统的微服务化改造" class="headerlink" title="2.4 遗留系统的微服务化改造"></a>2.4 遗留系统的微服务化改造</h2><p>&emsp;&emsp;对于系统而言进行微服务改造通常是由于原有的系统存在或多或少的问题，比如技术债务，代码质量，可维护性，可扩展性等等。API Gateway的模式同样适用于这一类遗留系统的改造，通过微服务化的改造逐步实现对原有系统中的问题的修复，从而提升对于原有业务响应力的提升。通过引入抽象层，逐步使用新的实现替换旧的实现。</p>
-<p>#3.Spring cloud zuul (初级)</p>
-<p>&emsp;&emsp;Spring Cloud Zuul路由是微服务架构的不可或缺的一部分，提供动态路由，监控，弹性，安全等的边缘服务。Zuul是Netflix出品的一个基于JVM路由和服务端的负载均衡器。</p>
-<h2 id="3-1简单的应用"><a href="#3-1简单的应用" class="headerlink" title="3.1简单的应用"></a>3.1简单的应用</h2><h3 id="3-1-1pom-xml"><a href="#3-1-1pom-xml" class="headerlink" title="3.1.1pom.xml"></a>3.1.1pom.xml</h3><pre><code> &lt;parent&gt;
-    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
-    &lt;version&gt;1.5.3.RELEASE&lt;/version&gt;
-&lt;/parent&gt; 
-  &lt;properties&gt;
-      &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
-    &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;
-    &lt;java.version&gt;1.8&lt;/java.version&gt;
-&lt;/properties&gt;
+        <p>Harbor私有仓库支持web图形化管理，相比于Registry私有仓库功能更强大</p>
+<p><a href="https://blog.51cto.com/14154700/2443431" target="_blank" rel="noopener">harbor安装参考网址一</a></p>
+<p><a href="https://blog.51cto.com/10880347/2287839" target="_blank" rel="noopener">harbor安装参考网址二</a></p>
+<h1 id="1-安装依赖包"><a href="#1-安装依赖包" class="headerlink" title="1.安装依赖包"></a>1.安装依赖包</h1><pre><code>yum -y install yum-utils device-mapper-persistent-data lvm2</code></pre><h1 id="2-下载安装docker-compose"><a href="#2-下载安装docker-compose" class="headerlink" title="2.下载安装docker-compose"></a>2.下载安装docker-compose</h1><pre><code>(1).安装curl依赖包 （CentOS系统安装curl依赖包）
+    yum update -y nss curl libcurl
 
-&lt;dependencies&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
-        &lt;scope&gt;test&lt;/scope&gt;
-    &lt;/dependency&gt;
+(2).打开github.com官网，在登录页面的右上角搜索compose找到docker/compose再找    releases，（网址：https://github.com/docker/compose/releases）
 
-    &lt;!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-config-server --&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-cloud-starter-zuul&lt;/artifactId&gt;
-        &lt;version&gt;1.3.1.RELEASE&lt;/version&gt;
-    &lt;/dependency&gt;
+(3).下载并安装 docker-compose
+    curl -L https://github.com/docker/compose/releases/download/1.25.4/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 
-&lt;/dependencies&gt;
-&lt;build&gt;
-    &lt;plugins&gt;
-        &lt;plugin&gt;
-            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
-        &lt;/plugin&gt;
-    &lt;/plugins&gt;
-&lt;/build&gt;
-&lt;!--注意：这里必须要添加，否则各种依赖有问题--&gt;
-&lt;repositories&gt;
-    &lt;repository&gt;
-        &lt;id&gt;spring-milestones&lt;/id&gt;
-        &lt;name&gt;Spring Milestones&lt;/name&gt;
-        &lt;url&gt;https://repo.spring.io/libs-milestone&lt;/url&gt;
-        &lt;snapshots&gt;
-            &lt;enabled&gt;false&lt;/enabled&gt;
-        &lt;/snapshots&gt;
-    &lt;/repository&gt;
-&lt;/repositories&gt;</code></pre><h3 id="3-1-2application-yml"><a href="#3-1-2application-yml" class="headerlink" title="3.1.2application.yml"></a>3.1.2application.yml</h3><pre><code>spring:
-  application:
-    name: cloud-starter-zuul
+(4).修改文件权限
+    chmod +x /usr/local/bin/docker-compose
 
-server:
-  port: 8001
+(5).查看docker-compose版本
+    docker-compose version</code></pre><h1 id="3-下载安装harbor"><a href="#3-下载安装harbor" class="headerlink" title="3.下载安装harbor"></a>3.下载安装harbor</h1><pre><code>(1).下载harbor安装包
+    github官网搜索harbor，点击goharbor/harbor，点击“releases”，下载后，上传至服务器（网址如下：https://github.com/goharbor/harbor/releases）
+    或者
+    wget http://harbor.orientsoft.cn/harbor-v1.3.0-rc4/harbor-offline-installer-v1.3.0-rc4.tgz
 
-zuul:
-  routes:
-    baidu:
-      path: /it/**
-      url: http://www.ityouknow.com/springcloud/</code></pre><h3 id="3-1-3main方法启动"><a href="#3-1-3main方法启动" class="headerlink" title="3.1.3main方法启动"></a>3.1.3main方法启动</h3><pre><code>@SpringBootApplication
-@EnableZuulProxy //支持网关路由。
-public class ZuulRun {
-    public static void main(String[] args) {
-        SpringApplication.run(ZuulRun.class, args);
-    }
+(2).解压 tgz包
+    tar -zxvf harbor-offline-installer-v1.3.0-rc4.tgz
 
-}</code></pre><h3 id="3-1-4测试访问"><a href="#3-1-4测试访问" class="headerlink" title="3.1.4测试访问"></a>3.1.4测试访问</h3><blockquote>
-<p>在浏览器中访问：<a href="http://127.0.0.1:8001/it/spring-cloud，看到页面返回了：http://www.ityouknow.com/spring-cloud" target="_blank" rel="noopener">http://127.0.0.1:8001/it/spring-cloud，看到页面返回了：http://www.ityouknow.com/spring-cloud</a> 页面的信息，<br>说明访问Cloud-Starter-ZUUL的请求自动转发到了<a href="http://www.ityouknow.com/spring-cloud，并且将结果返回。" target="_blank" rel="noopener">http://www.ityouknow.com/spring-cloud，并且将结果返回。</a></p>
-</blockquote>
-<h2 id="3-2服务化"><a href="#3-2服务化" class="headerlink" title="3.2服务化"></a>3.2服务化</h2><p>&emsp;&emsp;通过url映射的方式来实现zull的转发有局限性，比如每增加一个服务就需要配置一条内容，另外后端的服务如果是动态来提供，就不能采用这种方案来配置了。实际上在实现微服务架构时，服务名与服务实例地址的关系在eureka server中已经存在了，所以只需要将Zuul注册到eureka server上去发现其他服务，就可以实现对serviceId的映射。</p>
-<p>###　3.2.1eureka注册中心</p>
-<h4 id="3-2-1-1pom-xml"><a href="#3-2-1-1pom-xml" class="headerlink" title="3.2.1.1pom.xml"></a>3.2.1.1pom.xml</h4><pre><code>&lt;parent&gt;
-    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
-    &lt;version&gt;2.0.1.RELEASE&lt;/version&gt;
-&lt;/parent&gt; 
-  &lt;properties&gt;
-      &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
-    &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;
-    &lt;java.version&gt;1.8&lt;/java.version&gt;
-&lt;/properties&gt;
+(3).进入解压的tgz包
 
-&lt;dependencies&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
-        &lt;scope&gt;test&lt;/scope&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-server&lt;/artifactId&gt;
-        &lt;version&gt;2.0.1.RELEASE&lt;/version&gt;
-    &lt;/dependency&gt;
-&lt;/dependencies&gt;
-&lt;build&gt;
-    &lt;plugins&gt;
-        &lt;plugin&gt;
-            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
-        &lt;/plugin&gt;
-    &lt;/plugins&gt;
-&lt;/build&gt;
-&lt;!--注意：这里必须要添加，否则各种依赖有问题--&gt;
-&lt;repositories&gt;
-    &lt;repository&gt;
-        &lt;id&gt;spring-milestones&lt;/id&gt;
-        &lt;name&gt;Spring Milestones&lt;/name&gt;
-        &lt;url&gt;https://repo.spring.io/libs-milestone&lt;/url&gt;
-        &lt;snapshots&gt;
-            &lt;enabled&gt;false&lt;/enabled&gt;
-        &lt;/snapshots&gt;
-    &lt;/repository&gt;
-&lt;/repositories&gt;</code></pre><h4 id="3-2-1-2-application-yml"><a href="#3-2-1-2-application-yml" class="headerlink" title="3.2.1.2 application.yml"></a>3.2.1.2 application.yml</h4><pre><code>server:
-  port: 8000
+    cd  harbor
 
-spring:
-  application:
-    name: zuul-eureka
+    vi harbor.cfg  (修改内容如下)
 
-eureka:
-  client:
-    service-url:
-      defaultZone: http://127.0.0.1:8000/eureka
-    register-with-eureka: false
-fetchRegistry: false</code></pre><h4 id="3-2-1-3-main方法启动"><a href="#3-2-1-3-main方法启动" class="headerlink" title="3.2.1.3 main方法启动"></a>3.2.1.3 main方法启动</h4><pre><code>@SpringBootApplication
-@EnableEurekaServer
-public class EurekaRun {
-    public static void main(String[] args) {
-        SpringApplication.run(EurekaRun.class, args);
-    }
-}</code></pre><h3 id="3-2-2producer生产者"><a href="#3-2-2producer生产者" class="headerlink" title="3.2.2producer生产者"></a>3.2.2producer生产者</h3><h4 id="3-2-2-1pom-xml"><a href="#3-2-2-1pom-xml" class="headerlink" title="3.2.2.1pom.xml"></a>3.2.2.1pom.xml</h4><pre><code>&lt;parent&gt;
-    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
-    &lt;version&gt;1.5.3.RELEASE&lt;/version&gt;
-&lt;/parent&gt; 
-  &lt;properties&gt;
-      &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
-    &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;
-    &lt;java.version&gt;1.8&lt;/java.version&gt;
-&lt;/properties&gt;
+        用户名默认为admin
+        {    
+            hostname = 172.16.0.165,
+            db_password = harbor123
+            clair_db_password = harbor123,
+            harbor_admin_password = harbor123
+        }
 
-&lt;dependencies&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
-        &lt;scope&gt;test&lt;/scope&gt;
-    &lt;/dependency&gt;
-    &lt;!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-eureka --&gt;
-&lt;dependency&gt;
-    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-    &lt;artifactId&gt;spring-cloud-starter-eureka&lt;/artifactId&gt;
-    &lt;version&gt;1.3.1.RELEASE&lt;/version&gt;
-&lt;/dependency&gt;
+ (4).安装  ./install.sh
 
-&lt;/dependencies&gt;
-&lt;build&gt;
-    &lt;plugins&gt;
-        &lt;plugin&gt;
-            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
-        &lt;/plugin&gt;
-    &lt;/plugins&gt;
-&lt;/build&gt;
-&lt;!--注意：这里必须要添加，否则各种依赖有问题--&gt;
-&lt;repositories&gt;
-    &lt;repository&gt;
-        &lt;id&gt;spring-milestones&lt;/id&gt;
-        &lt;name&gt;Spring Milestones&lt;/name&gt;
-        &lt;url&gt;https://repo.spring.io/libs-milestone&lt;/url&gt;
-        &lt;snapshots&gt;
-            &lt;enabled&gt;false&lt;/enabled&gt;
-        &lt;/snapshots&gt;
-    &lt;/repository&gt;
-&lt;/repositories&gt;</code></pre><h4 id="3-2-2-2application-yml"><a href="#3-2-2-2application-yml" class="headerlink" title="3.2.2.2application.yml"></a>3.2.2.2application.yml</h4><pre><code>server:
-  port: 8002
+ (5).关闭和启动命令
 
-spring:
-  application:
-    name: zuul-producer
+        docker-compose stop
+        docker-compose start</code></pre><h1 id="4-拉取镜像到harbor库"><a href="#4-拉取镜像到harbor库" class="headerlink" title="4.拉取镜像到harbor库"></a>4.拉取镜像到harbor库</h1><pre><code>(1).配置本地deamon.json文件
 
-eureka:
-  client:
-    service-url:
-      defaultZone: http://127.0.0.1:8000/eureka</code></pre><h4 id="3-2-2-3main方法启动"><a href="#3-2-2-3main方法启动" class="headerlink" title="3.2.2.3main方法启动"></a>3.2.2.3main方法启动</h4><pre><code>@SpringBootApplication
-@EnableDiscoveryClient
-public class ProducerRun {
+    vi /etc/docker/daemon.json  配置内容如下
+        {
+          &quot;registry-mirrors&quot;: [&quot;https://czrunef9.mirror.aliyuncs.com&quot;],
+          &quot;insecure-registries&quot;: [&quot;172.16.0.165&quot;]
 
-    public static void main(String[] args) {
-        SpringApplication.run(ProducerRun.class, args);
-    }
-}</code></pre><h4 id="3-2-2-4Controller"><a href="#3-2-2-4Controller" class="headerlink" title="3.2.2.4Controller"></a>3.2.2.4Controller</h4><pre><code>@RestController
-public class TestHello {
+        }
 
-    @RequestMapping(&quot;/test&quot;)
-    public String getHello(@RequestParam String name){
-        return name+&quot;,say hello1&quot;;
-    }
-}</code></pre><h3 id="3-2-3gataway-网关调用"><a href="#3-2-3gataway-网关调用" class="headerlink" title="3.2.3gataway 网关调用"></a>3.2.3gataway 网关调用</h3><h4 id="3-2-3-1pom-xml"><a href="#3-2-3-1pom-xml" class="headerlink" title="3.2.3.1pom.xml"></a>3.2.3.1pom.xml</h4><pre><code>&lt;parent&gt;
-    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
-    &lt;version&gt;1.5.3.RELEASE&lt;/version&gt;
-&lt;/parent&gt; 
-  &lt;properties&gt;
-      &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
-    &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;
-    &lt;java.version&gt;1.8&lt;/java.version&gt;
-&lt;/properties&gt;
+    必须重启docker服务
+        systemctl daemon-reload
+        systemctl restart docker
 
-&lt;dependencies&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
-        &lt;scope&gt;test&lt;/scope&gt;
-    &lt;/dependency&gt;
+(2).关闭和启动harbor
+    docker-compose stop
+    docker-compose start
 
-    &lt;!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-config-server --&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-cloud-starter-zuul&lt;/artifactId&gt;
-        &lt;version&gt;1.3.1.RELEASE&lt;/version&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-cloud-starter-eureka&lt;/artifactId&gt;
-        &lt;version&gt;1.3.1.RELEASE&lt;/version&gt;
-    &lt;/dependency&gt;
-&lt;/dependencies&gt;
-&lt;build&gt;
-    &lt;plugins&gt;
-        &lt;plugin&gt;
-            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
-        &lt;/plugin&gt;
-    &lt;/plugins&gt;
-&lt;/build&gt;
-&lt;!--注意：这里必须要添加，否则各种依赖有问题--&gt;
-&lt;repositories&gt;
-    &lt;repository&gt;
-        &lt;id&gt;spring-milestones&lt;/id&gt;
-        &lt;name&gt;Spring Milestones&lt;/name&gt;
-        &lt;url&gt;https://repo.spring.io/libs-milestone&lt;/url&gt;
-        &lt;snapshots&gt;
-            &lt;enabled&gt;false&lt;/enabled&gt;
-        &lt;/snapshots&gt;
-    &lt;/repository&gt;
-&lt;/repositories&gt;</code></pre><h4 id="3-2-3-2-application-yml"><a href="#3-2-3-2-application-yml" class="headerlink" title="3.2.3.2 application.yml"></a>3.2.3.2 application.yml</h4><pre><code>server:
-  port: 8003
+(3).查看镜像：docker images
 
-spring:
-  application:
-    name: zuul-gataway
+(4).镜像打标记：
+        docker tag 882487b8be1d 172.16.0.165/cw/tomcat:latest
 
-zuul:
-  routes:
-    api-a:
-      path: /producer/**
-      serviceId: zuul-producer
+(5).登录harbor库
+        docker login -uadmin -pharbor123 172.16.0.165
 
-eureka:
-  client:
-    service-url:
-      defaultZone: http://127.0.0.1:8000/eureka</code></pre><h4 id="3-2-3-3main方法启动"><a href="#3-2-3-3main方法启动" class="headerlink" title="3.2.3.3main方法启动"></a>3.2.3.3main方法启动</h4><pre><code>@SpringBootApplication
-@EnableZuulProxy
-public class GateWayRuN {
-    public static void main(String[] args) {
-        SpringApplication.run(GateWayRuN.class, args);
-    }
-}</code></pre><h3 id="3-2-4调试说明"><a href="#3-2-4调试说明" class="headerlink" title="3.2.4调试说明"></a>3.2.4调试说明</h3><blockquote>
-<p>浏览器 访问：<a href="http://127.0.0.1:8003/zuul-producer/test?name=’cc’" target="_blank" rel="noopener">http://127.0.0.1:8003/zuul-producer/test?name=’cc’</a><br>或<br><a href="http://127.0.0.1:8003/producer/test?name=’cc’" target="_blank" rel="noopener">http://127.0.0.1:8003/producer/test?name=’cc’</a><br>说明访问zuul-gataway的请求自动转发到了zuul-producer，并且将结果返回。<br>返回：’cc’,say hello </p>
-</blockquote>
-<blockquote>
-<p><strong>负载均衡</strong>：    修改 producer生产者 启动端口，和controller 输出name,say hello 1<br>浏览器访问： <a href="http://127.0.0.1:8003/zuul-producer/test?name=’cc’" target="_blank" rel="noopener">http://127.0.0.1:8003/zuul-producer/test?name=’cc’</a><br>或<br><a href="http://127.0.0.1:8003/producer/test?name=’cc’" target="_blank" rel="noopener">http://127.0.0.1:8003/producer/test?name=’cc’</a><br>返回：’cc’,say hello ，和 ‘cc’,say hello1<br>说明访问zuul-gataway的请求自动转发到了zuul-producer，同时负载均衡成功。</p>
-</blockquote>
-<h3 id="3-2-5网关的默认路由规则"><a href="#3-2-5网关的默认路由规则" class="headerlink" title="3.2.5网关的默认路由规则"></a>3.2.5网关的默认路由规则</h3><p>&emsp;&emsp;但是如果后端服务多达十几个的时候，每一个都这样配置也挺麻烦的，spring cloud zuul已经帮我们做了默认配置。默认情况下，Zuul会代理所有注册到Eureka Server的微服务，并且Zuul的路由规则如下：<a href="http://ZUUL_HOST:ZUUL_PORT/微服务在Eureka上的serviceId/**会被转发到serviceId对应的微服务。" target="_blank" rel="noopener">http://ZUUL_HOST:ZUUL_PORT/微服务在Eureka上的serviceId/**会被转发到serviceId对应的微服务。</a></p>
-<p>我们注销掉zuul-gataway项目中关于路由的配置：</p>
-<blockquote>
-<p>#zuul:</p>
-<h1 id="routes"><a href="#routes" class="headerlink" title="routes:"></a>routes:</h1><h1 id="api-a"><a href="#api-a" class="headerlink" title="api-a:"></a>api-a:</h1><h1 id="path-producer"><a href="#path-producer" class="headerlink" title="path: /producer/**"></a>path: /producer/**</h1><h1 id="serviceId-zuul-producer"><a href="#serviceId-zuul-producer" class="headerlink" title="serviceId: zuul-producer"></a>serviceId: zuul-producer</h1></blockquote>
-<pre><code>重新启动后，访问http://127.0.0.1:8003/zuul-producer/test?name=’cc’
-
-测试返回结果如上述所示相同，说明Spring cloud zuul默认已经提供了转发功能。</code></pre>
+(6).上传镜像到harbor库
+        docker push 172.16.0.165/cw/tomcat:latest
+            温馨提示：浏览器登录harbor  新建项目cw，否则出现denied: requested access to the resource is denied</code></pre>
       
        
     </div>
@@ -1520,9 +1284,9 @@ public class GateWayRuN {
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>Spring cloud zuul (初级)</p>
-    <p><span class="copy-title">发布时间:</span>2019-11-13, 17:35:48</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-13, 17:35:49</p>
+    <p><span class="copy-title">文章标题:</span>docker 配置企业级镜像仓库 harbor</p>
+    <p><span class="copy-title">发布时间:</span>2020-04-01, 14:55:18</p>
+    <p><span class="copy-title">最后更新:</span>2020-04-01, 14:55:18</p>
 </div>
 
 
