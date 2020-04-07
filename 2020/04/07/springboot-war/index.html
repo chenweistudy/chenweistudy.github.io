@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>vue项目搭建 | Hexo</title>
-  <meta name="keywords" content=" vue项目搭建 ">
-  <meta name="description" content="vue项目搭建 | Hexo">
+  <title>Springboot项目war说明 | Hexo</title>
+  <meta name="keywords" content=" Springboot项目war说明 ">
+  <meta name="description" content="Springboot项目war说明 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="pom.xml修改如下所示&amp;lt;project xmlns=&amp;quot;http:&#x2F;&#x2F;maven.apache.org&#x2F;POM&#x2F;4.0.0&amp;quot; xmlns:xsi=&amp;quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2001&#x2F;XMLSchema-instance&amp;quot; xsi:schemaLocation=&amp;quot;http:&#x2F;&#x2F;maven.apache.org&#x2F;POM&#x2F;4.0.0">
 <meta name="keywords" content="Springboot项目war说明">
@@ -1156,9 +1156,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-vueStudy" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-springboot-war" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">vue项目搭建</h1>
+        <h1 class="article-title">Springboot项目war说明</h1>
     
     <div class="article-meta">
         
@@ -1166,21 +1166,21 @@
         
         <span class="book">
             
-                <a href="javascript:" target="_blank" data-rel="vue noopener">vue</a>
+                <a href="javascript:" target="_blank" data-rel="springboot noopener">springboot</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" target="_blank" rel="noopener" class="color3">vue项目搭建</a>
+            <a href="javascript:" target="_blank" rel="noopener" class="color3">Springboot项目war说明</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-11-21 15:26:24'>2019-11-21 15:26</time>
+        创建时间:<time class="date" title='更新时间: 2020-04-07 14:47:32'>2020-04-07 14:47</time>
         
     </div>
     <div class="article-meta">
@@ -1202,7 +1202,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-下载安装nodejs"><span class="toc-text">1.下载安装nodejs</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-windows打开cmd"><span class="toc-text">2.windows打开cmd</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-项目初始化"><span class="toc-text">3.项目初始化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-新建vue项目"><span class="toc-text">4.新建vue项目</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#pom-xml修改如下所示"><span class="toc-text">pom.xml修改如下所示</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1218,28 +1218,64 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>  <a href="https://www.cnblogs.com/wang-sai-sai/p/10237192.html" target="_blank" rel="noopener">搭建参考网址</a></p>
-<h1 id="1-下载安装nodejs"><a href="#1-下载安装nodejs" class="headerlink" title="1.下载安装nodejs"></a>1.下载安装nodejs</h1><pre><code>官方：https://nodejs.org/
+        <h3 id="pom-xml修改如下所示"><a href="#pom-xml修改如下所示" class="headerlink" title="pom.xml修改如下所示"></a>pom.xml修改如下所示</h3><pre><code>&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+  &lt;groupId&gt;cn.com.sinodata&lt;/groupId&gt;
+  &lt;artifactId&gt;DockerTestDemo&lt;/artifactId&gt;
+  &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
 
-安装界面一直Next</code></pre><h1 id="2-windows打开cmd"><a href="#2-windows打开cmd" class="headerlink" title="2.windows打开cmd"></a>2.windows打开cmd</h1><pre><code>安装npm镜像
+  &lt;!-- 第一步：打 war包 --&gt;
+  &lt;packaging&gt;war&lt;/packaging&gt;
 
-npm  install  -g  cnpm  --registry=https://registry.npm.taobao.org</code></pre><p><img src="/2019/11/21/vueStudy/11.png" alt></p>
-<h1 id="3-项目初始化"><a href="#3-项目初始化" class="headerlink" title="3.项目初始化"></a>3.项目初始化</h1><pre><code>cnpm install vue-cli -g      //全局安装 vue-cli
+  &lt;dependencies&gt;
+          &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+            &lt;version&gt;1.4.0.RELEASE&lt;/version&gt;
+        &lt;/dependency&gt;        
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+            &lt;version&gt;1.4.0.RELEASE&lt;/version&gt;
+            &lt;scope&gt;test&lt;/scope&gt;
+        &lt;/dependency&gt;
 
-vue list //查看vue-cli是否成功</code></pre><h1 id="4-新建vue项目"><a href="#4-新建vue项目" class="headerlink" title="4.新建vue项目"></a>4.新建vue项目</h1><pre><code>vue init webpack  ”项目名称“</code></pre><p><img src="/2019/11/21/vueStudy/2.png" alt></p>
-<pre><code>安装依赖 
 
-cnpm install</code></pre><p><img src="/2019/11/21/vueStudy/3.png" alt></p>
-<pre><code>运行项目    
+        &lt;!-- 第二步：打 war包 --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;
+            &lt;version&gt;1.4.0.RELEASE&lt;/version&gt;
+            &lt;!-- 此处屏蔽掉springboot自带的tomcat容器 --&gt;
+            &lt;scope&gt;provided&lt;/scope&gt;
+        &lt;/dependency&gt;
+  &lt;/dependencies&gt;
 
-cnpm run dev</code></pre><p><img src="/2019/11/21/vueStudy/4.png" alt></p>
-<p><img src="/2019/11/21/vueStudy/5.png" alt></p>
-<pre><code>浏览器访问：
+  &lt;build&gt;
+        &lt;finalName&gt;springboot-deploy&lt;/finalName&gt;
+        &lt;plugins&gt;
+            &lt;!-- 配置war打包插件 --&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+                &lt;artifactId&gt;maven-war-plugin&lt;/artifactId&gt;
+                &lt;version&gt;2.6&lt;/version&gt;
+                &lt;configuration&gt;
+                    &lt;!-- 禁止当项目中web.xml不存在时抛出异常 --&gt;
+                    &lt;failOnMissingWebXml&gt;false&lt;/failOnMissingWebXml&gt;
+                &lt;/configuration&gt;
+            &lt;/plugin&gt;
+            &lt;!-- 配置编译插件 --&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+                &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+                &lt;version&gt;3.1&lt;/version&gt;
+            &lt;/plugin&gt;
+        &lt;/plugins&gt;
+    &lt;/build&gt;
 
-http://127.0.0.1:8080/#/
+    &lt;!--打war包技巧：如上两步  ，并加上 run as maven build   [goals : -X package] --&gt;
 
-到此结束！！！</code></pre><p><img src="/2019/11/21/vueStudy/6.png" alt></p>
-
+&lt;/project&gt;</code></pre>
       
        
     </div>
@@ -1248,9 +1284,9 @@ http://127.0.0.1:8080/#/
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>vue项目搭建</p>
-    <p><span class="copy-title">发布时间:</span>2019-11-21, 15:26:24</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-21, 15:26:24</p>
+    <p><span class="copy-title">文章标题:</span>Springboot项目war说明</p>
+    <p><span class="copy-title">发布时间:</span>2020-04-07, 14:47:32</p>
+    <p><span class="copy-title">最后更新:</span>2020-04-07, 14:47:32</p>
 </div>
 
 
