@@ -6,16 +6,25 @@
   <meta name="keywords" content=" Springboot基础知识 ">
   <meta name="description" content="Springboot基础知识 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="pom.xml修改如下所示&amp;lt;project xmlns=&amp;quot;http:&#x2F;&#x2F;maven.apache.org&#x2F;POM&#x2F;4.0.0&amp;quot; xmlns:xsi=&amp;quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2001&#x2F;XMLSchema-instance&amp;quot; xsi:schemaLocation=&amp;quot;http:&#x2F;&#x2F;maven.apache.org&#x2F;POM&#x2F;4.0.0">
-<meta name="keywords" content="Springboot项目war说明">
+<meta name="description" content="配置jenkins参考网址 1.主机上创建目录，并添加读写权限以便jenkins应用运行时读写文件mkdir -p  &#x2F;sinodata&#x2F;jenkins_node chmod 777 &#x2F;sinodata&#x2F;jenkins_node2.拉取jenkins镜像jenkins镜像官网 docker pull jenkins&#x2F;jenkins3.运行镜像docker run -d --name myjenki">
+<meta name="keywords" content="docker">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Springboot项目war说明">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;07&#x2F;springboot-war&#x2F;index.html">
+<meta property="og:title" content="docker 配置jenkins容器，并自动构建">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;08&#x2F;docker-jenkins&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="pom.xml修改如下所示&amp;lt;project xmlns=&amp;quot;http:&#x2F;&#x2F;maven.apache.org&#x2F;POM&#x2F;4.0.0&amp;quot; xmlns:xsi=&amp;quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2001&#x2F;XMLSchema-instance&amp;quot; xsi:schemaLocation=&amp;quot;http:&#x2F;&#x2F;maven.apache.org&#x2F;POM&#x2F;4.0.0">
+<meta property="og:description" content="配置jenkins参考网址 1.主机上创建目录，并添加读写权限以便jenkins应用运行时读写文件mkdir -p  &#x2F;sinodata&#x2F;jenkins_node chmod 777 &#x2F;sinodata&#x2F;jenkins_node2.拉取jenkins镜像jenkins镜像官网 docker pull jenkins&#x2F;jenkins3.运行镜像docker run -d --name myjenki">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-04-07T06:47:32.261Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;08&#x2F;docker-jenkins&#x2F;5.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;08&#x2F;docker-jenkins&#x2F;1.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;08&#x2F;docker-jenkins&#x2F;2.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;08&#x2F;docker-jenkins&#x2F;3.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;08&#x2F;docker-jenkins&#x2F;6.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;08&#x2F;docker-jenkins&#x2F;4.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;08&#x2F;docker-jenkins&#x2F;7.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;08&#x2F;docker-jenkins&#x2F;8.png">
+<meta property="og:updated_time" content="2020-04-08T08:56:41.930Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;08&#x2F;docker-jenkins&#x2F;5.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -78,7 +87,7 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(73)</small></div></li>
+    <li><div class="all active">全部文章<small>(74)</small></div></li>
     
         
             
@@ -90,7 +99,7 @@
     
         
             
-            <li><div data-rel="docker">docker<small>(3)</small></div>
+            <li><div data-rel="docker">docker<small>(4)</small></div>
                 
             </li>
             
@@ -178,7 +187,7 @@
     
         
             
-            <li><div data-rel="vue">vue<small>(3)</small></div>
+            <li><div data-rel="swagger">swagger<small>(1)</small></div>
                 
             </li>
             
@@ -194,15 +203,7 @@
     
         
             
-            <li><div data-rel="swagger">swagger<small>(1)</small></div>
-                
-            </li>
-            
-        
-    
-        
-            
-            <li><div data-rel="消息队列">消息队列<small>(2)</small></div>
+            <li><div data-rel="vue">vue<small>(3)</small></div>
                 
             </li>
             
@@ -211,6 +212,14 @@
         
             
             <li><div data-rel="nginx">nginx<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="消息队列">消息队列<small>(2)</small></div>
                 
             </li>
             
@@ -250,7 +259,7 @@
     </div>
     <div></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="73">
+<input type="hidden" id="yelog_site_posts_number" value="74">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -287,7 +296,7 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color2">Hystrix和Feign Hystrix</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Spring-cloud和Spring-boot</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -299,7 +308,7 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color5">Spring-cloud和Spring-boot</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Hystrix和Feign Hystrix</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -319,10 +328,6 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color4">分布式</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" target="_blank" rel="noopener" class="color2">java 框架技术演变</a>
     </li>
     
@@ -331,11 +336,15 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color3">JDK工具使用</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">分布式</a>
     </li>
     
     <li class="article-tag-list-item">
         <a href="javascript:" target="_blank" rel="noopener" class="color3">Java-IO</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">JDK工具使用</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -359,11 +368,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color2">netty示例-http协议传输</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">netty示例-netty聊天室</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color2">netty示例-netty聊天室</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">netty示例-http协议传输</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -371,11 +380,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color1">netty示例-socket连接实时检测</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">netty示例-tcp协议传输</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color1">netty示例-tcp协议传输</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">netty示例-socket连接实时检测</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -403,10 +412,6 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color2">springboot连接redis哨兵集群</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot日志配置</a>
     </li>
     
@@ -415,11 +420,19 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">springboot连接redis哨兵集群</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot基础知识</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" target="_blank" rel="noopener" class="color3">java实现手机发送短信</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color3">vue项目搭建</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">swagger使用</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -431,11 +444,7 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color5">swagger使用</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot基础知识</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">vue项目搭建</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -443,15 +452,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color1">eureka原理介绍</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" target="_blank" rel="noopener" class="color3">配置中心git</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color5">配置中心git服务化和高可用</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">eureka原理介绍</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -459,11 +464,19 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">java数据结构和算法</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" target="_blank" rel="noopener" class="color4">java设计模式</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color2">java数据结构和算法</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">配置中心git服务化和高可用</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Java-reflax</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -475,7 +488,7 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color2">Java-reflax</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">nginx学习</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -483,19 +496,15 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color3">redis集群的三种方式</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" target="_blank" rel="noopener" class="color4">rabbitMQ</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color3">nginx学习</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">主从复制和哨兵 （配置文件详解）</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color2">主从复制和哨兵 （配置文件详解）</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">redis集群的三种方式</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -515,15 +524,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color3">MySql数据库基础语法</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" target="_blank" rel="noopener" class="color2">SpringMVC基础</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color2">SpringMVC配置</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">MySql数据库基础语法</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -531,11 +536,15 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">netty基本理论</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" target="_blank" rel="noopener" class="color5">springboot整合mq</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color5">netty基本理论</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">SpringMVC配置</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -569,11 +578,11 @@
         </a>
         
         <a  class="springcloud "
-           href="/2019/11/13/Hystrix/"
-           data-tag="Hystrix和Feign Hystrix"
+           href="/2019/11/14/boot-cloud/"
+           data-tag="Spring-cloud和Spring-boot"
            data-author="" >
-            <span class="post-title" title="熔断器（Hystrix）">熔断器（Hystrix）</span>
-            <span class="post-date" title="2019-11-13 15:58:16">2019/11/13</span>
+            <span class="post-title" title="Spring-cloud和Spring-boot区别">Spring-cloud和Spring-boot区别</span>
+            <span class="post-date" title="2019-11-14 14:52:22">2019/11/14</span>
         </a>
         
         <a  class="springcloud "
@@ -585,19 +594,11 @@
         </a>
         
         <a  class="springcloud "
-           href="/2019/11/14/boot-cloud/"
-           data-tag="Spring-cloud和Spring-boot"
+           href="/2019/11/13/Hystrix/"
+           data-tag="Hystrix和Feign Hystrix"
            data-author="" >
-            <span class="post-title" title="Spring-cloud和Spring-boot区别">Spring-cloud和Spring-boot区别</span>
-            <span class="post-date" title="2019-11-14 14:52:22">2019/11/14</span>
-        </a>
-        
-        <a  class="docker "
-           href="/2020/01/10/docker-centerOS/"
-           data-tag="docker"
-           data-author="" >
-            <span class="post-title" title="CenterOS 7 安装docker">CenterOS 7 安装docker</span>
-            <span class="post-date" title="2020-01-10 14:00:30">2020/01/10</span>
+            <span class="post-title" title="熔断器（Hystrix）">熔断器（Hystrix）</span>
+            <span class="post-date" title="2019-11-13 15:58:16">2019/11/13</span>
         </a>
         
         <a  class="docker "
@@ -608,12 +609,28 @@
             <span class="post-date" title="2020-04-01 14:55:18">2020/04/01</span>
         </a>
         
+        <a  class="docker "
+           href="/2020/04/08/docker-jenkins/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="docker 配置jenkins容器，并自动构建">docker 配置jenkins容器，并自动构建</span>
+            <span class="post-date" title="2020-04-08 16:56:41">2020/04/08</span>
+        </a>
+        
         <a  class="database "
            href="/2020/01/17/datebase-learn/"
            data-tag="数据库基础知识点"
            data-author="" >
             <span class="post-title" title="数据库基础知识点">数据库基础知识点</span>
             <span class="post-date" title="2020-01-17 14:11:51">2020/01/17</span>
+        </a>
+        
+        <a  class="docker "
+           href="/2020/01/10/docker-centerOS/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="CenterOS 7 安装docker">CenterOS 7 安装docker</span>
+            <span class="post-date" title="2020-01-10 14:00:30">2020/01/10</span>
         </a>
         
         <a  class="docker "
@@ -640,14 +657,6 @@
             <span class="post-date" title="2020-01-16 16:53:04">2020/01/16</span>
         </a>
         
-        <a  class="架构 "
-           href="/2019/11/11/indexs/"
-           data-tag="分布式"
-           data-author="" >
-            <span class="post-title" title="用【快餐店】理解分布式架构">用【快餐店】理解分布式架构</span>
-            <span class="post-date" title="2019-11-11 13:01:24">2019/11/11</span>
-        </a>
-        
         <a  class="java "
            href="/2020/03/19/java-dev/"
            data-tag="java 框架技术演变"
@@ -664,12 +673,12 @@
             <span class="post-date" title="2020-01-16 18:00:42">2020/01/16</span>
         </a>
         
-        <a  class="java "
-           href="/2019/11/15/java-jvm/"
-           data-tag="JDK工具使用"
+        <a  class="架构 "
+           href="/2019/11/11/indexs/"
+           data-tag="分布式"
            data-author="" >
-            <span class="post-title" title="JDK工具使用">JDK工具使用</span>
-            <span class="post-date" title="2019-11-15 16:14:52">2019/11/15</span>
+            <span class="post-title" title="用【快餐店】理解分布式架构">用【快餐店】理解分布式架构</span>
+            <span class="post-date" title="2019-11-11 13:01:24">2019/11/11</span>
         </a>
         
         <a  class="java "
@@ -678,6 +687,14 @@
            data-author="" >
             <span class="post-title" title="Java-IO">Java-IO</span>
             <span class="post-date" title="2019-11-15 15:43:15">2019/11/15</span>
+        </a>
+        
+        <a  class="java "
+           href="/2019/11/15/java-jvm/"
+           data-tag="JDK工具使用"
+           data-author="" >
+            <span class="post-title" title="JDK工具使用">JDK工具使用</span>
+            <span class="post-date" title="2019-11-15 16:14:52">2019/11/15</span>
         </a>
         
         <a  class="java "
@@ -721,18 +738,18 @@
         </a>
         
         <a  class="netty "
-           href="/2020/01/17/netty-http/"
-           data-tag="netty示例-http协议传输"
-           data-author="" >
-            <span class="post-title" title="netty示例-http协议传输">netty示例-http协议传输</span>
-            <span class="post-date" title="2020-01-17 09:52:45">2020/01/17</span>
-        </a>
-        
-        <a  class="netty "
            href="/2020/01/17/netty-chat/"
            data-tag="netty示例-netty聊天室"
            data-author="" >
             <span class="post-title" title="netty示例-netty聊天室">netty示例-netty聊天室</span>
+            <span class="post-date" title="2020-01-17 09:52:45">2020/01/17</span>
+        </a>
+        
+        <a  class="netty "
+           href="/2020/01/17/netty-http/"
+           data-tag="netty示例-http协议传输"
+           data-author="" >
+            <span class="post-title" title="netty示例-http协议传输">netty示例-http协议传输</span>
             <span class="post-date" title="2020-01-17 09:52:45">2020/01/17</span>
         </a>
         
@@ -745,18 +762,18 @@
         </a>
         
         <a  class="netty "
-           href="/2020/01/17/netty-socket/"
-           data-tag="netty示例-socket连接实时检测"
-           data-author="" >
-            <span class="post-title" title="netty示例-socket连接实时检测">netty示例-socket连接实时检测</span>
-            <span class="post-date" title="2020-01-17 09:52:46">2020/01/17</span>
-        </a>
-        
-        <a  class="netty "
            href="/2020/01/17/netty-tcp/"
            data-tag="netty示例-tcp协议传输"
            data-author="" >
             <span class="post-title" title="netty示例-tcp协议传输">netty示例-tcp协议传输</span>
+            <span class="post-date" title="2020-01-17 09:52:46">2020/01/17</span>
+        </a>
+        
+        <a  class="netty "
+           href="/2020/01/17/netty-socket/"
+           data-tag="netty示例-socket连接实时检测"
+           data-author="" >
+            <span class="post-title" title="netty示例-socket连接实时检测">netty示例-socket连接实时检测</span>
             <span class="post-date" title="2020-01-17 09:52:46">2020/01/17</span>
         </a>
         
@@ -766,6 +783,14 @@
            data-author="" >
             <span class="post-title" title="redis连接springboot">redis连接springboot</span>
             <span class="post-date" title="2019-12-06 14:03:57">2019/12/06</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/11/11/redisCache/"
+           data-tag="redis"
+           data-author="" >
+            <span class="post-title" title="redis缓存">redis缓存</span>
+            <span class="post-date" title="2019-11-11 17:01:24">2019/11/11</span>
         </a>
         
         <a  class="redis "
@@ -782,14 +807,6 @@
            data-author="" >
             <span class="post-title" title="redis取消只能本地访问的方式">redis取消只能本地访问的方式</span>
             <span class="post-date" title="2019-11-18 15:41:22">2019/11/18</span>
-        </a>
-        
-        <a  class="redis "
-           href="/2019/11/11/redisCache/"
-           data-tag="redis"
-           data-author="" >
-            <span class="post-title" title="redis缓存">redis缓存</span>
-            <span class="post-date" title="2019-11-11 17:01:24">2019/11/11</span>
         </a>
         
         <a  class="tools "
@@ -816,14 +833,6 @@
             <span class="post-date" title="2020-01-17 11:13:46">2020/01/17</span>
         </a>
         
-        <a  class="redis "
-           href="/2019/12/12/springboot-rediscolony/"
-           data-tag="springboot连接redis哨兵集群"
-           data-author="" >
-            <span class="post-title" title="springboot连接redis哨兵集群">springboot连接redis哨兵集群</span>
-            <span class="post-date" title="2019-12-12 17:23:05">2019/12/12</span>
-        </a>
-        
         <a  class="springboot "
            href="/2019/11/14/springboot-config/"
            data-tag="Springboot日志配置"
@@ -840,6 +849,22 @@
             <span class="post-date" title="2019-11-14 15:26:12">2019/11/14</span>
         </a>
         
+        <a  class="redis "
+           href="/2019/12/12/springboot-rediscolony/"
+           data-tag="springboot连接redis哨兵集群"
+           data-author="" >
+            <span class="post-title" title="springboot连接redis哨兵集群">springboot连接redis哨兵集群</span>
+            <span class="post-date" title="2019-12-12 17:23:05">2019/12/12</span>
+        </a>
+        
+        <a  class="springboot "
+           href="/2019/11/14/springboot/"
+           data-tag="Springboot基础知识"
+           data-author="" >
+            <span class="post-title" title="Springboot基础知识">Springboot基础知识</span>
+            <span class="post-date" title="2019-11-14 15:37:49">2019/11/14</span>
+        </a>
+        
         <a  class="tools "
            href="/2019/11/19/sendMessage/"
            data-tag="java实现手机发送短信"
@@ -848,12 +873,12 @@
             <span class="post-date" title="2019-11-19 09:41:38">2019/11/19</span>
         </a>
         
-        <a  class="vue "
-           href="/2019/11/29/vue-tool/"
-           data-tag="vue项目搭建"
+        <a  class="swagger "
+           href="/2019/11/22/swagger/"
+           data-tag="swagger使用"
            data-author="" >
-            <span class="post-title" title="vue 文字跑马灯效果演示">vue 文字跑马灯效果演示</span>
-            <span class="post-date" title="2019-11-29 14:29:36">2019/11/29</span>
+            <span class="post-title" title="swagger使用">swagger使用</span>
+            <span class="post-date" title="2019-11-22 13:39:07">2019/11/22</span>
         </a>
         
         <a  class="springboot "
@@ -873,6 +898,14 @@
         </a>
         
         <a  class="vue "
+           href="/2019/11/29/vue-tool/"
+           data-tag="vue项目搭建"
+           data-author="" >
+            <span class="post-title" title="vue 文字跑马灯效果演示">vue 文字跑马灯效果演示</span>
+            <span class="post-date" title="2019-11-29 14:29:36">2019/11/29</span>
+        </a>
+        
+        <a  class="vue "
            href="/2019/11/29/vue-tool2/"
            data-tag="vue项目搭建"
            data-author="" >
@@ -888,36 +921,12 @@
             <span class="post-date" title="2019-11-21 15:26:24">2019/11/21</span>
         </a>
         
-        <a  class="swagger "
-           href="/2019/11/22/swagger/"
-           data-tag="swagger使用"
-           data-author="" >
-            <span class="post-title" title="swagger使用">swagger使用</span>
-            <span class="post-date" title="2019-11-22 13:39:07">2019/11/22</span>
-        </a>
-        
-        <a  class="springboot "
-           href="/2019/11/14/springboot/"
-           data-tag="Springboot基础知识"
-           data-author="" >
-            <span class="post-title" title="Springboot基础知识">Springboot基础知识</span>
-            <span class="post-date" title="2019-11-14 15:37:49">2019/11/14</span>
-        </a>
-        
         <a  class="springcloud "
            href="/2019/11/13/eureka-Producer-Consumer/"
            data-tag="eureka 服务提供和调用"
            data-author="" >
             <span class="post-title" title="eureka服务提供和调用">eureka服务提供和调用</span>
             <span class="post-date" title="2019-11-13 15:11:06">2019/11/13</span>
-        </a>
-        
-        <a  class="springcloud "
-           href="/2019/11/13/eureka1/"
-           data-tag="eureka原理介绍"
-           data-author="" >
-            <span class="post-title" title="eureka原理介绍">eureka原理介绍</span>
-            <span class="post-date" title="2019-11-13 16:08:48">2019/11/13</span>
         </a>
         
         <a  class="springcloud "
@@ -929,11 +938,11 @@
         </a>
         
         <a  class="springcloud "
-           href="/2019/11/13/gitconfig-server-client/"
-           data-tag="配置中心git服务化和高可用"
+           href="/2019/11/13/eureka1/"
+           data-tag="eureka原理介绍"
            data-author="" >
-            <span class="post-title" title="配置中心git服务化和高可用">配置中心git服务化和高可用</span>
-            <span class="post-date" title="2019-11-13 17:11:42">2019/11/13</span>
+            <span class="post-title" title="eureka原理介绍">eureka原理介绍</span>
+            <span class="post-date" title="2019-11-13 16:08:48">2019/11/13</span>
         </a>
         
         <a  class="java "
@@ -945,6 +954,14 @@
         </a>
         
         <a  class="java "
+           href="/2020/01/15/java-data/"
+           data-tag="java数据结构和算法"
+           data-author="" >
+            <span class="post-title" title="java数据结构和算法">java数据结构和算法</span>
+            <span class="post-date" title="2020-01-15 17:13:18">2020/01/15</span>
+        </a>
+        
+        <a  class="java "
            href="/2020/01/16/java-designPattern/"
            data-tag="java设计模式"
            data-author="" >
@@ -952,12 +969,20 @@
             <span class="post-date" title="2020-01-16 17:22:33">2020/01/16</span>
         </a>
         
-        <a  class="java "
-           href="/2020/01/15/java-data/"
-           data-tag="java数据结构和算法"
+        <a  class="springcloud "
+           href="/2019/11/13/gitconfig-server-client/"
+           data-tag="配置中心git服务化和高可用"
            data-author="" >
-            <span class="post-title" title="java数据结构和算法">java数据结构和算法</span>
-            <span class="post-date" title="2020-01-15 17:13:18">2020/01/15</span>
+            <span class="post-title" title="配置中心git服务化和高可用">配置中心git服务化和高可用</span>
+            <span class="post-date" title="2019-11-13 17:11:42">2019/11/13</span>
+        </a>
+        
+        <a  class="java "
+           href="/2019/11/29/java-reflex/"
+           data-tag="Java-reflax"
+           data-author="" >
+            <span class="post-title" title="Java-reflax 反射">Java-reflax 反射</span>
+            <span class="post-date" title="2019-11-29 14:30:08">2019/11/29</span>
         </a>
         
         <a  class="linux "
@@ -976,12 +1001,12 @@
             <span class="post-date" title="2019-11-15 17:20:52">2019/11/15</span>
         </a>
         
-        <a  class="java "
-           href="/2019/11/29/java-reflex/"
-           data-tag="Java-reflax"
+        <a  class="nginx "
+           href="/2020/01/06/nginx/"
+           data-tag="nginx学习"
            data-author="" >
-            <span class="post-title" title="Java-reflax 反射">Java-reflax 反射</span>
-            <span class="post-date" title="2019-11-29 14:30:08">2019/11/29</span>
+            <span class="post-title" title="nginx学习">nginx学习</span>
+            <span class="post-date" title="2020-01-06 18:08:19">2020/01/06</span>
         </a>
         
         <a  class="netty "
@@ -992,14 +1017,6 @@
             <span class="post-date" title="2019-11-29 15:02:14">2019/11/29</span>
         </a>
         
-        <a  class="redis "
-           href="/2019/12/11/redis-colony/"
-           data-tag="redis集群的三种方式"
-           data-author="" >
-            <span class="post-title" title="redis集群的三种方式(linux系统)">redis集群的三种方式(linux系统)</span>
-            <span class="post-date" title="2019-12-11 14:23:00">2019/12/11</span>
-        </a>
-        
         <a  class="消息队列 "
            href="/2019/11/13/rabbitMQBase/"
            data-tag="rabbitMQ"
@@ -1008,20 +1025,20 @@
             <span class="post-date" title="2019-11-13 09:58:16">2019/11/13</span>
         </a>
         
-        <a  class="nginx "
-           href="/2020/01/06/nginx/"
-           data-tag="nginx学习"
-           data-author="" >
-            <span class="post-title" title="nginx学习">nginx学习</span>
-            <span class="post-date" title="2020-01-06 18:08:19">2020/01/06</span>
-        </a>
-        
         <a  class="redis "
            href="/2019/12/11/redis-uses/"
            data-tag="主从复制和哨兵 （配置文件详解）"
            data-author="" >
             <span class="post-title" title="主从复制和哨兵 （配置文件详解）">主从复制和哨兵 （配置文件详解）</span>
             <span class="post-date" title="2019-12-11 14:22:59">2019/12/11</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/12/11/redis-colony/"
+           data-tag="redis集群的三种方式"
+           data-author="" >
+            <span class="post-title" title="redis集群的三种方式(linux系统)">redis集群的三种方式(linux系统)</span>
+            <span class="post-date" title="2019-12-11 14:23:00">2019/12/11</span>
         </a>
         
         <a  class="redis "
@@ -1064,14 +1081,6 @@
             <span class="post-date" title="2019-11-13 17:35:48">2019/11/13</span>
         </a>
         
-        <a  class="database "
-           href="/2020/01/09/database-base/"
-           data-tag="MySql数据库基础语法"
-           data-author="" >
-            <span class="post-title" title="MySql数据库基础语法">MySql数据库基础语法</span>
-            <span class="post-date" title="2020-01-09 15:53:28">2020/01/09</span>
-        </a>
-        
         <a  class="spring-mvc "
            href="/2019/11/15/Hystrix/springmvcbase/"
            data-tag="SpringMVC基础"
@@ -1080,12 +1089,12 @@
             <span class="post-date" title="2019-11-15 14:38:17">2019/11/15</span>
         </a>
         
-        <a  class="spring-mvc "
-           href="/2019/11/15/Hystrix/springmvcconfig/"
-           data-tag="SpringMVC配置"
+        <a  class="database "
+           href="/2020/01/09/database-base/"
+           data-tag="MySql数据库基础语法"
            data-author="" >
-            <span class="post-title" title="SpringMVC配置">SpringMVC配置</span>
-            <span class="post-date" title="2019-11-15 14:38:17">2019/11/15</span>
+            <span class="post-title" title="MySql数据库基础语法">MySql数据库基础语法</span>
+            <span class="post-date" title="2020-01-09 15:53:28">2020/01/09</span>
         </a>
         
         <a  class="linux "
@@ -1096,6 +1105,14 @@
             <span class="post-date" title="2019-11-15 17:20:50">2019/11/15</span>
         </a>
         
+        <a  class="netty "
+           href="/2019/11/25/netty-base/"
+           data-tag="netty基本理论"
+           data-author="" >
+            <span class="post-title" title="netty基本理论">netty基本理论</span>
+            <span class="post-date" title="2019-11-25 16:00:35">2019/11/25</span>
+        </a>
+        
         <a  class="消息队列 "
            href="/2019/12/04/mq-springboot/"
            data-tag="springboot整合mq"
@@ -1104,12 +1121,12 @@
             <span class="post-date" title="2019-12-04 16:55:33">2019/12/04</span>
         </a>
         
-        <a  class="netty "
-           href="/2019/11/25/netty-base/"
-           data-tag="netty基本理论"
+        <a  class="spring-mvc "
+           href="/2019/11/15/Hystrix/springmvcconfig/"
+           data-tag="SpringMVC配置"
            data-author="" >
-            <span class="post-title" title="netty基本理论">netty基本理论</span>
-            <span class="post-date" title="2019-11-25 16:00:35">2019/11/25</span>
+            <span class="post-title" title="SpringMVC配置">SpringMVC配置</span>
+            <span class="post-date" title="2019-11-15 14:38:17">2019/11/15</span>
         </a>
         
         <a  class="java "
@@ -1295,7 +1312,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#熔断监控Hystrix-Dashboard','#Hystrix和Feign Hystrix','#Spring-Cloud-Sleuth','#Zipkin','#Spring-cloud和Spring-boot','#docker','#数据库基础知识点','#find命令','#java内存模型起源','#分布式','#java 框架技术演变','#java导出excel表格','#JDK工具使用','#Java-IO','#java内存模型','#Java访问jar包说明','#linux安装jre','#linux基本命令','#mongodb、mysql、redis区别和联系','#netty示例-http协议传输','#netty示例-netty聊天室','#子网掩码设置和网络连接','#netty示例-socket连接实时检测','#netty示例-tcp协议传输','#redis连接springboot','#redis','#redis取消只能本地访问的方式','#java实现发送邮件','#redis发布订阅模式用做消息队列和rabbitmq的区别','#Centos 6.5 搭建SFTP服务器','#springboot连接redis哨兵集群','#Springboot日志配置','#Springboot项目导可执行jar','#java实现手机发送短信','#vue项目搭建','#Springboot项目war说明','#MyBaties 批量插入数据说明','#swagger使用','#Springboot基础知识','#eureka 服务提供和调用','#eureka原理介绍','#配置中心git','#配置中心git服务化和高可用','#java变量','#java设计模式','#java数据结构和算法','#mv命令','#ps命令','#Java-reflax','#netty整合springboot','#redis集群的三种方式','#rabbitMQ','#nginx学习','#主从复制和哨兵 （配置文件详解）','#Spring常用配置','#Spring高级话题','#Spring基础知识','#Spring cloud zuul (服务网关初级)','#MySql数据库基础语法','#SpringMVC基础','#SpringMVC配置','#linux高级命令','#springboot整合mq','#netty基本理论','#Java-NIO','#Spring cloud zuul (服务网关高级)','#java多线程和线程池','#java 知识框架',],
+            'data': ['#熔断监控Hystrix-Dashboard','#Spring-cloud和Spring-boot','#Spring-Cloud-Sleuth','#Zipkin','#Hystrix和Feign Hystrix','#docker','#数据库基础知识点','#find命令','#java内存模型起源','#java 框架技术演变','#java导出excel表格','#分布式','#Java-IO','#JDK工具使用','#java内存模型','#Java访问jar包说明','#linux安装jre','#linux基本命令','#mongodb、mysql、redis区别和联系','#netty示例-netty聊天室','#netty示例-http协议传输','#子网掩码设置和网络连接','#netty示例-tcp协议传输','#netty示例-socket连接实时检测','#redis连接springboot','#redis','#redis取消只能本地访问的方式','#java实现发送邮件','#redis发布订阅模式用做消息队列和rabbitmq的区别','#Centos 6.5 搭建SFTP服务器','#Springboot日志配置','#Springboot项目导可执行jar','#springboot连接redis哨兵集群','#Springboot基础知识','#java实现手机发送短信','#swagger使用','#Springboot项目war说明','#MyBaties 批量插入数据说明','#vue项目搭建','#eureka 服务提供和调用','#配置中心git','#eureka原理介绍','#java变量','#java数据结构和算法','#java设计模式','#配置中心git服务化和高可用','#Java-reflax','#mv命令','#ps命令','#nginx学习','#netty整合springboot','#rabbitMQ','#主从复制和哨兵 （配置文件详解）','#redis集群的三种方式','#Spring常用配置','#Spring高级话题','#Spring基础知识','#Spring cloud zuul (服务网关初级)','#SpringMVC基础','#MySql数据库基础语法','#linux高级命令','#netty基本理论','#springboot整合mq','#SpringMVC配置','#Java-NIO','#Spring cloud zuul (服务网关高级)','#java多线程和线程池','#java 知识框架',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
