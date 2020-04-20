@@ -1,0 +1,2152 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>java基础知识 | Hexo</title>
+  <meta name="keywords" content=" java基础知识 ">
+  <meta name="description" content="java基础知识 | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="0.常用知识点解析基础模块 &amp;emsp;&amp;emsp;容器&amp;emsp;&amp;emsp;多线程&amp;emsp;&amp;emsp;反射&amp;emsp;&amp;emsp;对象拷贝&amp;emsp;&amp;emsp;JavaWeb&amp;emsp;&amp;emsp; 异常&amp;emsp;&amp;emsp;网络&amp;emsp;&amp;emsp;设计模式&amp;emsp;&amp;emsp;Spring&#x2F;SpringMVC&amp;emsp;&amp;emsp;Spring Boot &#x2F; Spring Cl">
+<meta name="keywords" content="java基础知识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java基础知识">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;20&#x2F;java-base&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="0.常用知识点解析基础模块 &amp;emsp;&amp;emsp;容器&amp;emsp;&amp;emsp;多线程&amp;emsp;&amp;emsp;反射&amp;emsp;&amp;emsp;对象拷贝&amp;emsp;&amp;emsp;JavaWeb&amp;emsp;&amp;emsp; 异常&amp;emsp;&amp;emsp;网络&amp;emsp;&amp;emsp;设计模式&amp;emsp;&amp;emsp;Spring&#x2F;SpringMVC&amp;emsp;&amp;emsp;Spring Boot &#x2F; Spring Cl">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;20&#x2F;java-base&#x2F;2.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;20&#x2F;java-base&#x2F;1.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;20&#x2F;java-base&#x2F;3.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;20&#x2F;java-base&#x2F;4.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;20&#x2F;java-base&#x2F;5.gif">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;20&#x2F;java-base&#x2F;6.png">
+<meta property="og:updated_time" content="2020-04-20T03:10:26.995Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;20&#x2F;java-base&#x2F;2.png">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>cwstudy</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="github" href="https://github.com/chenweistudy" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(77)</small></div></li>
+    
+        
+            
+            <li><div data-rel="springcloud">springcloud<small>(10)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="docker">docker<small>(6)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="database">database<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="linux">linux<small>(6)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="java">java<small>(13)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="架构">架构<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="net">net<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="netty">netty<small>(6)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="redis">redis<small>(9)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="tools">tools<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="sftp">sftp<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="springboot">springboot<small>(4)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="MyBaties">MyBaties<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="vue">vue<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="swagger">swagger<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="nginx">nginx<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="消息队列">消息队列<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="spring">spring<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="spring-mvc">spring-mvc<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="job">job<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="77">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Hystrix和Feign Hystrix</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Spring-Cloud-Sleuth</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Zipkin</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">熔断监控Hystrix-Dashboard</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">docker命令基本操作</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Spring-cloud和Spring-boot</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">docker</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">数据库基础知识点</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">docker制作springboot镜像</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">find命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">java内存模型起源</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">java 框架技术演变</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">java导出excel表格</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">分布式</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">Java-IO</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">java内存模型</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">Java访问jar包说明</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">JDK工具使用</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">linux安装jre</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">linux基本命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">mongodb、mysql、redis区别和联系</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">子网掩码设置和网络连接</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">netty示例-http协议传输</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">netty示例-netty聊天室</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">netty示例-socket连接实时检测</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">netty示例-tcp协议传输</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">redis连接springboot</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">redis</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">redis取消只能本地访问的方式</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">java实现发送邮件</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">redis发布订阅模式用做消息队列和rabbitmq的区别</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">java实现手机发送短信</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">Centos 6.5 搭建SFTP服务器</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot日志配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot项目导可执行jar</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">springboot连接redis哨兵集群</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">Springboot项目war说明</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot基础知识</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">MyBaties 批量插入数据说明</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">vue项目搭建</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">swagger使用</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">eureka原理介绍</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">eureka 服务提供和调用</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">配置中心git</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">java变量</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">java设计模式</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">配置中心git服务化和高可用</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">java数据结构和算法</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Java-reflax</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">mv命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">ps命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">netty整合springboot</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">nginx学习</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">redis集群的三种方式</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">rabbitMQ</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">主从复制和哨兵 （配置文件详解）</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring常用配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring高级话题</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring基础知识</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Spring cloud zuul (服务网关初级)</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">SpringMVC基础</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">MySql数据库基础语法</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">SpringMVC配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">linux高级命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">springboot整合mq</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">netty基本理论</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">Java-NIO</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Spring cloud zuul (服务网关高级)</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">java基础知识</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">java多线程和线程池</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">java 知识框架</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="springcloud "
+           href="/2019/11/13/Hystrix/"
+           data-tag="Hystrix和Feign Hystrix"
+           data-author="" >
+            <span class="post-title" title="熔断器（Hystrix）">熔断器（Hystrix）</span>
+            <span class="post-date" title="2019-11-13 15:58:16">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/14/Sleuth-ZipKin/"
+           data-tag="Spring-Cloud-Sleuth,Zipkin"
+           data-author="" >
+            <span class="post-title" title="Spring-Cloud-Sleuth和Zipkin进行分布式链路跟踪">Spring-Cloud-Sleuth和Zipkin进行分布式链路跟踪</span>
+            <span class="post-date" title="2019-11-14 15:03:35">2019/11/14</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/Hystrix-Dashboard/"
+           data-tag="熔断监控Hystrix-Dashboard"
+           data-author="" >
+            <span class="post-title" title="熔断监控Hystrix-Dashboard">熔断监控Hystrix-Dashboard</span>
+            <span class="post-date" title="2019-11-13 15:58:13">2019/11/13</span>
+        </a>
+        
+        <a  class="docker "
+           href="/2020/04/20/docker-base/"
+           data-tag="docker命令基本操作"
+           data-author="" >
+            <span class="post-title" title="docker 基本操作">docker 基本操作</span>
+            <span class="post-date" title="2020-04-20 11:08:54">2020/04/20</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/14/boot-cloud/"
+           data-tag="Spring-cloud和Spring-boot"
+           data-author="" >
+            <span class="post-title" title="Spring-cloud和Spring-boot区别">Spring-cloud和Spring-boot区别</span>
+            <span class="post-date" title="2019-11-14 14:52:22">2019/11/14</span>
+        </a>
+        
+        <a  class="docker "
+           href="/2020/04/01/docker-harbor/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="docker 配置企业级镜像仓库 harbor">docker 配置企业级镜像仓库 harbor</span>
+            <span class="post-date" title="2020-04-01 14:55:18">2020/04/01</span>
+        </a>
+        
+        <a  class="docker "
+           href="/2020/01/10/docker-centerOS/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="CenterOS 7 安装docker">CenterOS 7 安装docker</span>
+            <span class="post-date" title="2020-01-10 14:00:30">2020/01/10</span>
+        </a>
+        
+        <a  class="database "
+           href="/2020/01/17/datebase-learn/"
+           data-tag="数据库基础知识点"
+           data-author="" >
+            <span class="post-title" title="数据库基础知识点">数据库基础知识点</span>
+            <span class="post-date" title="2020-01-17 14:11:51">2020/01/17</span>
+        </a>
+        
+        <a  class="docker "
+           href="/2020/04/08/docker-jenkins/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="docker 配置jenkins容器，并自动构建">docker 配置jenkins容器，并自动构建</span>
+            <span class="post-date" title="2020-04-08 16:56:41">2020/04/08</span>
+        </a>
+        
+        <a  class="docker "
+           href="/2020/01/17/docker-mysql/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="docker 安装 mysql">docker 安装 mysql</span>
+            <span class="post-date" title="2020-01-17 08:52:48">2020/01/17</span>
+        </a>
+        
+        <a  class="docker "
+           href="/2020/04/16/docker-springboot/"
+           data-tag="docker制作springboot镜像"
+           data-author="" >
+            <span class="post-title" title="docker制作springboot镜像">docker制作springboot镜像</span>
+            <span class="post-date" title="2020-04-16 15:48:03">2020/04/16</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/find/"
+           data-tag="find命令"
+           data-author="" >
+            <span class="post-title" title="find命令">find命令</span>
+            <span class="post-date" title="2019-11-15 17:20:49">2019/11/15</span>
+        </a>
+        
+        <a  class="java "
+           href="/2020/01/16/java-MMmodel/"
+           data-tag="java内存模型起源"
+           data-author="" >
+            <span class="post-title" title="java内存模型起源">java内存模型起源</span>
+            <span class="post-date" title="2020-01-16 16:53:04">2020/01/16</span>
+        </a>
+        
+        <a  class="java "
+           href="/2020/03/19/java-dev/"
+           data-tag="java 框架技术演变"
+           data-author="" >
+            <span class="post-title" title="java 框架技术演变">java 框架技术演变</span>
+            <span class="post-date" title="2020-03-19 09:11:29">2020/03/19</span>
+        </a>
+        
+        <a  class="java "
+           href="/2020/01/16/java-excel/"
+           data-tag="java导出excel表格"
+           data-author="" >
+            <span class="post-title" title="java导出excel表格">java导出excel表格</span>
+            <span class="post-date" title="2020-01-16 18:00:42">2020/01/16</span>
+        </a>
+        
+        <a  class="架构 "
+           href="/2019/11/11/indexs/"
+           data-tag="分布式"
+           data-author="" >
+            <span class="post-title" title="用【快餐店】理解分布式架构">用【快餐店】理解分布式架构</span>
+            <span class="post-date" title="2019-11-11 13:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="java "
+           href="/2019/11/15/java-io/"
+           data-tag="Java-IO"
+           data-author="" >
+            <span class="post-title" title="Java-IO">Java-IO</span>
+            <span class="post-date" title="2019-11-15 15:43:15">2019/11/15</span>
+        </a>
+        
+        <a  class="java "
+           href="/2020/01/15/java-mode/"
+           data-tag="java内存模型"
+           data-author="" >
+            <span class="post-title" title="java内存模型">java内存模型</span>
+            <span class="post-date" title="2020-01-15 18:49:54">2020/01/15</span>
+        </a>
+        
+        <a  class="java "
+           href="/2019/12/24/java-main/"
+           data-tag="Java访问jar包说明"
+           data-author="" >
+            <span class="post-title" title="Java访问jar包（windows和linux）">Java访问jar包（windows和linux）</span>
+            <span class="post-date" title="2019-12-24 10:06:54">2019/12/24</span>
+        </a>
+        
+        <a  class="java "
+           href="/2019/11/15/java-jvm/"
+           data-tag="JDK工具使用"
+           data-author="" >
+            <span class="post-title" title="JDK工具使用">JDK工具使用</span>
+            <span class="post-date" title="2019-11-15 16:14:52">2019/11/15</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/linux-jre/"
+           data-tag="linux安装jre"
+           data-author="" >
+            <span class="post-title" title="linux安装jre">linux安装jre</span>
+            <span class="post-date" title="2019-11-15 17:20:51">2019/11/15</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/linux-base/"
+           data-tag="linux基本命令"
+           data-author="" >
+            <span class="post-title" title="linux基本命令">linux基本命令</span>
+            <span class="post-date" title="2019-11-15 17:20:49">2019/11/15</span>
+        </a>
+        
+        <a  class="database "
+           href="/2020/01/17/mgdb-redis-mysql/"
+           data-tag="mongodb、mysql、redis区别和联系"
+           data-author="" >
+            <span class="post-title" title="mongodb、mysql、redis区别和联系">mongodb、mysql、redis区别和联系</span>
+            <span class="post-date" title="2020-01-17 14:52:11">2020/01/17</span>
+        </a>
+        
+        <a  class="net "
+           href="/2020/01/17/net/"
+           data-tag="子网掩码设置和网络连接"
+           data-author="" >
+            <span class="post-title" title="子网掩码设置和网络连接">子网掩码设置和网络连接</span>
+            <span class="post-date" title="2020-01-17 13:52:50">2020/01/17</span>
+        </a>
+        
+        <a  class="netty "
+           href="/2020/01/17/netty-http/"
+           data-tag="netty示例-http协议传输"
+           data-author="" >
+            <span class="post-title" title="netty示例-http协议传输">netty示例-http协议传输</span>
+            <span class="post-date" title="2020-01-17 09:52:45">2020/01/17</span>
+        </a>
+        
+        <a  class="netty "
+           href="/2020/01/17/netty-chat/"
+           data-tag="netty示例-netty聊天室"
+           data-author="" >
+            <span class="post-title" title="netty示例-netty聊天室">netty示例-netty聊天室</span>
+            <span class="post-date" title="2020-01-17 09:52:45">2020/01/17</span>
+        </a>
+        
+        <a  class="netty "
+           href="/2020/01/17/netty-socket/"
+           data-tag="netty示例-socket连接实时检测"
+           data-author="" >
+            <span class="post-title" title="netty示例-socket连接实时检测">netty示例-socket连接实时检测</span>
+            <span class="post-date" title="2020-01-17 09:52:46">2020/01/17</span>
+        </a>
+        
+        <a  class="netty "
+           href="/2020/01/17/netty-tcp/"
+           data-tag="netty示例-tcp协议传输"
+           data-author="" >
+            <span class="post-title" title="netty示例-tcp协议传输">netty示例-tcp协议传输</span>
+            <span class="post-date" title="2020-01-17 09:52:46">2020/01/17</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/12/06/redis-springboot/"
+           data-tag="redis连接springboot"
+           data-author="" >
+            <span class="post-title" title="redis连接springboot">redis连接springboot</span>
+            <span class="post-date" title="2019-12-06 14:03:57">2019/12/06</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/11/11/redisPersister/"
+           data-tag="redis"
+           data-author="" >
+            <span class="post-title" title="redis持久化">redis持久化</span>
+            <span class="post-date" title="2019-11-11 16:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/11/11/redisCache/"
+           data-tag="redis"
+           data-author="" >
+            <span class="post-title" title="redis缓存">redis缓存</span>
+            <span class="post-date" title="2019-11-11 17:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/11/18/redisconnnection/"
+           data-tag="redis取消只能本地访问的方式"
+           data-author="" >
+            <span class="post-title" title="redis取消只能本地访问的方式">redis取消只能本地访问的方式</span>
+            <span class="post-date" title="2019-11-18 15:41:22">2019/11/18</span>
+        </a>
+        
+        <a  class="tools "
+           href="/2019/11/19/sendMail/"
+           data-tag="java实现发送邮件"
+           data-author="" >
+            <span class="post-title" title="java实现发送邮件">java实现发送邮件</span>
+            <span class="post-date" title="2019-11-19 10:33:39">2019/11/19</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2020/01/17/redis-rabbitMQ/"
+           data-tag="redis发布订阅模式用做消息队列和rabbitmq的区别"
+           data-author="" >
+            <span class="post-title" title="redis作为消息队列和rabbitmq的区别">redis作为消息队列和rabbitmq的区别</span>
+            <span class="post-date" title="2020-01-17 09:14:56">2020/01/17</span>
+        </a>
+        
+        <a  class="tools "
+           href="/2019/11/19/sendMessage/"
+           data-tag="java实现手机发送短信"
+           data-author="" >
+            <span class="post-title" title="java实现手机发送短信">java实现手机发送短信</span>
+            <span class="post-date" title="2019-11-19 09:41:38">2019/11/19</span>
+        </a>
+        
+        <a  class="sftp "
+           href="/2020/01/17/sftp-server/"
+           data-tag="Centos 6.5 搭建SFTP服务器"
+           data-author="" >
+            <span class="post-title" title="Centos 6.5 搭建SFTP服务器">Centos 6.5 搭建SFTP服务器</span>
+            <span class="post-date" title="2020-01-17 11:13:46">2020/01/17</span>
+        </a>
+        
+        <a  class="springboot "
+           href="/2019/11/14/springboot-config/"
+           data-tag="Springboot日志配置"
+           data-author="" >
+            <span class="post-title" title="Springboot日志配置">Springboot日志配置</span>
+            <span class="post-date" title="2019-11-14 15:19:38">2019/11/14</span>
+        </a>
+        
+        <a  class="springboot "
+           href="/2019/11/14/springboot-jar/"
+           data-tag="Springboot项目导可执行jar"
+           data-author="" >
+            <span class="post-title" title="Springboot项目导可执行jar">Springboot项目导可执行jar</span>
+            <span class="post-date" title="2019-11-14 15:26:12">2019/11/14</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/12/12/springboot-rediscolony/"
+           data-tag="springboot连接redis哨兵集群"
+           data-author="" >
+            <span class="post-title" title="springboot连接redis哨兵集群">springboot连接redis哨兵集群</span>
+            <span class="post-date" title="2019-12-12 17:23:05">2019/12/12</span>
+        </a>
+        
+        <a  class="springboot "
+           href="/2020/04/07/springboot-war/"
+           data-tag="Springboot项目war说明"
+           data-author="" >
+            <span class="post-title" title="Springboot项目war说明">Springboot项目war说明</span>
+            <span class="post-date" title="2020-04-07 14:47:32">2020/04/07</span>
+        </a>
+        
+        <a  class="springboot "
+           href="/2019/11/14/springboot/"
+           data-tag="Springboot基础知识"
+           data-author="" >
+            <span class="post-title" title="Springboot基础知识">Springboot基础知识</span>
+            <span class="post-date" title="2019-11-14 15:37:49">2019/11/14</span>
+        </a>
+        
+        <a  class="MyBaties "
+           href="/2020/01/17/sybase-mybaties/"
+           data-tag="MyBaties 批量插入数据说明"
+           data-author="" >
+            <span class="post-title" title="MyBaties 批量插入数据异常说明">MyBaties 批量插入数据异常说明</span>
+            <span class="post-date" title="2020-01-17 14:33:10">2020/01/17</span>
+        </a>
+        
+        <a  class="vue "
+           href="/2019/11/29/vue-tool2/"
+           data-tag="vue项目搭建"
+           data-author="" >
+            <span class="post-title" title="vue 文字 轮播演示">vue 文字 轮播演示</span>
+            <span class="post-date" title="2019-11-29 14:29:36">2019/11/29</span>
+        </a>
+        
+        <a  class="vue "
+           href="/2019/11/21/vueStudy/"
+           data-tag="vue项目搭建"
+           data-author="" >
+            <span class="post-title" title="vue项目搭建">vue项目搭建</span>
+            <span class="post-date" title="2019-11-21 15:26:24">2019/11/21</span>
+        </a>
+        
+        <a  class="swagger "
+           href="/2019/11/22/swagger/"
+           data-tag="swagger使用"
+           data-author="" >
+            <span class="post-title" title="swagger使用">swagger使用</span>
+            <span class="post-date" title="2019-11-22 13:39:07">2019/11/22</span>
+        </a>
+        
+        <a  class="vue "
+           href="/2019/11/29/vue-tool/"
+           data-tag="vue项目搭建"
+           data-author="" >
+            <span class="post-title" title="vue 文字跑马灯效果演示">vue 文字跑马灯效果演示</span>
+            <span class="post-date" title="2019-11-29 14:29:36">2019/11/29</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/eureka1/"
+           data-tag="eureka原理介绍"
+           data-author="" >
+            <span class="post-title" title="eureka原理介绍">eureka原理介绍</span>
+            <span class="post-date" title="2019-11-13 16:08:48">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/eureka-Producer-Consumer/"
+           data-tag="eureka 服务提供和调用"
+           data-author="" >
+            <span class="post-title" title="eureka服务提供和调用">eureka服务提供和调用</span>
+            <span class="post-date" title="2019-11-13 15:11:06">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/gitConfig/"
+           data-tag="配置中心git"
+           data-author="" >
+            <span class="post-title" title="配置中心git">配置中心git</span>
+            <span class="post-date" title="2019-11-13 16:58:00">2019/11/13</span>
+        </a>
+        
+        <a  class="java "
+           href="/2019/12/24/java-bianliang/"
+           data-tag="java变量"
+           data-author="" >
+            <span class="post-title" title="java变量">java变量</span>
+            <span class="post-date" title="2019-12-24 15:12:36">2019/12/24</span>
+        </a>
+        
+        <a  class="java "
+           href="/2020/01/16/java-designPattern/"
+           data-tag="java设计模式"
+           data-author="" >
+            <span class="post-title" title="java设计模式">java设计模式</span>
+            <span class="post-date" title="2020-01-16 17:22:33">2020/01/16</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/gitconfig-server-client/"
+           data-tag="配置中心git服务化和高可用"
+           data-author="" >
+            <span class="post-title" title="配置中心git服务化和高可用">配置中心git服务化和高可用</span>
+            <span class="post-date" title="2019-11-13 17:11:42">2019/11/13</span>
+        </a>
+        
+        <a  class="java "
+           href="/2020/01/15/java-data/"
+           data-tag="java数据结构和算法"
+           data-author="" >
+            <span class="post-title" title="java数据结构和算法">java数据结构和算法</span>
+            <span class="post-date" title="2020-01-15 17:13:18">2020/01/15</span>
+        </a>
+        
+        <a  class="java "
+           href="/2019/11/29/java-reflex/"
+           data-tag="Java-reflax"
+           data-author="" >
+            <span class="post-title" title="Java-reflax 反射">Java-reflax 反射</span>
+            <span class="post-date" title="2019-11-29 14:30:08">2019/11/29</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/linux-mv/"
+           data-tag="mv命令"
+           data-author="" >
+            <span class="post-title" title="mv命令">mv命令</span>
+            <span class="post-date" title="2019-11-15 17:20:51">2019/11/15</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/linux-ps/"
+           data-tag="ps命令"
+           data-author="" >
+            <span class="post-title" title="ps命令">ps命令</span>
+            <span class="post-date" title="2019-11-15 17:20:52">2019/11/15</span>
+        </a>
+        
+        <a  class="netty "
+           href="/2019/11/29/netty-springboot/"
+           data-tag="netty整合springboot"
+           data-author="" >
+            <span class="post-title" title="netty整合springboot">netty整合springboot</span>
+            <span class="post-date" title="2019-11-29 15:02:14">2019/11/29</span>
+        </a>
+        
+        <a  class="nginx "
+           href="/2020/01/06/nginx/"
+           data-tag="nginx学习"
+           data-author="" >
+            <span class="post-title" title="nginx学习">nginx学习</span>
+            <span class="post-date" title="2020-01-06 18:08:19">2020/01/06</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/12/11/redis-colony/"
+           data-tag="redis集群的三种方式"
+           data-author="" >
+            <span class="post-title" title="redis集群的三种方式(linux系统)">redis集群的三种方式(linux系统)</span>
+            <span class="post-date" title="2019-12-11 14:23:00">2019/12/11</span>
+        </a>
+        
+        <a  class="消息队列 "
+           href="/2019/11/13/rabbitMQBase/"
+           data-tag="rabbitMQ"
+           data-author="" >
+            <span class="post-title" title="消息队列">消息队列</span>
+            <span class="post-date" title="2019-11-13 09:58:16">2019/11/13</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/12/11/redis-uses/"
+           data-tag="主从复制和哨兵 （配置文件详解）"
+           data-author="" >
+            <span class="post-title" title="主从复制和哨兵 （配置文件详解）">主从复制和哨兵 （配置文件详解）</span>
+            <span class="post-date" title="2019-12-11 14:22:59">2019/12/11</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/11/11/redis1/"
+           data-tag="redis"
+           data-author="" >
+            <span class="post-title" title="Redis基本命令和java基本操作">Redis基本命令和java基本操作</span>
+            <span class="post-date" title="2019-11-11 10:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="spring "
+           href="/2019/11/14/spring-config/"
+           data-tag="Spring常用配置"
+           data-author="" >
+            <span class="post-title" title="Spring常用配置">Spring常用配置</span>
+            <span class="post-date" title="2019-11-14 16:44:14">2019/11/14</span>
+        </a>
+        
+        <a  class="spring "
+           href="/2019/11/14/spring-high/"
+           data-tag="Spring高级话题"
+           data-author="" >
+            <span class="post-title" title="Spring高级话题">Spring高级话题</span>
+            <span class="post-date" title="2019-11-14 17:04:21">2019/11/14</span>
+        </a>
+        
+        <a  class="spring "
+           href="/2019/11/14/spring-base1/"
+           data-tag="Spring基础知识"
+           data-author="" >
+            <span class="post-title" title="Spring基础知识">Spring基础知识</span>
+            <span class="post-date" title="2019-11-14 16:19:44">2019/11/14</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/zuul/"
+           data-tag="Spring cloud zuul (服务网关初级)"
+           data-author="" >
+            <span class="post-title" title="Spring cloud zuul (初级)">Spring cloud zuul (初级)</span>
+            <span class="post-date" title="2019-11-13 17:35:48">2019/11/13</span>
+        </a>
+        
+        <a  class="spring-mvc "
+           href="/2019/11/15/Hystrix/springmvcbase/"
+           data-tag="SpringMVC基础"
+           data-author="" >
+            <span class="post-title" title="SpringMVC基础">SpringMVC基础</span>
+            <span class="post-date" title="2019-11-15 14:38:17">2019/11/15</span>
+        </a>
+        
+        <a  class="database "
+           href="/2020/01/09/database-base/"
+           data-tag="MySql数据库基础语法"
+           data-author="" >
+            <span class="post-title" title="MySql数据库基础语法">MySql数据库基础语法</span>
+            <span class="post-date" title="2020-01-09 15:53:28">2020/01/09</span>
+        </a>
+        
+        <a  class="spring-mvc "
+           href="/2019/11/15/Hystrix/springmvcconfig/"
+           data-tag="SpringMVC配置"
+           data-author="" >
+            <span class="post-title" title="SpringMVC配置">SpringMVC配置</span>
+            <span class="post-date" title="2019-11-15 14:38:17">2019/11/15</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/linux-high/"
+           data-tag="linux高级命令"
+           data-author="" >
+            <span class="post-title" title="linux高级命令">linux高级命令</span>
+            <span class="post-date" title="2019-11-15 17:20:50">2019/11/15</span>
+        </a>
+        
+        <a  class="消息队列 "
+           href="/2019/12/04/mq-springboot/"
+           data-tag="springboot整合mq"
+           data-author="" >
+            <span class="post-title" title="springboot整合mq">springboot整合mq</span>
+            <span class="post-date" title="2019-12-04 16:55:33">2019/12/04</span>
+        </a>
+        
+        <a  class="netty "
+           href="/2019/11/25/netty-base/"
+           data-tag="netty基本理论"
+           data-author="" >
+            <span class="post-title" title="netty基本理论">netty基本理论</span>
+            <span class="post-date" title="2019-11-25 16:00:35">2019/11/25</span>
+        </a>
+        
+        <a  class="java "
+           href="/2019/11/15/java-nio/"
+           data-tag="Java-NIO"
+           data-author="" >
+            <span class="post-title" title="Java-NIO">Java-NIO</span>
+            <span class="post-date" title="2019-11-15 15:43:16">2019/11/15</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/14/zuulhigh/"
+           data-tag="Spring cloud zuul (服务网关高级)"
+           data-author="" >
+            <span class="post-title" title="Spring cloud zuul (高级)">Spring cloud zuul (高级)</span>
+            <span class="post-date" title="2019-11-14 09:48:56">2019/11/14</span>
+        </a>
+        
+        <a  class="job "
+           href="/2020/04/20/java-base/"
+           data-tag="java基础知识"
+           data-author="" >
+            <span class="post-title" title="java基础知识">java基础知识</span>
+            <span class="post-date" title="2020-04-20 11:10:26">2020/04/20</span>
+        </a>
+        
+        <a  class="java "
+           href="/2020/01/15/java-dxc/"
+           data-tag="java多线程和线程池"
+           data-author="" >
+            <span class="post-title" title="java多线程和线程池">java多线程和线程池</span>
+            <span class="post-date" title="2020-01-15 17:13:19">2020/01/15</span>
+        </a>
+        
+        <a  class="job "
+           href="/2020/01/15/java-job/"
+           data-tag="java 知识框架"
+           data-author="" >
+            <span class="post-title" title="java 知识框架">java 知识框架</span>
+            <span class="post-date" title="2020-01-15 10:21:28">2020/01/15</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-java-base" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">java基础知识</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a href="javascript:" target="_blank" data-rel="job noopener">job</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" target="_blank" rel="noopener" class="color4">java基础知识</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2020-04-20 11:10:26'>2020-04-20 11:10</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#0-常用知识点解析"><span class="toc-text">0.常用知识点解析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-java三种技术架构"><span class="toc-text">1.java三种技术架构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-内存模型的发展"><span class="toc-text">2.内存模型的发展</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-java内存模型图"><span class="toc-text">2.1 java内存模型图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-jvm-的主要组成部分和作用"><span class="toc-text">2.2  jvm 的主要组成部分和作用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-jvm-运行时数据区组成？"><span class="toc-text">2.3 jvm 运行时数据区组成？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-队列和栈区别联系？"><span class="toc-text">2.4 队列和栈区别联系？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-说一下类加载的执行过程？"><span class="toc-text">2.5 说一下类加载的执行过程？</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-java面向对象内存管理"><span class="toc-text">3.java面向对象内存管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-堆："><span class="toc-text">(1).堆：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-栈："><span class="toc-text">(2).栈：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-方法区："><span class="toc-text">(3).方法区：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-堆栈的区别"><span class="toc-text">(4).堆栈的区别</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-javac命令和java命令区别联系"><span class="toc-text">4.javac命令和java命令区别联系</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-为什么使用变量？"><span class="toc-text">5.为什么使用变量？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-1-数据类型"><span class="toc-text">5.1 数据类型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-java中IO流分为几种？"><span class="toc-text">6 java中IO流分为几种？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#FileOutputStream和FileInputStream"><span class="toc-text">FileOutputStream和FileInputStream:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BufferedOutputStream和BufferedInputStream"><span class="toc-text">BufferedOutputStream和BufferedInputStream:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ObjectOutputStream和ObjectInputStream"><span class="toc-text">ObjectOutputStream和ObjectInputStream:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Reader和Writer"><span class="toc-text">Reader和Writer:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#OutputStreamWriter和InputStreamReader"><span class="toc-text">OutputStreamWriter和InputStreamReader:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BufferedWriter和BufferedReader"><span class="toc-text">BufferedWriter和BufferedReader:</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-运算符号："><span class="toc-text">7.运算符号：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8-循环语句解析"><span class="toc-text">8.循环语句解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1-判断固定个数的值时，可用if-也可用switch"><span class="toc-text">8.1 判断固定个数的值时，可用if,也可用switch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2-当判断数据范围，获取判断运行结果boolean类型时，用if"><span class="toc-text">8.2 当判断数据范围，获取判断运行结果boolean类型时，用if</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-当某些语句需要执行很多次时，使用循环结构，"><span class="toc-text">8.3 当某些语句需要执行很多次时，使用循环结构，</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9-数组"><span class="toc-text">9.数组</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#10-成员变量和局部变量的区别："><span class="toc-text">10.成员变量和局部变量的区别：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#10-1-成员变量："><span class="toc-text">10.1 成员变量：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-2-局部变量："><span class="toc-text">10.2 局部变量：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#11-面向对象相关："><span class="toc-text">11.面向对象相关：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#11-1-面向对象的特点"><span class="toc-text">11.1 面向对象的特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#11-2-重写遵循的-“两同两小一大”-原则"><span class="toc-text">11.2 重写遵循的 “两同两小一大” 原则</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#12-面向对象的特征"><span class="toc-text">12.面向对象的特征</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#13-List、Set、Map-之间的区别是什么？"><span class="toc-text">13.List、Set、Map 之间的区别是什么？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#14-HashMap-和-Hashtable-有什么区别？"><span class="toc-text">14.HashMap 和 Hashtable 有什么区别？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#14-1-HashMap、Hashtable和CurrentHashMap底层技术实现比较？"><span class="toc-text">14.1 HashMap、Hashtable和CurrentHashMap底层技术实现比较？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#15-如何决定使用-HashMap-还是-TreeMap？"><span class="toc-text">15.如何决定使用 HashMap 还是 TreeMap？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#16-HashMap-的实现原理"><span class="toc-text">16.HashMap 的实现原理?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#17-HashSet-的实现原理"><span class="toc-text">17.HashSet 的实现原理?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#18-如何实现数组和-List-之间的转换？"><span class="toc-text">18.如何实现数组和 List 之间的转换？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#19-Array-和-ArrayList-有何区别？"><span class="toc-text">19.Array 和 ArrayList 有何区别？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#20-Iterator-和-ListIterator-有什么区别？"><span class="toc-text">20. Iterator 和 ListIterator 有什么区别？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#21-多线程学习"><span class="toc-text">21.多线程学习</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#22-runnable-和-callable-有什么区别？"><span class="toc-text">22.runnable 和 callable 有什么区别？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#23-sleep-和-wait-有什么区别"><span class="toc-text">23. sleep() 和 wait() 有什么区别?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#23-1-sleep-方法"><span class="toc-text">23.1 sleep()方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#23-2-wait（）方法"><span class="toc-text">23.2 wait（）方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#23-3-互斥锁和同步锁"><span class="toc-text">23.3 互斥锁和同步锁</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#24-notify-和-notifyAll-有什么区别？"><span class="toc-text">24. notify()和 notifyAll()有什么区别？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#25-线程的-run-和-start-有什么区别？"><span class="toc-text">25.线程的 run()和 start()有什么区别？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#26-比较Executor和new-Thread-创建线程的优劣"><span class="toc-text">26.比较Executor和new Thread()创建线程的优劣?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#27-创建线程池有哪几种方式？"><span class="toc-text">27.创建线程池有哪几种方式？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#28-线程池中-submit-和-execute-方法有什么区别？"><span class="toc-text">28.线程池中 submit()和 execute()方法有什么区别？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#29-在-java-程序中怎么保证多线程的运行安全？"><span class="toc-text">29.在 java 程序中怎么保证多线程的运行安全？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#30-什么是死锁？"><span class="toc-text">30.什么是死锁？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#31-如何防止死锁？"><span class="toc-text">31.如何防止死锁？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#32-synchronized-底层实现原理？"><span class="toc-text">32.synchronized 底层实现原理？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#33-synchronized-和-volatile-的区别是什么？"><span class="toc-text">33.synchronized 和 volatile 的区别是什么？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#33-1-volatile"><span class="toc-text">33.1 volatile</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#33-2-synchronized"><span class="toc-text">33.2 synchronized</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#34-synchronized-和-Lock-有什么区别？"><span class="toc-text">34.synchronized 和 Lock 有什么区别？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#34-1-synchronized"><span class="toc-text">34.1 synchronized</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#34-2-Lock"><span class="toc-text">34.2 Lock</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#35-什么是java反射机制？"><span class="toc-text">35.什么是java反射机制？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#36-什么是-java-序列化？什么情况下需要序列化？"><span class="toc-text">36.什么是 java 序列化？什么情况下需要序列化？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#37-动态代理是什么？有哪些应用？"><span class="toc-text">37.动态代理是什么？有哪些应用？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#38-如何实现对象克隆？"><span class="toc-text">38. 如何实现对象克隆？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#39-深拷贝和浅拷贝区别是什么？"><span class="toc-text">39. 深拷贝和浅拷贝区别是什么？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#40-throw-和-throws-的区别？"><span class="toc-text">40. throw 和 throws 的区别？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#41-final、finally、finalize-有什么区别？"><span class="toc-text">41. final、finally、finalize 有什么区别？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#42-try-catch-finally-中哪个部分可以省略？"><span class="toc-text">42.try-catch-finally 中哪个部分可以省略？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#43-http-响应码-301-和-302-代表的是什么？"><span class="toc-text">43.http 响应码 301 和 302 代表的是什么？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#44-forward-和-redirect-的区别？"><span class="toc-text">44.forward 和 redirect 的区别？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#45-简述-tcp-和-udp的区别？"><span class="toc-text">45. 简述 tcp 和 udp的区别？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#45-1-tcp简述："><span class="toc-text">45.1 tcp简述：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#45-2-udp简述："><span class="toc-text">45.2 udp简述：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#45-3-四次挥手："><span class="toc-text">45.3 四次挥手：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#46-1-tcp-为什么要三次握手，两次不行吗？"><span class="toc-text">46.1 tcp 为什么要三次握手，两次不行吗？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#46-2-为什么建立连接协议是三次握手，而关闭连接却是四次握手呢？"><span class="toc-text">46.2  为什么建立连接协议是三次握手，而关闭连接却是四次握手呢？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#47-tcp-粘包是怎么产生的？"><span class="toc-text">47.tcp 粘包是怎么产生的？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#47-1-发送方产生粘包"><span class="toc-text">47.1 发送方产生粘包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#47-2-接收方产生粘包"><span class="toc-text">47.2 接收方产生粘包</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#48-OSI-的七层模型都有哪些？"><span class="toc-text">48.OSI 的七层模型都有哪些？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#49-get-和-post-请求有哪些区别？"><span class="toc-text">49.get 和 post 请求有哪些区别？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#50-设计模式"><span class="toc-text">50.设计模式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#51-spring-常用的注入方式有哪些"><span class="toc-text">51.spring 常用的注入方式有哪些?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#52-spring-事务实现方式有哪些？"><span class="toc-text">52. spring 事务实现方式有哪些？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#53-spring-的事务隔离？"><span class="toc-text">53. spring 的事务隔离？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#54-spring-mvc-运行流程？"><span class="toc-text">54.spring mvc 运行流程？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#55-spring-cloud-核心组件有哪些？"><span class="toc-text">55.spring cloud 核心组件有哪些？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#56-mybatis中-和-的区别是什么？"><span class="toc-text">56. mybatis中 #{}和 ${}的区别是什么？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#57-mybatis-逻辑分页和物理分页的区别是什么？"><span class="toc-text">57.mybatis 逻辑分页和物理分页的区别是什么？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#58-mybatis-是否支持延迟加载？延迟加载的原理是什么？"><span class="toc-text">58.mybatis 是否支持延迟加载？延迟加载的原理是什么？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#59-mybatis-和-hibernate-的区别有哪些？"><span class="toc-text">59.mybatis 和 hibernate 的区别有哪些？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#60-mybatis-有哪些执行器（Executor）？"><span class="toc-text">60.mybatis 有哪些执行器（Executor）？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#61-数据库"><span class="toc-text">61.数据库</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#62-rabbitmq-的使用场景有哪些？"><span class="toc-text">62.rabbitmq 的使用场景有哪些？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#63"><span class="toc-text">63.</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="0-常用知识点解析"><a href="#0-常用知识点解析" class="headerlink" title="0.常用知识点解析"></a>0.常用知识点解析</h1><p><a href="https://blog.csdn.net/fangchao2011/article/details/89184058" target="_blank" rel="noopener">基础模块</a> &emsp;&emsp;<br><a href="https://blog.csdn.net/fangchao2011/article/details/89184615" target="_blank" rel="noopener">容器</a>&emsp;&emsp;<br><a href="https://blog.csdn.net/fangchao2011/article/details/89184943" target="_blank" rel="noopener">多线程</a>&emsp;&emsp;<br><a href="https://blog.csdn.net/fangchao2011/article/details/89185089" target="_blank" rel="noopener">反射</a>&emsp;&emsp;<br><a href="https://blog.csdn.net/fangchao2011/article/details/89186117" target="_blank" rel="noopener">对象拷贝</a>&emsp;&emsp;<br><a href="https://blog.csdn.net/fangchao2011/article/details/89185249" target="_blank" rel="noopener">JavaWeb</a>&emsp;&emsp;</p>
+<p><a href="https://blog.csdn.net/fangchao2011/article/details/89185762" target="_blank" rel="noopener">异常</a>&emsp;&emsp;<br><a href="https://blog.csdn.net/fangchao2011/article/details/89185955" target="_blank" rel="noopener">网络</a>&emsp;&emsp;<br><a href="https://blog.csdn.net/fangchao2011/article/details/89185365" target="_blank" rel="noopener">设计模式</a>&emsp;&emsp;<br><a href="https://blog.csdn.net/fangchao2011/article/details/89186453" target="_blank" rel="noopener">Spring/SpringMVC</a>&emsp;&emsp;<br><a href="https://blog.csdn.net/fangchao2011/article/details/89186765" target="_blank" rel="noopener">Spring Boot / Spring Cloud</a>&emsp;&emsp;<br><a href="https://blog.csdn.net/fangchao2011/article/details/89360337" target="_blank" rel="noopener">JVM</a>&emsp;&emsp;</p>
+<p><a href="https://blog.csdn.net/fangchao2011/article/details/89186882" target="_blank" rel="noopener">Hibernate</a>&emsp;&emsp;<br><a href="https://blog.csdn.net/fangchao2011/article/details/89187435" target="_blank" rel="noopener">Mybatis</a>&emsp;&emsp;<br><a href="https://blog.csdn.net/fangchao2011/article/details/89187503" target="_blank" rel="noopener">RabbitMQ</a>&emsp;&emsp;<br><a href="https://blog.csdn.net/fangchao2011/article/details/89187544" target="_blank" rel="noopener">Kafka</a>&emsp;&emsp;<br><a href="https://blog.csdn.net/fangchao2011/article/details/89187599" target="_blank" rel="noopener">Zookeeper</a>&emsp;&emsp;<br><a href="https://blog.csdn.net/fangchao2011/article/details/89187694" target="_blank" rel="noopener">MySql</a>&emsp;&emsp;<br><a href="https://blog.csdn.net/fangchao2011/article/details/89360306" target="_blank" rel="noopener">Redis</a>&emsp;&emsp;</p>
+<h1 id="1-java三种技术架构"><a href="#1-java三种技术架构" class="headerlink" title="1.java三种技术架构"></a>1.java三种技术架构</h1><blockquote>
+<p>JAVAEE：开发企业环境下的应用程序，主要针对web程序开发；</p>
+<p>JAVASE：完成桌面应用程序的开发，是其它两者的基础；</p>
+<p>JAVAME：开发电子消费产品和嵌入式设备，如手机中的程序；</p>
+</blockquote>
+<h1 id="2-内存模型的发展"><a href="#2-内存模型的发展" class="headerlink" title="2.内存模型的发展"></a>2.内存模型的发展</h1><p><a href="https://chenweistudy.github.io/2020/01/16/java-MMmodel/" target="_blank" rel="noopener">内存模型参考</a></p>
+<h4 id="2-1-java内存模型图"><a href="#2-1-java内存模型图" class="headerlink" title="2.1 java内存模型图"></a>2.1 java内存模型图</h4><p><img src="/2020/04/20/java-base/2.png" alt></p>
+<p>可见性：当某个线程修改某个共享变量的值，并把该共享变量写回主内存中，其它线程要知道该变量已经被修改过了。</p>
+<p><font color="red">java内存模型同步规定</font></p>
+<blockquote>
+<p>(1).线程解锁前，必须把共享变量的值刷新回主内存</p>
+<p>(2).线程加锁前，必须读取主内存的最新值到自己的工作内存</p>
+<p>(3).加锁解锁是同一把锁</p>
+</blockquote>
+<h4 id="2-2-jvm-的主要组成部分和作用"><a href="#2-2-jvm-的主要组成部分和作用" class="headerlink" title="2.2  jvm 的主要组成部分和作用"></a>2.2  jvm 的主要组成部分和作用</h4><blockquote>
+<p>(1).jvm 组成：类加载器（ClassLoader）、运行时数据区（Runtime Data Area）、执行引擎（Execution Engine）、本地库接口（Native Interface）</p>
+<p>(2).作用：</p>
+<p>第一步：javac编译器把类加载器（ClassLoader）加载的 Java 代码转换成字节码，</p>
+<p>第二步：运行时数据区（Runtime Data Area）把字节码加载到内存中，</p>
+<p>第三步：执行引擎（Execution Engine），将字节码翻译成底层系统指令，再由 CPU 去执行</p>
+<p>第四步：执行过程中需要调用其他语言的本地库接口（Native Interface）来实现整个程序的功能。</p>
+<p><font color="red">温馨提示</font>：字节码文件只是 JVM 的一套指令集规范，并不能直接交给底层操作系统去执行，因此需要特定的命令解析器，即执行引擎</p>
+<p>(3).java数据交互原理</p>
+</blockquote>
+<pre><code>数据交互处理：java应用程序－JVM－操作系统－硬件驱动－硬件</code></pre><blockquote>
+<p>Java做到字节码跨平台,底层由JVM处理字节序。若没有中间平台语言，比如C/C++(只能源代码跨平台)，需要针对硬件平台（或者硬件驱动）去重新编译一套可执行文件，即不跨平台的原因。</p>
+<p>高低位只有汇编和C才可能去考虑，更高一层的语言有着更加抽象的封装。</p>
+</blockquote>
+<h4 id="2-3-jvm-运行时数据区组成？"><a href="#2-3-jvm-运行时数据区组成？" class="headerlink" title="2.3 jvm 运行时数据区组成？"></a>2.3 jvm 运行时数据区组成？</h4><pre><code>程序计数器、虚拟机栈、本地方法栈、堆、方法区、</code></pre><p><font color="red">温馨提示</font>：有的区域随着虚拟机进程的启动而存在；有的区域依赖用户进程的启动和结束而创建和销毁。</p>
+<h4 id="2-4-队列和栈区别联系？"><a href="#2-4-队列和栈区别联系？" class="headerlink" title="2.4 队列和栈区别联系？"></a>2.4 队列和栈区别联系？</h4><blockquote>
+<p>(1).队列和栈均被用来预存储数据的；</p>
+<p>(2).队列–先进先出检索元素，但Deque 接口允许从两端检索元素；</p>
+<p>(3).栈 – 先进后出检索元素；</p>
+</blockquote>
+<h4 id="2-5-说一下类加载的执行过程？"><a href="#2-5-说一下类加载的执行过程？" class="headerlink" title="2.5 说一下类加载的执行过程？"></a>2.5 说一下类加载的执行过程？</h4><blockquote>
+<p>第一步：加载—查找路径找到相应的 class 文件导入；</p>
+<p>第二步：检查—检查加载的 class 文件的正确性；</p>
+<p>第三步：准备—给类中的静态变量分配内存空间；</p>
+<p>第四步：解析—虚拟机将常量池中的符号引用替换成直接引用；</p>
+<p>&emsp;&emsp;<font color="red">符号引用：一个标示；直接引用：直接指向内存中的地址；</font></p>
+<p>第五步：初始化—对静态变量和静态代码块执行初始化工作；</p>
+</blockquote>
+<h1 id="3-java面向对象内存管理"><a href="#3-java面向对象内存管理" class="headerlink" title="3.java面向对象内存管理"></a>3.java面向对象内存管理</h1><h3 id="1-堆："><a href="#1-堆：" class="headerlink" title="(1).堆："></a>(1).堆：</h3><p>用于存储数组和对象</p>
+<blockquote>
+<p>(1).存储new出来的对象，包括实例变量（属性）；</p>
+<p>(2).实例变量的生命周期：创建时存储在堆中，对象被回收时一并被收回；</p>
+<p>(3).垃圾：没有任何引用所指向的对象，垃圾回收器（Gc）不定时到内存中去清扫垃圾，Gc的回收过程是透明的，不一定发现垃圾就立刻回收可以调用System.gc（）建议虚拟机尽快调度Gc来回收垃圾</p>
+<p>(4).内存泄漏：不再使用的内存还没有被及时的回收</p>
+<p>(5).建议：若对象不再使用时应及时将其引用设置为null</p>
+</blockquote>
+<h3 id="2-栈："><a href="#2-栈：" class="headerlink" title="(2).栈："></a>(2).栈：</h3><blockquote>
+<p>(1).存储正在调用的方法中的所有局部变量（函数中定义的变量，方法上的参数，语句中的变量）</p>
+<p>(2).局部变量的生命周期：方法调用完成之后</p>
+<p>(3).调用方法时会为该方法在栈中分配一块对应的栈帧，栈帧中包含方法的局部变量（包括参数），当方法调用结束时，栈帧被清除，局部变量一并被清除</p>
+<p>(4).基本类型放栈里存数值，引用类型放栈里存地址</p>
+</blockquote>
+<h3 id="3-方法区："><a href="#3-方法区：" class="headerlink" title="(3).方法区："></a>(3).方法区：</h3><blockquote>
+<p>(1).存储.class字节码文件（包括方法,静态变量），</p>
+<p><font color="green">温馨提示：</font>static final常量在编译时被直接替换成具体值，效率高。</p>
+<p>(2).方法只有一份，通过this来区分具体的访问对象</p>
+</blockquote>
+<h3 id="4-堆栈的区别"><a href="#4-堆栈的区别" class="headerlink" title="(4).堆栈的区别"></a>(4).堆栈的区别</h3><blockquote>
+<p>(1).栈内存存储的是局部变量；堆内存存储的是实体；</p>
+<p>(2).栈内存的更新速度要快于堆内存，因为局部变量的生命周期很短；</p>
+<p>(3).栈内存存放的变量生命周期一旦结束就会被释放；堆内存存放的实体会被垃圾回收机制不定时回收。</p>
+</blockquote>
+<h1 id="4-javac命令和java命令区别联系"><a href="#4-javac命令和java命令区别联系" class="headerlink" title="4.javac命令和java命令区别联系"></a>4.javac命令和java命令区别联系</h1><blockquote>
+<p>(1).要知道java是分两部分的：一个是编译，一个是运行。</p>
+<p>(2).javac：负责的是编译的部分，当执行javac时，会启动java的编译器程序。对指定扩展名的.java文件进行编译。生成了jvm可以识别的字节码文件。也就是class文件，也就是java的运行程序。</p>
+<p>(3).java：负责运行的部分.会启动jvm.加载运行时所需的类库,并对class文件进行执行.</p>
+<p>(4).一个文件要被执行,必须要有一个执行的起始点,这个起始点就是main函数.</p>
+</blockquote>
+<h1 id="5-为什么使用变量？"><a href="#5-为什么使用变量？" class="headerlink" title="5.为什么使用变量？"></a>5.为什么使用变量？</h1><p>&emsp;&emsp;<a href="https://chenweistudy.github.io/2019/12/24/java-bianliang/" target="_blank" rel="noopener">变量详细参考</a></p>
+<blockquote>
+<p>(1).概念：内存中的一个存储空间，用于存储常量数据。当数据不确定时就定义为变量。</p>
+<p>(2).作用：方便于运算。因为有些数据不确定。所以确定该数据的名词和存储空间。</p>
+<p>(3).特点：变量空间可以重复使用</p>
+<p>(4).变量的作用域：从变量定义的位置开始，到该变量所在大括号结束；</p>
+<p>(5).生命周期：变量从定义的位置开始就在内存中活了；到达它所在的作用域的时候就在内存中消失；</p>
+<p>(6).变量空间的开辟要素:数据类型、变量名称、变量的初始化值。</p>
+</blockquote>
+<h1 id="5-1-数据类型"><a href="#5-1-数据类型" class="headerlink" title="5.1 数据类型"></a>5.1 数据类型</h1><blockquote>
+<p>(1).基本数据类型：byte、short、int、long、float、double、char、boolean</p>
+<p>(2).引用数据类型: 数组、类、接口。</p>
+<p>(3).级别从低到高为：byte,char,short(这三个平级)–&gt;int–&gt;float–&gt;long–&gt;double</p>
+<p>(4).自动类型转换：从低级别到高级别，系统自动转的；</p>
+<p>(5).强制类型转换：把一个高级别的数赋给一个比该数的级别低的变量；</p>
+</blockquote>
+<h1 id="6-java中IO流分为几种？"><a href="#6-java中IO流分为几种？" class="headerlink" title="6 java中IO流分为几种？"></a>6 java中IO流分为几种？</h1><blockquote>
+<p>(1).字节流</p>
+<h4 id="FileOutputStream和FileInputStream"><a href="#FileOutputStream和FileInputStream" class="headerlink" title="FileOutputStream和FileInputStream:"></a>FileOutputStream和FileInputStream:</h4><p>&emsp;&emsp;&emsp;低级流，字节流读写数据会在文件中顺序读写，不可插入某条数据，当有true时，会在文件末尾追加读写，无true时，覆盖读写</p>
+<h4 id="BufferedOutputStream和BufferedInputStream"><a href="#BufferedOutputStream和BufferedInputStream" class="headerlink" title="BufferedOutputStream和BufferedInputStream:"></a>BufferedOutputStream和BufferedInputStream:</h4><p>&emsp;&emsp;&emsp;缓冲流（高级流）,基于字节流，操作低级流</p>
+<h4 id="ObjectOutputStream和ObjectInputStream"><a href="#ObjectOutputStream和ObjectInputStream" class="headerlink" title="ObjectOutputStream和ObjectInputStream:"></a>ObjectOutputStream和ObjectInputStream:</h4><p>&emsp;&emsp;&emsp;对象流（高级流），基于字节流，对象的序列化与反序列化 </p>
+<p>(2).字符流</p>
+<h4 id="Reader和Writer"><a href="#Reader和Writer" class="headerlink" title="Reader和Writer:"></a>Reader和Writer:</h4><p>&emsp;&emsp;&emsp;所有字符流的父类，底层对字节流操作，读写单元：字符，将字节与字符的转换工作交给了字符流来完成。</p>
+<h4 id="OutputStreamWriter和InputStreamReader"><a href="#OutputStreamWriter和InputStreamReader" class="headerlink" title="OutputStreamWriter和InputStreamReader:"></a>OutputStreamWriter和InputStreamReader:</h4><p>&emsp;&emsp;&emsp;字符输出输入流，转换流，字节流与字符流互转</p>
+<h4 id="BufferedWriter和BufferedReader"><a href="#BufferedWriter和BufferedReader" class="headerlink" title="BufferedWriter和BufferedReader:"></a>BufferedWriter和BufferedReader:</h4><p>&emsp;&emsp;&emsp;缓冲字符流，可以按行读写字符串</p>
+<p>printwriter具有自动行刷新的缓冲字符输出流，创建pw时，一定会在内部创建bufferwriter作为缓冲功能的叠加，只有调用pw.println()才能自动行刷新。</p>
+<p>BufferReader:缓冲字符输入流，按行读取字符串，它提供了按行读取的方法，readline()连续读取若干个字符，直到读取到换行符为止，并将换行符之间读取的字符以一个字符串返回，若返回null,则表示读取到末尾，该字符串不包含最后的换行符。</p>
+</blockquote>
+<h1 id="7-运算符号："><a href="#7-运算符号：" class="headerlink" title="7.运算符号："></a>7.运算符号：</h1><blockquote>
+<p>(1).算术运算符。</p>
+</blockquote>
+<pre><code> + - * / %
+
+%:任何整数模2不是0就是1，所以只要改变被模数就可以实现开关运算。 +:连接符    ++,--</code></pre><blockquote>
+<p>(2).赋值运算符。</p>
+</blockquote>
+<pre><code>= += -= *= /= %=</code></pre><blockquote>
+<p>(3).比较运算符。</p>
+</blockquote>
+<pre><code>运算完的结果，要么是true，要么是false。</code></pre><blockquote>
+<p>(4).逻辑运算符。</p>
+</blockquote>
+<pre><code>&amp;(并且)        有false则false    
+
+|(或者)        有true则true    ，两边false结果是false
+
+!(非)         非false则true，非true则false    
+
+^(异或)        相同为false，不同为true。    
+
+&amp;&amp;(短路与)        若&amp;&amp;左边表达式或者值为false则右边不进行计算        有false则false,  
+
+||(短路或)        若||左边表达式或者值为true则右边不进行计算        有true则true,    </code></pre><blockquote>
+<p>(5).位运算符:用于操作二进制位的运算符。</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>A  &amp;     按位与    对应的两个二进位均为1时，结果位才为1，否则为0</p>
+</blockquote>
+</blockquote>
+<pre><code> 9&amp;5=1
+
+ 00001001     (9的二进制补码)
+&amp;00000101     (5的二进制补码)
+ 00000001     (1的二进制补码)</code></pre><blockquote>
+<blockquote>
+<p>|      按位或    只要对应的二个二进位有一个为1时，结果位就为1</p>
+</blockquote>
+</blockquote>
+<pre><code> 9|5=13
+
+ 00001001
+|00000101
+ 00001101    (十进制为13)       </code></pre><blockquote>
+<blockquote>
+<p>^      按位异或    两对应的二进位相异时，结果为1</p>
+</blockquote>
+</blockquote>
+<pre><code>9^5=12
+
+ 00001001
+^00000101 
+ 00001100    (十进制为12)</code></pre><blockquote>
+<blockquote>
+<p>~      取反</p>
+</blockquote>
+</blockquote>
+<pre><code>~9
+
+~0000000000001001
+ 1111111111110110</code></pre><blockquote>
+<blockquote>
+<p>&lt;&lt;    左移，相当与*2   &lt;&lt;右边的数指定移动的位数，高位丢弃，低位补0</p>
+</blockquote>
+</blockquote>
+<pre><code> a&lt;&lt;4
+
+a=00000011(十进制3)，左移4位后
+  00110000(十进制48)</code></pre><blockquote>
+<blockquote>
+<p>.&gt;&gt;    右移，正数高位补0，负数由计算机决定  &gt;&gt;右边的数指定移动的位数</p>
+</blockquote>
+</blockquote>
+<pre><code>a=15，        a&gt;&gt;2
+
+000001111  右移2位
+ 00000011  (十进制3)</code></pre><h1 id="8-循环语句解析"><a href="#8-循环语句解析" class="headerlink" title="8.循环语句解析"></a>8.循环语句解析</h1><h3 id="8-1-判断固定个数的值时，可用if-也可用switch"><a href="#8-1-判断固定个数的值时，可用if-也可用switch" class="headerlink" title="8.1 判断固定个数的值时，可用if,也可用switch"></a>8.1 判断固定个数的值时，可用if,也可用switch</h3><p>&emsp;&emsp;<font color="red">建议使用switch，效率相对较高</font></p>
+<pre><code>switch(变量){
+    case:执行语句;break;
+    ... 
+    default:执行语句
+    }</code></pre><blockquote>
+<p>(1)：break是可以省略的，如果省略了就一直执行到遇到break为止；</p>
+<p>(2)：switch 后面变量应该是byte,char,short,int四种类型中的一种；</p>
+<p>(3)：default可写在switch结构中的任意位置；若将default语句放在第一行，不管expression与case中的value是否匹配，程序会从default开始执行直到第一个break出现。</p>
+<p>(4).break语句单独存在时，下面不要定义其他语句，由于执行不到，编译会失败。</p>
+</blockquote>
+<h3 id="8-2-当判断数据范围，获取判断运行结果boolean类型时，用if"><a href="#8-2-当判断数据范围，获取判断运行结果boolean类型时，用if" class="headerlink" title="8.2 当判断数据范围，获取判断运行结果boolean类型时，用if"></a>8.2 当判断数据范围，获取判断运行结果boolean类型时，用if</h3><h3 id="8-3-当某些语句需要执行很多次时，使用循环结构，"><a href="#8-3-当某些语句需要执行很多次时，使用循环结构，" class="headerlink" title="8.3 当某些语句需要执行很多次时，使用循环结构，"></a>8.3 当某些语句需要执行很多次时，使用循环结构，</h3><blockquote>
+<p>while和for可进行互换</p>
+<p>&emsp;&emsp;<font color="red">区别</font>：若需要定义变量控制循环次数,建议使用for。因为for循环完毕，变量在内存中释放。</p>
+</blockquote>
+<h1 id="9-数组"><a href="#9-数组" class="headerlink" title="9.数组"></a>9.数组</h1><blockquote>
+<p>(1).概念：用于存储同一类型数据的一个容器。</p>
+<p>(2).作用：可以对容器中的数据进行编号，从0开始；数组用于封装数据，就是一个具体的实体</p>
+</blockquote>
+<h1 id="10-成员变量和局部变量的区别："><a href="#10-成员变量和局部变量的区别：" class="headerlink" title="10.成员变量和局部变量的区别："></a>10.成员变量和局部变量的区别：</h1><h3 id="10-1-成员变量："><a href="#10-1-成员变量：" class="headerlink" title="10.1 成员变量："></a>10.1 成员变量：</h3><blockquote>
+<p>(1).定义在类中，方法外，</p>
+<p>(2).由系统设定默认值，可以不显示初始化。</p>
+<p>(3).所在类被实例化后存在堆中，对象被回收时，成员变量失效。</p>
+</blockquote>
+<h3 id="10-2-局部变量："><a href="#10-2-局部变量：" class="headerlink" title="10.2 局部变量："></a>10.2 局部变量：</h3><blockquote>
+<p>(1).定义在方法中</p>
+<p>(2).没有默认值，必须自行设定初始值，</p>
+<p>(3).方法被调用时，存在栈中，方法调用结束后，从栈中清除。</p>
+</blockquote>
+<h1 id="11-面向对象相关："><a href="#11-面向对象相关：" class="headerlink" title="11.面向对象相关："></a>11.面向对象相关：</h1><h4 id="11-1-面向对象的特点"><a href="#11-1-面向对象的特点" class="headerlink" title="11.1 面向对象的特点"></a>11.1 面向对象的特点</h4><blockquote>
+<p>(1).将复杂的事情简单化。</p>
+<p>(2).面向对象将以前的过程中的执行者，变成了指挥者。</p>
+<p>(3).面向对象这种思想是符合现在人们思考习惯的一种思想。</p>
+</blockquote>
+<h4 id="11-2-重写遵循的-“两同两小一大”-原则"><a href="#11-2-重写遵循的-“两同两小一大”-原则" class="headerlink" title="11.2 重写遵循的 “两同两小一大” 原则"></a>11.2 重写遵循的 “两同两小一大” 原则</h4><blockquote>
+<p>(1).两同：方法名相同；参数列表相同</p>
+<p>(2).两小：子类返回值类型小于或等于父类的；子类抛出的异常小于或等于父类</p>
+<p>(3).一大：子类的访问权限大于父类的访问权限</p>
+</blockquote>
+<h1 id="12-面向对象的特征"><a href="#12-面向对象的特征" class="headerlink" title="12.面向对象的特征"></a>12.面向对象的特征</h1><blockquote>
+<p>(1).封装：把属性私有化封装在一个类里面，类中的属性通常被私有化，并对外提供公共的访问方法（get，set）</p>
+<p><font color="red">温馨提示：</font><br>属性用于存储数据，直接被访问，容易出现安全隐患。</p>
+<p>(2).继承：子类继承父类，从而继承父类的方法和属性</p>
+<p>(3).抽象：比如一个英雄类，抽象出name,hp这些属性，使得开发过程中更加易于理解</p>
+<p>(4).多态：多态分操作符的多态和类的多态。类的多态指父类引用指向子类对象，并且有继承，有重写。</p>
+</blockquote>
+<blockquote>
+<p><font color="red">温馨提示：</font>子类能继承父类的构造方法吗？不能，super调用的，非继承的</p>
+</blockquote>
+<h1 id="13-List、Set、Map-之间的区别是什么？"><a href="#13-List、Set、Map-之间的区别是什么？" class="headerlink" title="13.List、Set、Map 之间的区别是什么？"></a>13.List、Set、Map 之间的区别是什么？</h1><p><img src="/2020/04/20/java-base/1.png" alt></p>
+<h1 id="14-HashMap-和-Hashtable-有什么区别？"><a href="#14-HashMap-和-Hashtable-有什么区别？" class="headerlink" title="14.HashMap 和 Hashtable 有什么区别？"></a>14.HashMap 和 Hashtable 有什么区别？</h1><blockquote>
+<p>(1).hashMap去掉了HashTable 的contains方法，加上containsValue（）和containsKey（）方法。</p>
+<p>(2).hashTable同步的，而HashMap是非同步的，效率上比hashTable要高。</p>
+<p>(3).hashMap允许空键值，而hashTable不允许。</p>
+</blockquote>
+<h1 id="14-1-HashMap、Hashtable和CurrentHashMap底层技术实现比较？"><a href="#14-1-HashMap、Hashtable和CurrentHashMap底层技术实现比较？" class="headerlink" title="14.1 HashMap、Hashtable和CurrentHashMap底层技术实现比较？"></a>14.1 HashMap、Hashtable和CurrentHashMap底层技术实现比较？</h1><blockquote>
+<p>(1).HashMap线程不安全原因:(并发情况下,HashMap操作会引起死循环,导致CPU占有量达100%）,多线程会导致HashMap的Entry链表会形成环形数据结构,查找时陷入死循环。</p>
+<p>(2).HashTable线程安全的原因:使用synchronize来保证线程安全,当有一个线程拥有锁时,其他线程进入阻塞或者轮询状态,使得效率越来越低,因为所有线程竞争同一把锁。</p>
+<p>(3).CurrentHashMap：线程安全且高效的一种容器,采用锁分段技术提高并发访问率.容器中有多把锁,不同锁锁定不同位置,线程间就不会存在锁的竞争,将数据一段一段的存储,每一段都配一把锁,当一个线程占用其中一个数据段时,其他段的数据也能被其他线程访问.</p>
+</blockquote>
+<h1 id="15-如何决定使用-HashMap-还是-TreeMap？"><a href="#15-如何决定使用-HashMap-还是-TreeMap？" class="headerlink" title="15.如何决定使用 HashMap 还是 TreeMap？"></a>15.如何决定使用 HashMap 还是 TreeMap？</h1><blockquote>
+<p>(1).对于在Map中插入、删除和定位元素这类操作，HashMap是最好的选择.</p>
+<p>(2).对一个有序的key集合进行遍历，TreeMap是更好的选择.</p>
+<p>(3).基于collection大小，也许向HashMap中添加元素会更快.</p>
+<p>(4).将map换为TreeMap进行有序key的遍历.</p>
+</blockquote>
+<h1 id="16-HashMap-的实现原理"><a href="#16-HashMap-的实现原理" class="headerlink" title="16.HashMap 的实现原理?"></a>16.HashMap 的实现原理?</h1><blockquote>
+<p>(1).HashMap是基于哈希表的Map接口的非同步实现。</p>
+<p>(2).允许使用null值和null键。无序。</p>
+<p>(3).HashMap是 数组 和 链表 的结合体（链表散列结构）。</p>
+<p>(4).hashmap添加元素原理:</p>
+<blockquote>
+<p>第一步：当put元素时,先根据key的hashcode重新计算hash值,根据hash值得到该元素在数组中的位置(下标).</p>
+<p>第二步：若数组在该位置上已经存放了其他元素,则该位置上的元素将以链表的形式存放,新加入的放在链头,最先加入的放入链尾.</p>
+<p>第三步：若数组中该位置没有元素,将此元素放到数组的该位置上。</p>
+</blockquote>
+<p>第四步：Jdk 1.8中对HashMap的实现做了优化,当链表中的节点数据超过八个之后,该链表会转为红黑树来提高查询效率。</p>
+</blockquote>
+<h1 id="17-HashSet-的实现原理"><a href="#17-HashSet-的实现原理" class="headerlink" title="17.HashSet 的实现原理?"></a>17.HashSet 的实现原理?</h1><blockquote>
+<p>(1).HashSet底层由HashMap实现</p>
+<p>(2).HashSet的值存放于HashMap的key上</p>
+<p>(3).HashSet的value统一为相同的固定值</p>
+</blockquote>
+<h1 id="18-如何实现数组和-List-之间的转换？"><a href="#18-如何实现数组和-List-之间的转换？" class="headerlink" title="18.如何实现数组和 List 之间的转换？"></a>18.如何实现数组和 List 之间的转换？</h1><blockquote>
+<p>(1).List转换成为数组：调用ArrayList的toArray方法。</p>
+<p>(2).数组转换成为List：调用Arrays的asList方法。</p>
+</blockquote>
+<h1 id="19-Array-和-ArrayList-有何区别？"><a href="#19-Array-和-ArrayList-有何区别？" class="headerlink" title="19.Array 和 ArrayList 有何区别？"></a>19.Array 和 ArrayList 有何区别？</h1><blockquote>
+<p>(1).Array可以容纳基本类型和对象，而ArrayList只能容纳对象。 </p>
+<p>(2).Array是指定大小后不可变的，而ArrayList大小是可变的。 </p>
+<p>(3).Array没有提供ArrayList那么多功能，比如addAll、removeAll和iterator等</p>
+</blockquote>
+<h1 id="20-Iterator-和-ListIterator-有什么区别？"><a href="#20-Iterator-和-ListIterator-有什么区别？" class="headerlink" title="20. Iterator 和 ListIterator 有什么区别？"></a>20. Iterator 和 ListIterator 有什么区别？</h1><blockquote>
+<p>(1).Iterator可用来遍历Set和List集合，但是ListIterator只能用来遍历List。 </p>
+<p>(2).Iterator对集合只能是前向遍历，ListIterator既可以前向也可以后向。 </p>
+<p>(3).ListIterator实现了Iterator接口，添加了新功能，如：增加元素，替换元素，获取前一个和后一个元素的索引。</p>
+</blockquote>
+<h1 id="21-多线程学习"><a href="#21-多线程学习" class="headerlink" title="21.多线程学习"></a>21.多线程学习</h1><p><a href="https://chenweistudy.github.io/2020/01/15/java-dxc/" target="_blank" rel="noopener">多线程详细参考</a></p>
+<h1 id="22-runnable-和-callable-有什么区别？"><a href="#22-runnable-和-callable-有什么区别？" class="headerlink" title="22.runnable 和 callable 有什么区别？"></a>22.runnable 和 callable 有什么区别？</h1><blockquote>
+<p>(1).Runnable接口中的run()方法的返回值是void，它仅仅去执行run()方法中的代码；</p>
+<p>(2).Callable接口中的call()方法是有返回值的，是一个泛型，和Future、FutureTask配合可以用来获取异步执行的结果。</p>
+</blockquote>
+<h1 id="23-sleep-和-wait-有什么区别"><a href="#23-sleep-和-wait-有什么区别" class="headerlink" title="23. sleep() 和 wait() 有什么区别?"></a>23. sleep() 和 wait() 有什么区别?</h1><h3 id="23-1-sleep-方法"><a href="#23-1-sleep-方法" class="headerlink" title="23.1 sleep()方法"></a>23.1 sleep()方法</h3><blockquote>
+<p>(1).线程类（Thread）的静态方法</p>
+<p>(2).让调用线程进入睡眠状态，让出执行机会给其他线程，等到休眠时间结束后，线程进入就绪状态和其他线程一起竞争cpu的执行时间。</p>
+<p>(3).<font color="red">对象的机锁没有被释放</font></p>
+<p><font color="green">温馨提示：</font></p>
+<p>当一个synchronized块中调用了sleep()，线程虽然进入休眠，但对象的机锁没有被释放，其他线程依然无法访问这个对象。</p>
+<p>（由于sleep() 是static静态方法，它不能改变对象的机锁）</p>
+</blockquote>
+<h3 id="23-2-wait（）方法"><a href="#23-2-wait（）方法" class="headerlink" title="23.2 wait（）方法"></a>23.2 wait（）方法</h3><blockquote>
+<p>(1).wait()是Object类的方法</p>
+<p>(2).当一个线程执行到wait方法时，它就进入到一个和该对象相关的等待池，同时<font color="red">释放对象的机锁</font>，使得其他线程能够访问，可以通过notify，notifyAll方法来唤醒等待的线程.</p>
+</blockquote>
+<h3 id="23-3-互斥锁和同步锁"><a href="#23-3-互斥锁和同步锁" class="headerlink" title="23.3 互斥锁和同步锁"></a>23.3 互斥锁和同步锁</h3><blockquote>
+<p>(1).互斥锁：synchronized 称为互斥锁，多段代码使用synchronized修饰，当有线程访问这些代码时，代码间就是互斥关系（监视器对象相同）。</p>
+<p>(2).同步锁：多个线程看到同一段代码，该代码用synchronized修饰，则就形成同步锁（同步监视器对象相同）</p>
+</blockquote>
+<h1 id="24-notify-和-notifyAll-有什么区别？"><a href="#24-notify-和-notifyAll-有什么区别？" class="headerlink" title="24. notify()和 notifyAll()有什么区别？"></a>24. notify()和 notifyAll()有什么区别？</h1><blockquote>
+<p>(1).若线程调用了对象的 wait()方法，线程便处于该对象的等待池中，等待池中的线程不会竞争该对象的锁。</p>
+<p>(2).调用notify()后仅一个线程会由等待池进入锁池，</p>
+<p>(3).notifyAll会将该对象等待池内的所有线程移动到锁池中，</p>
+<p>(4).只有锁池中的线程才去竞争该对象锁，</p>
+<p>(5).优先级高的线程竞争到对象锁的概率大，</p>
+<p>(6).某线程没有竞争到该对象锁，它还会留在锁池中，唯有线程再次调用 wait()方法，它才会重新回到等待池中。</p>
+<p>(7).竞争到对象锁的线程继续往下执行，直到执行完 synchronized 代码块，释放该对象锁，这时锁池中的线程会继续竞争该对象锁.</p>
+</blockquote>
+<h1 id="25-线程的-run-和-start-有什么区别？"><a href="#25-线程的-run-和-start-有什么区别？" class="headerlink" title="25.线程的 run()和 start()有什么区别？"></a>25.线程的 run()和 start()有什么区别？</h1><blockquote>
+<p>(1).方法run()称为线程体，即线程的执行内容，Run()运行结束，线程终止，CPU再调度其它线程</p>
+<p>(2).start()启动线程，线程就处于就绪状态，获取到cpu后，调用Thread类的方法run()来完成运行状态。</p>
+<p>(3).若直接调用run(),相当于是调用了一个普通函数，并没有线程的特征。</p>
+</blockquote>
+<h1 id="26-比较Executor和new-Thread-创建线程的优劣"><a href="#26-比较Executor和new-Thread-创建线程的优劣" class="headerlink" title="26.比较Executor和new Thread()创建线程的优劣?"></a>26.比较Executor和new Thread()创建线程的优劣?</h1><blockquote>
+<p>(1).new Thread的弊端如下：</p>
+<p>a. 每次new Thread新建对象性能差。</p>
+<p>b. 线程缺乏统一管理，可能无限制新建线程，相互之间竞争，及可能占用过多系统资源导致死机</p>
+<p>c. 缺乏更多功能，如定时执行、定期执行、线程中断。</p>
+<p>(2).对比new Thread，Executor提供的四种线程池的优点：</p>
+<p>a. 重用存在的线程，减少对象创建、消亡的开销，性能佳。</p>
+<p>b. 可有效控制最大并发线程数，提高系统资源的使用率，同时避免过多资源竞争，避免堵塞。</p>
+<p>c. 提供定时执行、定期执行、单线程、并发数控制等功能。</p>
+</blockquote>
+<h1 id="27-创建线程池有哪几种方式？"><a href="#27-创建线程池有哪几种方式？" class="headerlink" title="27.创建线程池有哪几种方式？"></a>27.创建线程池有哪几种方式？</h1><pre><code>ExecutorService fixedPool = Executors.newFixedThreadPool(2);
+
+ExecutorService scheduledPool = Executors.newScheduledThreadPool(2);
+
+ExecutorService cachedPool = Executors.newCachedThreadPool();
+
+ExecutorService singlePool = Executors.newSingleThreadExecutor();</code></pre><blockquote>
+<p>(1). newFixedThreadPool(int nThreads)</p>
+<p>固定长度的线程池，每当提交一个任务就创建一个线程，直到达到线程池的最大数量，线程规模将不再变化，当线程发生未预期的错误而结束时，线程池会补充一个新的线程。</p>
+<p>(2). newScheduledThreadPool(int corePoolSize)</p>
+<p>固定长度的线程池，以延迟或定时的方式来执行任务，类似于Timer。</p>
+<p>(3). newCachedThreadPool()</p>
+<p>可缓存的线程池，当线程池规模超过了处理需求时，自动回收空闲线程；</p>
+<p>当需求增加时，自动添加新线程，线程池的规模不存在任何限制。</p>
+<p>(4). newSingleThreadExecutor()</p>
+<p>单线程的Executor，创建单个工作线程来执行任务，若该线程异常结束，会创建一个新线程来替代，</p>
+<p>特点：确保依照任务在队列中的顺序来串行执行。</p>
+</blockquote>
+<h1 id="28-线程池中-submit-和-execute-方法有什么区别？"><a href="#28-线程池中-submit-和-execute-方法有什么区别？" class="headerlink" title="28.线程池中 submit()和 execute()方法有什么区别？"></a>28.线程池中 submit()和 execute()方法有什么区别？</h1><blockquote>
+<p>(1).Executor 中的 execute() 方法不返回任何结果，</p>
+<p>(2).ExecutorService 中的 submit()方法可以通过一个 Future 对象返回运算结果,调用 shutDown() 方法终止线程池.</p>
+<p>(3).execute()方法接收Runnable接口的对象，submit()方法接收Runnable和Callable接口的对象</p>
+<p>(4).submit方便Exception处理</p>
+</blockquote>
+<h1 id="29-在-java-程序中怎么保证多线程的运行安全？"><a href="#29-在-java-程序中怎么保证多线程的运行安全？" class="headerlink" title="29.在 java 程序中怎么保证多线程的运行安全？"></a>29.在 java 程序中怎么保证多线程的运行安全？</h1><blockquote>
+<p>(1).原子性：提供互斥访问，同一时刻只能有一个线程对数据进行操作，（atomic,synchronized）；</p>
+<p>(2).可见性：一个线程对主内存的修改可以及时地被其他线程看到，（synchronized,volatile）；</p>
+<p>(3).有序性：一个线程观察其他线程中的指令执行顺序，由于指令重排序，该观察结果一般杂乱无序，（happens-before原则）。</p>
+</blockquote>
+<h1 id="30-什么是死锁？"><a href="#30-什么是死锁？" class="headerlink" title="30.什么是死锁？"></a>30.什么是死锁？</h1><blockquote>
+<p>(1).死锁是指两个或两个以上的进程在执行过程中，由于竞争资源或者彼此通信而造成的一种阻塞的现象，若无外力作用，它们都将无法推进下去。</p>
+<p>(2).永远在互相等待的进程称为死锁进程。</p>
+<p>(3).操作系统层面的一个错误</p>
+</blockquote>
+<h1 id="31-如何防止死锁？"><a href="#31-如何防止死锁？" class="headerlink" title="31.如何防止死锁？"></a>31.如何防止死锁？</h1><p><font color="green">死锁的四个必要条件</font>：</p>
+<blockquote>
+<p>(1).互斥条件：进程对所分配到的资源不允许其他进程进行访问，若其他进程访问该资源，只能等待，直至占有该资源的进程使用完成后释放该资源</p>
+<p>(2).请求和保持条件：进程获得一定的资源之后，又对其他资源发出请求，但是该资源可能被其他进程占有，此时请求阻塞，但又对自己获得的资源保持不放</p>
+<p>(3).不可剥夺条件：进程已获得的资源，在未完成使用之前，不可被剥夺，只能在使用完后自己释放</p>
+<p>(4).环路等待条件：是指进程发生死锁后，若干进程之间形成一种头尾相接的循环等待资源关系</p>
+</blockquote>
+<p>若系统发生死锁，上述四个条件必然成立，上述条件之一不满足，就不会发生死锁。</p>
+<h1 id="32-synchronized-底层实现原理？"><a href="#32-synchronized-底层实现原理？" class="headerlink" title="32.synchronized 底层实现原理？"></a>32.synchronized 底层实现原理？</h1><blockquote>
+<p>synchronized可以保证方法或者代码块在运行时，同一时刻只有一个方法可以进入到临界区，同时它还可以保证共享变量的内存可见性。</p>
+</blockquote>
+<h1 id="33-synchronized-和-volatile-的区别是什么？"><a href="#33-synchronized-和-volatile-的区别是什么？" class="headerlink" title="33.synchronized 和 volatile 的区别是什么？"></a>33.synchronized 和 volatile 的区别是什么？</h1><h4 id="33-1-volatile"><a href="#33-1-volatile" class="headerlink" title="33.1 volatile"></a>33.1 volatile</h4><blockquote>
+<p>(1).volatile本质是在告诉jvm当前变量在寄存器（工作内存）中的值是不确定的，需要从主存中读取。</p>
+<p>(2).volatile仅使用在变量级别；</p>
+<p>(3).volatile仅实现变量的修改可见性，不能保证原子性；</p>
+<p>(4).volatile不会造成线程的阻塞</p>
+<p>(5).volatile标记的变量不会被编译器优化</p>
+</blockquote>
+<h4 id="33-2-synchronized"><a href="#33-2-synchronized" class="headerlink" title="33.2 synchronized"></a>33.2 synchronized</h4><blockquote>
+<p>(1).synchronized是锁定当前变量，只有当前线程可以访问该变量，其他线程被阻塞住。</p>
+<p>(2).synchronized可以使用在变量、方法、和类级别的。</p>
+<p>(3).synchronized可以保证变量的修改可见性和原子性。</p>
+<p>(4).synchronized可能会造成线程的阻塞。</p>
+<p>(5).synchronized标记的变量可以被编译器优化。</p>
+</blockquote>
+<h1 id="34-synchronized-和-Lock-有什么区别？"><a href="#34-synchronized-和-Lock-有什么区别？" class="headerlink" title="34.synchronized 和 Lock 有什么区别？"></a>34.synchronized 和 Lock 有什么区别？</h1><h4 id="34-1-synchronized"><a href="#34-1-synchronized" class="headerlink" title="34.1 synchronized"></a>34.1 synchronized</h4><blockquote>
+<p>(1).synchronized是java内置关键字;</p>
+<p>(2).synchronized无法判断是否获取锁的状态;</p>
+<p>(3).synchronized会自动释放锁(  线程执行完同步代码会释放锁；线程执行过程中发生异常会释放锁);</p>
+<p>(4).synchronized关键字线程1和线程2，若线程1获得锁，线程2线程等待；若线程1阻塞，线程2会一直等待下去</p>
+<p>(5).synchronized的锁可重入、不可中断、非公平，</p>
+<p>(6).synchronized锁适合代码少量的同步问题;</p>
+</blockquote>
+<h4 id="34-2-Lock"><a href="#34-2-Lock" class="headerlink" title="34.2 Lock"></a>34.2 Lock</h4><blockquote>
+<p>(1).在jvm层面，Lock是个java类；</p>
+<p>(2).Lock可以判断是否获取到锁；</p>
+<p>(3).Lock需在finally中手工释放锁（unlock()方法释放锁），否则容易造成线程死锁；</p>
+<p>(4).Lock锁就不一定会等待下去，如果尝试获取不到锁，线程不用一直等待就结束了；</p>
+<p>(5).Lock锁可重入、可判断、可公平（两者皆可）；</p>
+<p>(6).Lock锁适合大量同步的代码的同步问题;</p>
+</blockquote>
+<h1 id="35-什么是java反射机制？"><a href="#35-什么是java反射机制？" class="headerlink" title="35.什么是java反射机制？"></a>35.什么是java反射机制？</h1><p><a href="https://chenweistudy.github.io/2019/11/29/java-reflex/" target="_blank" rel="noopener">代码参考</a></p>
+<blockquote>
+<p>(1).在运行时判断任意一个对象所属的类。</p>
+<p>(2).在运行时构造任意一个类的对象。</p>
+<p>(3).在运行时判断任意一个类所具有的成员变量和方法。</p>
+<p>(4).在运行时调用任意一个对象的方法。 </p>
+</blockquote>
+<h1 id="36-什么是-java-序列化？什么情况下需要序列化？"><a href="#36-什么是-java-序列化？什么情况下需要序列化？" class="headerlink" title="36.什么是 java 序列化？什么情况下需要序列化？"></a>36.什么是 java 序列化？什么情况下需要序列化？</h1><blockquote>
+<p>(1).序列化：保存内存中的各种对象的状态，并且可以把保存的对象状态再读出来。</p>
+<p>(2).Java提供一种最好保存对象状态的机制–序列化。</p>
+<p>(3).什么情况下需要序列化:</p>
+</blockquote>
+<p>&emsp;&emsp;a）把内存中的对象状态保存到一个文件中或者数据库；</p>
+<blockquote>
+</blockquote>
+<p>&emsp;&emsp;b）用套接字在网络上传送对象的时候；(socket 套接字)</p>
+<blockquote>
+</blockquote>
+<p>&emsp;&emsp;c）通过RMI传输对象的时候；</p>
+<h1 id="37-动态代理是什么？有哪些应用？"><a href="#37-动态代理是什么？有哪些应用？" class="headerlink" title="37.动态代理是什么？有哪些应用？"></a>37.动态代理是什么？有哪些应用？</h1><blockquote>
+<p>(1).动态代理：</p>
+<p>当给类的某个接口方法，加一些额外的处理（日志，事务）等.<br>可以给这个类创建一个代理，即创建一个新的类，包含原来类方法的功能，而且在原来的基础上添加额外处理的新功能。代理类并不是定义好的，是动态生成的。</p>
+<p>动态代理作用：解耦，灵活，扩展性强。</p>
+<p>(2).动态代理的应用：SpringAOP，加事务，加权限，加日志.</p>
+</blockquote>
+<h1 id="38-如何实现对象克隆？"><a href="#38-如何实现对象克隆？" class="headerlink" title="38. 如何实现对象克隆？"></a>38. 如何实现对象克隆？</h1><blockquote>
+<p>(1).实现Cloneable接口并重写Object类中的clone()方法；</p>
+<p>(2).实现Serializable接口，通过对象的序列化和反序列化实现克隆，可以实现真正的深度克隆；</p>
+<p><font color="red">上述两种方案比较：</font></p>
+<p>实现Serializable接口:  通过泛型限定，编译期检查克隆的对象是否支持序列化，不是在运行时抛出异常，这种方案优于Object类的clone方法克隆对象。</p>
+</blockquote>
+<h1 id="39-深拷贝和浅拷贝区别是什么？"><a href="#39-深拷贝和浅拷贝区别是什么？" class="headerlink" title="39. 深拷贝和浅拷贝区别是什么？"></a>39. 深拷贝和浅拷贝区别是什么？</h1><blockquote>
+<p>(1).浅拷贝—复制对象的引用地址，两个对象指向同一个内存地址，若修改其中任意的值，另一个值都会随之变化；</p>
+<p>(2).深拷贝—将对象及值复制过来，两个对象修改其中任意的值另一个值不会改变；</p>
+</blockquote>
+<h1 id="40-throw-和-throws-的区别？"><a href="#40-throw-和-throws-的区别？" class="headerlink" title="40. throw 和 throws 的区别？"></a>40. throw 和 throws 的区别？</h1><blockquote>
+<p>(1).throws是用来声明一个方法可能抛出的所有异常信息，throws是将异常声明但是不处理，而是将异常往上传，谁调用就交给谁处理。</p>
+<p>(2).throw则是指抛出的一个具体的异常类型</p>
+</blockquote>
+<h1 id="41-final、finally、finalize-有什么区别？"><a href="#41-final、finally、finalize-有什么区别？" class="headerlink" title="41. final、finally、finalize 有什么区别？"></a>41. final、finally、finalize 有什么区别？</h1><blockquote>
+<p>(1).final可以修饰类、变量、方法，修饰类表示该类不能被继承；修饰方法表示该方法不能被重写；修饰变量表示该变量是一个常量不能被重新赋值；</p>
+<p>(2).finally一般作用在try-catch代码块中，处理异常时，将一定执行的代码放finally代码块中，不管是否出现异常，该代码块都会执行，一般用来存放一些关闭资源的代码。</p>
+<p>(3).finalize是一个方法，当System.gc()时，垃圾回收器会调用finalize(),回收垃圾。</p>
+</blockquote>
+<h1 id="42-try-catch-finally-中哪个部分可以省略？"><a href="#42-try-catch-finally-中哪个部分可以省略？" class="headerlink" title="42.try-catch-finally 中哪个部分可以省略？"></a>42.try-catch-finally 中哪个部分可以省略？</h1><blockquote>
+<p>(1).catch 可以省略</p>
+<p>(2).原因：</p>
+<p>&emsp;&emsp;编译器硬性规定：普通异常必须用catch显示声明以便进一步处理。</p>
+<p>&emsp;&emsp;运行时异常在编译时没有规定，故catch可以省略</p>
+<p>(3).各组件作用：</p>
+<p>&emsp;&emsp;(a).try只适合处理运行时异常</p>
+<p>&emsp;&emsp;(b).try+catch适合处理运行时异常+普通异常</p>
+<p>&emsp;&emsp;(c).finally不管有无捕获异常，都进行的“扫尾”处理。</p>
+<p>&emsp;&emsp;(d).代码加上try，意味着显示承诺编译器，对这段代码可能抛出的异常进行捕获而非向上抛出处理。</p>
+<p>(4).若catch 中 return，finally 执行吗？ </p>
+<p>&emsp;&emsp;会执行，try中的return语句先执行但并没有立即返回执行结果，等到finally执行结束后，才返回return语句的处理结果。</p>
+<p>(5).两种情况下不会执行finally块</p>
+<p>&emsp;&emsp;第一种：当try代码块中有System.exit(0)时，（System.exit(0)终止Java虚拟机JVM），finally语句就不会被执行到。</p>
+<p>&emsp;&emsp;第二种：try语句还没有被执行到，程序停止了</p>
+</blockquote>
+<h1 id="43-http-响应码-301-和-302-代表的是什么？"><a href="#43-http-响应码-301-和-302-代表的是什么？" class="headerlink" title="43.http 响应码 301 和 302 代表的是什么？"></a>43.http 响应码 301 和 302 代表的是什么？</h1><blockquote>
+<p>301（永久性转移），302（暂时性转移） 是HTTP状态的编码，代表着某个URL发生了转移；</p>
+</blockquote>
+<h1 id="44-forward-和-redirect-的区别？"><a href="#44-forward-和-redirect-的区别？" class="headerlink" title="44.forward 和 redirect 的区别？"></a>44.forward 和 redirect 的区别？</h1><blockquote>
+<p>(1).Forward，发送一次HTTP请求，在请求对象request中，保存的对象对于每个信息资源是共享的（Servlet、HTML、JSP或其它信息资源）</p>
+<p>(2).Redirect，发送两次HTTP请求，服务器端在响应第一次请求的时候，让浏览器再向另外一个URL发出请求，从而达到转发的目的。</p>
+</blockquote>
+<pre><code>例子：
+
+    Forward 相当于：“A找B借钱，B说没有，B去找C借，借到借不到都会把消息传递给A”；
+
+    Redirect 相当于：“A找B借钱，B说没有，让A去找C借”。</code></pre><h1 id="45-简述-tcp-和-udp的区别？"><a href="#45-简述-tcp-和-udp的区别？" class="headerlink" title="45. 简述 tcp 和 udp的区别？"></a>45. 简述 tcp 和 udp的区别？</h1><h4 id="45-1-tcp简述："><a href="#45-1-tcp简述：" class="headerlink" title="45.1 tcp简述："></a>45.1 tcp简述：</h4><blockquote>
+<p>(1).TCP面向连接（如打电话要先拨号建立连接）;</p>
+<p>(2).TCP提供可靠的服务,传送的数据 (无差错，不丢失，不重复，且按序到达)；</p>
+<p>(3).Tcp通过  校验和，重传控制，序号标识，滑动窗口、确认应答实现可靠传输；丢包时重发控制；对次序乱掉的分包进行顺序控制；</p>
+<p>(4).每一条TCP连接只能是点到点的；</p>
+<p>(5).TCP对系统资源要求较多；</p>
+</blockquote>
+<h4 id="45-2-udp简述："><a href="#45-2-udp简述：" class="headerlink" title="45.2 udp简述："></a>45.2 udp简述：</h4><blockquote>
+<p>(1).UDP是无连接的，发送数据前不需要建立连接；</p>
+<p>(2).UDP尽最大努力交付，但不保证可靠交付；</p>
+<p>(3).UDP具有较好的实时性，工作效率比TCP高，适用于对高速传输和实时性有较高的通信或广播通信；</p>
+<p>(4).UDP支持一对一，一对多，多对一和多对多的交互通信；</p>
+<p>(5).UDP对系统资源要求较少；</p>
+</blockquote>
+<h4 id="45-3-四次挥手："><a href="#45-3-四次挥手：" class="headerlink" title="45.3 四次挥手："></a>45.3 四次挥手：</h4><blockquote>
+<p>(1).(client，server都可第一挥手)，client发送第一次挥手后，就不能向服务器发送数据了。</p>
+<p>(2).server回复消息给client,同意关闭请求，但可以发送数据给client,此次挥手告诉client，我收到了关闭请求。</p>
+<p>(3).server向client请求关闭连接，我这边也可以关闭请求了，此时server就不能再向 client发送数据了</p>
+<p>(4).client接收到server请求关闭时，向server发送ack报文，当server收到client发送的ack报文时，server关闭连接，client等待2MSL（报文存活时间）后依然没有收到回复，则证明server端已正常关闭，此时，client关闭连接。</p>
+</blockquote>
+<h1 id="46-1-tcp-为什么要三次握手，两次不行吗？"><a href="#46-1-tcp-为什么要三次握手，两次不行吗？" class="headerlink" title="46.1 tcp 为什么要三次握手，两次不行吗？"></a>46.1 tcp 为什么要三次握手，两次不行吗？</h1><blockquote>
+<p>(1).为了实现可靠数据传输，TCP 协议的通信双方， 都必须维护一个序列号， 以标识发送出去的数据包中， 哪些是成功被对方收到的。 </p>
+<p>(2).三次握手的过程—通信双方相互告知序列号起始值，并确认对方已经收到了序列号起始值的必经步骤。</p>
+<p>(3).如果只是两次握手， 至多只有连接发起方的起始序列号能被确认， 另一方选择的序列号则得不到确认。</p>
+</blockquote>
+<h1 id="46-2-为什么建立连接协议是三次握手，而关闭连接却是四次握手呢？"><a href="#46-2-为什么建立连接协议是三次握手，而关闭连接却是四次握手呢？" class="headerlink" title="46.2  为什么建立连接协议是三次握手，而关闭连接却是四次握手呢？"></a>46.2  为什么建立连接协议是三次握手，而关闭连接却是四次握手呢？</h1><blockquote>
+<p>(1).建立连接时:ACK和SYN可以放在一个报文里来发送。</p>
+<p>(2).关闭连接时:被动关闭方可能还需要发送一些数据后，再发送FIN报文表示同意现在可以关闭连接了.</p>
+</blockquote>
+<h1 id="47-tcp-粘包是怎么产生的？"><a href="#47-tcp-粘包是怎么产生的？" class="headerlink" title="47.tcp 粘包是怎么产生的？"></a>47.tcp 粘包是怎么产生的？</h1><h4 id="47-1-发送方产生粘包"><a href="#47-1-发送方产生粘包" class="headerlink" title="47.1 发送方产生粘包"></a>47.1 发送方产生粘包</h4><p><img src="/2020/04/20/java-base/3.png" alt></p>
+<blockquote>
+<p>(1).采用TCP协议传输数据的客户端与服务器经常是保持一个长连接的状态（一次连接发一次数据不存在粘包），双方在连接不断开的情况下，可以一直传输数据；</p>
+<p>(2).当发送的数据包过小时，TCP协议会启用Nagle算法，将较小的数据包在发送缓冲区进行合并发送,即数据发送出来就是粘包状态。</p>
+</blockquote>
+<h4 id="47-2-接收方产生粘包"><a href="#47-2-接收方产生粘包" class="headerlink" title="47.2 接收方产生粘包"></a>47.2 接收方产生粘包</h4><p><img src="/2020/04/20/java-base/4.png" alt></p>
+<blockquote>
+<p>(1).传输层的TCP协议处理是将其放置接收缓冲区，然后由应用层来主动获取；</p>
+<p>(2).程序调用读取数据函数不能及时的把缓冲区中的数据拿出来，而下一个数据又到来并有一部分放入的缓冲区末尾，等读取数据时就是一个粘包。（放数据的速度 &gt; 应用层拿数据速度）</p>
+</blockquote>
+<h1 id="48-OSI-的七层模型都有哪些？"><a href="#48-OSI-的七层模型都有哪些？" class="headerlink" title="48.OSI 的七层模型都有哪些？"></a>48.OSI 的七层模型都有哪些？</h1><blockquote>
+<p>(1).应用层：网络服务与最终用户的一个接口。</p>
+<p>(2).表示层：数据的表示、安全、压缩。</p>
+<p>(3).会话层：建立、管理、终止会话。</p>
+<p>(4).传输层：定义传输数据的协议端口号，以及流控和差错校验。</p>
+<p>(5).网络层：进行逻辑地址寻址，实现不同网络之间的路径选择。</p>
+<p>(6).数据链路层：建立逻辑连接、进行硬件地址寻址、差错校验等功能。</p>
+<p>(7).物理层：建立、维护、断开物理连接</p>
+</blockquote>
+<p><img src="/2020/04/20/java-base/5.gif" alt></p>
+<h1 id="49-get-和-post-请求有哪些区别？"><a href="#49-get-和-post-请求有哪些区别？" class="headerlink" title="49.get 和 post 请求有哪些区别？"></a>49.get 和 post 请求有哪些区别？</h1><blockquote>
+<p>(1).GET在浏览器回退时是无害的，而POST会再次提交请求。</p>
+<p>(2).GET产生的URL地址可以被记录，而POST不可以。</p>
+<p>(3).GET请求会被浏览器主动cache，而POST不会，除非手动设置。</p>
+<p>(4).GET请求只能进行url编码，而POST支持多种编码方式。</p>
+<p>(5).GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留。</p>
+<p>(6).GET请求在URL中传送的参数是有长度限制的，而POST么有。</p>
+<p>(7).参数的数据类型，GET只接受ASCII字符，而POST没有限制。</p>
+<p>(8).GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息。</p>
+<p>(9).GET参数通过URL传递，POST放在Request body中</p>
+</blockquote>
+<h1 id="50-设计模式"><a href="#50-设计模式" class="headerlink" title="50.设计模式"></a>50.设计模式</h1><p><a href="https://chenweistudy.github.io/2020/01/16/java-designPattern/" target="_blank" rel="noopener">设计模式参考一</a></p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzIwMTY0NDU3Nw==&mid=2651938221&idx=1&sn=9cb29d1eb0fdbdb5f976306b08d5bdcc&chksm=8d0f32e3ba78bbf547c6039038682706a2eaf83002158c58060d5eb57bdd83eb966a1e223ef6&scene=21#wechat_redirect" target="_blank" rel="noopener">设计模式参考二</a></p>
+<h1 id="51-spring-常用的注入方式有哪些"><a href="#51-spring-常用的注入方式有哪些" class="headerlink" title="51.spring 常用的注入方式有哪些?"></a>51.spring 常用的注入方式有哪些?</h1><blockquote>
+<p>构造方法注入、setter注入、基于注解的注入；</p>
+<p>spring容器中的Bean本身不具备线程安全的特性，</p>
+</blockquote>
+<h1 id="52-spring-事务实现方式有哪些？"><a href="#52-spring-事务实现方式有哪些？" class="headerlink" title="52. spring 事务实现方式有哪些？"></a>52. spring 事务实现方式有哪些？</h1><blockquote>
+<p>(1).编程式事务管理：代码中调用beginTransaction()、commit()、rollback()等事务管理方法，</p>
+<p>(2).声明式事务管理: @Transactional </p>
+</blockquote>
+<h1 id="53-spring-的事务隔离？"><a href="#53-spring-的事务隔离？" class="headerlink" title="53. spring 的事务隔离？"></a>53. spring 的事务隔离？</h1><blockquote>
+<p>(1).概念：事务隔离级别指的是一个事务对数据的修改与另一个并行的事务的隔离程度</p>
+<p>(2).若没有进行事务隔离，产生的危害？</p>
+<blockquote>
+<p>(a).脏读：一个事务读到另一个事务未提交的更新数据。</p>
+</blockquote>
+<blockquote>
+<p>(b).幻读：第一个事务修改表A中的“全部数据行”，第二个事务插入“一行新数据”到表A中，两个事务同时进行。此时，操作第一个事务的用户发现表中还存在没有修改的数据行，就像发生了幻觉一样。</p>
+</blockquote>
+<blockquote>
+<p>(c).不可重复读：同一个事务中先后执行两条一模一样的select语句，在此期间事务中没有执行过任何DDL语句，但先后得到的结果不一致，即不可重复读。</p>
+</blockquote>
+</blockquote>
+<h1 id="54-spring-mvc-运行流程？"><a href="#54-spring-mvc-运行流程？" class="headerlink" title="54.spring mvc 运行流程？"></a>54.spring mvc 运行流程？</h1><p><img src="/2020/04/20/java-base/6.png" alt></p>
+<p>流程描述：</p>
+<blockquote>
+<p>(1).用户向服务器发送请求，请求被Spring 前端控制Servelt DispatcherServlet捕获；</p>
+<p>(2).DispatcherServlet 对请求URL进行解析，调用HandlerMapping匹配对应HandlerAdapter；</p>
+<p>(3).Handler执行完成后，向dispatcherServlet 返回一个ModelAndView对象；</p>
+<p>(4).根据返回的ModelAndView，选择合适的ViewResolver；</p>
+<p>(5).ViewResolver 结合Model和View，来渲染视图并返回给客户端；</p>
+</blockquote>
+<h1 id="55-spring-cloud-核心组件有哪些？"><a href="#55-spring-cloud-核心组件有哪些？" class="headerlink" title="55.spring cloud 核心组件有哪些？"></a>55.spring cloud 核心组件有哪些？</h1><p><a href="https://chenweistudy.github.io/2019/11/13/eureka1/" target="_blank" rel="noopener">spingcloud 内容参考</a></p>
+<blockquote>
+<p>(1).服务发现——Netflix Eureka</p>
+<p>由两个组件组成：Eureka服务器和Eureka客户端。Eureka服务器用作服务注册服务器；Eureka客户端是一个java客户端，用来简化与服务器的交互、作为轮询负载均衡器，并提供服务的故障切换支持。Netflix在其生产环境中使用的是另外的客户端，它提供基于流量、资源利用率以及出错状态的加权负载均衡。</p>
+<p>(2).客服端负载均衡——Netflix Ribbon</p>
+</blockquote>
+<p>Ribbon，主要提供客户侧的软件负载均衡算法。Ribbon客户端组件提供一系列完善的配置选项，比如连接超时、重试、重试算法等。Ribbon内置可插拔、可定制的负载均衡组件。</p>
+<blockquote>
+<p>(3).断路器——Netflix Hystrix</p>
+</blockquote>
+<p>断路器可以防止一个应用程序多次试图执行一个操作，即很可能失败，允许它继续而不等待故障恢复或者浪费 CPU 周期，而它确定该故障是持久的。断路器模式也使应用程序能够检测故障是否已经解决。如果问题似乎已经得到纠正，应用程序可以尝试调用操作。</p>
+<blockquote>
+<p>(4).服务网关——Netflix Zuul</p>
+</blockquote>
+<p>类似nginx，反向代理的功能，不过netflix自己增加了一些配合其他组件的特性。</p>
+<blockquote>
+<p>(5).分布式配置——Spring Cloud Config</p>
+</blockquote>
+<p>这个还是静态的，得配合Spring Cloud Bus实现动态的配置更新。</p>
+<h1 id="56-mybatis中-和-的区别是什么？"><a href="#56-mybatis中-和-的区别是什么？" class="headerlink" title="56. mybatis中 #{}和 ${}的区别是什么？"></a>56. mybatis中 #{}和 ${}的区别是什么？</h1><blockquote>
+<p>(1).#{}是预编译处理，Mybatis在处理#̲{}时，会把${}替换成变量的值；</p>
+<p>(2).使用#{}可以有效的防止SQL注入，提高系统安全性。</p>
+</blockquote>
+<h1 id="57-mybatis-逻辑分页和物理分页的区别是什么？"><a href="#57-mybatis-逻辑分页和物理分页的区别是什么？" class="headerlink" title="57.mybatis 逻辑分页和物理分页的区别是什么？"></a>57.mybatis 逻辑分页和物理分页的区别是什么？</h1><blockquote>
+<p>(1).物理分页速度上并不一定快于逻辑分页，逻辑分页速度上也并不一定快于物理分页。</p>
+<p>(2).物理分页总是优于逻辑分页：没有必要将数据库端的压力加到应用端来，就算速度上存在优势,然而其它性能上的优点足以弥补这个缺点。</p>
+</blockquote>
+<h1 id="58-mybatis-是否支持延迟加载？延迟加载的原理是什么？"><a href="#58-mybatis-是否支持延迟加载？延迟加载的原理是什么？" class="headerlink" title="58.mybatis 是否支持延迟加载？延迟加载的原理是什么？"></a>58.mybatis 是否支持延迟加载？延迟加载的原理是什么？</h1><blockquote>
+<p>(1).Mybatis仅支持association关联对象和collection关联集合对象的延迟加载，association指的是一对一，collection指的就是一对多查询。</p>
+<p>(2).在Mybatis配置文件中，可以配置是否启用延迟加载lazyLoadingEnabled=true|false。</p>
+<p>(3).延迟加载的基本原理:使用cglib创建目标对象的代理对象，当调用目标方法时，首先进入拦截器方法，</p>
+<blockquote>
+<p>比如：调用a.getB().getName()，拦截器invoke()方法发现a.getB()是null值，于是单独发送事先保存好的查询关联B对象的sql，把B查询上来，再调用a.setB(b)，那么a的对象b属性就有值了，接着完成a.getB().getName()方法的调用。 </p>
+</blockquote>
+<p>(4).Mybatis，Hibernate等数据查询框架 支持延迟加载的原理是一样的。</p>
+</blockquote>
+<h1 id="59-mybatis-和-hibernate-的区别有哪些？"><a href="#59-mybatis-和-hibernate-的区别有哪些？" class="headerlink" title="59.mybatis 和 hibernate 的区别有哪些？"></a>59.mybatis 和 hibernate 的区别有哪些？</h1><blockquote>
+<p>(1).Mybatis和hibernate不同，它不完全是一个ORM框架，MyBatis需要编写Sql语句。</p>
+<p>(2).优点：Mybatis直接编写原生态sql，可以严格控制sql执行性能，灵活度高，非常适合对关系数据模型要求不高的软件开发<font color="red">：(需求变化频繁，一旦需求变化，要求迅速输出成果）</font></p>
+<p>(3).缺点：mybatis无法做到数据库无关性，若需要支持多种数据库软件，则需自定义多套sql映射文件，工作量大。</p>
+<p>(3).Hibernate对象/关系映射能力强，数据库无关性好，对于关系模型要求高的软件，如果用hibernate开发可以节省很多代码，提高效率。</p>
+</blockquote>
+<h1 id="60-mybatis-有哪些执行器（Executor）？"><a href="#60-mybatis-有哪些执行器（Executor）？" class="headerlink" title="60.mybatis 有哪些执行器（Executor）？"></a>60.mybatis 有哪些执行器（Executor）？</h1><blockquote>
+<p>(1).SimpleExecutor：每执行一次update或select，就开启一个Statement对象，用完立刻关闭Statement对象。</p>
+<p>(2).ReuseExecutor：执行update或select，以sql作为key查找Statement对象，存在就使用，不存在就创建，用完后，不关闭Statement对象，而是放置于Map内，供下一次使用。简言之，就是重复使用Statement对象。</p>
+<p>(3).BatchExecutor：执行update（没有select，JDBC批处理不支持select），将所有sql都添加到批处理中（addBatch()），等待统一执行（executeBatch()），它缓存了多个Statement对象，每个Statement对象都是addBatch()完毕后，等待逐一执行executeBatch()批处理。与JDBC批处理相同。</p>
+</blockquote>
+<h1 id="61-数据库"><a href="#61-数据库" class="headerlink" title="61.数据库"></a>61.数据库</h1><p><a href="https://chenweistudy.github.io/2020/01/09/database-base/" target="_blank" rel="noopener">数据库详细资料</a></p>
+<h1 id="62-rabbitmq-的使用场景有哪些？"><a href="#62-rabbitmq-的使用场景有哪些？" class="headerlink" title="62.rabbitmq 的使用场景有哪些？"></a>62.rabbitmq 的使用场景有哪些？</h1><blockquote>
+<p>(1).跨系统的异步通信：打电话（同步）以外，发短信，发电子邮件（异步）的通讯方式，所有需要异步交互的地方都可以使用消息队列。</p>
+<p>(2).多个应用之间的耦合：由于消息是平台无关、语言无关、语义上不需函数调用，因此更适合作为多个应用之间的松耦合的接口。基于消息队列的耦合，不需要发送方和接收方同时在线。文件传输，共享数据库，消息队列，远程过程调用都可以作为集成的方法。</p>
+<p>(3).应用内的同步变异步:由于同步通常意味着阻塞，而大量线程的阻塞会降低计算机的性能。 </p>
+<blockquote>
+<p>比如订单处理，由前端应用将订单信息放到队列，后端应用从队列里依次获得消息处理，高峰时大量订单可以积压在队列里慢慢处理掉。</p>
+</blockquote>
+<p>(4).消息驱动的架构：系统分解为消息队列，消息生产者和消息消费者；前一个阶段处理的结果放入队列，后一个阶段从队列中获取消息继续处理。</p>
+<p>(5).灵活的耦合方式：如发布订阅，比如可以指定路由规则。</p>
+<p>(6).跨局域网，跨城市的通讯： 比如北京机房与广州机房的应用程序的通信。</p>
+</blockquote>
+<h1 id="63"><a href="#63" class="headerlink" title="63."></a>63.</h1>
+      
+       
+    </div>
+</article>
+
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>java基础知识</p>
+    <p><span class="copy-title">发布时间:</span>2020-04-20, 11:10:26</p>
+    <p><span class="copy-title">最后更新:</span>2020-04-20, 11:10:26</p>
+</div>
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2019 chen wei</p>
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<!--
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+-->
+<a class="" id="rocket" href="javascript:void(0)" target="_blank" rel="noopener"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#Hystrix和Feign Hystrix','#Spring-Cloud-Sleuth','#Zipkin','#熔断监控Hystrix-Dashboard','#docker命令基本操作','#Spring-cloud和Spring-boot','#docker','#数据库基础知识点','#docker制作springboot镜像','#find命令','#java内存模型起源','#java 框架技术演变','#java导出excel表格','#分布式','#Java-IO','#java内存模型','#Java访问jar包说明','#JDK工具使用','#linux安装jre','#linux基本命令','#mongodb、mysql、redis区别和联系','#子网掩码设置和网络连接','#netty示例-http协议传输','#netty示例-netty聊天室','#netty示例-socket连接实时检测','#netty示例-tcp协议传输','#redis连接springboot','#redis','#redis取消只能本地访问的方式','#java实现发送邮件','#redis发布订阅模式用做消息队列和rabbitmq的区别','#java实现手机发送短信','#Centos 6.5 搭建SFTP服务器','#Springboot日志配置','#Springboot项目导可执行jar','#springboot连接redis哨兵集群','#Springboot项目war说明','#Springboot基础知识','#MyBaties 批量插入数据说明','#vue项目搭建','#swagger使用','#eureka原理介绍','#eureka 服务提供和调用','#配置中心git','#java变量','#java设计模式','#配置中心git服务化和高可用','#java数据结构和算法','#Java-reflax','#mv命令','#ps命令','#netty整合springboot','#nginx学习','#redis集群的三种方式','#rabbitMQ','#主从复制和哨兵 （配置文件详解）','#Spring常用配置','#Spring高级话题','#Spring基础知识','#Spring cloud zuul (服务网关初级)','#SpringMVC基础','#MySql数据库基础语法','#SpringMVC配置','#linux高级命令','#springboot整合mq','#netty基本理论','#Java-NIO','#Spring cloud zuul (服务网关高级)','#java基础知识','#java多线程和线程池','#java 知识框架',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
