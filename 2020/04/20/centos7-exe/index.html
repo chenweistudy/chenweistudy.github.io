@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>mongodb、mysql、redis区别和联系 | Hexo</title>
-  <meta name="keywords" content=" mongodb、mysql、redis区别和联系 ">
-  <meta name="description" content="mongodb、mysql、redis区别和联系 | Hexo">
+  <title>安装centos7 | Hexo</title>
+  <meta name="keywords" content=" 安装centos7 ">
+  <meta name="description" content="安装centos7 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="一：虚拟机镜像安装详情&amp;emsp;&amp;emsp;&amp;emsp;参考网址 二：虚拟机安装&amp;emsp;&amp;emsp;&amp;emsp;参考网址 &amp;emsp;&amp;emsp;&amp;emsp;Centos 7 安装教程 三：虚拟机基本设置1.设置静态Ip执行 Vi   &#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-eth0 设置内容如下  HWADDR=00:0C:29:37:8A:EF TYPE">
 <meta name="keywords" content="安装centos7">
@@ -1212,9 +1212,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-mgdb-redis-mysql" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-centos7-exe" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">mongodb、mysql、redis区别和联系</h1>
+        <h1 class="article-title">安装centos7</h1>
     
     <div class="article-meta">
         
@@ -1222,21 +1222,21 @@
         
         <span class="book">
             
-                <a href="javascript:" target="_blank" data-rel="database noopener">database</a>
+                <a href="javascript:" target="_blank" data-rel="linux noopener">linux</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" target="_blank" rel="noopener" class="color5">mongodb、mysql、redis区别和联系</a>
+            <a href="javascript:" target="_blank" rel="noopener" class="color5">安装centos7</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2020-01-17 14:52:12'>2020-01-17 14:52</time>
+        创建时间:<time class="date" title='更新时间: 2020-04-20 11:13:26'>2020-04-20 11:13</time>
         
     </div>
     <div class="article-meta">
@@ -1258,7 +1258,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-mysql数据库-关系型数据库-："><span class="toc-text">1.mysql数据库(关系型数据库)：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-mongodb数据库："><span class="toc-text">2.mongodb数据库：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Redis-内存数据库-："><span class="toc-text">3.Redis(内存数据库)：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-Mysql和Mongodb主要应用场景"><span class="toc-text">4.Mysql和Mongodb主要应用场景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-插入数据比较"><span class="toc-text">5.插入数据比较</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-MongoDB的缺陷"><span class="toc-text">6.MongoDB的缺陷</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一：虚拟机镜像安装详情"><span class="toc-text">一：虚拟机镜像安装详情</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二：虚拟机安装"><span class="toc-text">二：虚拟机安装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三：虚拟机基本设置"><span class="toc-text">三：虚拟机基本设置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-设置静态Ip"><span class="toc-text">1.设置静态Ip</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-安装ifconfig命令"><span class="toc-text">2.安装ifconfig命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-xshell连接本地linux虚拟机"><span class="toc-text">2.xshell连接本地linux虚拟机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Xshell-连接非本地linux虚拟机。"><span class="toc-text">3.Xshell 连接非本地linux虚拟机。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-连接外网设置：（ping-baidu-com）"><span class="toc-text">4.连接外网设置：（ping   baidu.com）</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1274,53 +1274,38 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1-mysql数据库-关系型数据库-："><a href="#1-mysql数据库-关系型数据库-：" class="headerlink" title="1.mysql数据库(关系型数据库)："></a>1.mysql数据库(关系型数据库)：</h1><p> &emsp;&emsp;<font color="green"> 优势：</font>在不同的引擎上有不同 的存储方式。<br>查询语句是使用传统的sql语句，拥有较为成熟的体系，成熟度很高。<br>开源数据库的份额在不断增加，mysql的份额页在持续增长。</p>
-<p> &emsp;&emsp;<font color="green">缺点：</font>在海量数据处理的时候效率会显著变慢。</p>
-<h1 id="2-mongodb数据库："><a href="#2-mongodb数据库：" class="headerlink" title="2.mongodb数据库："></a>2.mongodb数据库：</h1><p> &emsp;&emsp;Mongodb是非关系型数据库(nosql ),属于文档型数据库。文档是mongoDB中数据的基本单元，类似关系数据库的行，多个键值对有序地放置在一起便是文档，语法有点类似javascript面向对象的查询语言，它是一个面向集合的，模式自由的文档型数据库。</p>
-<p> &emsp;&emsp;<font color="green"> 存储方式</font>：虚拟内存+持久化。</p>
-<p> &emsp;&emsp;<font color="green"> 查询语句</font>：是独特的Mongodb的查询方式。</p>
-<p> &emsp;&emsp;<font color="green"> 适合场景</font>：事件的记录，内容管理或者博客平台等等。</p>
-<p> &emsp;&emsp;<font color="green"> 架构特点</font>：可以通过副本集，以及分片来实现高可用。</p>
-<p> &emsp;&emsp;<font color="green"> 数据处理</font>：数据是存储在硬盘上的，只不过需要经常读取的数据会被加载到内存中，将数据存储在物理内存中，从而达到高速读写。</p>
-<p> &emsp;&emsp;<font color="green"> 成熟度与广泛度</font>：新兴数据库，成熟度较低，Nosql数据库中最为接近关系型数据库，比较完善的DB    之一，适用人群不断在增长。</p>
-<p> &emsp;&emsp;<font color="green"> 优点</font>:<br>快速！在适量级的内存的Mongodb的性能是非常迅速的，它将热数据存储在物理内存中，使得热数据的读写变得十分快。高扩展性，存储的数据格式是json格式！</p>
-<p> &emsp;&emsp;<font color="green"> 缺点</font><br>不支持事务，而且开发文档不是很完全，完善。</p>
-<h1 id="3-Redis-内存数据库-："><a href="#3-Redis-内存数据库-：" class="headerlink" title="3.Redis(内存数据库)："></a>3.Redis(内存数据库)：</h1><p> &emsp;&emsp;<font color="green"> 持久化方式：</font><br>Redis 所有数据都是放在内存中的，持久化是使用 RDB 方式或者 aof 方式。</p>
-<h1 id="4-Mysql和Mongodb主要应用场景"><a href="#4-Mysql和Mongodb主要应用场景" class="headerlink" title="4.Mysql和Mongodb主要应用场景"></a>4.Mysql和Mongodb主要应用场景</h1><p>&emsp;&emsp;<font color="green">(1).将mongodb作为后端db来代替mysql使用</font></p>
-<blockquote>
-<p>mysql与mongodb 属于平行级别，那么，这样的使用可能有以下几种情况的考量：</p>
-<p>(1)mongodb所负责部分以文档形式存储，能够有较好的代码亲和性，json格式的直接写入方便。(如日志之类)</p>
-<p>(2)从datamodels设计阶段就将原子性考虑于其中，无需事务之类的辅助。开发用如nodejs之类的语言来进行开发，对开发比较方便。</p>
-<p>(3)mongodb本身的failover机制，无需使用如MHA之类的方式实现。</p>
-</blockquote>
-<p>&emsp;&emsp;<font color="green"> (2).将mongodb作为类似redis</font> </p>
-<p>&emsp;&emsp;memcache来做缓存db，为mysql提供服务，或是后端日志收集分析。考虑到mongodb属于nosql型数据库，sql语句与数据结构不如mysql那么亲和 ，也会有很多时候将mongodb做为辅助mysql而使用的类redis memcache 之类的缓存db来使用。 亦或是仅作日志收集分析。</p>
-<p><img src="/2020/01/17/mgdb-redis-mysql/1.png" alt></p>
-<p><img src="/2020/01/17/mgdb-redis-mysql/2.png" alt></p>
-<h1 id="5-插入数据比较"><a href="#5-插入数据比较" class="headerlink" title="5.插入数据比较"></a>5.插入数据比较</h1><p>&emsp;&emsp;<font color="green">(1) 数据库的平均插入速率</font></p>
-<p>MongoDB不指定_id插入 &gt; MySQL不指定主键插入 &gt; MySQL指定主键插入 &gt; MongoDB指定_id插入。</p>
-<p>&emsp;&emsp;<font color="green">(2). MongoDB在指定_id与不指定_id插入时速度相差很大，而MySQL的差别却小很多。</font></p>
-<blockquote>
-<p>分析：</p>
-<p>(1).在指定_id或主键时，两种数据库在插入时要对索引值进行处理，并查找数据库中是否存在相同的键值，这会减慢插入的速率。</p>
-<p>(2).在MongoDB中，指定索引插入比不指定慢很多，这是因为，MongoDB里每一条数据的_id值都是唯一的。当在不指定_id插入数据的时候，其_id是系统自动计算生成的。MongoDB通过计算机特征值、时间、进程ID与随机数来确保生成的_id是唯一的。而在指定_id插入时，MongoDB每插一条数据，都需要检查此_id可不可用，当数据库中数据条数太多的时候，这一步的查询开销会拖慢整个数据库的插入速度。</p>
-<p>(3). MongoDB会充分使用系统内存作为缓存，这是一种非常优秀的特性。我们的测试机的内存有64G，在插入时，MongoDB会尽可能地在内存快写不进去数据之后，再将数据持久化保存到硬盘上。这也是在不指定_id插入的时候，MongoDB的效率遥遥领先的原因。但在指定_id插入时，当数据量一大内存装不下时，MongoDB就需要将磁盘中的信息读取到内存中来查重，这样一来其插入效率反而慢了。</p>
-<p>(4).MySQL不愧是一种非常稳定的数据库，无论在指定主键还是在不指定主键插入的情况下，其效率都差不了太多。</p>
-</blockquote>
-<p>&emsp;&emsp;<font color="green">(3).插入稳定性分析</font></p>
-<blockquote>
-<p>插入稳定性是指，随着数据量的增大，每插入一定量数据时的插入速率情况。</p>
-<p>(1).相比较MySQL，MongoDB数据库更适合那些读作业较重的任务模型。MongoDB能充分利用机器的内存资源。如果机器的内存资源丰富的话，MongoDB的查询效率会快很多。</p>
-<p>(2).在带”_id”插入数据的时候，MongoDB的插入效率其实并不高。如果想充分利用MongoDB性能的话，推荐采取不带”_id”的插入方式，然后对相关字段作索引来查询。</p>
-<p>(3).MongoDB适合那些对数据库具体数据格式不明确或者数据库数据格式经常变化的需求模型，而且对开发者十分友好。</p>
-<p>(4).MongoDB官方就自带一个分布式文件系统，可以很方便地部署到服务器机群上。MongoDB里有一个Shard的概念，就是方便为了服务器分片使用的。每增加一台Shard，MongoDB的插入性能也会以接近倍数的方式增长，磁盘容量也很可以很方便地扩充。</p>
-<p>(5).MongoDB还自带了对map-reduce运算框架的支持，这也很方便进行数据的统计。</p>
-</blockquote>
-<h1 id="6-MongoDB的缺陷"><a href="#6-MongoDB的缺陷" class="headerlink" title="6.MongoDB的缺陷"></a>6.MongoDB的缺陷</h1><blockquote>
-<p>(1).事务关系支持薄弱。这也是所有NoSQL数据库共同的缺陷，不过NoSQL并不是为了事务关系而设计的，具体应用还是很需求。</p>
-<p>(2).稳定性有些欠缺，这点从上面的测试便可以看出。</p>
-<p>(3).MongoDB一方面在方便开发者的同时，另一方面对运维人员却提出了相当多的要求。业界并没有成熟的MongoDB运维经验，MongoDB中数据的存放格式也很随意，等等问题都对运维人员的考验。</p>
-</blockquote>
+        <h1 id="一：虚拟机镜像安装详情"><a href="#一：虚拟机镜像安装详情" class="headerlink" title="一：虚拟机镜像安装详情"></a>一：虚拟机镜像安装详情</h1><p>&emsp;&emsp;&emsp;<a href="https://jingyan.baidu.com/article/3a2f7c2e3d9e3126afd61136.html" target="_blank" rel="noopener">参考网址</a></p>
+<h1 id="二：虚拟机安装"><a href="#二：虚拟机安装" class="headerlink" title="二：虚拟机安装"></a>二：虚拟机安装</h1><p>&emsp;&emsp;&emsp;<a href="https://www.cnblogs.com/chenglc/p/8033229.html" target="_blank" rel="noopener">参考网址</a></p>
+<p>&emsp;&emsp;&emsp;<a href="https://blog.csdn.net/youzhouliu/article/details/51175364" target="_blank" rel="noopener">Centos 7 安装教程</a></p>
+<h1 id="三：虚拟机基本设置"><a href="#三：虚拟机基本设置" class="headerlink" title="三：虚拟机基本设置"></a>三：虚拟机基本设置</h1><h3 id="1-设置静态Ip"><a href="#1-设置静态Ip" class="headerlink" title="1.设置静态Ip"></a>1.设置静态Ip</h3><pre><code>执行 Vi   /etc/sysconfig/network-scripts/ifcfg-eth0 设置内容如下
+
+HWADDR=00:0C:29:37:8A:EF
+TYPE=Ethernet
+BOOTPROTO=static
+DEFROUTE=yes
+PEERDNS=yes
+PEERROUTES=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=yes
+IPV6_AUTOCONF=yes
+IPV6_DEFROUTE=yes
+IPV6_PEERDNS=yes
+IPV6_PEERROUTES=yes
+IPV6_FAILURE_FATAL=no
+NAME=eno16777736
+UUID=a2611c7d-d4f8-4399-8b90-01e56ad1b00b
+ONBOOT=yes
+IPADDR0=172.16.0.166
+PREFIXO0=24
+GATEWAY0=172.16.10.1
+DNS1=8.8.8.8
+DNS2=8.8.4.4
+
+执行 service  network  restart</code></pre><h3 id="2-安装ifconfig命令"><a href="#2-安装ifconfig命令" class="headerlink" title="2.安装ifconfig命令"></a>2.安装ifconfig命令</h3><pre><code>sudo yum install net-tools
+检查是否安装成功：
+    cd /sbin
+    ls | grep “if”</code></pre><h3 id="2-xshell连接本地linux虚拟机"><a href="#2-xshell连接本地linux虚拟机" class="headerlink" title="2.xshell连接本地linux虚拟机"></a>2.xshell连接本地linux虚拟机</h3><p>&emsp;&emsp;&emsp;<a href="https://www.e-learn.cn/content/linux/456204" target="_blank" rel="noopener">参考网址</a></p>
+<h3 id="3-Xshell-连接非本地linux虚拟机。"><a href="#3-Xshell-连接非本地linux虚拟机。" class="headerlink" title="3.Xshell 连接非本地linux虚拟机。"></a>3.Xshell 连接非本地linux虚拟机。</h3><pre><code>先按照步骤2 走，再设置桥接模式，若网络本身就是桥接模式可跳过。</code></pre><h3 id="4-连接外网设置：（ping-baidu-com）"><a href="#4-连接外网设置：（ping-baidu-com）" class="headerlink" title="4.连接外网设置：（ping   baidu.com）"></a>4.连接外网设置：（ping   baidu.com）</h3><p>&emsp;&emsp;&emsp;<a href="https://blog.csdn.net/qq_24835087/article/details/84650524" target="_blank" rel="noopener">参考网址</a></p>
 
       
        
@@ -1330,9 +1315,9 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>mongodb、mysql、redis区别和联系</p>
-    <p><span class="copy-title">发布时间:</span>2020-01-17, 14:52:11</p>
-    <p><span class="copy-title">最后更新:</span>2020-01-17, 14:52:12</p>
+    <p><span class="copy-title">文章标题:</span>安装centos7</p>
+    <p><span class="copy-title">发布时间:</span>2020-04-20, 11:13:26</p>
+    <p><span class="copy-title">最后更新:</span>2020-04-20, 11:13:26</p>
 </div>
 
 
