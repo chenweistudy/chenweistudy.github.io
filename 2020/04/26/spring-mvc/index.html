@@ -1,0 +1,1730 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Study(5) xml配置开发基于SpringMvc的web应用 | Hexo</title>
+  <meta name="keywords" content=" xml配置开发基于SpringMvc的web应用 ">
+  <meta name="description" content="Study(5) xml配置开发基于SpringMvc的web应用 | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="1.springmvc是什么？springmvc：一个mvc框架，用来简化基于mvc架构的web应用开发 2.SpringMVC五大核心组件(1).组件解析### DispatcherServlet(前端控制器)             接受请求，依据handlerMapping的配置调用相应的模型来处理  ### HandlerMapping             包含了请求路径和模型的对应关">
+<meta name="keywords" content="xml配置开发基于SpringMvc的web应用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Study(5) xml配置开发基于SpringMvc的web应用">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;26&#x2F;spring-mvc&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1.springmvc是什么？springmvc：一个mvc框架，用来简化基于mvc架构的web应用开发 2.SpringMVC五大核心组件(1).组件解析### DispatcherServlet(前端控制器)             接受请求，依据handlerMapping的配置调用相应的模型来处理  ### HandlerMapping             包含了请求路径和模型的对应关">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;26&#x2F;spring-mvc&#x2F;1.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;26&#x2F;spring-mvc&#x2F;2.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;26&#x2F;spring-mvc&#x2F;3.png">
+<meta property="og:updated_time" content="2020-04-26T01:22:11.207Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;26&#x2F;spring-mvc&#x2F;1.png">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>cwstudy</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="github" href="https://github.com/chenweistudy" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(84)</small></div></li>
+    
+        
+            
+            <li><div data-rel="springcloud">springcloud<small>(10)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="docker">docker<small>(6)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="linux">linux<small>(7)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="database">database<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="java">java<small>(13)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="架构">架构<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="net">net<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="netty">netty<small>(6)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="redis">redis<small>(9)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="tools">tools<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="sftp">sftp<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="spring-mvc">spring-mvc<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="spring">spring<small>(8)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="springboot">springboot<small>(4)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="MyBaties">MyBaties<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="vue">vue<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="swagger">swagger<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="nginx">nginx<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="消息队列">消息队列<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="job">job<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="84">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">熔断监控Hystrix-Dashboard</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Spring-Cloud-Sleuth</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Zipkin</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Hystrix和Feign Hystrix</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Spring-cloud和Spring-boot</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">docker命令基本操作</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">安装centos7</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">docker</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">数据库基础知识点</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">docker制作springboot镜像</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">find命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">java内存模型起源</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">分布式</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">java 框架技术演变</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">java导出excel表格</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">Java访问jar包说明</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">Java-IO</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">java内存模型</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">JDK工具使用</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">linux安装jre</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">mongodb、mysql、redis区别和联系</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">linux基本命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">子网掩码设置和网络连接</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">netty示例-netty聊天室</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">netty示例-http协议传输</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">netty示例-tcp协议传输</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">netty示例-socket连接实时检测</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">redis连接springboot</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">redis</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">redis取消只能本地访问的方式</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">java实现手机发送短信</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">java实现发送邮件</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">redis发布订阅模式用做消息队列和rabbitmq的区别</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">Centos 6.5 搭建SFTP服务器</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">xml配置开发基于SpringMvc的web应用</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring控制反转理解和实现</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">SpringIOC 基于注解的简化配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot日志配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">SpringIOC 基于注解的依赖注入</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot项目导可执行jar</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">Springboot项目war说明</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">springboot连接redis哨兵集群</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Springboot基础知识</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">MyBaties 批量插入数据说明</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">vue项目搭建</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">swagger使用</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">eureka 服务提供和调用</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">eureka原理介绍</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">配置中心git</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">配置中心git服务化和高可用</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">java设计模式</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">java变量</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">java数据结构和算法</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Java-reflax</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">mv命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">ps命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">netty整合springboot</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">nginx学习</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">redis集群的三种方式</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">主从复制和哨兵 （配置文件详解）</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">rabbitMQ</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring常用配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring基础知识</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">Spring对象创建三种方式</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">Spring高级话题</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Spring cloud zuul (服务网关初级)</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">SpringMVC基础</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">MySql数据库基础语法</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">linux高级命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">springboot整合mq</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">netty基本理论</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">SpringMVC配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">SpringIOC参数值注入</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">Java-NIO</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">Spring cloud zuul (服务网关高级)</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">java基础知识</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">java多线程和线程池</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">java 知识框架</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="springcloud "
+           href="/2019/11/13/Hystrix-Dashboard/"
+           data-tag="熔断监控Hystrix-Dashboard"
+           data-author="" >
+            <span class="post-title" title="熔断监控Hystrix-Dashboard">熔断监控Hystrix-Dashboard</span>
+            <span class="post-date" title="2019-11-13 15:58:13">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/14/Sleuth-ZipKin/"
+           data-tag="Spring-Cloud-Sleuth,Zipkin"
+           data-author="" >
+            <span class="post-title" title="Spring-Cloud-Sleuth和Zipkin进行分布式链路跟踪">Spring-Cloud-Sleuth和Zipkin进行分布式链路跟踪</span>
+            <span class="post-date" title="2019-11-14 15:03:35">2019/11/14</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/Hystrix/"
+           data-tag="Hystrix和Feign Hystrix"
+           data-author="" >
+            <span class="post-title" title="熔断器（Hystrix）">熔断器（Hystrix）</span>
+            <span class="post-date" title="2019-11-13 15:58:16">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/14/boot-cloud/"
+           data-tag="Spring-cloud和Spring-boot"
+           data-author="" >
+            <span class="post-title" title="Spring-cloud和Spring-boot区别">Spring-cloud和Spring-boot区别</span>
+            <span class="post-date" title="2019-11-14 14:52:22">2019/11/14</span>
+        </a>
+        
+        <a  class="docker "
+           href="/2020/04/20/docker-base/"
+           data-tag="docker命令基本操作"
+           data-author="" >
+            <span class="post-title" title="docker 基本操作">docker 基本操作</span>
+            <span class="post-date" title="2020-04-20 11:08:54">2020/04/20</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2020/04/20/centos7-exe/"
+           data-tag="安装centos7"
+           data-author="" >
+            <span class="post-title" title="安装centos7">安装centos7</span>
+            <span class="post-date" title="2020-04-20 11:13:26">2020/04/20</span>
+        </a>
+        
+        <a  class="docker "
+           href="/2020/04/01/docker-harbor/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="docker 配置企业级镜像仓库 harbor">docker 配置企业级镜像仓库 harbor</span>
+            <span class="post-date" title="2020-04-01 14:55:18">2020/04/01</span>
+        </a>
+        
+        <a  class="database "
+           href="/2020/01/17/datebase-learn/"
+           data-tag="数据库基础知识点"
+           data-author="" >
+            <span class="post-title" title="数据库基础知识点">数据库基础知识点</span>
+            <span class="post-date" title="2020-01-17 14:11:51">2020/01/17</span>
+        </a>
+        
+        <a  class="docker "
+           href="/2020/01/10/docker-centerOS/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="CenterOS 7 安装docker">CenterOS 7 安装docker</span>
+            <span class="post-date" title="2020-01-10 14:00:30">2020/01/10</span>
+        </a>
+        
+        <a  class="docker "
+           href="/2020/04/16/docker-springboot/"
+           data-tag="docker制作springboot镜像"
+           data-author="" >
+            <span class="post-title" title="docker制作springboot镜像">docker制作springboot镜像</span>
+            <span class="post-date" title="2020-04-16 15:48:03">2020/04/16</span>
+        </a>
+        
+        <a  class="docker "
+           href="/2020/01/17/docker-mysql/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="docker 安装 mysql">docker 安装 mysql</span>
+            <span class="post-date" title="2020-01-17 08:52:48">2020/01/17</span>
+        </a>
+        
+        <a  class="docker "
+           href="/2020/04/08/docker-jenkins/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="docker 配置jenkins容器，并自动构建">docker 配置jenkins容器，并自动构建</span>
+            <span class="post-date" title="2020-04-08 16:56:41">2020/04/08</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/find/"
+           data-tag="find命令"
+           data-author="" >
+            <span class="post-title" title="find命令">find命令</span>
+            <span class="post-date" title="2019-11-15 17:20:49">2019/11/15</span>
+        </a>
+        
+        <a  class="java "
+           href="/2020/01/16/java-MMmodel/"
+           data-tag="java内存模型起源"
+           data-author="" >
+            <span class="post-title" title="java内存模型起源">java内存模型起源</span>
+            <span class="post-date" title="2020-01-16 16:53:04">2020/01/16</span>
+        </a>
+        
+        <a  class="架构 "
+           href="/2019/11/11/indexs/"
+           data-tag="分布式"
+           data-author="" >
+            <span class="post-title" title="用【快餐店】理解分布式架构">用【快餐店】理解分布式架构</span>
+            <span class="post-date" title="2019-11-11 13:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="java "
+           href="/2020/03/19/java-dev/"
+           data-tag="java 框架技术演变"
+           data-author="" >
+            <span class="post-title" title="java 框架技术演变">java 框架技术演变</span>
+            <span class="post-date" title="2020-03-19 09:11:29">2020/03/19</span>
+        </a>
+        
+        <a  class="java "
+           href="/2020/01/16/java-excel/"
+           data-tag="java导出excel表格"
+           data-author="" >
+            <span class="post-title" title="java导出excel表格">java导出excel表格</span>
+            <span class="post-date" title="2020-01-16 18:00:42">2020/01/16</span>
+        </a>
+        
+        <a  class="java "
+           href="/2019/12/24/java-main/"
+           data-tag="Java访问jar包说明"
+           data-author="" >
+            <span class="post-title" title="Java访问jar包（windows和linux）">Java访问jar包（windows和linux）</span>
+            <span class="post-date" title="2019-12-24 10:06:54">2019/12/24</span>
+        </a>
+        
+        <a  class="java "
+           href="/2019/11/15/java-io/"
+           data-tag="Java-IO"
+           data-author="" >
+            <span class="post-title" title="Java-IO">Java-IO</span>
+            <span class="post-date" title="2019-11-15 15:43:15">2019/11/15</span>
+        </a>
+        
+        <a  class="java "
+           href="/2020/01/15/java-mode/"
+           data-tag="java内存模型"
+           data-author="" >
+            <span class="post-title" title="java内存模型">java内存模型</span>
+            <span class="post-date" title="2020-01-15 18:49:54">2020/01/15</span>
+        </a>
+        
+        <a  class="java "
+           href="/2019/11/15/java-jvm/"
+           data-tag="JDK工具使用"
+           data-author="" >
+            <span class="post-title" title="JDK工具使用">JDK工具使用</span>
+            <span class="post-date" title="2019-11-15 16:14:52">2019/11/15</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/linux-jre/"
+           data-tag="linux安装jre"
+           data-author="" >
+            <span class="post-title" title="linux安装jre">linux安装jre</span>
+            <span class="post-date" title="2019-11-15 17:20:51">2019/11/15</span>
+        </a>
+        
+        <a  class="database "
+           href="/2020/01/17/mgdb-redis-mysql/"
+           data-tag="mongodb、mysql、redis区别和联系"
+           data-author="" >
+            <span class="post-title" title="mongodb、mysql、redis区别和联系">mongodb、mysql、redis区别和联系</span>
+            <span class="post-date" title="2020-01-17 14:52:11">2020/01/17</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/linux-base/"
+           data-tag="linux基本命令"
+           data-author="" >
+            <span class="post-title" title="linux基本命令">linux基本命令</span>
+            <span class="post-date" title="2019-11-15 17:20:49">2019/11/15</span>
+        </a>
+        
+        <a  class="net "
+           href="/2020/01/17/net/"
+           data-tag="子网掩码设置和网络连接"
+           data-author="" >
+            <span class="post-title" title="子网掩码设置和网络连接">子网掩码设置和网络连接</span>
+            <span class="post-date" title="2020-01-17 13:52:50">2020/01/17</span>
+        </a>
+        
+        <a  class="netty "
+           href="/2020/01/17/netty-chat/"
+           data-tag="netty示例-netty聊天室"
+           data-author="" >
+            <span class="post-title" title="netty示例-netty聊天室">netty示例-netty聊天室</span>
+            <span class="post-date" title="2020-01-17 09:52:45">2020/01/17</span>
+        </a>
+        
+        <a  class="netty "
+           href="/2020/01/17/netty-http/"
+           data-tag="netty示例-http协议传输"
+           data-author="" >
+            <span class="post-title" title="netty示例-http协议传输">netty示例-http协议传输</span>
+            <span class="post-date" title="2020-01-17 09:52:45">2020/01/17</span>
+        </a>
+        
+        <a  class="netty "
+           href="/2020/01/17/netty-tcp/"
+           data-tag="netty示例-tcp协议传输"
+           data-author="" >
+            <span class="post-title" title="netty示例-tcp协议传输">netty示例-tcp协议传输</span>
+            <span class="post-date" title="2020-01-17 09:52:46">2020/01/17</span>
+        </a>
+        
+        <a  class="netty "
+           href="/2020/01/17/netty-socket/"
+           data-tag="netty示例-socket连接实时检测"
+           data-author="" >
+            <span class="post-title" title="netty示例-socket连接实时检测">netty示例-socket连接实时检测</span>
+            <span class="post-date" title="2020-01-17 09:52:46">2020/01/17</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/12/06/redis-springboot/"
+           data-tag="redis连接springboot"
+           data-author="" >
+            <span class="post-title" title="redis连接springboot">redis连接springboot</span>
+            <span class="post-date" title="2019-12-06 14:03:57">2019/12/06</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/11/11/redisCache/"
+           data-tag="redis"
+           data-author="" >
+            <span class="post-title" title="redis缓存">redis缓存</span>
+            <span class="post-date" title="2019-11-11 17:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/11/11/redisPersister/"
+           data-tag="redis"
+           data-author="" >
+            <span class="post-title" title="redis持久化">redis持久化</span>
+            <span class="post-date" title="2019-11-11 16:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/11/18/redisconnnection/"
+           data-tag="redis取消只能本地访问的方式"
+           data-author="" >
+            <span class="post-title" title="redis取消只能本地访问的方式">redis取消只能本地访问的方式</span>
+            <span class="post-date" title="2019-11-18 15:41:22">2019/11/18</span>
+        </a>
+        
+        <a  class="tools "
+           href="/2019/11/19/sendMessage/"
+           data-tag="java实现手机发送短信"
+           data-author="" >
+            <span class="post-title" title="java实现手机发送短信">java实现手机发送短信</span>
+            <span class="post-date" title="2019-11-19 09:41:38">2019/11/19</span>
+        </a>
+        
+        <a  class="tools "
+           href="/2019/11/19/sendMail/"
+           data-tag="java实现发送邮件"
+           data-author="" >
+            <span class="post-title" title="java实现发送邮件">java实现发送邮件</span>
+            <span class="post-date" title="2019-11-19 10:33:39">2019/11/19</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2020/01/17/redis-rabbitMQ/"
+           data-tag="redis发布订阅模式用做消息队列和rabbitmq的区别"
+           data-author="" >
+            <span class="post-title" title="redis作为消息队列和rabbitmq的区别">redis作为消息队列和rabbitmq的区别</span>
+            <span class="post-date" title="2020-01-17 09:14:56">2020/01/17</span>
+        </a>
+        
+        <a  class="sftp "
+           href="/2020/01/17/sftp-server/"
+           data-tag="Centos 6.5 搭建SFTP服务器"
+           data-author="" >
+            <span class="post-title" title="Centos 6.5 搭建SFTP服务器">Centos 6.5 搭建SFTP服务器</span>
+            <span class="post-date" title="2020-01-17 11:13:46">2020/01/17</span>
+        </a>
+        
+        <a  class="spring-mvc "
+           href="/2020/04/26/spring-mvc/"
+           data-tag="xml配置开发基于SpringMvc的web应用"
+           data-author="" >
+            <span class="post-title" title="Study(5) xml配置开发基于SpringMvc的web应用">Study(5) xml配置开发基于SpringMvc的web应用</span>
+            <span class="post-date" title="2020-04-26 09:22:11">2020/04/26</span>
+        </a>
+        
+        <a  class="spring "
+           href="/2020/04/20/spring-demo/"
+           data-tag="Spring控制反转理解和实现"
+           data-author="" >
+            <span class="post-title" title="Spring控制反转理解和实现">Spring控制反转理解和实现</span>
+            <span class="post-date" title="2020-04-20 17:31:34">2020/04/20</span>
+        </a>
+        
+        <a  class="spring "
+           href="/2020/04/23/spring-zj/"
+           data-tag="SpringIOC 基于注解的简化配置"
+           data-author="" >
+            <span class="post-title" title="Study(3) SpringIOC 基于注解的简化配置">Study(3) SpringIOC 基于注解的简化配置</span>
+            <span class="post-date" title="2020-04-23 17:43:35">2020/04/23</span>
+        </a>
+        
+        <a  class="springboot "
+           href="/2019/11/14/springboot-config/"
+           data-tag="Springboot日志配置"
+           data-author="" >
+            <span class="post-title" title="Springboot日志配置">Springboot日志配置</span>
+            <span class="post-date" title="2019-11-14 15:19:38">2019/11/14</span>
+        </a>
+        
+        <a  class="spring "
+           href="/2020/04/23/spring-ylzj/"
+           data-tag="SpringIOC 基于注解的依赖注入"
+           data-author="" >
+            <span class="post-title" title="Study(4) SpringIOC 基于注解的依赖注入">Study(4) SpringIOC 基于注解的依赖注入</span>
+            <span class="post-date" title="2020-04-23 17:43:34">2020/04/23</span>
+        </a>
+        
+        <a  class="springboot "
+           href="/2019/11/14/springboot-jar/"
+           data-tag="Springboot项目导可执行jar"
+           data-author="" >
+            <span class="post-title" title="Springboot项目导可执行jar">Springboot项目导可执行jar</span>
+            <span class="post-date" title="2019-11-14 15:26:12">2019/11/14</span>
+        </a>
+        
+        <a  class="springboot "
+           href="/2020/04/07/springboot-war/"
+           data-tag="Springboot项目war说明"
+           data-author="" >
+            <span class="post-title" title="Springboot项目war说明">Springboot项目war说明</span>
+            <span class="post-date" title="2020-04-07 14:47:32">2020/04/07</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/12/12/springboot-rediscolony/"
+           data-tag="springboot连接redis哨兵集群"
+           data-author="" >
+            <span class="post-title" title="springboot连接redis哨兵集群">springboot连接redis哨兵集群</span>
+            <span class="post-date" title="2019-12-12 17:23:05">2019/12/12</span>
+        </a>
+        
+        <a  class="springboot "
+           href="/2019/11/14/springboot/"
+           data-tag="Springboot基础知识"
+           data-author="" >
+            <span class="post-title" title="Springboot基础知识">Springboot基础知识</span>
+            <span class="post-date" title="2019-11-14 15:37:49">2019/11/14</span>
+        </a>
+        
+        <a  class="MyBaties "
+           href="/2020/01/17/sybase-mybaties/"
+           data-tag="MyBaties 批量插入数据说明"
+           data-author="" >
+            <span class="post-title" title="MyBaties 批量插入数据异常说明">MyBaties 批量插入数据异常说明</span>
+            <span class="post-date" title="2020-01-17 14:33:10">2020/01/17</span>
+        </a>
+        
+        <a  class="vue "
+           href="/2019/11/29/vue-tool2/"
+           data-tag="vue项目搭建"
+           data-author="" >
+            <span class="post-title" title="vue 文字 轮播演示">vue 文字 轮播演示</span>
+            <span class="post-date" title="2019-11-29 14:29:36">2019/11/29</span>
+        </a>
+        
+        <a  class="vue "
+           href="/2019/11/21/vueStudy/"
+           data-tag="vue项目搭建"
+           data-author="" >
+            <span class="post-title" title="vue项目搭建">vue项目搭建</span>
+            <span class="post-date" title="2019-11-21 15:26:24">2019/11/21</span>
+        </a>
+        
+        <a  class="swagger "
+           href="/2019/11/22/swagger/"
+           data-tag="swagger使用"
+           data-author="" >
+            <span class="post-title" title="swagger使用">swagger使用</span>
+            <span class="post-date" title="2019-11-22 13:39:07">2019/11/22</span>
+        </a>
+        
+        <a  class="vue "
+           href="/2019/11/29/vue-tool/"
+           data-tag="vue项目搭建"
+           data-author="" >
+            <span class="post-title" title="vue 文字跑马灯效果演示">vue 文字跑马灯效果演示</span>
+            <span class="post-date" title="2019-11-29 14:29:36">2019/11/29</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/eureka-Producer-Consumer/"
+           data-tag="eureka 服务提供和调用"
+           data-author="" >
+            <span class="post-title" title="eureka服务提供和调用">eureka服务提供和调用</span>
+            <span class="post-date" title="2019-11-13 15:11:06">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/eureka1/"
+           data-tag="eureka原理介绍"
+           data-author="" >
+            <span class="post-title" title="eureka原理介绍">eureka原理介绍</span>
+            <span class="post-date" title="2019-11-13 16:08:48">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/gitConfig/"
+           data-tag="配置中心git"
+           data-author="" >
+            <span class="post-title" title="配置中心git">配置中心git</span>
+            <span class="post-date" title="2019-11-13 16:58:00">2019/11/13</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/gitconfig-server-client/"
+           data-tag="配置中心git服务化和高可用"
+           data-author="" >
+            <span class="post-title" title="配置中心git服务化和高可用">配置中心git服务化和高可用</span>
+            <span class="post-date" title="2019-11-13 17:11:42">2019/11/13</span>
+        </a>
+        
+        <a  class="java "
+           href="/2020/01/16/java-designPattern/"
+           data-tag="java设计模式"
+           data-author="" >
+            <span class="post-title" title="java设计模式">java设计模式</span>
+            <span class="post-date" title="2020-01-16 17:22:33">2020/01/16</span>
+        </a>
+        
+        <a  class="java "
+           href="/2019/12/24/java-bianliang/"
+           data-tag="java变量"
+           data-author="" >
+            <span class="post-title" title="java变量">java变量</span>
+            <span class="post-date" title="2019-12-24 15:12:36">2019/12/24</span>
+        </a>
+        
+        <a  class="java "
+           href="/2020/01/15/java-data/"
+           data-tag="java数据结构和算法"
+           data-author="" >
+            <span class="post-title" title="java数据结构和算法">java数据结构和算法</span>
+            <span class="post-date" title="2020-01-15 17:13:18">2020/01/15</span>
+        </a>
+        
+        <a  class="java "
+           href="/2019/11/29/java-reflex/"
+           data-tag="Java-reflax"
+           data-author="" >
+            <span class="post-title" title="Java-reflax 反射">Java-reflax 反射</span>
+            <span class="post-date" title="2019-11-29 14:30:08">2019/11/29</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/linux-mv/"
+           data-tag="mv命令"
+           data-author="" >
+            <span class="post-title" title="mv命令">mv命令</span>
+            <span class="post-date" title="2019-11-15 17:20:51">2019/11/15</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/linux-ps/"
+           data-tag="ps命令"
+           data-author="" >
+            <span class="post-title" title="ps命令">ps命令</span>
+            <span class="post-date" title="2019-11-15 17:20:52">2019/11/15</span>
+        </a>
+        
+        <a  class="netty "
+           href="/2019/11/29/netty-springboot/"
+           data-tag="netty整合springboot"
+           data-author="" >
+            <span class="post-title" title="netty整合springboot">netty整合springboot</span>
+            <span class="post-date" title="2019-11-29 15:02:14">2019/11/29</span>
+        </a>
+        
+        <a  class="nginx "
+           href="/2020/01/06/nginx/"
+           data-tag="nginx学习"
+           data-author="" >
+            <span class="post-title" title="nginx学习">nginx学习</span>
+            <span class="post-date" title="2020-01-06 18:08:19">2020/01/06</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/12/11/redis-colony/"
+           data-tag="redis集群的三种方式"
+           data-author="" >
+            <span class="post-title" title="redis集群的三种方式(linux系统)">redis集群的三种方式(linux系统)</span>
+            <span class="post-date" title="2019-12-11 14:23:00">2019/12/11</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/12/11/redis-uses/"
+           data-tag="主从复制和哨兵 （配置文件详解）"
+           data-author="" >
+            <span class="post-title" title="主从复制和哨兵 （配置文件详解）">主从复制和哨兵 （配置文件详解）</span>
+            <span class="post-date" title="2019-12-11 14:22:59">2019/12/11</span>
+        </a>
+        
+        <a  class="消息队列 "
+           href="/2019/11/13/rabbitMQBase/"
+           data-tag="rabbitMQ"
+           data-author="" >
+            <span class="post-title" title="消息队列">消息队列</span>
+            <span class="post-date" title="2019-11-13 09:58:16">2019/11/13</span>
+        </a>
+        
+        <a  class="redis "
+           href="/2019/11/11/redis1/"
+           data-tag="redis"
+           data-author="" >
+            <span class="post-title" title="Redis基本命令和java基本操作">Redis基本命令和java基本操作</span>
+            <span class="post-date" title="2019-11-11 10:01:24">2019/11/11</span>
+        </a>
+        
+        <a  class="spring "
+           href="/2019/11/14/spring-config/"
+           data-tag="Spring常用配置"
+           data-author="" >
+            <span class="post-title" title="Spring常用配置">Spring常用配置</span>
+            <span class="post-date" title="2019-11-14 16:44:14">2019/11/14</span>
+        </a>
+        
+        <a  class="spring "
+           href="/2019/11/14/spring-base1/"
+           data-tag="Spring基础知识"
+           data-author="" >
+            <span class="post-title" title="Spring基础知识">Spring基础知识</span>
+            <span class="post-date" title="2019-11-14 16:19:44">2019/11/14</span>
+        </a>
+        
+        <a  class="spring "
+           href="/2020/04/22/spring/"
+           data-tag="Spring对象创建三种方式"
+           data-author="" >
+            <span class="post-title" title="Study(1) Spring创建对象三种方式">Study(1) Spring创建对象三种方式</span>
+            <span class="post-date" title="2020-04-22 16:56:47">2020/04/22</span>
+        </a>
+        
+        <a  class="spring "
+           href="/2019/11/14/spring-high/"
+           data-tag="Spring高级话题"
+           data-author="" >
+            <span class="post-title" title="Spring高级话题">Spring高级话题</span>
+            <span class="post-date" title="2019-11-14 17:04:21">2019/11/14</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/13/zuul/"
+           data-tag="Spring cloud zuul (服务网关初级)"
+           data-author="" >
+            <span class="post-title" title="Spring cloud zuul (初级)">Spring cloud zuul (初级)</span>
+            <span class="post-date" title="2019-11-13 17:35:48">2019/11/13</span>
+        </a>
+        
+        <a  class="spring-mvc "
+           href="/2019/11/15/Hystrix/springmvcbase/"
+           data-tag="SpringMVC基础"
+           data-author="" >
+            <span class="post-title" title="SpringMVC基础">SpringMVC基础</span>
+            <span class="post-date" title="2019-11-15 14:38:17">2019/11/15</span>
+        </a>
+        
+        <a  class="database "
+           href="/2020/01/09/database-base/"
+           data-tag="MySql数据库基础语法"
+           data-author="" >
+            <span class="post-title" title="MySql数据库基础语法">MySql数据库基础语法</span>
+            <span class="post-date" title="2020-01-09 15:53:28">2020/01/09</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/11/15/linux-high/"
+           data-tag="linux高级命令"
+           data-author="" >
+            <span class="post-title" title="linux高级命令">linux高级命令</span>
+            <span class="post-date" title="2019-11-15 17:20:50">2019/11/15</span>
+        </a>
+        
+        <a  class="消息队列 "
+           href="/2019/12/04/mq-springboot/"
+           data-tag="springboot整合mq"
+           data-author="" >
+            <span class="post-title" title="springboot整合mq">springboot整合mq</span>
+            <span class="post-date" title="2019-12-04 16:55:33">2019/12/04</span>
+        </a>
+        
+        <a  class="netty "
+           href="/2019/11/25/netty-base/"
+           data-tag="netty基本理论"
+           data-author="" >
+            <span class="post-title" title="netty基本理论">netty基本理论</span>
+            <span class="post-date" title="2019-11-25 16:00:35">2019/11/25</span>
+        </a>
+        
+        <a  class="spring-mvc "
+           href="/2019/11/15/Hystrix/springmvcconfig/"
+           data-tag="SpringMVC配置"
+           data-author="" >
+            <span class="post-title" title="SpringMVC配置">SpringMVC配置</span>
+            <span class="post-date" title="2019-11-15 14:38:17">2019/11/15</span>
+        </a>
+        
+        <a  class="spring "
+           href="/2020/04/23/spring-IOC/"
+           data-tag="SpringIOC参数值注入"
+           data-author="" >
+            <span class="post-title" title="Study(2) SpringIOC 基于xml方式依赖注入">Study(2) SpringIOC 基于xml方式依赖注入</span>
+            <span class="post-date" title="2020-04-23 17:43:34">2020/04/23</span>
+        </a>
+        
+        <a  class="java "
+           href="/2019/11/15/java-nio/"
+           data-tag="Java-NIO"
+           data-author="" >
+            <span class="post-title" title="Java-NIO">Java-NIO</span>
+            <span class="post-date" title="2019-11-15 15:43:16">2019/11/15</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2019/11/14/zuulhigh/"
+           data-tag="Spring cloud zuul (服务网关高级)"
+           data-author="" >
+            <span class="post-title" title="Spring cloud zuul (高级)">Spring cloud zuul (高级)</span>
+            <span class="post-date" title="2019-11-14 09:48:56">2019/11/14</span>
+        </a>
+        
+        <a  class="job "
+           href="/2020/04/20/java-base/"
+           data-tag="java基础知识"
+           data-author="" >
+            <span class="post-title" title="java基础知识">java基础知识</span>
+            <span class="post-date" title="2020-04-20 11:10:26">2020/04/20</span>
+        </a>
+        
+        <a  class="java "
+           href="/2020/01/15/java-dxc/"
+           data-tag="java多线程和线程池"
+           data-author="" >
+            <span class="post-title" title="java多线程和线程池">java多线程和线程池</span>
+            <span class="post-date" title="2020-01-15 17:13:19">2020/01/15</span>
+        </a>
+        
+        <a  class="job "
+           href="/2020/01/15/java-job/"
+           data-tag="java 知识框架"
+           data-author="" >
+            <span class="post-title" title="java 知识框架">java 知识框架</span>
+            <span class="post-date" title="2020-01-15 10:21:28">2020/01/15</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-spring-mvc" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">Study(5) xml配置开发基于SpringMvc的web应用</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a href="javascript:" target="_blank" data-rel="spring-mvc noopener">spring-mvc</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" target="_blank" rel="noopener" class="color5">xml配置开发基于SpringMvc的web应用</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2020-04-26 09:22:11'>2020-04-26 09:22</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-springmvc是什么？"><span class="toc-text">1.springmvc是什么？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-SpringMVC五大核心组件"><span class="toc-text">2.SpringMVC五大核心组件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-组件解析"><span class="toc-text">(1).组件解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-五大组件关系？"><span class="toc-text">(2)五大组件关系？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-解析DisptcherServelet前端控制器（web-xml）"><span class="toc-text">3.解析DisptcherServelet前端控制器（web.xml）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#A：web-xml配置"><span class="toc-text">A：web.xml配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注解方式与xml配置方式相同"><span class="toc-text">注解方式与xml配置方式相同</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#B：流程分析："><span class="toc-text">B：流程分析：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C：特别说明："><span class="toc-text">C：特别说明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-配置HandlerMapping（springmvc-xml）"><span class="toc-text">4.配置HandlerMapping（springmvc.xml）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#方式一：xml配置"><span class="toc-text">方式一：xml配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方式二：注解方式"><span class="toc-text">方式二：注解方式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-配置Controller"><span class="toc-text">5.配置Controller</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#方式一：xml配置-1"><span class="toc-text">方式一：xml配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方式二：注解方式-1"><span class="toc-text">方式二：注解方式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-ModelAndView"><span class="toc-text">6.ModelAndView</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-ViewResolver视图处理器（springmvc-xml）"><span class="toc-text">7.ViewResolver视图处理器（springmvc.xml）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#注解方式与xml配置方式相同-1"><span class="toc-text">注解方式与xml配置方式相同</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8-Springmvc项目流程示意图"><span class="toc-text">8.Springmvc项目流程示意图</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9-读取请求对象的值"><span class="toc-text">9.读取请求对象的值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-通过request对象"><span class="toc-text">(1).通过request对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-使用-RequestParam对象"><span class="toc-text">(2).使用@RequestParam对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-使用javabean封装请求参数值"><span class="toc-text">(3).使用javabean封装请求参数值</span></a></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-springmvc是什么？"><a href="#1-springmvc是什么？" class="headerlink" title="1.springmvc是什么？"></a>1.springmvc是什么？</h1><p>springmvc：一个mvc框架，用来简化基于mvc架构的web应用开发</p>
+<h1 id="2-SpringMVC五大核心组件"><a href="#2-SpringMVC五大核心组件" class="headerlink" title="2.SpringMVC五大核心组件"></a>2.SpringMVC五大核心组件</h1><h3 id="1-组件解析"><a href="#1-组件解析" class="headerlink" title="(1).组件解析"></a>(1).组件解析</h3><pre><code>### DispatcherServlet(前端控制器)
+            接受请求，依据handlerMapping的配置调用相应的模型来处理
+
+### HandlerMapping
+            包含了请求路径和模型的对应关系
+
+### Controller（处理器）
+            负责处理业务逻辑
+
+### ModelAndView
+            封装了处理结果，处理结果除数据外还可能有视图名
+
+### ViewResolver(视图解析器)
+            DispatcherServlet依据viewResolver的解析，调用真正的视图对象来生成相应的页面。</code></pre><h3 id="2-五大组件关系？"><a href="#2-五大组件关系？" class="headerlink" title="(2)五大组件关系？"></a>(2)五大组件关系？</h3><p><img src="/2020/04/26/spring-mvc/1.png" alt></p>
+<blockquote>
+<p>a.DispatcherServlet收到请求后，依据HandlerMapping的配置，调用相应的Controller来处理</p>
+<p>b.Controller将处理结果封装成ModelAndView对象，然后返回给DispatcherServlet</p>
+<p>c.DispatcherServlet依据viewResolver的解析，调用相应的视图对象，比如jsp生成相应的页面</p>
+</blockquote>
+<h1 id="3-解析DisptcherServelet前端控制器（web-xml）"><a href="#3-解析DisptcherServelet前端控制器（web-xml）" class="headerlink" title="3.解析DisptcherServelet前端控制器（web.xml）"></a>3.解析DisptcherServelet前端控制器（web.xml）</h1><p><img src="/2020/04/26/spring-mvc/2.png" alt></p>
+<h3 id="A：web-xml配置"><a href="#A：web-xml配置" class="headerlink" title="A：web.xml配置"></a>A：web.xml配置</h3><h3 id="注解方式与xml配置方式相同"><a href="#注解方式与xml配置方式相同" class="headerlink" title="注解方式与xml配置方式相同"></a>注解方式与xml配置方式相同</h3><pre><code>&lt;servlet&gt;
+   &lt;servlet-name&gt;springtest&lt;/servlet-name&gt;   // servlet命名
+   &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;    // spring框架类
+   &lt;init-param&gt;   //初始化参数
+     &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
+     &lt;param-value&gt;classpath:springmvc.xml&lt;/param-value&gt;
+   &lt;/init-param&gt;
+   &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;  //tomcat启动时，立即实例化dispatcherServlet
+ &lt;/servlet&gt;
+ &lt;servlet-mapping&gt;
+   &lt;servlet-name&gt;springtest&lt;/servlet-name&gt;
+   &lt;url-pattern&gt;*.do&lt;/url-pattern&gt;
+ &lt;/servlet-mapping&gt;</code></pre><h3 id="B：流程分析："><a href="#B：流程分析：" class="headerlink" title="B：流程分析："></a>B：流程分析：</h3><pre><code>当启动Tomcat时，加载web.xml文件，并实例化DispatcherServlet，
+在DispatcherServlet初始化方法里面，会读取该初始化参数的值来获取spring配置文件（springmvc.xml）的位置，然后启动spring容器</code></pre><h3 id="C：特别说明："><a href="#C：特别说明：" class="headerlink" title="C：特别说明："></a>C：特别说明：</h3><pre><code>&lt;init-param&gt;
+  &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
+  &lt;param-value&gt;classpath:springmvc.xml&lt;/param-value&gt;
+&lt;/init-param&gt;
+
+等价于：
+    new ClassPathXmlApplicationContext(&quot;springmvc.xml&quot;);</code></pre><h1 id="4-配置HandlerMapping（springmvc-xml）"><a href="#4-配置HandlerMapping（springmvc-xml）" class="headerlink" title="4.配置HandlerMapping（springmvc.xml）"></a>4.配置HandlerMapping（springmvc.xml）</h1><h3 id="方式一：xml配置"><a href="#方式一：xml配置" class="headerlink" title="方式一：xml配置"></a>方式一：xml配置</h3><pre><code>  &lt;!--配置handlermapping--&gt;
+&lt;bean class=&quot;org.springframework.web.servlet.handler.SimpleUrlHandlerMapping&quot;&gt;
+        &lt;property name=&quot;mappings&quot;&gt;
+            &lt;props&gt;
+                &lt;prop key=&quot;/index.do&quot;&gt;helloController&lt;/prop&gt; 
+                //与处理器的bean的id保持一致
+            &lt;/props&gt;
+        &lt;/property&gt;
+&lt;/bean&gt;</code></pre><h3 id="方式二：注解方式"><a href="#方式二：注解方式" class="headerlink" title="方式二：注解方式"></a>方式二：注解方式</h3><pre><code>(1).配置组件扫描
+        &lt;context:component-scan base-package=&quot;cn.com.controller&quot;/&gt;
+            注：仅扫描 @Controller、@Service、@Component、@Repository
+
+(2).springmvc.xml添加mvc注解扫描
+         &lt;!--配置mvc注解扫描--&gt;
+        &lt;mvc:annotation-driven/&gt;
+            注：扫描@RequestMapping
+
+(3).HelloController方法上添加RequestMapping注解 
+    @RequestMapping(&quot;index.do&quot;)</code></pre><h1 id="5-配置Controller"><a href="#5-配置Controller" class="headerlink" title="5.配置Controller"></a>5.配置Controller</h1><h3 id="方式一：xml配置-1"><a href="#方式一：xml配置-1" class="headerlink" title="方式一：xml配置"></a>方式一：xml配置</h3><pre><code> &lt;!--配置处理器 （springmvc.xml）--&gt;
+&lt;bean id=&quot;helloController&quot; class=&quot;controller.HelloController&quot;/&gt;
+
+public class HelloController implements Controller {
+    @Override
+    public ModelAndView handleRequest(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
+            System.out.println(&quot;handleRequest()&quot;);
+            /*
+                ModelAndView有两个构造器：
+                    （1）.ModelAndView(String viewName) , viewName是视图名
+                    （2）.ModelAndView(String viewName, Map&lt;String, ?&gt; model),map用于封装处理的结果数据
+             */
+        return new ModelAndView(&quot;index&quot;);
+    }
+}</code></pre><h3 id="方式二：注解方式-1"><a href="#方式二：注解方式-1" class="headerlink" title="方式二：注解方式"></a>方式二：注解方式</h3><pre><code>1.不用实现controller接口
+2.可以在处理器中添加多个方法，每一个方法处理一种类型的请求
+3.方法名不作要求，返回类型可以是ModelAndView，也可以是String
+4.使用@Controller,将该处理器纳入容器进行管理（在spring配置文件中不用配置该处理器了）
+5.使用@RequestMapping,告诉前端控制器（DispatcherServlet）,请求路径与处理器方法的对应关系，（spring配置文件不用配置HandlerMapping）
+
+   @Controller
+   public class HelloController {
+       @RequestMapping(&quot;index.do&quot;)
+       public String hello(){
+           System.out.println(&quot;index.do&quot;);
+           return &quot;index&quot;;
+       }
+   }</code></pre><h1 id="6-ModelAndView"><a href="#6-ModelAndView" class="headerlink" title="6.ModelAndView"></a>6.ModelAndView</h1><pre><code>ModelAndView有两个构造器：
+    （1）.ModelAndView(String viewName) , viewName是视图名
+    （2）.ModelAndView(String viewName, Map&lt;String, ?&gt; model)
+                    viewName是视图名,map用于封装处理的结果数据</code></pre><h1 id="7-ViewResolver视图处理器（springmvc-xml）"><a href="#7-ViewResolver视图处理器（springmvc-xml）" class="headerlink" title="7.ViewResolver视图处理器（springmvc.xml）"></a>7.ViewResolver视图处理器（springmvc.xml）</h1><h3 id="注解方式与xml配置方式相同-1"><a href="#注解方式与xml配置方式相同-1" class="headerlink" title="注解方式与xml配置方式相同"></a>注解方式与xml配置方式相同</h3><pre><code>  &lt;!--配置视图解析器--&gt;
+&lt;bean class=&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;&gt;
+    &lt;property name=&quot;prefix&quot; value=&quot;/WEB-INF/&quot;/&gt;
+    &lt;property name=&quot;suffix&quot; value=&quot;.jsp&quot;/&gt;
+&lt;/bean&gt;</code></pre><h1 id="8-Springmvc项目流程示意图"><a href="#8-Springmvc项目流程示意图" class="headerlink" title="8.Springmvc项目流程示意图"></a>8.Springmvc项目流程示意图</h1><p><img src="/2020/04/26/spring-mvc/3.png" alt></p>
+<h1 id="9-读取请求对象的值"><a href="#9-读取请求对象的值" class="headerlink" title="9.读取请求对象的值"></a>9.读取请求对象的值</h1><blockquote>
+<p>DispatcherServler会分析方法的结构，通过java反射机制，将参数传给方法</p>
+</blockquote>
+<h3 id="1-通过request对象"><a href="#1-通过request对象" class="headerlink" title="(1).通过request对象"></a>(1).通过request对象</h3><p>将request对象作为方法的入参即可</p>
+<pre><code>@RequestMapping(&quot;login.do&quot;)
+public String login(HttpServletRequest request){
+    String name = request.getParameter(&quot;name&quot;);
+    System.out.println(name);
+    return &quot;index&quot;;
+}</code></pre><h3 id="2-使用-RequestParam对象"><a href="#2-使用-RequestParam对象" class="headerlink" title="(2).使用@RequestParam对象"></a>(2).使用@RequestParam对象</h3><p>将该注解添加到方法的形参前面，值为实际参数值</p>
+<pre><code> @RequestMapping(&quot;login.do&quot;)
+public String login(String pwd ){
+    System.out.println(pwd);
+    return &quot;index&quot;;
+}
+或者：
+@RequestMapping(&quot;login.do&quot;)
+public String login(@RequestParam(&quot;pwd&quot;) String password ){
+    System.out.println(password);
+    return &quot;index&quot;;
+}</code></pre><h3 id="3-使用javabean封装请求参数值"><a href="#3-使用javabean封装请求参数值" class="headerlink" title="(3).使用javabean封装请求参数值"></a>(3).使用javabean封装请求参数值</h3><blockquote>
+<p>a :写一个Java类，要求属性名称和请求参数名称一致，提供get()、set();</p>
+<p>b :将该javabean作为方法的形参;</p>
+</blockquote>
+
+      
+       
+    </div>
+</article>
+
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>Study(5) xml配置开发基于SpringMvc的web应用</p>
+    <p><span class="copy-title">发布时间:</span>2020-04-26, 09:22:11</p>
+    <p><span class="copy-title">最后更新:</span>2020-04-26, 09:22:11</p>
+</div>
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2019 chen wei</p>
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<!--
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+-->
+<a class="" id="rocket" href="javascript:void(0)" target="_blank" rel="noopener"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#熔断监控Hystrix-Dashboard','#Spring-Cloud-Sleuth','#Zipkin','#Hystrix和Feign Hystrix','#Spring-cloud和Spring-boot','#docker命令基本操作','#安装centos7','#docker','#数据库基础知识点','#docker制作springboot镜像','#find命令','#java内存模型起源','#分布式','#java 框架技术演变','#java导出excel表格','#Java访问jar包说明','#Java-IO','#java内存模型','#JDK工具使用','#linux安装jre','#mongodb、mysql、redis区别和联系','#linux基本命令','#子网掩码设置和网络连接','#netty示例-netty聊天室','#netty示例-http协议传输','#netty示例-tcp协议传输','#netty示例-socket连接实时检测','#redis连接springboot','#redis','#redis取消只能本地访问的方式','#java实现手机发送短信','#java实现发送邮件','#redis发布订阅模式用做消息队列和rabbitmq的区别','#Centos 6.5 搭建SFTP服务器','#xml配置开发基于SpringMvc的web应用','#Spring控制反转理解和实现','#SpringIOC 基于注解的简化配置','#Springboot日志配置','#SpringIOC 基于注解的依赖注入','#Springboot项目导可执行jar','#Springboot项目war说明','#springboot连接redis哨兵集群','#Springboot基础知识','#MyBaties 批量插入数据说明','#vue项目搭建','#swagger使用','#eureka 服务提供和调用','#eureka原理介绍','#配置中心git','#配置中心git服务化和高可用','#java设计模式','#java变量','#java数据结构和算法','#Java-reflax','#mv命令','#ps命令','#netty整合springboot','#nginx学习','#redis集群的三种方式','#主从复制和哨兵 （配置文件详解）','#rabbitMQ','#Spring常用配置','#Spring基础知识','#Spring对象创建三种方式','#Spring高级话题','#Spring cloud zuul (服务网关初级)','#SpringMVC基础','#MySql数据库基础语法','#linux高级命令','#springboot整合mq','#netty基本理论','#SpringMVC配置','#SpringIOC参数值注入','#Java-NIO','#Spring cloud zuul (服务网关高级)','#java基础知识','#java多线程和线程池','#java 知识框架',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
